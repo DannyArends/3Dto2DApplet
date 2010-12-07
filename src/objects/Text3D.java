@@ -23,7 +23,6 @@
 package objects;
 
 import game.Engine;
-import generic.Utils;
 
 import java.awt.Color;
 import java.awt.Font;

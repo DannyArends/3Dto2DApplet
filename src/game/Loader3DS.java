@@ -1,6 +1,28 @@
+/*
+#
+# Loader3DS.java
+#
+# copyright (c) 2009-2010, Danny Arends
+# last modified Dec, 2010
+# first written Dec, 2010
+#
+#     This program is free software; you can redistribute it and/or
+#     modify it under the terms of the GNU General Public License,
+#     version 3, as published by the Free Software Foundation.
+# 
+#     This program is distributed in the hope that it will be useful,
+#     but without any warranty; without even the implied warranty of
+#     merchantability or fitness for a particular purpose.  See the GNU
+#     General Public License, version 3, for more details.
+# 
+#     A copy of the GNU General Public License, version 3, is available
+#     at http://www.r-project.org/Licenses/GPL-3
+#
+*/
+
 package game;
 
-import generic.BinairyUtils;
+import generic.BinaryUtils;
 import generic.Utils;
 
 import java.awt.Color;
@@ -52,7 +74,7 @@ public class Loader3DS {
 				stream.read(chunkLength, 0, 4);
 				// Utils.console("chunkid: " + unsignedShortToInt(chunkId) +
 				// " length: " + unsignedIntToLong(chunkLength));
-				switch (BinairyUtils.arr2int(chunkId)) {
+				switch (BinaryUtils.arr2int(chunkId)) {
 				case 19789:
 					// Utils.console("#0x4d4d");
 					break;
@@ -63,7 +85,7 @@ public class Loader3DS {
 					// Utils.console("#0x4000");
 					if (object != null)
 						objects.add(object);
-					tempstring = BinairyUtils.read3dsstring(stream);
+					tempstring = BinaryUtils.read3dsstring(stream);
 					Utils.console("Found new object: " + tempstring);
 					object = new Object3DS(tempstring);
 					break;
@@ -74,15 +96,15 @@ public class Loader3DS {
 					// Utils.console("#0x4110");
 					stream.read(shortconversion, 0, 2);
 					Utils.console("# of vertices: "
-							+ (length = BinairyUtils.arr2int(shortconversion)));
+							+ (length = BinaryUtils.arr2int(shortconversion)));
 					Point3D[] vertices = new Point3D[length];
 					for (int i = 0; i < length; i++) {
 						stream.read(doubleconversion, 0, 4);
-						locx = BinairyUtils.arr2float(doubleconversion);
+						locx = BinaryUtils.arr2float(doubleconversion);
 						stream.read(doubleconversion, 0, 4);
-						locy = BinairyUtils.arr2float(doubleconversion);
+						locy = BinaryUtils.arr2float(doubleconversion);
 						stream.read(doubleconversion, 0, 4);
-						locz = BinairyUtils.arr2float(doubleconversion);
+						locz = BinaryUtils.arr2float(doubleconversion);
 						// Utils.console("Vertex: " + locx + "," + locy + "," +
 						// locz);
 						vertices[i] = new Point3D(locx, locy, locz);
@@ -93,17 +115,17 @@ public class Loader3DS {
 					// Utils.console("#0x4120");
 					stream.read(shortconversion, 0, 2);
 					Utils.console("# of Edges: "
-							+ (length = BinairyUtils.arr2int(shortconversion)));
+							+ (length = BinaryUtils.arr2int(shortconversion)));
 					Edge[] edges = new Edge[3 * length];
 					for (int i = 0; i < 3 * length; i += 3) {
 						stream.read(shortconversion, 0, 2);
-						edgex = BinairyUtils.arr2int(shortconversion);
+						edgex = BinaryUtils.arr2int(shortconversion);
 						stream.read(shortconversion, 0, 2);
-						edgey = BinairyUtils.arr2int(shortconversion);
+						edgey = BinaryUtils.arr2int(shortconversion);
 						stream.read(shortconversion, 0, 2);
-						edgez = BinairyUtils.arr2int(shortconversion);
+						edgez = BinaryUtils.arr2int(shortconversion);
 						stream.read(shortconversion, 0, 2);
-						faceflag = BinairyUtils.arr2int(shortconversion);
+						faceflag = BinaryUtils.arr2int(shortconversion);
 						edges[i] = new Edge(edgex, edgez, faceflag);
 						edges[i + 1] = new Edge(edgex, edgey, faceflag);
 						edges[i + 2] = new Edge(edgey, edgez, faceflag);
@@ -113,13 +135,13 @@ public class Loader3DS {
 					break;
 				case 16688:
 					// Utils.console("#0x4130 - Triangle Materials");
-					tempstring = BinairyUtils.read3dsstring(stream);
+					tempstring = BinaryUtils.read3dsstring(stream);
 					stream.read(shortconversion, 0, 2);
-					Utils.console((length = BinairyUtils.arr2int(shortconversion)) + " Triangles");
+					Utils.console((length = BinaryUtils.arr2int(shortconversion)) + " Triangles");
 					int[] triangleMeshData = new int[length];
 					for (int i = 0; i < length; i++) {
 						stream.read(shortconversion, 0, 2);
-						triangleMeshData[i] = BinairyUtils.arr2int(shortconversion);
+						triangleMeshData[i] = BinaryUtils.arr2int(shortconversion);
 						// Utils.console("triangle: " + triangle + " material: "
 						// + tempstring);
 					}
@@ -132,7 +154,7 @@ public class Loader3DS {
 					// Utils.console("#0xA000 - Materials List");
 					if (material != null)
 						materials.add(material);
-					tempstring = BinairyUtils.read3dsstring(stream);
+					tempstring = BinaryUtils.read3dsstring(stream);
 					Utils.console("Found new material: " + tempstring);
 					material = new Material3DS(tempstring);
 					break;
@@ -177,19 +199,19 @@ public class Loader3DS {
 					// Utils.console("#0x4140");
 					stream.read(shortconversion, 0, 2);
 					Utils.console("# of mapcoords: "
-							+ (length = BinairyUtils.arr2int(shortconversion)));
+							+ (length = BinaryUtils.arr2int(shortconversion)));
 					Point2D[] mapcoords = new Point2D[length];
 					for (int i = 0; i < length; i++) {
 						stream.read(doubleconversion, 0, 4);
-						mapx = BinairyUtils.arr2float(doubleconversion);
+						mapx = BinaryUtils.arr2float(doubleconversion);
 						stream.read(doubleconversion, 0, 4);
-						mapz = BinairyUtils.arr2float(doubleconversion);
+						mapz = BinaryUtils.arr2float(doubleconversion);
 						mapcoords[i] = new Point2D(mapx, mapz);
 					}
 					object.setMapcoords(mapcoords);
 					break;
 				default:
-					stream.skip((BinairyUtils.arr2long(chunkLength) - 6));
+					stream.skip((BinaryUtils.arr2long(chunkLength) - 6));
 					break;
 				}
 
