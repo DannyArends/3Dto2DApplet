@@ -50,8 +50,7 @@ public class Text3D extends Object3D {
 				g2d.setFont(fonts[fontId]);
 				g2d.setColor(Color.white);
 				g2d.drawString(getText(), (int)(Engine.getWidth()/2 - scaleFactor * d[0]), (int)(Engine.getHeight()/2 - scaleFactor * d[1]));
-			}else{
-				Utils.console("not in view");
+				
 			}
 		}
 	}

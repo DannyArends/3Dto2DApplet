@@ -10,9 +10,18 @@ import java.util.Vector;
 
 
 public class Object3D extends Point3D{
-	boolean wireframe = false;
+	private boolean wireframe = false;
 
 	private Edge[] edges;
+	
+	public boolean isWireframe() {
+		return wireframe;
+	}
+
+	public void setWireframe(boolean wireframe) {
+		this.wireframe = wireframe;
+	}
+
 	private double objectScale=1.0;
 	private Color[] edgeColors;
 
@@ -61,15 +70,14 @@ public class Object3D extends Point3D{
 	
 
 	public void drawGeneralPath(Graphics2D g2d, GeneralPath p){
-		//if(wireframe){
+		
 		if(getEdgeColors() != null && getEdgeColors().length==1){
 			g2d.setColor(getEdgeColors()[0]);
 		}else{
 			g2d.setColor(Color.white);
 		}
 		g2d.draw(p);
-		g2d.fill(p);
-
+		if(wireframe) g2d.fill(p);
 	}
 	
 	public void render(Graphics g, Camera c){
