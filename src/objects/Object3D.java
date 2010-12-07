@@ -11,14 +11,20 @@ import java.util.Vector;
 
 public class Object3D extends Point3D{
 	boolean wireframe = false;
-	private Point3D[] vertices;
-	private Point2D[] mapcoords;
+
 	private Edge[] edges;
 	private double objectScale=1.0;
 	private Color[] edgeColors;
+	double[] rotation = new double[8];
+	double[] ownrotation = new double[8];
 	private int horizontalRotation;
 	private int verticalRotation;
+	double near = 3.0f;
+	double nearToObj = 2.5f;
+	
 	private Vector<TriangleMesh> targets;
+	private Point3D[] vertices;
+	private Point2D[] mapcoords;
 	
 	double sinT,cosT,sinP,cosP,cosTcosP,cosTsinP,sinTcosP,sinTsinP;
 	double OWNsinT,OWNcosT,OWNsinP,OWNcosP,OWNcosTcosP,OWNcosTsinP,OWNsinTcosP,OWNsinTsinP;
@@ -64,25 +70,25 @@ public class Object3D extends Point3D{
 	public void update(Camera c){
 		double theta = Math.PI * (c.getHorizontalRotation()) / 180.0;
 		double phi = Math.PI * (c.getVerticalRotation()) / 180.0;
-		cosT = (float) Math.cos(theta);
-		sinT = (float) Math.sin(theta);
-		cosP = (float) Math.cos(phi);
-		sinP = (float) Math.sin(phi);
-		cosTcosP = cosT * cosP; 
-		cosTsinP = cosT * sinP;
-		sinTcosP = sinT * cosP;
-		sinTsinP = sinT * sinP;
+		rotation[0] = (float) Math.cos(theta);
+		rotation[1] = (float) Math.sin(theta);
+		rotation[2] = (float) Math.cos(phi);
+		rotation[3] = (float) Math.sin(phi);
+		rotation[4] = rotation[0] * rotation[2]; 
+		rotation[5] = rotation[0] * rotation[3];
+		rotation[6] = rotation[1] * rotation[2];
+		rotation[7] = rotation[1] * rotation[3];
 		
 		theta = Math.PI * (getHorizontalRotation()) / 180.0;
 		phi = Math.PI * (getVerticalRotation()) / 180.0;
-		OWNcosT = (float) Math.cos(theta);
-		OWNsinT = (float) Math.sin(theta);
-		OWNcosP = (float) Math.cos(phi);
-		OWNsinP = (float) Math.sin(phi);
-		OWNcosTcosP = OWNcosT * OWNcosP; 
-		OWNcosTsinP = OWNcosT * OWNsinP;
-		OWNsinTcosP = OWNsinT * OWNcosP;
-		OWNsinTsinP = OWNsinT * OWNsinP;
+		ownrotation[0] = (float) Math.cos(theta);
+		ownrotation[1] = (float) Math.sin(theta);
+		ownrotation[2] = (float) Math.cos(phi);
+		ownrotation[3] = (float) Math.sin(phi);
+		ownrotation[4] = ownrotation[0] * ownrotation[2]; 
+		ownrotation[5] = ownrotation[0] * ownrotation[3];
+		ownrotation[6] = ownrotation[1] * ownrotation[2];
+		ownrotation[7] = ownrotation[1] * ownrotation[3];
 
 	}
 	
@@ -104,32 +110,17 @@ public class Object3D extends Point3D{
 		Point2D[] points = new Point2D[vertices.length];
 		int j;
 		int scaleFactor = (int) ((Engine.getWidth() / 8));
-		double near = 3.0f; // distance from eye to near plane
-		double nearToObj = 2.5f; // distance from near plane to center of object
+
+		double[] d;
 		for (j = 0; j < vertices.length; ++j) {
 			Point2D p = new Point2D();
-			
-			double x0 = vertices[j].x*objectScale;
-			double y0 = vertices[j].y*objectScale;
-			double z0 = vertices[j].z*objectScale;
-			// compute an orthographic projection of the object
-			double x1 = OWNcosT * x0 + OWNsinT * z0;
-			double y1 = -OWNsinTsinP * x0 + OWNcosP * y0 + OWNcosTsinP * z0;
-			double z1 = OWNcosTcosP * z0 - OWNsinTcosP * x0 - OWNsinP * y0;
-			// compute a double orthographic projection of camera
-			double x2 = x1 + (this.x - c.x);
-			double y2 = y1 + (this.y - c.y);
-			double z2 = z1 + (this.z - c.z);
-			x1 = cosT * x2 + sinT * z2;
-			y1 = -sinTsinP * x2 + cosP * y2 + cosTsinP * z2;
-			z1 = cosTcosP * z2 - sinTcosP * x2 - sinP * y2;
-			
-			if(!((z1 + near + nearToObj) < 0)){
+			d = computeOrtogonalProjection(vertices[j].x*objectScale,vertices[j].y*objectScale,vertices[j].z*objectScale,ownrotation);
+			d = computeOrtogonalProjection(d[0]+ (this.x - c.x),d[1]+ (this.y - c.y),d[2]+ (this.z - c.z),rotation);
+			if(!((d[2] + near + nearToObj) < 0)){
 				//Calculate a perspective projection
-				x1 = x1 * near / (z1 + near + nearToObj);
-				y1 = y1 * near / (z1 + near + nearToObj);
-				if(!((Engine.getWidth()/2 - scaleFactor * x1) < 0) && !((Engine.getWidth()/2 - scaleFactor * x1)<0)){
-					p.setLocation((Engine.getWidth()/2 - scaleFactor * x1),(Engine.getHeight()/2  - scaleFactor * y1));
+				d=computePerspectiveProjection(d[0],d[1],d[2],near,nearToObj);
+				if(!((Engine.getWidth()/2 - scaleFactor * d[0]) < 0) && !((Engine.getWidth()/2 - scaleFactor * d[0])<0)){
+					p.setLocation((Engine.getWidth()/2 - scaleFactor * d[0]),(Engine.getHeight()/2  - scaleFactor * d[1]));
 				}
 			}
 			points[j] = p;

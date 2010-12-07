@@ -22,6 +22,6 @@ public class Text3D extends Point3D {
 	
 	public void render(Graphics g, Camera c){
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.drawString(getText(), arg1, arg2)
+		g2d.drawString(getText(), (int)this.x, (int)this.y);
 	}
 }

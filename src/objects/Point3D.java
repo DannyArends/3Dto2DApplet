@@ -82,4 +82,19 @@ public class Point3D {
 		r.z /=length;
 		return r;
 	}
+	
+	double[] computeOrtogonalProjection(double x0,double y0,double z0,double[] rotation){
+		double[] d = new double[3];
+		d[0] = rotation[0] * x0 + rotation[1] * z0;
+		d[1] = -rotation[7] * x0 + rotation[2] * y0 + rotation[5] * z0;
+		d[2] = rotation[4] * z0 - rotation[6] * x0 - rotation[3] * y0;
+		return d;
+	}
+	
+	double[] computePerspectiveProjection(double x0,double y0,double z0,double near, double nearToObj){
+		double[] d = new double[2];
+		d[0] = x0 * near / (z0 + near + nearToObj);
+		d[1] = y0 * near / (z0 + near + nearToObj);
+		return d;
+	}
 }
