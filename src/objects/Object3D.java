@@ -15,20 +15,12 @@ public class Object3D extends Point3D{
 	private Edge[] edges;
 	private double objectScale=1.0;
 	private Color[] edgeColors;
-	double[] rotation = new double[8];
-	double[] ownrotation = new double[8];
-	private int horizontalRotation;
-	private int verticalRotation;
-	double near = 3.0f;
-	double nearToObj = 2.5f;
-	
+
+
 	private Vector<TriangleMesh> targets;
 	private Point3D[] vertices;
 	private Point2D[] mapcoords;
-	
-	double sinT,cosT,sinP,cosP,cosTcosP,cosTsinP,sinTcosP,sinTsinP;
-	double OWNsinT,OWNcosT,OWNsinP,OWNcosP,OWNcosTcosP,OWNcosTsinP,OWNsinTcosP,OWNsinTsinP;
-	
+		
 	Object3D(double x, double y, double z){
 		super(x,y,z);
 		setHorizontalRotation(0);
@@ -67,31 +59,7 @@ public class Object3D extends Point3D{
 		targets.add(t);
 	}
 	
-	public void update(Camera c){
-		double theta = Math.PI * (c.getHorizontalRotation()) / 180.0;
-		double phi = Math.PI * (c.getVerticalRotation()) / 180.0;
-		rotation[0] = (float) Math.cos(theta);
-		rotation[1] = (float) Math.sin(theta);
-		rotation[2] = (float) Math.cos(phi);
-		rotation[3] = (float) Math.sin(phi);
-		rotation[4] = rotation[0] * rotation[2]; 
-		rotation[5] = rotation[0] * rotation[3];
-		rotation[6] = rotation[1] * rotation[2];
-		rotation[7] = rotation[1] * rotation[3];
-		
-		theta = Math.PI * (getHorizontalRotation()) / 180.0;
-		phi = Math.PI * (getVerticalRotation()) / 180.0;
-		ownrotation[0] = (float) Math.cos(theta);
-		ownrotation[1] = (float) Math.sin(theta);
-		ownrotation[2] = (float) Math.cos(phi);
-		ownrotation[3] = (float) Math.sin(phi);
-		ownrotation[4] = ownrotation[0] * ownrotation[2]; 
-		ownrotation[5] = ownrotation[0] * ownrotation[3];
-		ownrotation[6] = ownrotation[1] * ownrotation[2];
-		ownrotation[7] = ownrotation[1] * ownrotation[3];
 
-	}
-	
 	public void drawGeneralPath(Graphics2D g2d, GeneralPath p){
 		//if(wireframe){
 		if(getEdgeColors() != null && getEdgeColors().length==1){
@@ -152,22 +120,6 @@ public class Object3D extends Point3D{
 			}
 		}
 		if(started){p.closePath(); drawGeneralPath(g2d,p);};
-	}
-
-	public void setHorizontalRotation(int horizontalRotation) {
-		this.horizontalRotation = horizontalRotation;
-	}
-
-	public int getHorizontalRotation() {
-		return horizontalRotation;
-	}
-
-	public void setVerticalRotation(int verticalRotation) {
-		this.verticalRotation = verticalRotation;
-	}
-
-	public int getVerticalRotation() {
-		return verticalRotation;
 	}
 
 	public void setEdgeColors(Color[] edgeColors) {
