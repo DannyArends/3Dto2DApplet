@@ -22,11 +22,14 @@
 
 package game;
 
+import generic.Utils;
 import genetics.QTLdataset;
+import genetics.QTLheatmap;
 
 import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Vector;
 
 import objects.Camera;
@@ -36,12 +39,26 @@ import objects.Object3D;
 public class Scene extends Engine{
 	static private Camera camera = new Camera(0.0, 20.0, 0.0, -45, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
+	static Hud headsupdisplay;
+	private QTLdataset dataset;
 	
 	public Scene(Applet parent){
 		super(parent);
+		headsupdisplay=new Hud();
+		try{
+			dataset = new QTLdataset("data/data.dat");
+			QTLheatmap heatmap = new QTLheatmap();
+			for(Object3D x : heatmap.getObjects(dataset)){
+				Scene.addObject(x);
+			}
+			headsupdisplay.addDataset(dataset);
+		}catch(Exception e){
+			Utils.log("Connot load dataset", e);
+		}
+		
 	}
 	
-	public static void updateScene(QTLdataset dataset) {
+	public static void updateScene() {
 		//Utils.console("Updating Scene");
 		Scene.getBackBufferGraphics().setColor(Color.black);
 		Scene.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
@@ -49,15 +66,7 @@ public class Scene extends Engine{
 			myobject.update(camera);
 			myobject.render(getBackBufferGraphics(),camera);
 		}
-		Scene.getBackBufferGraphics().setColor(Color.white);
-		Scene.getBackBufferGraphics().drawString("Traits: " + dataset.ntraits, 10, 36);
-		Scene.getBackBufferGraphics().drawString("Chromosomes: " + dataset.nchromosomes, 10, 48);
-	    String distances = "Lengths: ";
-	    for (int c = 0; c < dataset.nchromosomes; c++) {
-	      distances += dataset.chrlengths[c] + " ";
-	    }
-	    Scene.getBackBufferGraphics().drawString(distances, 10, 60);
-	    Scene.getBackBufferGraphics().drawString("Markers: " + dataset.nmarkers, 10, 72);
+		headsupdisplay.render((Graphics2D)getBackBufferGraphics());
 		updateGraphics(getParentApplet().getGraphics());
 	}
 	

@@ -29,41 +29,24 @@ import java.awt.event.MouseListener;
 
 import events.MyHandler;
 import game.Scene;
-import genetics.QTLdataset;
-import genetics.QTLheatmap;
 
 public class WireFrame extends Applet implements KeyListener, MouseListener{
 	private static final long serialVersionUID = 1L;
 	
 	MyHandler eventListener= new MyHandler();
-	QTLdataset dataset;
+	
 	public void init() {
 		new Scene(this);
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(eventListener);
-		//Loader3DS objectloader = new Loader3DS();
-		dataset = new QTLdataset("data/data.dat");
-		new QTLheatmap(dataset);
-		/*for(Object3DS o : objectloader.load3DS("data/humanoid.3ds") ){
-			o.setLocation(10,5,25);
-			o.setObjectScale(0.20);
-			Scene.addObject((Object3D)o);
-		}
-		
-		for(Object3DS o : objectloader.load3DS("data/Avatar_3.3ds") ){
-			o.setLocation(25,2,10);
-			Scene.addObject((Object3D)o);
-		}*/
-
-
-		Scene.updateScene(dataset);
+		Scene.updateScene();
 	}
 
 
 	public void update(Graphics g) {
 		Scene.updateGraphics(g);
-		Scene.updateScene(dataset);
+		Scene.updateScene();
 	}
 
 	public void paint(Graphics g) {
