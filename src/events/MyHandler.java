@@ -22,7 +22,9 @@
 
 package events;
 
+import game.Hud;
 import game.Scene;
+import generic.Utils;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -77,13 +79,16 @@ public class MyHandler implements MouseMotionListener{
 	public void keyPressed(KeyEvent e) {
 		int c = e.getKeyCode();
 	    switch(c){
-	    	case KeyEvent.VK_UP:System.out.print("UP\n");Scene.getCamera().move(1,0,0);break;
-	    	case KeyEvent.VK_DOWN:System.out.print("DOWN\n");Scene.getCamera().move(-1,0,0);break;
-	    	case KeyEvent.VK_LEFT:System.out.print("LEFT\n");Scene.getCamera().move(0,0,1);break;
-	    	case KeyEvent.VK_RIGHT:System.out.print("RIGHT\n");Scene.getCamera().move(0,0,-1);break;
-	    	case KeyEvent.VK_PAGE_UP:System.out.print("RIGHT\n");Scene.getCamera().move(0,1,0);break;
-	    	case KeyEvent.VK_PAGE_DOWN:System.out.print("RIGHT\n");Scene.getCamera().move(0,-1,0);break;
+	    	case KeyEvent.VK_UP:Utils.console("UP\n");Scene.getCamera().move(1,0,0);break;
+	    	case KeyEvent.VK_DOWN:Utils.console("DOWN\n");Scene.getCamera().move(-1,0,0);break;
+	    	case KeyEvent.VK_LEFT:Utils.console("LEFT\n");Scene.getCamera().move(0,0,1);break;
+	    	case KeyEvent.VK_RIGHT:Utils.console("RIGHT\n");Scene.getCamera().move(0,0,-1);break;
+	    	case KeyEvent.VK_PAGE_UP:Utils.console("UP\n");Scene.getCamera().move(0,1,0);break;
+	    	case KeyEvent.VK_PAGE_DOWN:Utils.console("DOWN\n");Scene.getCamera().move(0,-1,0);break;
 	    	case KeyEvent.VK_ESCAPE:System.exit(0);break;
+	    	case KeyEvent.VK_H:Utils.console("Help");Hud.setPrintHelp(!Hud.isPrintHelp());break;
+	    	case KeyEvent.VK_A:Utils.console("About");Hud.setPrintAbout(!Hud.isPrintAbout());break;
+	    	case KeyEvent.VK_C:Utils.console("Controls");Hud.setPrintControls(!Hud.isPrintControls());break;
 	      }
 		Scene.getParentApplet().repaint();
 	}
@@ -91,7 +96,7 @@ public class MyHandler implements MouseMotionListener{
 	public void keyTyped(KeyEvent e) {
 	      char c = e.getKeyChar();
 	      if(c != KeyEvent.CHAR_UNDEFINED ) {
-	         System.out.print(c+"\n");
+	         //System.out.print(c+"\n");
 		  }
 	}
 
