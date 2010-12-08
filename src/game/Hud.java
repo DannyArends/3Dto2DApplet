@@ -21,25 +21,37 @@ public class Hud {
 	}
 	
 	int DatasetInfo(Graphics2D g,int y){
-		g.drawString("Traits: " + dataset.ntraits, 10, y+12);
-		g.drawString("Chromosomes: " + dataset.nchromosomes, 10, y+24);
+		g.setFont(new Font("Courier New", 0,  15));
+		drawString(g,"--Dataset Overview--", 10, y+12);
+		g.setFont(new Font("Courier New", 0,  12));
+		drawString(g,"Traits: " + dataset.ntraits, 10, y+24);
+		drawString(g,"Chromosomes: " + dataset.nchromosomes, 10, y+36);
 	    String distances = "Lengths: ";
 	    for (int c = 0; c < dataset.nchromosomes; c++) {
 	      distances += dataset.chrlengths[c] + " ";
 	    }
-	    g.drawString(distances, 10, y+36);
-	    g.drawString("Markers: " + dataset.nmarkers, 10, y+48);
-	    return y+60;
+	    drawString(g,distances, 10, y+48);
+	    drawString(g,"Markers: " + dataset.nmarkers, 10, y+60);
+	    return y+72;
+	}
+	
+	public void drawString(Graphics2D g, String s,int x,int y){
+		g.setColor(Color.gray);
+		g.drawString(s, x+1, y+1);
+		g.setColor(Color.white);
+		g.drawString(s, x, y);
 	}
 	
 	public void render(Graphics2D g){
 		int l = 0;
 		g.setColor(Color.white);
-		g.setFont(new Font("Arial", Font.PLAIN,  12));
-		g.drawString("--QTL viewer--", 10, 36);
-		g.drawString("Press 'H' for Help", 10, 48);
-		g.drawString("Press 'C' for Controls", 10, 60);
-		g.drawString("Press 'A' for About", 10, 72);
+		g.setFont(new Font("Courier New", 0,  15));
+		drawString(g,"--Genetic Landscapes--", 10, 10);
+		g.setFont(new Font("Courier New", 0,  12));
+		drawString(g,"-- --", 10, 36);
+		drawString(g,"Press 'H' for Help", 10, 48);
+		drawString(g,"Press 'C' for Controls", 10, 60);
+		drawString(g,"Press 'A' for About", 10, 72);
 		if(dataset!=null) l = DatasetInfo(g,84);
 		if(printHelp) l= doPrintHelp(g,l);
 		if(printControls) l= doPrintControls(g,l);
@@ -63,13 +75,13 @@ public class Hud {
 	}
 
 	public int doPrintHelp(Graphics2D g, int y) {
-		g.drawString("--HELP--", 10, y+12);
-		g.drawString(" ", 10, y+24);
-		g.drawString("Open triangles: QTL at marker", 10, y+36);
-		g.drawString("Filled triangles: Selected Cofactor at marker", 10, y+48);
-		g.drawString("Triangle size: QTL effect/likelihood", 10, y+60);
-		g.drawString(" ", 10, y+72);
-		return y+84;
+		g.setFont(new Font("Courier New", 0,  15));
+		drawString(g,"--HELP--", 10, y+12);
+		g.setFont(new Font("Courier New", 0,  12));
+		drawString(g,"Open triangles: QTL at marker", 10, y+36);
+		drawString(g,"Filled triangles: Selected Cofactor at marker", 10, y+48);
+		drawString(g,"Triangle size: QTL effect/likelihood", 10, y+60);
+		return y+72;
 	}
 
 	public static void setPrintControls(boolean p) {
@@ -77,17 +89,17 @@ public class Hud {
 	}
 
 	public int doPrintControls(Graphics2D g, int y) {
-		g.drawString("--CONTROLS--", 10, y+12);
-		g.drawString("", 10, y+24);
-		g.drawString("Click and move mouse to look around", 10, y+36);
-		g.drawString("← step left", 10, y+48);
-		g.drawString("→ step right", 10, y+60);
-		g.drawString("↓ step back", 10, y+72);
-		g.drawString("↑ step forward ", 10, y+84);
-		g.drawString("[Page Up] float up", 10, y+96);
-		g.drawString("[Page Down] float down", 10, y+108);
-		g.drawString("", 10, y+120);
-		return y+96;
+		g.setFont(new Font("Courier New", 0,  15));
+		drawString(g,"--CONTROLS--", 10, y+12);
+		g.setFont(new Font("Courier New", 0,  12));
+		drawString(g,"Click and move mouse to look around", 10, y+36);
+		drawString(g,"[Left]       step left", 10, y+48);
+		drawString(g,"[Right]      step right", 10, y+60);
+		drawString(g,"[Down]       step back", 10, y+72);
+		drawString(g,"[Up]         step forward ", 10, y+84);
+		drawString(g,"[Page Up]    float up", 10, y+96);
+		drawString(g,"[Page Down]  float down", 10, y+108);
+		return y+120;
 	}
 
 	public static void setPrintAbout(boolean p) {
@@ -95,12 +107,13 @@ public class Hud {
 	}
 
 	public int doPrintAbout(Graphics2D g, int y) {
-		g.drawString("--ABOUT--", 10, y+12);
-		g.drawString("", 10, y+24);
-		g.drawString("QTL viewing applet", 10, y+36);
-		g.drawString("Part of the iqtl package", 10, y+48);
-		g.drawString("(c) 2010 Danny Arends - GBIC", 10, y+60);
-		g.drawString("https://github.com/DannyArends/3Dto2DApplet", 10, y+72);
+		g.setFont(new Font("Courier New", 0,  15));
+		drawString(g,"--ABOUT--", 10, y+12);
+		g.setFont(new Font("Courier New", 0,  12));
+		drawString(g,"QTL viewing applet", 10, y+36);
+		drawString(g,"Part of the iqtl package", 10, y+48);
+		drawString(g,"(c) 2010 Danny Arends - GBIC", 10, y+60);
+		drawString(g,"https://github.com/DannyArends/3Dto2DApplet", 10, y+72);
 		return y+84;
 	}
 }
