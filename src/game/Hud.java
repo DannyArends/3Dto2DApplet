@@ -3,6 +3,7 @@ package game;
 import genetics.QTLdataset;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class Hud {
@@ -34,6 +35,7 @@ public class Hud {
 	public void render(Graphics2D g){
 		int l = 0;
 		g.setColor(Color.white);
+		g.setFont(new Font("Arial", Font.PLAIN,  12));
 		g.drawString("--QTL viewer--", 10, 36);
 		g.drawString("Press 'H' for Help", 10, 48);
 		g.drawString("Press 'C' for Controls", 10, 60);
@@ -63,9 +65,9 @@ public class Hud {
 	public int doPrintHelp(Graphics2D g, int y) {
 		g.drawString("--HELP--", 10, y+12);
 		g.drawString(" ", 10, y+24);
-		g.drawString(" ", 10, y+36);
-		g.drawString(" ", 10, y+48);
-		g.drawString(" ", 10, y+60);
+		g.drawString("Open triangles: QTL at marker", 10, y+36);
+		g.drawString("Filled triangles: Selected Cofactor at marker", 10, y+48);
+		g.drawString("Triangle size: QTL effect/likelihood", 10, y+60);
 		g.drawString(" ", 10, y+72);
 		return y+84;
 	}
@@ -76,12 +78,16 @@ public class Hud {
 
 	public int doPrintControls(Graphics2D g, int y) {
 		g.drawString("--CONTROLS--", 10, y+12);
-		g.drawString(" ", 10, y+24);
-		g.drawString(" ", 10, y+36);
-		g.drawString(" ", 10, y+48);
-		g.drawString(" ", 10, y+60);
-		g.drawString(" ", 10, y+72);
-		return y+84;
+		g.drawString("", 10, y+24);
+		g.drawString("Click and move mouse to look around", 10, y+36);
+		g.drawString("← step left", 10, y+48);
+		g.drawString("→ step right", 10, y+60);
+		g.drawString("↓ step back", 10, y+72);
+		g.drawString("↑ step forward ", 10, y+84);
+		g.drawString("[Page Up] float up", 10, y+96);
+		g.drawString("[Page Down] float down", 10, y+108);
+		g.drawString("", 10, y+120);
+		return y+96;
 	}
 
 	public static void setPrintAbout(boolean p) {
@@ -90,11 +96,11 @@ public class Hud {
 
 	public int doPrintAbout(Graphics2D g, int y) {
 		g.drawString("--ABOUT--", 10, y+12);
-		g.drawString(" ", 10, y+24);
-		g.drawString(" ", 10, y+36);
-		g.drawString(" ", 10, y+48);
-		g.drawString(" ", 10, y+60);
-		g.drawString(" ", 10, y+72);
+		g.drawString("", 10, y+24);
+		g.drawString("QTL viewing applet", 10, y+36);
+		g.drawString("Part of the iqtl package", 10, y+48);
+		g.drawString("(c) 2010 Danny Arends - GBIC", 10, y+60);
+		g.drawString("https://github.com/DannyArends/3Dto2DApplet", 10, y+72);
 		return y+84;
 	}
 }

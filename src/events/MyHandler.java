@@ -25,6 +25,7 @@ package events;
 import game.Hud;
 import game.Scene;
 import generic.Utils;
+import genetics.QTLheatmap;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -89,6 +90,8 @@ public class MyHandler implements MouseMotionListener{
 	    	case KeyEvent.VK_H:Utils.console("Help");Hud.setPrintHelp(!Hud.isPrintHelp());break;
 	    	case KeyEvent.VK_A:Utils.console("About");Hud.setPrintAbout(!Hud.isPrintAbout());break;
 	    	case KeyEvent.VK_C:Utils.console("Controls");Hud.setPrintControls(!Hud.isPrintControls());break;
+	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();break;
+	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();break;
 	      }
 		Scene.getParentApplet().repaint();
 	}

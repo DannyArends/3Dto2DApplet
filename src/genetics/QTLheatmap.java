@@ -32,9 +32,11 @@ import game.Scene;
 import generic.Utils;
 
 public class QTLheatmap {
+	static double cutoff;
+	
 	
 	public QTLheatmap(){
-		
+		cutoff=1.0;
 	}
 	
 	public Vector<Object3D> getObjects(QTLdataset d){
@@ -43,7 +45,7 @@ public class QTLheatmap {
 		for(int x=(d.qtlmatrix.length-1);x>=0;x--){	
 			for(int m=(d.qtlmatrix[x].scores.length-1);m>=0;m--){
 				cm = d.markers[m].location/3 + d.markers[m].chromosome + d.chrlengths[d.markers[m].chromosome]/1.5;
-				if(Math.abs(d.qtlmatrix[x].scores[m]) > 1){
+				if(Math.abs(d.qtlmatrix[x].scores[m]) > cutoff){
 		        	Triangle3D cube = new Triangle3D(cm,0.0,x,0,0,1,d.qtlmatrix[x].scores[m]/10,Utils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
 					if(d.modelmatrix[x].scores[m]>0) cube.setWireframe(true);
 		        	cube.render(Engine.getBackBufferGraphics(),Scene.getCamera());
@@ -58,5 +60,13 @@ public class QTLheatmap {
 			r.add((Object3D)text);
 		}
 		return r;
+	}
+	
+	public static void increaseCutoff(){
+		cutoff+=0.1;
+	}
+	
+	public static void decreaseCutoff(){
+		cutoff-=0.1;
 	}
 }
