@@ -31,6 +31,7 @@ import java.util.Vector;
 import objects.hud.Button2D;
 import objects.hud.InputBox;
 import objects.hud.MenuButton2D;
+import objects.hud.Slider;
 
 public class ButtonControler {
 	
@@ -65,6 +66,11 @@ public class ButtonControler {
 		addButton(new MenuButton2D(120,0,"View"));
 		addButton(new Button2D(180,0,"Help"));
 		addButton(new InputBox(240,0,10));
+		addButton(new Slider(500,15));
+		addButton(new Slider(500,30));
+		addButton(new Slider(500,45));
+		addButton(new Slider(500,60));
+		addButton(new Slider(500,75));
 	}
 	
 	public static void rightClickMenu(int x, int y){

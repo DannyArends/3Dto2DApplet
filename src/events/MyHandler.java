@@ -31,12 +31,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-import objects.hud.Button2D;
 import objects.hud.Object2D;
 
 public class MyHandler implements MouseMotionListener{
 	int mx, my; // the most recently recorded mouse coordinates
 	static Object2D keyinputlistener = null;
+	static Object2D sliderinputlistener = null;
 	
 	public MyHandler(){
 
@@ -57,6 +57,7 @@ public class MyHandler implements MouseMotionListener{
 	    	case MouseEvent.BUTTON2:break;
 	    	case MouseEvent.BUTTON3:ButtonControler.rightClickMenu(e.getPoint().x,e.getPoint().y);break;
 	      }
+	    sliderinputlistener=null;
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -75,10 +76,13 @@ public class MyHandler implements MouseMotionListener{
 		// get the latest mouse position
 		int new_mx = e.getX();
 		int new_my = e.getY();
-
-		// since the last event
-		Scene.getCamera().setHorizontalRotation(Scene.getCamera().getHorizontalRotation() - (new_mx - mx));
-		Scene.getCamera().setVerticalRotation(Scene.getCamera().getVerticalRotation() + (new_my - my));
+		if(sliderinputlistener!=null){
+			if(!sliderinputlistener.handleSlide(mx,my))sliderinputlistener=null ;
+		}else{
+			// since the last event
+			Scene.getCamera().setHorizontalRotation(Scene.getCamera().getHorizontalRotation() - (new_mx - mx));
+			Scene.getCamera().setVerticalRotation(Scene.getCamera().getVerticalRotation() + (new_my - my));
+		}
 		// update our data
 		mx = new_mx;
 		my = new_my;
@@ -114,6 +118,11 @@ public class MyHandler implements MouseMotionListener{
 	public static void registerForKeystrokes(Object2D b) {
 		Utils.console("Object registering for keystrokes");
 		keyinputlistener = b;
+	}
+
+	public static void registerForSlide(Object2D b) {
+		Utils.console("Object registering for mouse slides");
+		sliderinputlistener=b;
 	}
 
 }

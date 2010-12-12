@@ -35,8 +35,8 @@ public class Camera extends Object3D{
 	}
 	
 	public void move(int x, int y, int z){
-		this.x+=x;
-		this.y+=y;
-		this.z+=z;
+		this.x+=5*x;
+		this.y+=5*y;
+		this.z+=5*z;
 	}
 }

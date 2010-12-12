@@ -22,7 +22,9 @@
 
 package objects.hud;
 
+import events.ButtonControler;
 import game.Hud;
+import game.Scene;
 import generic.Utils;
 
 import java.awt.Color;
@@ -70,6 +72,8 @@ public class Button2D extends Object2D{
 
 	public void runPayload() {
 		Utils.console("Button at:"+x+","+y+"clicked");
+		ButtonControler.resetButtons();
+		Scene.updateScene();
 	}
 
 	public void setName(String name) {
@@ -90,5 +94,10 @@ public class Button2D extends Object2D{
 	@Override
 	public void handleKeystroke(KeyEvent e) {
 		
+	}
+
+	@Override
+	public boolean handleSlide(int mx, int my) {
+		return false;	
 	}
 }

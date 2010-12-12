@@ -39,4 +39,6 @@ abstract public class Object2D extends Point2D{
 	public abstract void render(Graphics2D g);
 
 	abstract public void handleKeystroke(KeyEvent e);
+
+	abstract public boolean handleSlide(int mx, int my);
 }

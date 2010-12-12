@@ -23,15 +23,13 @@
 
 package objects.hud;
 
-import events.MyHandler;
-import game.Hud;
-import game.Scene;
-import generic.Utils;
-import genetics.QTLheatmap;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+
+import events.MyHandler;
+import game.Hud;
+import game.Scene;
 
 public class InputBox extends Button2D {
 	String input="";

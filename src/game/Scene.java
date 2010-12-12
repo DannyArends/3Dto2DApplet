@@ -40,7 +40,7 @@ import objects.renderables.Object3D;
 public class Scene extends Engine{
 	static private Camera camera = new Camera(0.0, 20.0, 0.0, -45, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
-	public static int softmyobjectslimit = 7500;
+	public static int softmyobjectslimit = 12500;
 	static Hud headsupdisplay;
 	private static QTLdataset dataset;
 	static QTLheatmap heatmap;
