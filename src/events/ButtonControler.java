@@ -83,7 +83,7 @@ public class ButtonControler {
 		Scene.updateScene();
 	}
 	
-	synchronized public static void addButton(Button2D b){
+	public static void addButton(Button2D b){
 		monitored.add(b);
 	}
 

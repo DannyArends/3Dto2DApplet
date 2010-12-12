@@ -69,7 +69,7 @@ public class Scene extends Engine{
 	}
 	
 	public static void updateScene() {
-		//Utils.console("Updating Scene");
+		Utils.console("Updating Scene");
 		Scene.getBackBufferGraphics().setColor(Color.black);
 		Scene.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
 		for(Object3D myobject : myobjects){

@@ -29,13 +29,18 @@ import genetics.QTLheatmap;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.util.Vector;
+
+import objects.hud.Button2D;
+import objects.hud.Object2D;
 
 public class Hud {
 	QTLdataset dataset;
 	static private boolean printHelp=false;
 	static private boolean printControls=false;
 	static private boolean printAbout=false;
-	private ButtonControler c = new ButtonControler();
+	static Vector<Object2D> children = new Vector<Object2D>();
+	private ButtonControler buttonarray = new ButtonControler();
 	Font[] fonts = new Font[]{
 			new Font ("Dialog", Font.BOLD,  12)
 			,new Font("Dialog", Font.PLAIN,  10)
@@ -91,7 +96,11 @@ public class Hud {
 		if(printHelp) l= doPrintHelp(g,Engine.width-200,l);
 		if(printControls) l= doPrintControls(g,l);
 		if(printAbout) l= doPrintAbout(g,l);
-		c.render(g);
+		for(Object2D o : children){
+			o.render(g);
+		}
+		buttonarray.render(g);
+		
 	}
 
 	public static void setPrintHelp(boolean p) {
@@ -108,6 +117,11 @@ public class Hud {
 
 	public static boolean isPrintAbout() {
 		return printAbout;
+	}
+	
+	public static void addObject2D(Object2D b){
+		children.clear();
+		children.add(b);
 	}
 
 	public int doPrintHelp(Graphics2D g,int x, int y) {

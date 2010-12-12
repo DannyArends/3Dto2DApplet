@@ -28,12 +28,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import events.MyHandler;
+import game.MyTimer;
 import game.Scene;
 
 public class WireFrame extends Applet implements KeyListener, MouseListener{
 	private static final long serialVersionUID = 1L;
 	
 	MyHandler eventListener= new MyHandler();
+	MyTimer timer = new MyTimer();
 	
 	public void init() {
 		new Scene(this);
