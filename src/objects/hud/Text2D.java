@@ -6,8 +6,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import objects.Point2D;
-
 public class Text2D extends Object2D{
 	private String text;
 	

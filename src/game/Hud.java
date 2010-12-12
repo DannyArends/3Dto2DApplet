@@ -31,7 +31,6 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.Vector;
 
-import objects.hud.Button2D;
 import objects.hud.Object2D;
 
 public class Hud {
