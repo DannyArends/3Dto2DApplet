@@ -53,6 +53,7 @@ public class MyHandler implements MouseMotionListener{
 	public void mousePressed(MouseEvent e) {
 		mx = e.getX();
 		my = e.getY();
+		Utils.console("mouse:"+mx+","+my);
 	}
 
 	public void mouseReleased(MouseEvent e) {

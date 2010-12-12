@@ -25,7 +25,6 @@ package objects;
 
 public class Object3DS extends Object3D{
 	String objectName;
-
 	
 	public Object3DS(String name){
 		super(0,0,0);

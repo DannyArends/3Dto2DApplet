@@ -62,9 +62,9 @@ public class Text3D extends Object3D {
 		Graphics2D g2d = (Graphics2D)g;
 		int scaleFactor = (int) ((Engine.getWidth() / 8));
 		double[] d = computeOrtogonalProjection((this.x - c.x),(this.y - c.y),(this.z - c.z),rotation);
-		if(!((d[2] + near + nearToObj) < 0)){
+		if(!((d[2] + Engine.near + Engine.nearToObj) < 0)){
 			//Calculate a perspective projection
-			d=computePerspectiveProjection(d[0],d[1],d[2],near,nearToObj);
+			d=computePerspectiveProjection(d[0],d[1],d[2]);
 			if(!((Engine.getWidth()/2 - scaleFactor * d[0]) < 0) && !((Engine.getWidth()/2 - scaleFactor * d[0])<0)){
 				g2d.setFont(fonts[fontId]);
 				g2d.setColor(Color.white);

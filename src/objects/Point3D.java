@@ -21,18 +21,17 @@
 */
 package objects;
 
+import game.Engine;
+
 public class Point3D {
 	public double x, y, z;
-	public boolean undefined;
-	double near = 3.0f;
-	double nearToObj = 2.5f;
 	double[] rotation = new double[8];
 	double[] ownrotation = new double[8];
 	private int horizontalRotation;
 	private int verticalRotation;
 
 	public Point3D(){
-		undefined=true;
+
 	}
 	
 	public void update(Camera c){
@@ -76,21 +75,18 @@ public class Point3D {
 	}
 	
 	public Point3D(double X, double Y, double Z){
-		undefined=false;
 		x = X;
 		y = Y;
 		z = Z;
 	}
 	
 	public void setLocation(double X, double Y, double Z){
-		undefined=false;
 		x = X;
 		y = Y;
 		z = Z;
 	}
 	
 	public Point3D(Point3D point3d) {
-		undefined=false;
 		x=point3d.x;
 		y=point3d.y;
 		z=point3d.z;
@@ -158,10 +154,10 @@ public class Point3D {
 		return d;
 	}
 	
-	double[] computePerspectiveProjection(double x0,double y0,double z0,double near, double nearToObj){
+	double[] computePerspectiveProjection(double x0,double y0,double z0){
 		double[] d = new double[2];
-		d[0] = x0 * near / (z0 + near + nearToObj);
-		d[1] = y0 * near / (z0 + near + nearToObj);
+		d[0] = x0 * Engine.near / (z0 + Engine.near + Engine.nearToObj);
+		d[1] = y0 * Engine.near / (z0 + Engine.near + Engine.nearToObj);
 		return d;
 	}
 }

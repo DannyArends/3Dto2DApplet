@@ -46,10 +46,10 @@ public class QTLheatmap {
 			for(int m=(d.qtlmatrix[x].scores.length-1);m>=0;m--){
 				cm = d.markers[m].location/3 + d.markers[m].chromosome + d.chrlengths[d.markers[m].chromosome]/1.5;
 				if(Math.abs(d.qtlmatrix[x].scores[m]) > getCutoff()){
-		        	Triangle3D cube = new Triangle3D(cm,0.0,x,0,0,1,d.qtlmatrix[x].scores[m]/10,Utils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
-					if(d.modelmatrix[x].scores[m]>0) cube.setWireframe(true);
-		        	cube.render(Engine.getBackBufferGraphics(),Scene.getCamera());
-					r.add((Object3D)cube);
+		        	Triangle3D triangle = new Triangle3D(cm,0.0,x,0,0,1,d.qtlmatrix[x].scores[m]/10,Utils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
+					if(d.modelmatrix[x].scores[m]>0) triangle.setWireframe(true);
+					triangle.render(Engine.getBackBufferGraphics(),Scene.getCamera());
+					r.add((Object3D)triangle);
 				}
 			}
 		}

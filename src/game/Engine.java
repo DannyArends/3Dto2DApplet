@@ -31,6 +31,8 @@ public class Engine {
 	private static Graphics backBufferGraphics;
 	public static int width;
 	public static int height;
+	public static double near = 3.0f;
+	public static double nearToObj = 2.5f;
 	private static Applet parentApplet;
 	
 	Engine(Applet parent){
