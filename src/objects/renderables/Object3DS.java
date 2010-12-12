@@ -1,6 +1,6 @@
 /*
 #
-# Point2D.java
+# Object3DS.java
 #
 # copyright (c) 2009-2010, Danny Arends
 # last modified Dec, 2010
@@ -20,32 +20,25 @@
 #
 */
 
-package objects;
+package objects.renderables;
 
-import game.Engine;
 
-public class Point2D{
-	double x=-1;
-	double y=-1;
-	Point2D(){
-		
+public class Object3DS extends Object3D{
+	String objectName;
+	
+	public Object3DS(String name){
+		super(0,0,0);
+		setRotation(0,90);		//Always there is a 90Degree flip
+		setObjectScale(0.10);	//And objects are designed quite large
+		this.objectName=name;
 	}
 	
-	public Point2D(double x,double y){
-		this.x=x;
-		this.y=y;
+	public Object3DS(String name, double x,double y,double z){
+		super(x,y,z);
+		setRotation(0,90);
+		setObjectScale(0.10);
+		this.objectName=name;
 	}
 	
-	public void setLocation(double x,double y){
-		this.x=x;
-		this.y=y;
-	}
-	
-	boolean isDefined(){
-		return !(this.x==-1);
-	}
-	
-	boolean isOnScreen(){
-		return (this.x>0 && this.y > 0 && this.x < Engine.getWidth() && this.y < Engine.getHeight());
-	}
+
 }

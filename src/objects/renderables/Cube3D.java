@@ -20,7 +20,10 @@
 #
 */
 
-package objects;
+package objects.renderables;
+
+import objects.Edge;
+import objects.Point3D;
 
 public class Cube3D extends Object3D{
 	public Cube3D(double x,double y, double z,int hrot, int vrot,double size){

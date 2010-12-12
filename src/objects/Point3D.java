@@ -25,8 +25,8 @@ import game.Engine;
 
 public class Point3D {
 	public double x, y, z;
-	double[] rotation = new double[8];
-	double[] ownrotation = new double[8];
+	protected double[] rotation = new double[8];
+	protected double[] ownrotation = new double[8];
 	private int horizontalRotation;
 	private int verticalRotation;
 
@@ -146,7 +146,7 @@ public class Point3D {
 		return r;
 	}
 	
-	double[] computeOrtogonalProjection(double x0,double y0,double z0,double[] rotation){
+	protected double[] computeOrtogonalProjection(double x0,double y0,double z0,double[] rotation){
 		double[] d = new double[3];
 		d[0] = rotation[0] * x0 + rotation[1] * z0;
 		d[1] = -rotation[7] * x0 + rotation[2] * y0 + rotation[5] * z0;
@@ -154,7 +154,7 @@ public class Point3D {
 		return d;
 	}
 	
-	double[] computePerspectiveProjection(double x0,double y0,double z0){
+	protected double[] computePerspectiveProjection(double x0,double y0,double z0){
 		double[] d = new double[2];
 		d[0] = x0 * Engine.near / (z0 + Engine.near + Engine.nearToObj);
 		d[1] = y0 * Engine.near / (z0 + Engine.near + Engine.nearToObj);

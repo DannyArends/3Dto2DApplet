@@ -34,12 +34,13 @@ import java.awt.RenderingHints;
 import java.util.Vector;
 
 import objects.Camera;
-import objects.Object3D;
+import objects.renderables.Object3D;
 
 
 public class Scene extends Engine{
 	static private Camera camera = new Camera(0.0, 20.0, 0.0, -45, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
+	public static int softmyobjectslimit = 7500;
 	static Hud headsupdisplay;
 	private static QTLdataset dataset;
 	static QTLheatmap heatmap;
@@ -90,7 +91,7 @@ public class Scene extends Engine{
 	
 	public static void updateGraphics(Graphics g) {
 		//Utils.console("Updating Graphics");
-		g.drawImage(getBackBuffer(), 5, 5,Scene.width-10,Scene.height-10, getParentApplet());
+		g.drawImage(getBackBuffer(), 0, 0,Scene.width,Scene.height, getParentApplet());
 		getParentApplet().showStatus("Hrot: " + camera.getHorizontalRotation() + " deg, Vrot: " + camera.getVerticalRotation() + " deg");
 	}
 	

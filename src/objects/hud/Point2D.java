@@ -1,6 +1,6 @@
 /*
 #
-# Triangle3D.java
+# Point2D.java
 #
 # copyright (c) 2009-2010, Danny Arends
 # last modified Dec, 2010
@@ -20,24 +20,32 @@
 #
 */
 
-package objects;
+package objects.hud;
 
-import java.awt.Color;
+import game.Engine;
 
-
-public class Triangle3D extends Object3D{
-	
-	public Triangle3D(double x,double y, double z,int hrot, int vrot, double hscale, double vscale, Color c){
-		super(x,y,z,hrot,vrot);
-		Point3D[] vertices = {new Point3D(0, 0, .2*hscale), new Point3D(0, vscale, 0), new Point3D(0.0, 0, -0.2*hscale)};
-		this.setVertices(vertices);
-	
-		Edge[] edges = {new Edge(0, 1), new Edge(1, 2), new Edge(2, 0)};
-		this.setEdges(edges);
+public class Point2D{
+	public double x=-1;
+	public double y=-1;
+	public Point2D(){
 		
-		Color[] colors = new Color[1];
-		colors[0] = c;
-		setEdgeColors(colors);
+	}
+	
+	public Point2D(double x,double y){
+		this.x=x;
+		this.y=y;
+	}
+	
+	public void setLocation(double x,double y){
+		this.x=x;
+		this.y=y;
+	}
+	
+	public boolean isDefined(){
+		return !(this.x==-1);
+	}
+	
+	public boolean isOnScreen(){
+		return (this.x>0 && this.y > 0 && this.x < Engine.getWidth() && this.y < Engine.getHeight());
 	}
 }
-

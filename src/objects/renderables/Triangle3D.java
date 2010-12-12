@@ -1,6 +1,6 @@
 /*
 #
-# Object3DS.java
+# Triangle3D.java
 #
 # copyright (c) 2009-2010, Danny Arends
 # last modified Dec, 2010
@@ -20,25 +20,27 @@
 #
 */
 
-package objects;
+package objects.renderables;
+
+import java.awt.Color;
+
+import objects.Edge;
+import objects.Point3D;
 
 
-public class Object3DS extends Object3D{
-	String objectName;
+public class Triangle3D extends Object3D{
 	
-	public Object3DS(String name){
-		super(0,0,0);
-		setRotation(0,90);		//Always there is a 90Degree flip
-		setObjectScale(0.10);	//And objects are designed quite large
-		this.objectName=name;
+	public Triangle3D(double x,double y, double z,int hrot, int vrot, double hscale, double vscale, Color c){
+		super(x,y,z,hrot,vrot);
+		Point3D[] vertices = {new Point3D(0, 0, .2*hscale), new Point3D(0, vscale, 0), new Point3D(0.0, 0, -0.2*hscale)};
+		this.setVertices(vertices);
+	
+		Edge[] edges = {new Edge(0, 1), new Edge(1, 2), new Edge(2, 0)};
+		this.setEdges(edges);
+		
+		Color[] colors = new Color[1];
+		colors[0] = c;
+		setEdgeColors(colors);
 	}
-	
-	public Object3DS(String name, double x,double y,double z){
-		super(x,y,z);
-		setRotation(0,90);
-		setObjectScale(0.10);
-		this.objectName=name;
-	}
-	
-
 }
+

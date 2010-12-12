@@ -22,6 +22,8 @@
 
 package objects;
 
+import objects.renderables.Object3D;
+
 public class Camera extends Object3D{
 
 	public Camera(double x, double y, double z){

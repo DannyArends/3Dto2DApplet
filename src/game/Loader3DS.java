@@ -32,10 +32,10 @@ import java.util.Vector;
 
 import objects.Edge;
 import objects.Material3DS;
-import objects.Object3DS;
-import objects.Point2D;
 import objects.Point3D;
 import objects.TriangleMesh;
+import objects.hud.Point2D;
+import objects.renderables.Object3DS;
 
 public class Loader3DS {
 	InputStream stream;

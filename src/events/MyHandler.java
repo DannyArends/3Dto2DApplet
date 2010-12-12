@@ -47,13 +47,18 @@ public class MyHandler implements MouseMotionListener{
 	}
 
 	public void mouseClicked(MouseEvent e) {
-	
+		int c = e.getButton();
+	    switch(c){
+	    	case MouseEvent.BUTTON1:Utils.console("M1");break;
+	    	case MouseEvent.BUTTON2:Utils.console("M2");break;
+	    	case MouseEvent.BUTTON3:Utils.console("M3");ButtonControler.rightClickMenu(e.getPoint().x,e.getPoint().y);break;
+	      }
 	}
 
 	public void mousePressed(MouseEvent e) {
 		mx = e.getX();
 		my = e.getY();
-		Utils.console("mouse:"+mx+","+my);
+		ButtonControler.checkLocation(mx,my);
 	}
 
 	public void mouseReleased(MouseEvent e) {
@@ -91,6 +96,7 @@ public class MyHandler implements MouseMotionListener{
 	    	case KeyEvent.VK_H:Utils.console("Help");Hud.setPrintHelp(!Hud.isPrintHelp());break;
 	    	case KeyEvent.VK_A:Utils.console("About");Hud.setPrintAbout(!Hud.isPrintAbout());break;
 	    	case KeyEvent.VK_C:Utils.console("Controls");Hud.setPrintControls(!Hud.isPrintControls());break;
+	    	case KeyEvent.VK_M:Utils.console("Modelonly");QTLheatmap.setModelonly(!QTLheatmap.isModelonly());Scene.reDrawScene();break;
 	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();Scene.reDrawScene();break;
 	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();Scene.reDrawScene();break;
 	      }

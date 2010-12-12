@@ -20,7 +20,7 @@
 #
 */
 
-package objects;
+package objects.renderables;
 
 import game.Engine;
 
@@ -28,6 +28,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+
+import objects.Camera;
 
 public class Text3D extends Object3D {
 	private String text;

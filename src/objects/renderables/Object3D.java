@@ -20,7 +20,7 @@
 #
 */
 
-package objects;
+package objects.renderables;
 
 import game.Engine;
 
@@ -29,6 +29,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 import java.util.Vector;
+
+import objects.Camera;
+import objects.Edge;
+import objects.Point3D;
+import objects.TriangleMesh;
+import objects.hud.Point2D;
 
 
 public class Object3D extends Point3D{
@@ -52,14 +58,14 @@ public class Object3D extends Point3D{
 	private Point3D[] vertices;
 	private Point2D[] mapcoords;
 		
-	Object3D(double x, double y, double z){
+	protected Object3D(double x, double y, double z){
 		super(x,y,z);
 		setHorizontalRotation(0);
 		setVerticalRotation(0);
 		this.targets = new Vector<TriangleMesh>();
 	}
 	
-	Object3D(double x, double y, double z,int hrot,int vrot){
+	protected Object3D(double x, double y, double z,int hrot,int vrot){
 		this(x,y,z);
 		setHorizontalRotation(hrot);
 		setVerticalRotation(vrot);
@@ -99,7 +105,7 @@ public class Object3D extends Point3D{
 			g2d.setColor(Color.white);
 		}
 		g2d.draw(p);
-		if(wireframe) g2d.fill(p);
+		if(!wireframe) g2d.fill(p);
 	}
 	
 	public void render(Graphics g, Camera c){

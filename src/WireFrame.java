@@ -78,4 +78,5 @@ public class WireFrame extends Applet implements KeyListener, MouseListener{
 		eventListener.keyTyped(e);
 	    e.consume();
 	}
+
 }
