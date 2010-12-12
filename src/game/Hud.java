@@ -50,14 +50,14 @@ public class Hud {
 	
 	public static void drawBox(Graphics2D g, int x, int y, int width,int height,Color c){
 		g.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), 150));
-		g.fillRect(x, y, width-10, height);
+		g.fillRect(x, y+2, width-10, height);
 		g.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), 150));
-		g.fillRect(x, y, width-15, height-2);
+		g.fillRect(x, y+4, width-15, height-2);
 	}
 	
 	public void render(Graphics2D g){
 		int l = 0;
-		drawBox(g,5,5,250,80,Color.gray);
+		drawBox(g,5,36,250,80,Color.gray);
 		g.setColor(Color.white);
 		g.setFont(fonts[0]);
 		drawString(g,"--Genetic Landscapes--", 15, 36);

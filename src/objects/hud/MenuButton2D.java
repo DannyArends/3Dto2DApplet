@@ -1,7 +1,6 @@
 package objects.hud;
 
 import events.ButtonControler;
-import game.Scene;
 import generic.Utils;
 
 import java.util.Vector;

@@ -31,8 +31,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
+import objects.hud.Button2D;
+import objects.hud.Object2D;
+
 public class MyHandler implements MouseMotionListener{
 	int mx, my; // the most recently recorded mouse coordinates
+	static Object2D keyinputlistener = null;
 	
 	public MyHandler(){
 
@@ -49,9 +53,9 @@ public class MyHandler implements MouseMotionListener{
 	public void mouseClicked(MouseEvent e) {
 		int c = e.getButton();
 	    switch(c){
-	    	case MouseEvent.BUTTON1:Utils.console("M1");break;
-	    	case MouseEvent.BUTTON2:Utils.console("M2");break;
-	    	case MouseEvent.BUTTON3:Utils.console("M3");ButtonControler.rightClickMenu(e.getPoint().x,e.getPoint().y);break;
+	    	case MouseEvent.BUTTON1:break;
+	    	case MouseEvent.BUTTON2:break;
+	    	case MouseEvent.BUTTON3:ButtonControler.rightClickMenu(e.getPoint().x,e.getPoint().y);break;
 	      }
 	}
 
@@ -104,10 +108,12 @@ public class MyHandler implements MouseMotionListener{
 	}
 
 	public void keyTyped(KeyEvent e) {
-	      char c = e.getKeyChar();
-	      if(c != KeyEvent.CHAR_UNDEFINED ) {
-	         //System.out.print(c+"\n");
-		  }
+	      if(keyinputlistener!=null)keyinputlistener.handleKeystroke(e);
+	}
+
+	public static void registerForKeystrokes(Object2D b) {
+		Utils.console("Object registering for keystrokes");
+		keyinputlistener = b;
 	}
 
 }

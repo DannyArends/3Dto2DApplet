@@ -1,12 +1,11 @@
 package objects.hud;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-
 import game.Hud;
 import generic.Utils;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 
 public class Button2D extends Object2D{
 	private Point2D size;
@@ -61,6 +60,11 @@ public class Button2D extends Object2D{
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
 		Hud.drawBox(g, (int)x, (int)y, (int)size.x, (int)size.y, Color.darkGray);
-		Hud.drawString(g, getName(), (int)x+10, (int)y+10);
+		Hud.drawString(g, getName(), (int)x+10, (int)y+15);
+	}
+
+	@Override
+	public void handleKeystroke(KeyEvent e) {
+		
 	}
 }
