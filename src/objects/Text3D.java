@@ -33,14 +33,12 @@ public class Text3D extends Object3D {
 	private String text;
 	private int fontId=0;
   
-    Font[] fonts = new Font[]{
-		new Font ("Helvetica", Font.PLAIN,  10)
-		,new Font("TimesRoman", Font.PLAIN,  10)
-		,new Font("Courier", Font.PLAIN,  10)
-		,new Font("Helvetica", Font.BOLD,  10)
-		,new Font("Helvetica", Font.ITALIC,  10)
-		,new Font("Helvetica", Font.BOLD + Font.ITALIC,  10)
-    };
+	Font[] fonts = new Font[]{
+			new Font ("Dialog", Font.PLAIN,  8)
+			,new Font("Dialog", Font.PLAIN,  6)
+			,new Font("Dialog", Font.PLAIN,  4)
+			,new Font("Dialog", Font.PLAIN,  2)
+	    };
 
 	
 	Text3D(double x,double y,double z){

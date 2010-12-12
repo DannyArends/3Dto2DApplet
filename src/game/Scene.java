@@ -30,6 +30,7 @@ import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.Vector;
 
 import objects.Camera;
@@ -40,22 +41,30 @@ public class Scene extends Engine{
 	static private Camera camera = new Camera(0.0, 20.0, 0.0, -45, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
 	static Hud headsupdisplay;
-	private QTLdataset dataset;
+	private static QTLdataset dataset;
+	static QTLheatmap heatmap;
 	
 	public Scene(Applet parent){
 		super(parent);
 		headsupdisplay=new Hud();
 		try{
 			dataset = new QTLdataset("data/data.dat");
-			QTLheatmap heatmap = new QTLheatmap();
-			for(Object3D x : heatmap.getObjects(dataset)){
-				Scene.addObject(x);
-			}
+			heatmap = new QTLheatmap();
 			headsupdisplay.addDataset(dataset);
+			reDrawScene();
 		}catch(Exception e){
 			Utils.log("Connot load dataset", e);
 		}
-		
+	}
+	
+	public static void reDrawScene() {
+		clearObjects();
+		for(Object3D x : heatmap.getQTLObjects(dataset)){
+			Scene.addObject(x);
+		}
+		for(Object3D x : heatmap.getAnnotationObjects(dataset)){
+			Scene.addObject(x);
+		}
 	}
 	
 	public static void updateScene() {
@@ -66,12 +75,17 @@ public class Scene extends Engine{
 			myobject.update(camera);
 			myobject.render(getBackBufferGraphics(),camera);
 		}
+		((Graphics2D) Scene.getBackBufferGraphics()).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
 		headsupdisplay.render((Graphics2D)getBackBufferGraphics());
 		updateGraphics(getParentApplet().getGraphics());
 	}
 	
 	public static void addObject(Object3D o){
 		myobjects.add(o);
+	}
+	
+	public static void clearObjects(){
+		myobjects.clear();
 	}
 	
 	public static void updateGraphics(Graphics g) {

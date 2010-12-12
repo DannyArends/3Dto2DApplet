@@ -32,41 +32,58 @@ import game.Scene;
 import generic.Utils;
 
 public class QTLheatmap {
-	static double cutoff;
+	private static double cutoff;
 	
 	
 	public QTLheatmap(){
-		cutoff=1.0;
+		setCutoff(2.5);
 	}
 	
-	public Vector<Object3D> getObjects(QTLdataset d){
+	public Vector<Object3D> getQTLObjects(QTLdataset d){
 		Vector<Object3D> r = new Vector<Object3D>();
 		double cm = 0;
 		for(int x=(d.qtlmatrix.length-1);x>=0;x--){	
 			for(int m=(d.qtlmatrix[x].scores.length-1);m>=0;m--){
 				cm = d.markers[m].location/3 + d.markers[m].chromosome + d.chrlengths[d.markers[m].chromosome]/1.5;
-				if(Math.abs(d.qtlmatrix[x].scores[m]) > cutoff){
+				if(Math.abs(d.qtlmatrix[x].scores[m]) > getCutoff()){
 		        	Triangle3D cube = new Triangle3D(cm,0.0,x,0,0,1,d.qtlmatrix[x].scores[m]/10,Utils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
 					if(d.modelmatrix[x].scores[m]>0) cube.setWireframe(true);
 		        	cube.render(Engine.getBackBufferGraphics(),Scene.getCamera());
 					r.add((Object3D)cube);
 				}
-				if(x==0){
-					Text3D text = new Text3D(d.markers[m].name,cm,0.0,-5);
-					r.add((Object3D)text);
-				}
 			}
+		}
+		return r;
+	}
+	
+	public Vector<Object3D> getAnnotationObjects(QTLdataset d){
+		Vector<Object3D> r = new Vector<Object3D>();
+		double cm = 0;
+		for(int x=(d.qtlmatrix.length-1);x>=0;x--){	
 			Text3D text = new Text3D(d.qtlmatrix[x].name,-10,0.0,x);
+			r.add((Object3D)text);
+		}
+		for(int m=(d.qtlmatrix[0].scores.length-1);m>=0;m--){
+			cm = d.markers[m].location/3 + d.markers[m].chromosome + d.chrlengths[d.markers[m].chromosome]/1.5;
+			Text3D text = new Text3D(d.markers[m].name,cm,0.0,-5);
 			r.add((Object3D)text);
 		}
 		return r;
 	}
 	
 	public static void increaseCutoff(){
-		cutoff+=0.1;
+		setCutoff(getCutoff() + 0.1);
 	}
 	
 	public static void decreaseCutoff(){
-		cutoff-=0.1;
+		setCutoff(getCutoff() - 0.1);
+	}
+
+	public static void setCutoff(double cutoff) {
+		QTLheatmap.cutoff = cutoff;
+	}
+
+	public static double getCutoff() {
+		return cutoff;
 	}
 }

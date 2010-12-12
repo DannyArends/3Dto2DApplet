@@ -80,18 +80,18 @@ public class MyHandler implements MouseMotionListener{
 	public void keyPressed(KeyEvent e) {
 		int c = e.getKeyCode();
 	    switch(c){
-	    	case KeyEvent.VK_UP:Utils.console("UP\n");Scene.getCamera().move(1,0,0);break;
-	    	case KeyEvent.VK_DOWN:Utils.console("DOWN\n");Scene.getCamera().move(-1,0,0);break;
-	    	case KeyEvent.VK_LEFT:Utils.console("LEFT\n");Scene.getCamera().move(0,0,1);break;
-	    	case KeyEvent.VK_RIGHT:Utils.console("RIGHT\n");Scene.getCamera().move(0,0,-1);break;
-	    	case KeyEvent.VK_PAGE_UP:Utils.console("UP\n");Scene.getCamera().move(0,1,0);break;
-	    	case KeyEvent.VK_PAGE_DOWN:Utils.console("DOWN\n");Scene.getCamera().move(0,-1,0);break;
+	    	case KeyEvent.VK_UP:Utils.console("UP");Scene.getCamera().move(1,0,0);break;
+	    	case KeyEvent.VK_DOWN:Utils.console("DOWN");Scene.getCamera().move(-1,0,0);break;
+	    	case KeyEvent.VK_LEFT:Utils.console("LEFT");Scene.getCamera().move(0,0,1);break;
+	    	case KeyEvent.VK_RIGHT:Utils.console("RIGHT");Scene.getCamera().move(0,0,-1);break;
+	    	case KeyEvent.VK_PAGE_UP:Utils.console("UP");Scene.getCamera().move(0,1,0);break;
+	    	case KeyEvent.VK_PAGE_DOWN:Utils.console("DOWN");Scene.getCamera().move(0,-1,0);break;
 	    	case KeyEvent.VK_ESCAPE:System.exit(0);break;
 	    	case KeyEvent.VK_H:Utils.console("Help");Hud.setPrintHelp(!Hud.isPrintHelp());break;
 	    	case KeyEvent.VK_A:Utils.console("About");Hud.setPrintAbout(!Hud.isPrintAbout());break;
 	    	case KeyEvent.VK_C:Utils.console("Controls");Hud.setPrintControls(!Hud.isPrintControls());break;
-	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();break;
-	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();break;
+	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();Scene.reDrawScene();break;
+	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();Scene.reDrawScene();break;
 	      }
 		Scene.getParentApplet().repaint();
 	}
