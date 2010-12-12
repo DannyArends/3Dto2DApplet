@@ -32,9 +32,9 @@ import java.util.Vector;
 
 import objects.Camera;
 import objects.Edge;
+import objects.Point2D;
 import objects.Point3D;
 import objects.TriangleMesh;
-import objects.hud.Point2D;
 
 
 public class Object3D extends Point3D{

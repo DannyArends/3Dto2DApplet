@@ -3,6 +3,8 @@ package objects.hud;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import objects.Point2D;
+
 abstract public class Object2D extends Point2D{
 	Object2D(int x, int y){
 		super(x,y);

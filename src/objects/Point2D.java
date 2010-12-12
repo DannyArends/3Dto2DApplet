@@ -20,7 +20,7 @@
 #
 */
 
-package objects.hud;
+package objects;
 
 import game.Engine;
 

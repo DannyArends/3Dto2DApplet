@@ -36,7 +36,6 @@ public class QTLdataset {
 	public NamedIntArray[] modelmatrix;
 	public GeneticLocation[] markers;
 	public GeneticLocation[] traits;
-	public QTLdataset previous;
 
 	public QTLdataset(String path) {
 		Utils.console("MODEL: Loading location: " + Engine.getParentApplet().getCodeBase().toString() + path);
