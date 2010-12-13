@@ -3,9 +3,10 @@ package objects.hud;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import rendering.Hud;
+import rendering.Scene;
+
 import events.MyHandler;
-import game.Hud;
-import game.Scene;
 
 public class Slider extends Button2D  {
 	int cur = 0;

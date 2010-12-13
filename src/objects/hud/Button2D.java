@@ -23,8 +23,6 @@
 package objects.hud;
 
 import events.ButtonControler;
-import game.Hud;
-import game.Scene;
 import generic.Utils;
 
 import java.awt.Color;
@@ -32,6 +30,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import objects.Point2D;
+import rendering.Hud;
+import rendering.Scene;
 
 public class Button2D extends Object2D{
 	private Point2D size;

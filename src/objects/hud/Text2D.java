@@ -1,10 +1,11 @@
 package objects.hud;
 
-import game.Hud;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+
+import rendering.Hud;
 
 public class Text2D extends Object2D{
 	private String text;

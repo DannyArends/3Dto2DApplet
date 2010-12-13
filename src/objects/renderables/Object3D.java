@@ -22,7 +22,6 @@
 
 package objects.renderables;
 
-import game.Engine;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -35,6 +34,7 @@ import objects.Edge;
 import objects.Point2D;
 import objects.Point3D;
 import objects.TriangleMesh;
+import rendering.Engine;
 
 
 public class Object3D extends Point3D{

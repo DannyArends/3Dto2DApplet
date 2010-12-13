@@ -23,7 +23,6 @@
 
 package events;
 
-import game.Scene;
 
 import java.awt.Graphics2D;
 import java.util.Vector;
@@ -32,6 +31,7 @@ import objects.hud.Button2D;
 import objects.hud.InputBox;
 import objects.hud.MenuButton2D;
 import objects.hud.Slider;
+import rendering.Scene;
 
 public class ButtonControler {
 	

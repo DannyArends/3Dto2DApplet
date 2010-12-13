@@ -20,7 +20,7 @@
 #
 */
 
-package game;
+package rendering;
 
 import events.ButtonControler;
 import genetics.QTLdataset;

@@ -22,8 +22,6 @@
 
 package events;
 
-import game.Hud;
-import game.Scene;
 import generic.Utils;
 import genetics.QTLheatmap;
 
@@ -32,6 +30,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import objects.hud.Object2D;
+import rendering.Hud;
+import rendering.Scene;
 
 public class MyHandler implements MouseMotionListener{
 	int mx, my; // the most recently recorded mouse coordinates

@@ -27,9 +27,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import rendering.Hud;
+import rendering.Scene;
+
 import events.MyHandler;
-import game.Hud;
-import game.Scene;
 
 public class InputBox extends Button2D {
 	String input="";

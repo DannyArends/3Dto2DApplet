@@ -21,7 +21,7 @@
 */
 package objects;
 
-import game.Engine;
+import rendering.Engine;
 
 public class Point3D {
 	public double x, y, z;

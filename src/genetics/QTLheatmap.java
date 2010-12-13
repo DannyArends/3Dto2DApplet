@@ -22,8 +22,6 @@
 
 package genetics;
 
-import game.Engine;
-import game.Scene;
 import generic.Utils;
 
 import java.util.Vector;
@@ -31,6 +29,8 @@ import java.util.Vector;
 import objects.renderables.Object3D;
 import objects.renderables.Text3D;
 import objects.renderables.Triangle3D;
+import rendering.Engine;
+import rendering.Scene;
 
 public class QTLheatmap {
 	private static double cutoff;

@@ -22,7 +22,7 @@
 
 package objects;
 
-import game.Engine;
+import rendering.Engine;
 
 public class Point2D{
 	public double x=-1;

@@ -20,7 +20,7 @@
 #
 */
 
-package game;
+package rendering;
 
 import generic.Utils;
 import genetics.QTLdataset;

@@ -20,7 +20,7 @@
 #
 */
 
-package game;
+package rendering;
 
 import java.applet.Applet;
 import java.awt.Graphics;
