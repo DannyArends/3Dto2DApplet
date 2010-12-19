@@ -29,11 +29,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.Vector;
 
-import objects.hud.HudButton;
 import objects.hud.HudWindow;
-import objects.hud.HudInputBox;
 import objects.hud.HudObject;
-import objects.hud.HudSlider;
 import objects.hud.HudText;
 
 public class Hud {

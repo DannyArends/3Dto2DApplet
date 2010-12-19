@@ -24,17 +24,12 @@
 package events;
 
 
-import generic.Utils;
-
 import java.awt.Graphics2D;
 import java.util.Vector;
 
 import objects.hud.HudButton;
-import objects.hud.HudInputBox;
 import objects.hud.HudMenuButton;
 import objects.hud.HudObject;
-import objects.hud.HudSlider;
-import rendering.Scene;
 
 public class ButtonControler {
 	

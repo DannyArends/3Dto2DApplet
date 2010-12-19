@@ -22,6 +22,8 @@
 
 package genetics;
 
+import generic.Utils;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -31,8 +33,6 @@ import java.net.URL;
 
 import rendering.Engine;
 import rendering.Hud;
-import rendering.Scene;
-import generic.Utils;
 
 public class QTLdataset {
 	public int nmarkers, nindividuals, nchromosomes, ntraits, maxqtl, minqtl;

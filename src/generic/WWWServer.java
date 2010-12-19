@@ -1,12 +1,9 @@
 package generic;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import rendering.Engine;
-
-import generic.Utils;
 
 public class WWWServer extends Webserver implements Runnable{
 	private static final long serialVersionUID = 1L;
