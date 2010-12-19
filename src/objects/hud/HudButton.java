@@ -33,11 +33,11 @@ import objects.Point2D;
 import rendering.Hud;
 import rendering.Scene;
 
-public class Button2D extends Object2D{
+public class HudButton extends Object2D{
 	private String name;
 	private Object2D parent;
 	
-	public Button2D(int x,int y, int sx, int sy,HudWindow p){
+	public HudButton(int x,int y, int sx, int sy,HudWindow p){
 		super(x,y);
 		setSize(new Point2D(sx,sy));
 		if(p==null){
@@ -47,7 +47,7 @@ public class Button2D extends Object2D{
 		}
 	}
 	
-	public Button2D(int x,int y, int sx, int sy,HudWindow p, String name,Color c){
+	public HudButton(int x,int y, int sx, int sy,HudWindow p, String name,Color c){
 		this(x,y,sx,sy,p);
 		setSize(new Point2D(sx,sy));
 		setName(name);
@@ -55,25 +55,25 @@ public class Button2D extends Object2D{
 		setColor(c);
 	}
 	
-	public Button2D(int x,int y, String name){
+	public HudButton(int x,int y, String name){
 		this(x,y,name,null);
 	}
 	
-	public Button2D(int x,int y, String name,HudWindow p){
+	public HudButton(int x,int y, String name,HudWindow p){
 		this(x,y,name.length()*10,20,p);
 		setName(name);
 	}
 	
-	public Button2D(Point2D loc,Point2D size){
+	public HudButton(Point2D loc,Point2D size){
 		this((int)loc.x,(int)loc.y,(int)size.x,(int)size.y,null);
 		setName("None");
 	}
 	
-	public Button2D(int x, int y, String name, boolean b) {
+	public HudButton(int x, int y, String name, boolean b) {
 		this(x, y, name, b,Color.darkGray);
 	}
 
-	public Button2D(int x, int y, String name, boolean b,Color c) {
+	public HudButton(int x, int y, String name, boolean b,Color c) {
 		this(x,y,name);
 		setVisible(b);
 		setColor(c);

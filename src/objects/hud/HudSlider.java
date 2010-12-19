@@ -8,18 +8,18 @@ import rendering.Scene;
 
 import events.MyHandler;
 
-public class Slider extends Button2D  {
+public class HudSlider extends HudButton  {
 	int cur = 0;
 	
-	public Slider(int x, int y, int sx, int sy,HudWindow p) {
+	public HudSlider(int x, int y, int sx, int sy,HudWindow p) {
 		super(x, y, sx, sy,p);
 	}
 	
-	public Slider(int x, int y) {
+	public HudSlider(int x, int y) {
 		this(x, y,null);
 	}
 	
-	public Slider(int x, int y,HudWindow p) {
+	public HudSlider(int x, int y,HudWindow p) {
 		super(x-2, y-5, 150, 10,p);
 	}
 

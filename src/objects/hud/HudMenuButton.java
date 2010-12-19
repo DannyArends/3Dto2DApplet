@@ -28,20 +28,20 @@ import java.util.Vector;
 
 import rendering.Scene;
 
-public class MenuButton2D extends Button2D{
+public class HudMenuButton extends HudButton{
 
-	Vector<Button2D> children = new Vector<Button2D>();
+	Vector<HudButton> children = new Vector<HudButton>();
 	
-	public MenuButton2D(int x, int y, String name) {
+	public HudMenuButton(int x, int y, String name) {
 		super(x, y, name);
 		ChildMenu(x,y);
 	}
 	
 	public void ChildMenu(int x, int y){
-		children.add(new Button2D(x,y+20,"Button1",false));
-		children.add(new Button2D(x,y+35,"Button2",false));
-		children.add(new Button2D(x,y+50,"Button3",false));
-		children.add(new Button2D(x,y+65,"Button4",false));
+		children.add(new HudButton(x,y+20,"Button1",false));
+		children.add(new HudButton(x,y+35,"Button2",false));
+		children.add(new HudButton(x,y+50,"Button3",false));
+		children.add(new HudButton(x,y+65,"Button4",false));
 	}
 	
 	@Override

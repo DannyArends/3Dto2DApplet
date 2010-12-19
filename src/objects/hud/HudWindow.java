@@ -34,7 +34,7 @@ import objects.Point2D;
 import rendering.Hud;
 import rendering.Scene;
 
-public class HudWindow extends Button2D{
+public class HudWindow extends HudButton{
 	boolean showTopMenu = true;
 	Point2D fromSlide;
 	
@@ -51,19 +51,19 @@ public class HudWindow extends Button2D{
 	}
 	
 	void initTopMenu(){
-		topMenu.add(new Button2D(0,0,22,16,this,"X",Color.lightGray){
+		topMenu.add(new HudButton(0,0,22,16,this,"X",Color.lightGray){
 			public void runPayload() {
 				getParent().setVisible(false);
 				Scene.updateScene();
 			}
 		});
-		topMenu.add(new Button2D(0,0,22,16,this,"M",Color.lightGray){
+		topMenu.add(new HudButton(0,0,22,16,this,"M",Color.lightGray){
 			public void runPayload() {
 				getParent().setMinimized(false);
 				Scene.updateScene();
 			}
 		});
-		topMenu.add(new Button2D(0,0,22,16,this,"-",Color.lightGray){
+		topMenu.add(new HudButton(0,0,22,16,this,"-",Color.lightGray){
 			public void runPayload() {
 				getParent().setMinimized(true);
 				Scene.updateScene();

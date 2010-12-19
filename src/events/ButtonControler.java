@@ -29,11 +29,11 @@ import generic.Utils;
 import java.awt.Graphics2D;
 import java.util.Vector;
 
-import objects.hud.Button2D;
-import objects.hud.InputBox;
-import objects.hud.MenuButton2D;
+import objects.hud.HudButton;
+import objects.hud.HudInputBox;
+import objects.hud.HudMenuButton;
 import objects.hud.Object2D;
-import objects.hud.Slider;
+import objects.hud.HudSlider;
 import rendering.Scene;
 
 public class ButtonControler {
@@ -54,7 +54,7 @@ public class ButtonControler {
 			if(b.x < x && b.y < y){
 				if(b.getAbsoluteSizeX() > x && b.getAbsoluteSizeY() > y){
 					if(b.isVisible()){
-						((Button2D)b).runPayload();
+						((HudButton)b).runPayload();
 						return true;
 					}
 				}	
@@ -64,17 +64,17 @@ public class ButtonControler {
 	}
 	
 	public static void addMainMenu(){
-		new MenuButton2D(0,0,"File");
-		new MenuButton2D(70,0,"Edit");
-		new MenuButton2D(140,0,"View");
-		new Button2D(210,0,"Help");
+		new HudMenuButton(0,0,"File");
+		new HudMenuButton(70,0,"Edit");
+		new HudMenuButton(140,0,"View");
+		new HudButton(210,0,"Help");
 	}
 	
 	public static void rightClickMenu(int x, int y){
-		new Button2D(x,y+00,"Button1");
-		new Button2D(x,y+20,"Button2");
-		new Button2D(x,y+40,"Button3");
-		new Button2D(x,y+60,"Button4");
+		new HudButton(x,y+00,"Button1");
+		new HudButton(x,y+20,"Button2");
+		new HudButton(x,y+40,"Button3");
+		new HudButton(x,y+60,"Button4");
 	}
 	
 	public static void addButton(Object2D b){

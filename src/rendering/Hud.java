@@ -29,12 +29,12 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.Vector;
 
-import objects.hud.Button2D;
+import objects.hud.HudButton;
 import objects.hud.HudWindow;
-import objects.hud.InputBox;
+import objects.hud.HudInputBox;
 import objects.hud.Object2D;
-import objects.hud.Slider;
-import objects.hud.Text2D;
+import objects.hud.HudSlider;
+import objects.hud.HudText;
 
 public class Hud {
 	QTLdataset dataset;
@@ -126,9 +126,9 @@ public class Hud {
 	public void addHelpWindow(int x, int y) {
 		HudWindow h = new HudWindow(x,y,400,200,"HELP");
 		h.setVisible(false);
-		new Text2D(10,10,"Open Triangle: QTL at marker",h);
-		new Text2D(10,25,"Filled triangles: Selected Cofactor at marker",h);
-		new Text2D(10,40,"Triangle size: QTL effect/likelihood",h);
+		new HudText(10,10,"Open Triangle: QTL at marker",h);
+		new HudText(10,25,"Filled triangles: Selected Cofactor at marker",h);
+		new HudText(10,40,"Triangle size: QTL effect/likelihood",h);
 		children.add(h);
 	}
 
@@ -139,15 +139,15 @@ public class Hud {
 	public void addControlsWindow(int x, int y) {
 		HudWindow h = new HudWindow(x,y,400,200,"CONTROLS");
 		h.setVisible(false);
-		new Text2D(10,10,"Click and move mouse to look around",h);
-		new Text2D(10,25,"[Left]       step left",h);
-		new Text2D(10,40,"[Right]      step right",h);
-		new Text2D(10,55,"[Down]       step back",h);
-		new Text2D(10,70,"[Up]         step forward",h);
-		new Text2D(10,85,"[Page Up]    float up",h);
-		new Text2D(10,100,"[Page Up]    float up",h);
-		new Text2D(10,115,"[M]          Toggle between model only view",h);
-		new Text2D(10,130,"[+]/[-]      Increade/Decrease LOD score Cut-off",h);
+		new HudText(10,10,"Click and move mouse to look around",h);
+		new HudText(10,25,"[Left]       step left",h);
+		new HudText(10,40,"[Right]      step right",h);
+		new HudText(10,55,"[Down]       step back",h);
+		new HudText(10,70,"[Up]         step forward",h);
+		new HudText(10,85,"[Page Up]    float up",h);
+		new HudText(10,100,"[Page Up]    float up",h);
+		new HudText(10,115,"[M]          Toggle between model only view",h);
+		new HudText(10,130,"[+]/[-]      Increade/Decrease LOD score Cut-off",h);
 		children.add(h);
 	}
 
@@ -158,10 +158,10 @@ public class Hud {
 	public void addAboutWindow(int x, int y) {
 		HudWindow h = new HudWindow(x,y,400,200,"ABOUT");
 		h.setVisible(false);
-		new Text2D(10,10,"QTL viewing applet",h);
-		new Text2D(10,25,"Part of the iqtl package",h);
-		new Text2D(10,40,"(c) 2010 Danny Arends - GBIC",h);
-		new Text2D(10,55,"https://github.com/DannyArends/3Dto2DApplet",h);
+		new HudText(10,10,"QTL viewing applet",h);
+		new HudText(10,25,"Part of the iqtl package",h);
+		new HudText(10,40,"(c) 2010 Danny Arends - GBIC",h);
+		new HudText(10,55,"https://github.com/DannyArends/3Dto2DApplet",h);
 		children.add(h);
 	}
 }

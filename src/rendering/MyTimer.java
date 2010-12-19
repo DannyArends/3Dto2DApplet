@@ -7,7 +7,7 @@ import java.util.Date;
 
 import javax.swing.Timer;
 
-import objects.hud.Text2D;
+import objects.hud.HudText;
 
 public class MyTimer implements ActionListener{
 	Timer timer;

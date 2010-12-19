@@ -32,16 +32,16 @@ import rendering.Scene;
 
 import events.MyHandler;
 
-public class InputBox extends Button2D {
+public class HudInputBox extends HudButton {
 	String input="";
 	int size;
 	
-	public InputBox(int x, int y,int s,HudWindow p) {
+	public HudInputBox(int x, int y,int s,HudWindow p) {
 		super(x, y,s*15,20,p);
 		this.size=s;
 	}
 	
-	public InputBox(int x, int y, int s) {
+	public HudInputBox(int x, int y, int s) {
 		this(x,y,s,null);
 	}
 
