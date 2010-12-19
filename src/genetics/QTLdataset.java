@@ -22,12 +22,16 @@
 
 package genetics;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
 import rendering.Engine;
+import rendering.Hud;
+import rendering.Scene;
 import generic.Utils;
 
 public class QTLdataset {
@@ -150,5 +154,22 @@ public class QTLdataset {
 	    	  Utils.log("General error",e);
 	      }
 	  }
+	  
+		public int DatasetInfo(Graphics2D g,int x,int y){
+			Hud.drawBox(g,x,y,250,96,Color.gray);
+			Hud.setfont(g,0);
+			Hud.drawString(g,"--Dataset Overview--", x, y+12);
+			Hud.setfont(g,1);
+			Hud.drawString(g,"Traits: " + ntraits, x, y+24);
+			Hud.drawString(g,"Chromosomes: " + nchromosomes, x, y+36);
+		    String distances = "Lengths: ";
+		    for (int c = 0; c < nchromosomes; c++) {
+		      distances += chrlengths[c] + " ";
+		    }
+		    Hud.drawString(g,distances, x, y+48);
+		    Hud.drawString(g,"Markers: " + nmarkers, x, y+60);
+		    Hud.drawString(g,"Cut-off: " + ((float)Math.round(QTLheatmap.getCutoff()*10))/10.0, x, y+72);
+		    return y+96;
+		}
 }
 

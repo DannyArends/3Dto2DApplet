@@ -48,14 +48,14 @@ public class Scene extends Engine{
 	public Scene(Applet parent){
 		super(parent);
 		headsupdisplay=new Hud();
-		try{
-			dataset = new QTLdataset("data/data.dat");
-			heatmap = new QTLheatmap();
-			headsupdisplay.addDataset(dataset);
-			reDrawScene();
-		}catch(Exception e){
-			Utils.log("Connot load dataset", e);
-		}
+//		try{
+//			dataset = new QTLdataset("data/data.dat");
+//			heatmap = new QTLheatmap();
+//			headsupdisplay.addDataset(dataset);
+//			reDrawScene();
+//		}catch(Exception e){
+//			Utils.log("Connot load dataset", e);
+//		}
 	}
 	
 	public static void reDrawScene() {

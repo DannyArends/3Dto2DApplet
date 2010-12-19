@@ -38,33 +38,16 @@ public class Hud {
 	static private boolean printHelp=false;
 	static private boolean printControls=false;
 	static private boolean printAbout=false;
+	
 	static Vector<Object2D> children = new Vector<Object2D>();
 	private ButtonControler buttonarray = new ButtonControler();
-	Font[] fonts = new Font[]{
-			new Font ("Dialog", Font.BOLD,  12)
-			,new Font("Dialog", Font.PLAIN,  10)
-	    };
+	static Font[] fonts = new Font[]{
+		new Font ("Dialog", Font.BOLD,  12),
+		new Font("Dialog", Font.PLAIN,  10)
+	};
 	
 	public void addDataset(QTLdataset d){
 		dataset=d;
-	}
-	
-	int DatasetInfo(Graphics2D g,int x,int y){
-		drawBox(g,x,y,250,96,Color.gray);
-		g.setFont(fonts[0]);
-		drawString(g,"--Dataset Overview--", x, y+12);
-		g.setFont(fonts[1]);
-		drawString(g,"Traits: " + dataset.ntraits, x, y+24);
-		drawString(g,"Chromosomes: " + dataset.nchromosomes, x, y+36);
-	    String distances = "Lengths: ";
-	    for (int c = 0; c < dataset.nchromosomes; c++) {
-	      distances += dataset.chrlengths[c] + " ";
-	    }
-	    drawString(g,distances, x, y+48);
-	    drawString(g,"Markers: " + dataset.nmarkers, x, y+60);
-	    drawString(g,"Cut-off: " + ((float)Math.round(QTLheatmap.getCutoff()*10))/10.0, x, y+72);
-	    drawString(g,"Objects: " + Scene.myobjects.size() + "/" + Scene.softmyobjectslimit, x, y+84);
-	    return y+96;
 	}
 	
 	public static void drawString(Graphics2D g, String s,int x,int y){
@@ -81,6 +64,23 @@ public class Hud {
 		g.fillRect(x, y+4, width-15, height-2);
 	}
 	
+	public static void setfont(Graphics2D g,int f){
+		if(f >0 && f< getFonts().length){
+			g.setFont(getFonts()[f]);
+		}else{
+			g.setColor(Color.red);
+			g.setFont(getFonts()[1]);
+		}
+	}
+	
+	public static Font[] getFonts() {
+		return fonts;
+	}
+
+	public void setFonts(Font[] fonts) {
+		this.fonts = fonts;
+	}
+
 	public void render(Graphics2D g){
 		int l = 0;
 		drawBox(g,5,36,250,80,Color.gray);
@@ -91,7 +91,7 @@ public class Hud {
 		drawString(g,"Press 'H' for Help", 15, 48);
 		drawString(g,"Press 'C' for Controls", 15, 60);
 		drawString(g,"Press 'A' for About", 15, 72);
-		if(dataset!=null) l = DatasetInfo(g,Engine.width-200,84);
+		if(dataset!=null) l = dataset.DatasetInfo(g,Engine.width-200,84);
 		if(printHelp) l= doPrintHelp(g,Engine.width-200,l);
 		if(printControls) l= doPrintControls(g,l);
 		if(printAbout) l= doPrintAbout(g,l);
