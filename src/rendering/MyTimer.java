@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.swing.Timer;
 
+import events.ServerConnection;
+
 public class MyTimer implements ActionListener{
 	Timer timer;
 	Date timeholder;
@@ -21,6 +23,8 @@ public class MyTimer implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		timeholder = new Date(System.currentTimeMillis());
+		ServerConnection s = new ServerConnection();
+		s.commandToServer("online=true");
 		Scene.updateGraphics(Engine.getParentApplet().getGraphics());
 		Scene.updateScene();
 	}
