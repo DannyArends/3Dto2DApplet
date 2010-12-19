@@ -52,7 +52,6 @@ public class ServerConnection {
 			url = new URL("http://localhost/Testing/server.php"); 
 			con = (HttpURLConnection) url.openConnection();
 			con.setDoOutput(true); 
-			con.setDoInput(true); // only if reading response 
 			con.setDoInput(true); 
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content=length", String.valueOf(parameterAsBytes.length)); 
