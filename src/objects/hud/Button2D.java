@@ -34,7 +34,6 @@ import rendering.Hud;
 import rendering.Scene;
 
 public class Button2D extends Object2D{
-	private Point2D size;
 	private String name;
 	private Object2D parent;
 	
@@ -80,22 +79,6 @@ public class Button2D extends Object2D{
 		setColor(c);
 	}
 
-	public void setSize(Point2D size) {
-		this.size = size;
-	}
-
-	public Point2D getSize() {
-		return size;
-	}
-	
-	public int getAbsoluteSizeX(){
-		return (int) (size.x+x);
-	}
-	
-	public int getAbsoluteSizeY(){
-		return (int) (size.y+y);
-	}
-
 	public void runPayload() {
 		Utils.console("Button at:"+x+","+y+"clicked");
 		Scene.updateScene();
@@ -112,7 +95,7 @@ public class Button2D extends Object2D{
 	@Override
 	public void render(Graphics2D g) {
 		if(isVisible()){
-			Hud.drawBox(g, (int)x, (int)y, (int)size.x, (int)size.y, getColor());
+			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)getSize().y, getColor());
 			if(getName()!=null)Hud.drawString(g, getName(), (int)x+2, (int)y+15);
 		}
 	}

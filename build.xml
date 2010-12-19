@@ -22,6 +22,7 @@
   </target>
 
   <target name="compile" depends="init" description="compile the Standalone source " >
+    <unjar src="${libraries}/servlet-2-3.jar" dest="${build}"/>
   	<javac srcdir="${src}" destdir="${build}" classpath="${build}/" />
   </target>
 

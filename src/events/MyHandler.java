@@ -103,9 +103,9 @@ public class MyHandler implements MouseMotionListener{
 	    	case KeyEvent.VK_PAGE_UP:Utils.console("UP");Scene.getCamera().move(0,1,0);break;
 	    	case KeyEvent.VK_PAGE_DOWN:Utils.console("DOWN");Scene.getCamera().move(0,-1,0);break;
 	    	case KeyEvent.VK_ESCAPE:System.exit(0);break;
-	    	case KeyEvent.VK_H:Utils.console("Help");Hud.setPrintHelp(!Hud.isPrintHelp());break;
-	    	case KeyEvent.VK_A:Utils.console("About");Hud.setPrintAbout(!Hud.isPrintAbout());break;
-	    	case KeyEvent.VK_C:Utils.console("Controls");Hud.setPrintControls(!Hud.isPrintControls());break;
+	    	case KeyEvent.VK_H:Utils.console("Help");Hud.setPrintHelp();break;
+	    	case KeyEvent.VK_A:Utils.console("About");Hud.setPrintAbout();break;
+	    	case KeyEvent.VK_C:Utils.console("Controls");Hud.setPrintControls();break;
 	    	case KeyEvent.VK_M:Utils.console("Modelonly");QTLheatmap.setModelonly(!QTLheatmap.isModelonly());Scene.reDrawScene();break;
 	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();Scene.reDrawScene();break;
 	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();Scene.reDrawScene();break;

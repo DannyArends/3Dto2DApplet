@@ -5,14 +5,25 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import events.ButtonControler;
+
 import rendering.Hud;
 
 public class Text2D extends Object2D{
 	private String text;
 	
 	public Text2D(int x,int y, String t){
+		this(x,y,t,null);
+	}
+
+	public Text2D(int x, int y, String t, HudWindow p) {
 		super(x,y);
 		setText(t);
+		if(p==null){
+			ButtonControler.addButton(this);
+		}else{
+			p.addChild(this);
+		}
 	}
 
 	@Override

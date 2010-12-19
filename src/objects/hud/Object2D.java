@@ -25,12 +25,15 @@ package objects.hud;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
 
 import objects.Point2D;
 
 abstract public class Object2D extends Point2D{
+	private Point2D size = new Point2D();
 	private boolean visible = true;
 	private boolean minimized = false;
+	Vector<Object2D> children = new Vector<Object2D>();
 	private Color color = Color.darkGray;
 	
 	Object2D(int x, int y){
@@ -47,6 +50,22 @@ abstract public class Object2D extends Point2D{
 
 	public boolean isVisible() {
 		return visible;
+	}
+	
+	public void setSize(Point2D size) {
+		this.size = size;
+	}
+
+	public Point2D getSize() {
+		return size;
+	}
+	
+	public int getAbsoluteSizeX(){
+		return (int) (getSize().x+x);
+	}
+	
+	public int getAbsoluteSizeY(){
+		return (int) (getSize().y+y);
 	}
 	
 	public abstract void render(Graphics2D g);

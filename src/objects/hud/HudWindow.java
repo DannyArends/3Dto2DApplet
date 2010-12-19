@@ -38,9 +38,8 @@ public class HudWindow extends Button2D{
 	boolean showTopMenu = true;
 	Point2D fromSlide;
 	
-	Vector<Button2D> topMenu = new Vector<Button2D>();
-	Vector<Button2D> children = new Vector<Button2D>();
-	
+	Vector<Object2D> topMenu = new Vector<Object2D>();
+
 	public HudWindow(int x, int y, String name) {
 		super(x, y, name);
 		initTopMenu();
@@ -52,15 +51,21 @@ public class HudWindow extends Button2D{
 	}
 	
 	void initTopMenu(){
-		topMenu.add(new Button2D (0,0,22,16,this,"X",Color.lightGray){
+		topMenu.add(new Button2D(0,0,22,16,this,"X",Color.lightGray){
 			public void runPayload() {
 				getParent().setVisible(false);
 				Scene.updateScene();
 			}
 		});
-		topMenu.add(new Button2D (0,0,22,16,this,"-",Color.lightGray){
+		topMenu.add(new Button2D(0,0,22,16,this,"M",Color.lightGray){
 			public void runPayload() {
-				getParent().setMinimized(!getParent().isMinimized());
+				getParent().setMinimized(false);
+				Scene.updateScene();
+			}
+		});
+		topMenu.add(new Button2D(0,0,22,16,this,"-",Color.lightGray){
+			public void runPayload() {
+				getParent().setMinimized(true);
 				Scene.updateScene();
 			}
 		});
@@ -97,23 +102,29 @@ public class HudWindow extends Button2D{
 	
 	public void addChild(Object2D o){
 		o.setLocation(o.x+x, o.y+y+20);
-		children.add((Button2D) o);
+		children.add(o);
 	}
 	
 	@Override
 	public void render(Graphics2D g) {
 		if(isVisible()){
-			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)getSize().y, Color.darkGray);
+			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (!isMinimized()) ? (int)getSize().y:20, Color.darkGray);
 			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, Color.blue);
 			Hud.drawString(g, getName(), (int)x+10, (int)y+15);
-			Button2D b;
+			Object2D b;
 			if(showTopMenu){
 				for(int wb=0;wb<topMenu.size();wb++){
-					b=topMenu.get(wb);b.setLocation((x+getSize().x)-(15*(wb)+24), y+2);b.render(g);
+					b=topMenu.get(wb);b.setLocation((x+getSize().x)-(15*(wb)+24), y+2);
 				}
 			}
-			for(Object2D o : children){
-				o.render(g);
+			if(!isMinimized()){
+				for(Object2D o : children){
+					o.render(g);
+				}
+			}else{
+				for(Object2D o : topMenu){
+					o.render(g);
+				}
 			}
 		}
 	}

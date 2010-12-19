@@ -32,12 +32,13 @@ import java.util.Vector;
 import objects.hud.Button2D;
 import objects.hud.InputBox;
 import objects.hud.MenuButton2D;
+import objects.hud.Object2D;
 import objects.hud.Slider;
 import rendering.Scene;
 
 public class ButtonControler {
 	
-	static Vector<Button2D> monitored = new Vector<Button2D>();
+	static Vector<Object2D> monitored = new Vector<Object2D>();
 	
 	public ButtonControler(){
 		addMainMenu();
@@ -47,13 +48,15 @@ public class ButtonControler {
 		return checkLocation(monitored,x,y);
 	}
 	
-	public static boolean checkLocation(Vector<Button2D> tocheck, int x,  int y){
-		for(Button2D b : tocheck){
+	public static boolean checkLocation(Vector<Object2D> tocheck, int x,  int y){
+		for(Object2D b : tocheck){
 			//Utils.console(""+x+","+y+"=="+b.x+","+b.y);
 			if(b.x < x && b.y < y){
 				if(b.getAbsoluteSizeX() > x && b.getAbsoluteSizeY() > y){
-					if(b.isVisible())b.runPayload();
-					return true;
+					if(b.isVisible()){
+						((Button2D)b).runPayload();
+						return true;
+					}
 				}	
 			}
 		}
@@ -65,7 +68,6 @@ public class ButtonControler {
 		new MenuButton2D(70,0,"Edit");
 		new MenuButton2D(140,0,"View");
 		new Button2D(210,0,"Help");
-		new InputBox(280,0,10);
 	}
 	
 	public static void rightClickMenu(int x, int y){
@@ -75,12 +77,12 @@ public class ButtonControler {
 		new Button2D(x,y+60,"Button4");
 	}
 	
-	public static void addButton(Button2D b){
+	public static void addButton(Object2D b){
 		monitored.add(b);
 	}
 
 	public void render(Graphics2D g) {
-		for(Button2D b : monitored){
+		for(Object2D b : monitored){
 			b.render(g);
 		}
 	}
