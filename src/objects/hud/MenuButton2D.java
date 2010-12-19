@@ -22,10 +22,11 @@
 
 package objects.hud;
 
-import events.ButtonControler;
 import generic.Utils;
 
 import java.util.Vector;
+
+import rendering.Scene;
 
 public class MenuButton2D extends Button2D{
 
@@ -37,15 +38,19 @@ public class MenuButton2D extends Button2D{
 	}
 	
 	public void ChildMenu(int x, int y){
-		children.add(new Button2D(x,y+20,"Button1"));
-		children.add(new Button2D(x,y+35,"Button2"));
-		children.add(new Button2D(x,y+50,"Button3"));
-		children.add(new Button2D(x,y+65,"Button4"));
+		children.add(new Button2D(x,y+20,"Button1",false));
+		children.add(new Button2D(x,y+35,"Button2",false));
+		children.add(new Button2D(x,y+50,"Button3",false));
+		children.add(new Button2D(x,y+65,"Button4",false));
 	}
 	
 	@Override
 	public void runPayload() {
 		Utils.console("MenuButton at:"+x+","+y+"clicked");
-		ButtonControler.addButtons(children);
+		for(int wb=0;wb<children.size();wb++){
+			children.get(wb).setVisible(!children.get(wb).isVisible());
+		}
+		Scene.reDrawScene();
+		Scene.updateScene();
 	}
 }

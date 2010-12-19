@@ -1,0 +1,99 @@
+package objects.hud;
+
+import events.ButtonControler;
+import events.MyHandler;
+import generic.Utils;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.util.Vector;
+
+import objects.Point2D;
+import rendering.Hud;
+import rendering.Scene;
+
+public class HudWindow extends Button2D{
+	boolean showTopMenu = true;
+	Point2D fromSlide;
+	
+	Vector<Button2D> topMenu = new Vector<Button2D>();
+	Vector<Button2D> children = new Vector<Button2D>();
+	
+	public HudWindow(int x, int y, String name) {
+		super(x, y, name);
+		initTopMenu();
+	}
+	
+	public HudWindow(int x, int y, int sx, int sy, String name) {
+		super(x, y, sx, sy,null, name,Color.darkGray);
+		initTopMenu();
+	}
+	
+	void initTopMenu(){
+		topMenu.add(new Button2D (0,0,22,16,this,"X",Color.lightGray){
+			public void runPayload() {
+				getParent().setVisible(false);
+				Scene.updateScene();
+			}
+		});
+		topMenu.add(new Button2D (0,0,22,16,this,"-",Color.lightGray){
+			public void runPayload() {
+				getParent().setMinimized(!getParent().isMinimized());
+				Scene.updateScene();
+			}
+		});
+	}
+	
+	public Point2D getSize(){
+		return super.getSize();
+	}
+	
+	public void setShowTopMenu(boolean s){
+		showTopMenu=s;
+	}
+	
+	public void runPayload() {
+		Utils.console("Window at "+x+","+y+" clicked");
+		if(showTopMenu && !ButtonControler.checkLocation(topMenu, (int)MyHandler.getMouse().x, (int)MyHandler.getMouse().y)){
+			if((int)MyHandler.getMouse().y < this.y+20){
+				fromSlide = new Point2D(MyHandler.getMouse().x-x,MyHandler.getMouse().y-y);
+				MyHandler.registerForSlide(this);
+			}
+		}
+		ButtonControler.checkLocation(children, (int)MyHandler.getMouse().x, (int)MyHandler.getMouse().y);
+	}
+	
+	@Override
+	public boolean handleSlide(int mx, int my) {
+		for(Object2D o : children){
+			o.setLocation((o.x-x)+(mx - fromSlide.x),(o.y-y)+(my - fromSlide.y));
+		}		
+		this.x=mx - fromSlide.x;
+		this.y=my - fromSlide.y;
+		return true;
+	}
+	
+	public void addChild(Object2D o){
+		o.setLocation(o.x+x, o.y+y+20);
+		children.add((Button2D) o);
+	}
+	
+	@Override
+	public void render(Graphics2D g) {
+		if(isVisible()){
+			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)getSize().y, Color.darkGray);
+			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, Color.blue);
+			Hud.drawString(g, getName(), (int)x+10, (int)y+15);
+			Button2D b;
+			if(showTopMenu){
+				for(int wb=0;wb<topMenu.size();wb++){
+					b=topMenu.get(wb);b.setLocation((x+getSize().x)-(15*(wb)+24), y+2);b.render(g);
+				}
+			}
+			for(Object2D o : children){
+				o.render(g);
+			}
+		}
+	}
+
+}

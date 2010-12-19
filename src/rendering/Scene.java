@@ -60,16 +60,16 @@ public class Scene extends Engine{
 	
 	public static void reDrawScene() {
 		clearObjects();
-		for(Object3D x : heatmap.getQTLObjects(dataset)){
-			Scene.addObject(x);
-		}
-		for(Object3D x : heatmap.getAnnotationObjects(dataset)){
-			Scene.addObject(x);
-		}
+//		for(Object3D x : heatmap.getQTLObjects(dataset)){
+//			Scene.addObject(x);
+//		}
+//		for(Object3D x : heatmap.getAnnotationObjects(dataset)){
+//			Scene.addObject(x);
+//		}
 	}
 	
 	public static void updateScene() {
-		Utils.console("Updating Scene");
+		//Utils.console("Updating Scene");
 		Scene.getBackBufferGraphics().setColor(Color.black);
 		Scene.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
 		for(Object3D myobject : myobjects){

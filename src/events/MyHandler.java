@@ -29,12 +29,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
+import objects.Point2D;
 import objects.hud.Object2D;
 import rendering.Hud;
 import rendering.Scene;
 
 public class MyHandler implements MouseMotionListener{
-	int mx, my; // the most recently recorded mouse coordinates
+	static int mx; // the most recently recorded mouse coordinates
+	static int my;
 	static Object2D keyinputlistener = null;
 	static Object2D sliderinputlistener = null;
 	
@@ -123,6 +125,11 @@ public class MyHandler implements MouseMotionListener{
 	public static void registerForSlide(Object2D b) {
 		Utils.console("Object registering for mouse slides");
 		sliderinputlistener=b;
+	}
+
+	public static Point2D getMouse() {
+		Point2D p = new Point2D(mx,my);
+		return p;
 	}
 
 }

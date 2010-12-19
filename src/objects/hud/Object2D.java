@@ -28,6 +28,9 @@ import java.awt.event.KeyEvent;
 import objects.Point2D;
 
 abstract public class Object2D extends Point2D{
+	private boolean visible = true;
+	private boolean minimized = false;
+	
 	Object2D(int x, int y){
 		super(x,y);
 	}
@@ -36,9 +39,25 @@ abstract public class Object2D extends Point2D{
 		super(x,y);
 	}
 	
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+	
 	public abstract void render(Graphics2D g);
 
 	abstract public void handleKeystroke(KeyEvent e);
 
 	abstract public boolean handleSlide(int mx, int my);
+
+	public void setMinimized(boolean minimized) {
+		this.minimized = minimized;
+	}
+
+	public boolean isMinimized() {
+		return minimized;
+	}
 }

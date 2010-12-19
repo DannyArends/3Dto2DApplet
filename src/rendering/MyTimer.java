@@ -17,13 +17,12 @@ public class MyTimer implements ActionListener{
 
 	
 	public MyTimer() {
-		timer = new Timer(1000, this);
+		timer = new Timer(3000, this);
 		timer.start();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		timeholder = new Date(System.currentTimeMillis());
-		Hud.addObject2D(new Text2D((int)Engine.width-250,(int)Engine.height-30, df.format(timeholder) + " " + tf.format(timeholder)));
 		Scene.updateGraphics(Engine.getParentApplet().getGraphics());
 		Scene.updateScene();
 	}

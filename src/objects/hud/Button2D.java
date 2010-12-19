@@ -36,22 +36,50 @@ import rendering.Scene;
 public class Button2D extends Object2D{
 	private Point2D size;
 	private String name;
+	private Color color = Color.darkGray;
+
+	private Object2D parent;
 	
-	public Button2D(int x,int y, int sx, int sy){
+	public Button2D(int x,int y, int sx, int sy,HudWindow p){
 		super(x,y);
 		setSize(new Point2D(sx,sy));
-		setName("none");
+		if(p==null){
+			ButtonControler.addButton(this);
+		}else{
+			p.addChild(this);
+		}
+	}
+	
+	public Button2D(int x,int y, int sx, int sy,HudWindow p, String name,Color c){
+		this(x,y,sx,sy,p);
+		setSize(new Point2D(sx,sy));
+		setName(name);
+		setParent(p);
+		setColor(c);
 	}
 	
 	public Button2D(int x,int y, String name){
-		super(x,y);
-		setSize(new Point2D(name.length()*15,20));
+		this(x,y,name,null);
+	}
+	
+	public Button2D(int x,int y, String name,HudWindow p){
+		this(x,y,name.length()*10,20,p);
 		setName(name);
 	}
 	
 	public Button2D(Point2D loc,Point2D size){
-		super(loc.x,loc.y);
-		setSize(size);
+		this((int)loc.x,(int)loc.y,(int)size.x,(int)size.y,null);
+		setName("None");
+	}
+	
+	public Button2D(int x, int y, String name, boolean b) {
+		this(x, y, name, b,Color.darkGray);
+	}
+
+	public Button2D(int x, int y, String name, boolean b,Color c) {
+		this(x,y,name);
+		setVisible(b);
+		setColor(c);
 	}
 
 	public void setSize(Point2D size) {
@@ -72,7 +100,6 @@ public class Button2D extends Object2D{
 
 	public void runPayload() {
 		Utils.console("Button at:"+x+","+y+"clicked");
-		ButtonControler.resetButtons();
 		Scene.updateScene();
 	}
 
@@ -86,9 +113,10 @@ public class Button2D extends Object2D{
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
-		Hud.drawBox(g, (int)x, (int)y, (int)size.x, (int)size.y, Color.darkGray);
-		Hud.drawString(g, getName(), (int)x+10, (int)y+15);
+		if(isVisible()){
+			Hud.drawBox(g, (int)x, (int)y, (int)size.x, (int)size.y, color);
+			if(getName()!=null)Hud.drawString(g, getName(), (int)x+2, (int)y+15);
+		}
 	}
 
 	@Override
@@ -99,5 +127,22 @@ public class Button2D extends Object2D{
 	@Override
 	public boolean handleSlide(int mx, int my) {
 		return false;	
+	}
+
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setParent(Object2D parent) {
+		this.parent = parent;
+	}
+
+	public Object2D getParent() {
+		return parent;
 	}
 }

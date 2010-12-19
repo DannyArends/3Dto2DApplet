@@ -24,6 +24,8 @@
 package events;
 
 
+import generic.Utils;
+
 import java.awt.Graphics2D;
 import java.util.Vector;
 
@@ -36,51 +38,41 @@ import rendering.Scene;
 public class ButtonControler {
 	
 	static Vector<Button2D> monitored = new Vector<Button2D>();
+	
 	public ButtonControler(){
 		addMainMenu();
 	}
 	
-	public static void checkLocation(int x,  int y){
-		for(Button2D b : monitored){
+	public static boolean checkLocation(int x,  int y){
+		return checkLocation(monitored,x,y);
+	}
+	
+	public static boolean checkLocation(Vector<Button2D> tocheck, int x,  int y){
+		for(Button2D b : tocheck){
 			//Utils.console(""+x+","+y+"=="+b.x+","+b.y);
 			if(b.x < x && b.y < y){
 				if(b.getAbsoluteSizeX() > x && b.getAbsoluteSizeY() > y){
-					//resetButtons();
-					b.runPayload();
-					//Scene.reDrawScene();
-					//Scene.updateScene();
-					break;
+					if(b.isVisible())b.runPayload();
+					return true;
 				}	
 			}
 		}
-	}
-	
-	public static void resetButtons(){
-		monitored.clear();
-		addMainMenu();
+		return false;
 	}
 	
 	public static void addMainMenu(){
-		addButton(new MenuButton2D(0,0,"File"));
-		addButton(new MenuButton2D(60,0,"Edit"));
-		addButton(new MenuButton2D(120,0,"View"));
-		addButton(new Button2D(180,0,"Help"));
-		addButton(new InputBox(240,0,10));
-		addButton(new Slider(500,15));
-		addButton(new Slider(500,30));
-		addButton(new Slider(500,45));
-		addButton(new Slider(500,60));
-		addButton(new Slider(500,75));
+		new MenuButton2D(0,0,"File");
+		new MenuButton2D(70,0,"Edit");
+		new MenuButton2D(140,0,"View");
+		new Button2D(210,0,"Help");
+		new InputBox(280,0,10);
 	}
 	
 	public static void rightClickMenu(int x, int y){
-		resetButtons();
-		addButton(new Button2D(x,y+00,"Button1"));
-		addButton(new Button2D(x,y+20,"Button2"));
-		addButton(new Button2D(x,y+40,"Button3"));
-		addButton(new Button2D(x,y+60,"Button4"));
-		Scene.reDrawScene();
-		Scene.updateScene();
+		new Button2D(x,y+00,"Button1");
+		new Button2D(x,y+20,"Button2");
+		new Button2D(x,y+40,"Button3");
+		new Button2D(x,y+60,"Button4");
 	}
 	
 	public static void addButton(Button2D b){
@@ -91,14 +83,5 @@ public class ButtonControler {
 		for(Button2D b : monitored){
 			b.render(g);
 		}
-	}
-
-	public static void addButtons(Vector<Button2D> children) {
-		resetButtons();
-		for(Button2D b : children){
-			addButton(b);
-		}
-		Scene.reDrawScene();
-		Scene.updateScene();
 	}
 }

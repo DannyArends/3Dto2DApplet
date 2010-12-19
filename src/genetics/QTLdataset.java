@@ -157,9 +157,9 @@ public class QTLdataset {
 	  
 		public int DatasetInfo(Graphics2D g,int x,int y){
 			Hud.drawBox(g,x,y,250,96,Color.gray);
-			Hud.setfont(g,0);
+			Hud.setFont(g,0);
 			Hud.drawString(g,"--Dataset Overview--", x, y+12);
-			Hud.setfont(g,1);
+			Hud.setFont(g,1);
 			Hud.drawString(g,"Traits: " + ntraits, x, y+24);
 			Hud.drawString(g,"Chromosomes: " + nchromosomes, x, y+36);
 		    String distances = "Lengths: ";

@@ -36,11 +36,15 @@ public class InputBox extends Button2D {
 	String input="";
 	int size;
 	
-	public InputBox(int x, int y,int s) {
-		super(x, y,s*15,20);
+	public InputBox(int x, int y,int s,HudWindow p) {
+		super(x, y,s*15,20,p);
 		this.size=s;
 	}
 	
+	public InputBox(int x, int y, int s) {
+		this(x,y,s,null);
+	}
+
 	@Override
 	public void runPayload() {
 		MyHandler.registerForKeystrokes(this);

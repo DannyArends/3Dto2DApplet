@@ -11,12 +11,16 @@ import events.MyHandler;
 public class Slider extends Button2D  {
 	int cur = 0;
 	
-	public Slider(int x, int y, int sx, int sy) {
-		super(x, y, sx, sy);
+	public Slider(int x, int y, int sx, int sy,HudWindow p) {
+		super(x, y, sx, sy,p);
 	}
-
+	
 	public Slider(int x, int y) {
-		super(x-2, y-5, 150, 10);
+		this(x, y,null);
+	}
+	
+	public Slider(int x, int y,HudWindow p) {
+		super(x-2, y-5, 150, 10,p);
 	}
 
 	@Override

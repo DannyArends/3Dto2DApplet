@@ -24,14 +24,15 @@ package rendering;
 
 import events.ButtonControler;
 import genetics.QTLdataset;
-import genetics.QTLheatmap;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.Vector;
 
+import objects.hud.Button2D;
+import objects.hud.HudWindow;
 import objects.hud.Object2D;
+import objects.hud.Slider;
 
 public class Hud {
 	QTLdataset dataset;
@@ -41,13 +42,29 @@ public class Hud {
 	
 	static Vector<Object2D> children = new Vector<Object2D>();
 	private ButtonControler buttonarray = new ButtonControler();
+	
 	static Font[] fonts = new Font[]{
-		new Font ("Dialog", Font.BOLD,  12),
-		new Font("Dialog", Font.PLAIN,  10)
+		new Font("Dialog", Font.BOLD,  12),
+		new Font("Dialog", Font.PLAIN, 10)
 	};
+	
+	public Hud(){
+		addtestWindow();
+	}
 	
 	public void addDataset(QTLdataset d){
 		dataset=d;
+	}
+	
+	public void addtestWindow(){
+		HudWindow h = new HudWindow(300,300,400,200,"TestWindow");
+		new Button2D(10,0,"HOI",h);
+		new Slider(100,25,h);
+		new Slider(100,40,h);
+		new Slider(100,55,h);
+		new Slider(100,70,h);
+		new Slider(100,85,h);
+		children.add(h);
 	}
 	
 	public static void drawString(Graphics2D g, String s,int x,int y){
@@ -64,7 +81,7 @@ public class Hud {
 		g.fillRect(x, y+4, width-15, height-2);
 	}
 	
-	public static void setfont(Graphics2D g,int f){
+	public static void setFont(Graphics2D g,int f){
 		if(f >0 && f< getFonts().length){
 			g.setFont(getFonts()[f]);
 		}else{
@@ -78,7 +95,7 @@ public class Hud {
 	}
 
 	public void setFonts(Font[] fonts) {
-		this.fonts = fonts;
+		Hud.fonts = fonts;
 	}
 
 	public void render(Graphics2D g){
@@ -119,7 +136,6 @@ public class Hud {
 	}
 	
 	public static void addObject2D(Object2D b){
-		children.clear();
 		children.add(b);
 	}
 
