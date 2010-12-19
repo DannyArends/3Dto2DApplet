@@ -32,13 +32,13 @@ import java.util.Vector;
 import objects.hud.HudButton;
 import objects.hud.HudInputBox;
 import objects.hud.HudMenuButton;
-import objects.hud.Object2D;
+import objects.hud.HudObject;
 import objects.hud.HudSlider;
 import rendering.Scene;
 
 public class ButtonControler {
 	
-	static Vector<Object2D> monitored = new Vector<Object2D>();
+	static Vector<HudObject> monitored = new Vector<HudObject>();
 	
 	public ButtonControler(){
 		addMainMenu();
@@ -48,8 +48,8 @@ public class ButtonControler {
 		return checkLocation(monitored,x,y);
 	}
 	
-	public static boolean checkLocation(Vector<Object2D> tocheck, int x,  int y){
-		for(Object2D b : tocheck){
+	public static boolean checkLocation(Vector<HudObject> tocheck, int x,  int y){
+		for(HudObject b : tocheck){
 			//Utils.console(""+x+","+y+"=="+b.x+","+b.y);
 			if(b.x < x && b.y < y){
 				if(b.getAbsoluteSizeX() > x && b.getAbsoluteSizeY() > y){
@@ -77,12 +77,12 @@ public class ButtonControler {
 		new HudButton(x,y+60,"Button4");
 	}
 	
-	public static void addButton(Object2D b){
+	public static void addButton(HudObject b){
 		monitored.add(b);
 	}
 
 	public void render(Graphics2D g) {
-		for(Object2D b : monitored){
+		for(HudObject b : monitored){
 			b.render(g);
 		}
 	}

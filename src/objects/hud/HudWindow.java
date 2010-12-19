@@ -38,7 +38,7 @@ public class HudWindow extends HudButton{
 	boolean showTopMenu = true;
 	Point2D fromSlide;
 	
-	Vector<Object2D> topMenu = new Vector<Object2D>();
+	Vector<HudObject> topMenu = new Vector<HudObject>();
 
 	public HudWindow(int x, int y, String name) {
 		super(x, y, name);
@@ -92,7 +92,7 @@ public class HudWindow extends HudButton{
 	
 	@Override
 	public boolean handleSlide(int mx, int my) {
-		for(Object2D o : children){
+		for(HudObject o : children){
 			o.setLocation((o.x-x)+(mx - fromSlide.x),(o.y-y)+(my - fromSlide.y));
 		}		
 		this.x=mx - fromSlide.x;
@@ -100,7 +100,7 @@ public class HudWindow extends HudButton{
 		return true;
 	}
 	
-	public void addChild(Object2D o){
+	public void addChild(HudObject o){
 		o.setLocation(o.x+x, o.y+y+20);
 		children.add(o);
 	}
@@ -111,18 +111,18 @@ public class HudWindow extends HudButton{
 			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (!isMinimized()) ? (int)getSize().y:20, Color.darkGray);
 			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, Color.blue);
 			Hud.drawString(g, getName(), (int)x+10, (int)y+15);
-			Object2D b;
+			HudObject b;
 			if(showTopMenu){
 				for(int wb=0;wb<topMenu.size();wb++){
 					b=topMenu.get(wb);b.setLocation((x+getSize().x)-(15*(wb)+24), y+2);
 				}
 			}
 			if(!isMinimized()){
-				for(Object2D o : children){
+				for(HudObject o : children){
 					o.render(g);
 				}
 			}else{
-				for(Object2D o : topMenu){
+				for(HudObject o : topMenu){
 					o.render(g);
 				}
 			}

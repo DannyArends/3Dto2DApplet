@@ -32,7 +32,7 @@ import java.util.Vector;
 import objects.hud.HudButton;
 import objects.hud.HudWindow;
 import objects.hud.HudInputBox;
-import objects.hud.Object2D;
+import objects.hud.HudObject;
 import objects.hud.HudSlider;
 import objects.hud.HudText;
 
@@ -101,7 +101,7 @@ public class Hud {
 	}
 
 	public void render(Graphics2D g){
-		for(Object2D o : children){
+		for(HudObject o : children){
 			o.render(g);
 		}
 		buttonarray.render(g);		

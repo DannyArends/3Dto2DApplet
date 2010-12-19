@@ -30,15 +30,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import objects.Point2D;
-import objects.hud.Object2D;
+import objects.hud.HudObject;
 import rendering.Hud;
 import rendering.Scene;
 
 public class MyHandler implements MouseMotionListener{
 	static int mx; // the most recently recorded mouse coordinates
 	static int my;
-	static Object2D keyinputlistener = null;
-	static Object2D sliderinputlistener = null;
+	static HudObject keyinputlistener = null;
+	static HudObject sliderinputlistener = null;
 	
 	public MyHandler(){
 
@@ -117,12 +117,12 @@ public class MyHandler implements MouseMotionListener{
 	      if(keyinputlistener!=null)keyinputlistener.handleKeystroke(e);
 	}
 
-	public static void registerForKeystrokes(Object2D b) {
+	public static void registerForKeystrokes(HudObject b) {
 		Utils.console("Object registering for keystrokes");
 		keyinputlistener = b;
 	}
 
-	public static void registerForSlide(Object2D b) {
+	public static void registerForSlide(HudObject b) {
 		Utils.console("Object registering for mouse slides");
 		sliderinputlistener=b;
 	}

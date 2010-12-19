@@ -33,9 +33,9 @@ import objects.Point2D;
 import rendering.Hud;
 import rendering.Scene;
 
-public class HudButton extends Object2D{
+public class HudButton extends HudObject{
 	private String name;
-	private Object2D parent;
+	private HudObject parent;
 	
 	public HudButton(int x,int y, int sx, int sy,HudWindow p){
 		super(x,y);
@@ -111,11 +111,11 @@ public class HudButton extends Object2D{
 	}
 
 
-	public void setParent(Object2D parent) {
+	public void setParent(HudObject parent) {
 		this.parent = parent;
 	}
 
-	public Object2D getParent() {
+	public HudObject getParent() {
 		return parent;
 	}
 }

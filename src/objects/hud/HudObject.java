@@ -29,18 +29,18 @@ import java.util.Vector;
 
 import objects.Point2D;
 
-abstract public class Object2D extends Point2D{
+abstract public class HudObject extends Point2D{
 	private Point2D size = new Point2D();
 	private boolean visible = true;
 	private boolean minimized = false;
-	Vector<Object2D> children = new Vector<Object2D>();
+	Vector<HudObject> children = new Vector<HudObject>();
 	private Color color = Color.darkGray;
 	
-	Object2D(int x, int y){
+	HudObject(int x, int y){
 		super(x,y);
 	}
 
-	public Object2D(double x, double y) {
+	public HudObject(double x, double y) {
 		super(x,y);
 	}
 	

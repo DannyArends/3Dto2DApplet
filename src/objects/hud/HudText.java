@@ -9,7 +9,7 @@ import events.ButtonControler;
 
 import rendering.Hud;
 
-public class HudText extends Object2D{
+public class HudText extends HudObject{
 	private String text;
 	
 	public HudText(int x,int y, String t){
