@@ -22,6 +22,7 @@
 
 package objects.hud;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
@@ -30,6 +31,7 @@ import objects.Point2D;
 abstract public class Object2D extends Point2D{
 	private boolean visible = true;
 	private boolean minimized = false;
+	private Color color = Color.darkGray;
 	
 	Object2D(int x, int y){
 		super(x,y);
@@ -59,5 +61,13 @@ abstract public class Object2D extends Point2D{
 
 	public boolean isMinimized() {
 		return minimized;
+	}
+	
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Color getColor() {
+		return color;
 	}
 }

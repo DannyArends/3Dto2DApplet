@@ -36,8 +36,6 @@ import rendering.Scene;
 public class Button2D extends Object2D{
 	private Point2D size;
 	private String name;
-	private Color color = Color.darkGray;
-
 	private Object2D parent;
 	
 	public Button2D(int x,int y, int sx, int sy,HudWindow p){
@@ -114,7 +112,7 @@ public class Button2D extends Object2D{
 	@Override
 	public void render(Graphics2D g) {
 		if(isVisible()){
-			Hud.drawBox(g, (int)x, (int)y, (int)size.x, (int)size.y, color);
+			Hud.drawBox(g, (int)x, (int)y, (int)size.x, (int)size.y, getColor());
 			if(getName()!=null)Hud.drawString(g, getName(), (int)x+2, (int)y+15);
 		}
 	}
@@ -129,14 +127,6 @@ public class Button2D extends Object2D{
 		return false;	
 	}
 
-
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
-	public Color getColor() {
-		return color;
-	}
 
 	public void setParent(Object2D parent) {
 		this.parent = parent;
