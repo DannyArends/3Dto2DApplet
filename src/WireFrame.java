@@ -33,7 +33,6 @@ import rendering.Scene;
 
 import events.MyHandler;
 import events.ServerConnection;
-import generic.WWWServer;
 
 public class WireFrame extends Applet implements KeyListener, MouseListener{
 	private static final long serialVersionUID = 1L;
@@ -49,9 +48,6 @@ public class WireFrame extends Applet implements KeyListener, MouseListener{
 		addMouseListener(this);
 		addMouseMotionListener(eventListener);
 		Scene.updateScene();
-//		WWWServer web = new WWWServer();
-//		Thread t = new Thread(web);
-//		t.start();
 		new ServerConnection();
 	}
 
