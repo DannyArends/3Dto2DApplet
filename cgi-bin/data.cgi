@@ -1,4 +1,13 @@
 #!/usr/bin/perl -w
+
+#
+# data.cgi
+#
+# copyright (c) 2009-2010, Danny Arends
+# last modified Dec, 2010
+# first written Dec, 2010
+#
+
 use strict;
 
 #Global Variables across all includes
@@ -13,18 +22,20 @@ sub list_all{
 	my @thefiles= readdir(IMD);
 	closedir(IMD); 
 	foreach $file (@thefiles) {
-   		print $file . "\n";
+   		print($file . "\n");
  	} 
 }
 
 sub list_type{
-	my $type = "." . $_[0];
+	my $type = "\." . $_[0];
 	my $file;
 	opendir(IMD, $data_location) or die print("Cannot open directory");
 	my @thefiles= readdir(IMD);
 	closedir(IMD); 
 	foreach $file (@thefiles) {
-   		if($file =~ m/$type/){ print $file . "\n"; }
+   		if($file =~ m/$type/){ 
+   			print($file . "\n"); 
+   		}
  	} 
 }
 

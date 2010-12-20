@@ -1,4 +1,13 @@
 #!/usr/bin/perl -w
+
+#
+# utils.cgi
+#
+# copyright (c) 2009-2010, Danny Arends
+# last modified Dec, 2010
+# first written Dec, 2010
+#
+
 use strict;
 
 #Global Variables across all includes

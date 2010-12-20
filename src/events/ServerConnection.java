@@ -37,9 +37,11 @@ public class ServerConnection {
 	OutputStream oStream;
 	byte[] parameterAsBytes;
 	BufferedReader in;
+	long up,down;
 	
 	public ServerConnection(){
-	
+		up=0;
+		down=0;
 	}
 	
 	public String commandToServer(String parametersAsString){
@@ -71,6 +73,9 @@ public class ServerConnection {
 		} catch (Exception e) {
 			Utils.log(e.getLocalizedMessage(),System.err);
 		}
+		up += parameterAsBytes.length;
+		down += response.length();
+		Utils.console("Server traffic: " + up + "/" + down);
 		return response;
 	}
 }
