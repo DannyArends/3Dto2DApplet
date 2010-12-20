@@ -28,7 +28,7 @@ public class HudText extends HudObject{
 
 	@Override
 	public void render(Graphics2D g) {
-		Hud.drawBox(g, (int)x, (int)y, getText().length()*7,20, Color.darkGray);
+		Hud.setFont(g, 1);
 		Hud.drawString(g, getText(), (int)x+10, (int)y+15);
 	}
 

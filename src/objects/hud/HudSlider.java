@@ -39,6 +39,7 @@ public class HudSlider extends HudButton  {
 	
 	@Override
 	public void render(Graphics2D g) {
+		Hud.setFont(g, 1);
 		Hud.drawString(g, "Slide me", (int)x-50, (int)y+5);
 		Hud.drawBox(g, (int)x, (int)y, (int)160, (int)2, new Color(0.5f,0.5f,0.5f));
 		Hud.drawBox(g, (int)x+cur, (int)y-5, (int)20, (int)10, Color.white);

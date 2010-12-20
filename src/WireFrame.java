@@ -27,6 +27,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import rendering.Engine;
 import rendering.MyTimer;
 import rendering.Scene;
 
@@ -38,9 +39,11 @@ public class WireFrame extends Applet implements KeyListener, MouseListener{
 	private static final long serialVersionUID = 1L;
 	
 	MyHandler eventListener= new MyHandler();
-	MyTimer timer = new MyTimer();
+	MyTimer timer;
 	
 	public void init() {
+		new Engine(this);
+		timer = new MyTimer();
 		new Scene(this);
 		addKeyListener(this);
 		addMouseListener(this);

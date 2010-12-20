@@ -25,7 +25,7 @@ public class MyTimer implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		timeholder = new Date(System.currentTimeMillis());
-		s.commandToServer("update=true");
+		//s.commandToServer("update=true");
 		Scene.updateGraphics(Engine.getParentApplet().getGraphics());
 		Scene.updateScene();
 	}

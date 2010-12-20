@@ -110,7 +110,9 @@ public class HudWindow extends HudButton{
 		if(isVisible()){
 			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (!isMinimized()) ? (int)getSize().y:20, Color.darkGray);
 			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, Color.blue);
+			Hud.setFont(g, 0);
 			Hud.drawString(g, getName(), (int)x+10, (int)y+15);
+			Hud.setFont(g, 1);
 			HudObject b;
 			if(showTopMenu){
 				for(int wb=0;wb<topMenu.size();wb++){

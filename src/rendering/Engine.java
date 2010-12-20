@@ -35,7 +35,7 @@ public class Engine {
 	public static double nearToObj = 2.5f;
 	private static Applet parentApplet;
 	
-	Engine(Applet parent){
+	public Engine(Applet parent){
 		width = parent.getSize().width;
 		height = parent.getSize().height;
 		backBuffer = parent.createImage(width, height);
@@ -65,6 +65,10 @@ public class Engine {
 
 	public static Applet getParentApplet() {
 		return parentApplet;
+	}
+	
+	public static String getAppletURL(){
+		return (Engine.getParentApplet().getDocumentBase().toExternalForm().substring(0,Engine.getParentApplet().getDocumentBase().toExternalForm().lastIndexOf('/'))+"/");
 	}
 	
 	public static int getWidth() {

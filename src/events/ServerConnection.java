@@ -30,6 +30,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import rendering.Engine;
+
 public class ServerConnection {
 	String aLine;
 	URL url; 
@@ -50,8 +52,10 @@ public class ServerConnection {
 			if(parametersAsString==null) parametersAsString = "msg=hello&to=world"; 
 			parameterAsBytes = parametersAsString.getBytes(); 
 			//send parameters to server 
-			//FOR DEPLOY: url = new URL(Engine.getParentApplet().getDocumentBase() + "server.php");
-			url = new URL("http://localhost/Testing/cgi-bin/server.cgi"); 
+			//FOR DEPLOY: 
+			Utils.console(Engine.getAppletURL() + "cgi-bin/server.cgi");
+			url = new URL(Engine.getAppletURL() + "cgi-bin/server.cgi");
+			//url = new URL("http://localhost/Testing/cgi-bin/server.cgi"); 
 			con = (HttpURLConnection) url.openConnection();
 			con.setDoOutput(true); 
 			con.setDoInput(true); 
@@ -71,7 +75,7 @@ public class ServerConnection {
 			in.close(); 
 			oStream.close(); 
 		} catch (Exception e) {
-			Utils.log(e.getLocalizedMessage(),System.err);
+			Utils.log(e.getMessage(),System.err);
 		}
 		up += parameterAsBytes.length;
 		down += response.length();

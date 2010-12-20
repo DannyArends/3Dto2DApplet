@@ -96,6 +96,7 @@ public class HudButton extends HudObject{
 	public void render(Graphics2D g) {
 		if(isVisible()){
 			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)getSize().y, getColor());
+			Hud.setFont(g, 1);
 			if(getName()!=null)Hud.drawString(g, getName(), (int)x+2, (int)y+15);
 		}
 	}
