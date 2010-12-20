@@ -24,8 +24,6 @@
 package events;
 
 
-import generic.Utils;
-
 import java.awt.Graphics2D;
 import java.util.Vector;
 

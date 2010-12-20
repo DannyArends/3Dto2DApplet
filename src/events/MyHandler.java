@@ -31,7 +31,6 @@ import java.awt.event.MouseMotionListener;
 
 import objects.Point2D;
 import objects.hud.HudObject;
-import rendering.Hud;
 import rendering.Scene;
 
 public class MyHandler implements MouseMotionListener{
