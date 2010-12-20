@@ -99,11 +99,7 @@ public class HudWindow extends HudButton{
 		this.y=my - fromSlide.y;
 		return true;
 	}
-	
-	public void addChild(HudObject o){
-		o.setLocation(o.x+x, o.y+y+20);
-		children.add(o);
-	}
+
 	
 	@Override
 	public void render(Graphics2D g) {

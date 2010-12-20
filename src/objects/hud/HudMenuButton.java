@@ -23,31 +23,19 @@
 package objects.hud;
 
 import generic.Utils;
-
-import java.util.Vector;
-
 import rendering.Scene;
 
 public class HudMenuButton extends HudButton{
-
-	Vector<HudButton> children = new Vector<HudButton>();
-	
 	public HudMenuButton(int x, int y, String name) {
 		super(x, y, name);
-		ChildMenu(x,y);
-	}
-	
-	public void ChildMenu(int x, int y){
-		children.add(new HudButton(x,y+20,"Button1",false));
-		children.add(new HudButton(x,y+35,"Button2",false));
-		children.add(new HudButton(x,y+50,"Button3",false));
-		children.add(new HudButton(x,y+65,"Button4",false));
+
 	}
 	
 	@Override
 	public void runPayload() {
 		Utils.console("MenuButton at:"+x+","+y+"clicked");
 		for(int wb=0;wb<children.size();wb++){
+			Utils.console("wb" + wb);
 			children.get(wb).setVisible(!children.get(wb).isVisible());
 		}
 		Scene.reDrawScene();

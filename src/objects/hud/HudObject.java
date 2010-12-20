@@ -68,6 +68,11 @@ abstract public class HudObject extends Point2D{
 		return (int) (getSize().y+y);
 	}
 	
+	public void addChild(HudObject o){
+		o.setLocation(o.x+x, o.y+y+20);
+		children.add(o);
+	}
+	
 	public abstract void render(Graphics2D g);
 
 	abstract public void handleKeystroke(KeyEvent e);

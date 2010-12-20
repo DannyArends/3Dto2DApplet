@@ -24,12 +24,16 @@
 package events;
 
 
+import generic.Utils;
+
 import java.awt.Graphics2D;
 import java.util.Vector;
 
 import objects.hud.HudButton;
 import objects.hud.HudMenuButton;
 import objects.hud.HudObject;
+import rendering.Hud;
+import rendering.Scene;
 
 public class ButtonControler {
 	
@@ -62,14 +66,25 @@ public class ButtonControler {
 		new HudMenuButton(0,0,"File");
 		new HudMenuButton(70,0,"Edit");
 		new HudMenuButton(140,0,"View");
-		new HudButton(210,0,"Help");
-	}
-	
-	public static void rightClickMenu(int x, int y){
-		new HudButton(x,y+00,"Button1");
-		new HudButton(x,y+20,"Button2");
-		new HudButton(x,y+40,"Button3");
-		new HudButton(x,y+60,"Button4");
+		HudMenuButton mb = new HudMenuButton(210,0,"Help");
+		mb.addChild(new HudButton(0,0,100,"Controls",false){
+			public void runPayload() {
+				Hud.showChildWindowByName(getName());
+				Scene.updateScene();
+			}
+		});
+		mb.addChild(new HudButton(0,20,100,"About",false){
+			public void runPayload() {
+				Hud.showChildWindowByName(getName());
+				Scene.updateScene();
+			}
+		});
+		mb.addChild(new HudButton(0,40,100,"Help",false){
+			public void runPayload() {
+				Hud.showChildWindowByName(getName());
+				Scene.updateScene();
+			}
+		});
 	}
 	
 	public static void addButton(HudObject b){

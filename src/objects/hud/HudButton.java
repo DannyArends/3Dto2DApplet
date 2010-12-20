@@ -37,7 +37,7 @@ public class HudButton extends HudObject{
 	private String name;
 	private HudObject parent;
 	
-	public HudButton(int x,int y, int sx, int sy,HudWindow p){
+	public HudButton(int x,int y, int sx, int sy,HudObject p){
 		super(x,y);
 		setSize(new Point2D(sx,sy));
 		if(p==null){
@@ -47,7 +47,7 @@ public class HudButton extends HudObject{
 		}
 	}
 	
-	public HudButton(int x,int y, int sx, int sy,HudWindow p, String name,Color c){
+	public HudButton(int x,int y, int sx, int sy,HudObject p, String name,Color c){
 		this(x,y,sx,sy,p);
 		setSize(new Point2D(sx,sy));
 		setName(name);
@@ -59,7 +59,7 @@ public class HudButton extends HudObject{
 		this(x,y,name,null);
 	}
 	
-	public HudButton(int x,int y, String name,HudWindow p){
+	public HudButton(int x,int y, String name,HudObject p){
 		this(x,y,name.length()*10,20,p);
 		setName(name);
 	}
@@ -70,13 +70,23 @@ public class HudButton extends HudObject{
 	}
 	
 	public HudButton(int x, int y, String name, boolean b) {
-		this(x, y, name, b,Color.darkGray);
+		this(x, y, name, b,null);
+	}
+	
+	public HudButton(int x, int y, String name, boolean b,HudObject p) {
+		this(x, y, name, b,Color.darkGray,p);
 	}
 
-	public HudButton(int x, int y, String name, boolean b,Color c) {
-		this(x,y,name);
+	public HudButton(int x, int y, String name, boolean b,Color c,HudObject p) {
+		this(x,y,name,p);
 		setVisible(b);
 		setColor(c);
+	}
+
+	public HudButton(int x, int y, int s, String name, boolean b) {
+		this(x,y,s,20,null);
+		setName(name);
+		setVisible(b);
 	}
 
 	public void runPayload() {

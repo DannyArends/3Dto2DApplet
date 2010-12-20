@@ -104,17 +104,11 @@ public class Hud {
 		buttonarray.render(g);		
 	}
 	
-	static void showChildWindowByName(String name){
+	public static void showChildWindowByName(String name){
 		for(HudWindow h : children){
 			if(h.getName().equalsIgnoreCase(name)) h.setVisible(!h.isVisible());
 		}
 	}
-
-	public static void setPrintHelp() {
-		showChildWindowByName("help");
-	}
-
-
 
 	public static void addWindow(HudWindow window){
 		children.add(window);
@@ -127,10 +121,6 @@ public class Hud {
 		new HudText(10,25,"Filled triangles: Selected Cofactor at marker",h);
 		new HudText(10,40,"Triangle size: QTL effect/likelihood",h);
 		children.add(h);
-	}
-
-	public static void setPrintControls() {
-		showChildWindowByName("controls");
 	}
 
 	public void addControlsWindow(int x, int y) {
@@ -146,10 +136,6 @@ public class Hud {
 		new HudText(10,115,"[M]          Toggle between model only view",h);
 		new HudText(10,130,"[+]/[-]      Increade/Decrease LOD score Cut-off",h);
 		children.add(h);
-	}
-
-	public static void setPrintAbout() {
-		showChildWindowByName("about");
 	}
 
 	public void addAboutWindow(int x, int y) {
