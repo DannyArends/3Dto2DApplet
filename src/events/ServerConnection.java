@@ -49,7 +49,7 @@ public class ServerConnection {
 			parameterAsBytes = parametersAsString.getBytes(); 
 			//send parameters to server 
 			//FOR DEPLOY: url = new URL(Engine.getParentApplet().getDocumentBase() + "server.php");
-			url = new URL("http://localhost/Testing/server.php"); 
+			url = new URL("http://localhost/Testing/server.cgi"); 
 			con = (HttpURLConnection) url.openConnection();
 			con.setDoOutput(true); 
 			con.setDoInput(true); 
