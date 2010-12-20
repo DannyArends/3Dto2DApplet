@@ -49,7 +49,7 @@ public class ServerConnection {
 			parameterAsBytes = parametersAsString.getBytes(); 
 			//send parameters to server 
 			//FOR DEPLOY: url = new URL(Engine.getParentApplet().getDocumentBase() + "server.php");
-			url = new URL("http://localhost/Testing/server.cgi"); 
+			url = new URL("http://localhost/Testing/cgi-bin/server.cgi"); 
 			con = (HttpURLConnection) url.openConnection();
 			con.setDoOutput(true); 
 			con.setDoInput(true); 
@@ -68,8 +68,8 @@ public class ServerConnection {
 			Utils.console(response);
 			in.close(); 
 			oStream.close(); 
-		} catch (Exception ioe) {
-			Utils.log("Error",ioe);
+		} catch (Exception e) {
+			Utils.log(e.getLocalizedMessage(),System.err);
 		}
 		return response;
 	}
