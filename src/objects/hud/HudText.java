@@ -1,13 +1,11 @@
 package objects.hud;
 
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import events.ButtonControler;
-
 import rendering.Hud;
+import events.ButtonControler;
 
 public class HudText extends HudObject{
 	private String text;
