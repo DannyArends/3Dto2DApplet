@@ -22,16 +22,12 @@
 
 package objects.hud;
 
-import events.ButtonControler;
-import events.MyHandler;
 import generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import objects.Point2D;
-import rendering.Engine;
 import rendering.Hud;
 import rendering.Scene;
 
@@ -43,23 +39,23 @@ public class HudButton extends HudObject{
 	
 	public HudButton(int x,int y){
 		super(x,y);
-		setSize(new Point2D(100,20));
+		setSize(100,20);
 	}
 	
 	public HudButton(int x,int y,HudObject p){
 		super(x,y,p);
-		setSize(new Point2D(100,20));
+		setSize(100,20);
 	}
 	
 	public HudButton(int x,int y,String name){
 		super(x,y);
-		setSize(new Point2D(100,20));
+		setSize(100,20);
 		setName(name);
 	}
 	
 	public HudButton(int x,int y, int sx, int sy, String name, boolean visible, Color c){
 		this(x,y);
-		setSize(new Point2D(sx,sy));
+		setSize(sx,sy);
 		setName(name);
 		setColor(c);
 		setVisible(visible);
@@ -67,7 +63,7 @@ public class HudButton extends HudObject{
 	
 	public HudButton(int x,int y, int sx, int sy, String name, boolean visible, Color c,HudObject p){
 		this(x,y,p);
-		setSize(new Point2D(sx,sy));
+		setSize(sx,sy);
 		setName(name);
 		setColor(c);
 		setVisible(visible);

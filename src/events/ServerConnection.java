@@ -49,7 +49,7 @@ public class ServerConnection {
 	public String commandToServer(String parametersAsString){
 		String response = "\n";
 		try {
-			if(parametersAsString==null) parametersAsString = "msg=hello&to=world"; 
+			if(parametersAsString==null) return "";
 			parameterAsBytes = parametersAsString.getBytes(); 
 			//send parameters to server 
 			//FOR DEPLOY: 

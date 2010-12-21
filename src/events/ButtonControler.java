@@ -33,9 +33,7 @@ import java.util.Vector;
 import objects.hud.HudButton;
 import objects.hud.HudMenuButton;
 import objects.hud.HudObject;
-import rendering.Engine;
 import rendering.Hud;
-import rendering.Scene;
 
 public class ButtonControler {
 	static HudButton tmp_button;

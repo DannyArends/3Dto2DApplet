@@ -22,10 +22,7 @@
 
 package objects.hud;
 
-import objects.Point2D;
-import events.ButtonControler;
 import generic.Utils;
-import rendering.Engine;
 import rendering.Scene;
 
 public class HudMenuButton extends HudButton{
@@ -36,7 +33,7 @@ public class HudMenuButton extends HudButton{
 	
 	public HudMenuButton(int x, int y, int sx, int sy, String name) {
 		super(x, y);
-		setSize(new Point2D(sx,sy));
+		setSize(sx,sy);
 		setName(name);
 	}
 	

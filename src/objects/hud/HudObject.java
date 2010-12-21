@@ -27,8 +27,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
 
-import events.ButtonControler;
-
 import objects.Point2D;
 
 abstract public class HudObject extends Point2D{
@@ -65,6 +63,10 @@ abstract public class HudObject extends Point2D{
 	
 	public void setSize(Point2D size) {
 		this.size = size;
+	}
+	
+	public void setSize(int sx,int sy) {
+		this.size = new Point2D(sx,sy);
 	}
 
 	public Point2D getSize() {

@@ -38,19 +38,21 @@ import rendering.Scene;
 public class HudWindow extends HudButton{
 	boolean showTopMenu = true;
 	private boolean active = false;
-	Point2D fromSlide;
+	private Point2D fromSlide,originalsize;
 	
 	Vector<HudObject> topMenu = new Vector<HudObject>();
 
 	public HudWindow(int x, int y, String name) {
 		super(x, y);
-		setSize(new Point2D(400,600));
+		setSize(400,600);
+		originalsize = new Point2D(400,600);
 		initTopMenu();
 	}
 	
 	public HudWindow(int x, int y, int sx, int sy, String name) {
 		super(x, y, name);
-		setSize(new Point2D(sx,sy));
+		setSize(sx,sy);
+		originalsize = new Point2D(sx,sy);
 		initTopMenu();
 	}
 	
@@ -64,19 +66,17 @@ public class HudWindow extends HudButton{
 		topMenu.add(new HudButton(0,0,22,16,"M",true,Color.lightGray,this){
 			public void runPayload() {
 				getParent().setMinimized(false);
+				getParent().setSize(originalsize);
 				Scene.updateScene();
 			}
 		});
 		topMenu.add(new HudButton(0,0,22,16,"-",true,Color.lightGray,this){
 			public void runPayload() {
 				getParent().setMinimized(true);
+				getParent().setSize((int)originalsize.x,20);
 				Scene.updateScene();
 			}
 		});
-	}
-	
-	public Point2D getSize(){
-		return super.getSize();
 	}
 	
 	public void setShowTopMenu(boolean s){
@@ -108,11 +108,10 @@ public class HudWindow extends HudButton{
 		return true;
 	}
 
-	
 	@Override
 	public void render(Graphics2D g) {
 		if(isVisible()){
-			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (!isMinimized()) ? (int)getSize().y:20, Color.darkGray);
+			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (!isMinimized()) ? (int)getSize().y:20, this.getColor());
 			if(showTopMenu){
 				Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, (isActive())?Color.blue:Color.lightGray);
 				Hud.setFont(g, 0);

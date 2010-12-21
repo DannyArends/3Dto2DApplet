@@ -3,11 +3,8 @@ package objects.hud;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import objects.Point2D;
-
 import rendering.Hud;
 import rendering.Scene;
-
 import events.MyHandler;
 
 public class HudSlider extends HudButton  {
@@ -15,7 +12,7 @@ public class HudSlider extends HudButton  {
 	
 	public HudSlider(int x, int y, int sx, int sy) {
 		super(x, y);
-		setSize(new Point2D(sx,sy));
+		setSize(sx,sy);
 	}
 		
 

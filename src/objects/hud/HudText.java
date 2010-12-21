@@ -1,26 +1,29 @@
 package objects.hud;
 
 
-import generic.Utils;
-
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
 
 import rendering.Hud;
 
 public class HudText extends HudObject{
-	private String text;
+	private Vector<String> text = new Vector<String>();
 	
 	public HudText(int x, int y, String t){
 		super(x,y);
 		setName("text");
-		setText(t);
+		addLine(t);
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		Hud.setFont(g, 1);
-		Hud.drawString(g, getText(), (int)x+10, (int)y+15);
+		int line_cnt = 1;
+		for(String line : getTextVector()){
+			Hud.drawString(g, line, (int)x, (int)y+20*line_cnt);
+			line_cnt++;
+		}
 	}
 
 	@Override
@@ -35,11 +38,11 @@ public class HudText extends HudObject{
 		return false;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void addLine(String line) {
+		this.text.add(line);
 	}
 
-	public String getText() {
+	public Vector<String> getTextVector() {
 		return text;
 	}
 }
