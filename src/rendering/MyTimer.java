@@ -14,12 +14,9 @@ public class MyTimer implements ActionListener{
 	Date timeholder;
 	DateFormat df = DateFormat.getDateInstance();
 	DateFormat tf = DateFormat.getTimeInstance();
-	ServerConnection s;
 	
-	public MyTimer() {
+	public MyTimer(ServerConnection s) {
 		timer = new Timer(10000, this);
-		s = new ServerConnection();
-		s.commandToServer("online=true");
 		timer.start();
 	}
 	

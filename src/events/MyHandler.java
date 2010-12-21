@@ -31,6 +31,7 @@ import java.awt.event.MouseMotionListener;
 
 import objects.Point2D;
 import objects.hud.HudObject;
+import rendering.Engine;
 import rendering.Scene;
 
 public class MyHandler implements MouseMotionListener{
@@ -88,7 +89,7 @@ public class MyHandler implements MouseMotionListener{
 		mx = new_mx;
 		my = new_my;
 
-		Scene.getParentApplet().repaint();
+		Engine.getParentApplet().repaint();
 		e.consume();
 	}
 	
@@ -106,7 +107,7 @@ public class MyHandler implements MouseMotionListener{
 	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();Scene.reDrawScene();break;
 	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();Scene.reDrawScene();break;
 	      }
-		Scene.getParentApplet().repaint();
+	    Engine.getParentApplet().repaint();
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -114,12 +115,12 @@ public class MyHandler implements MouseMotionListener{
 	}
 
 	public static void registerForKeystrokes(HudObject b) {
-		Utils.console("Object registering for keystrokes");
+		if(Engine.verbose) Utils.console("Object registering for keystrokes");
 		keyinputlistener = b;
 	}
 
 	public static void registerForSlide(HudObject b) {
-		Utils.console("Object registering for mouse slides");
+		if(Engine.verbose) Utils.console("Object registering for mouse slides");
 		sliderinputlistener=b;
 	}
 

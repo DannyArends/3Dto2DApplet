@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import rendering.Hud;
-import events.ButtonControler;
 
 public class HudText extends HudObject{
 	private String text;
@@ -15,13 +14,8 @@ public class HudText extends HudObject{
 	}
 
 	public HudText(int x, int y, String t, HudWindow p) {
-		super(x,y);
+		super(x,y,p);
 		setText(t);
-		if(p==null){
-			ButtonControler.addButton(this);
-		}else{
-			p.addChild(this);
-		}
 	}
 
 	@Override

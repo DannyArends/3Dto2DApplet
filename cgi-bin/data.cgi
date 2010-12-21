@@ -26,10 +26,11 @@ sub list_all{
  	} 
 }
 
-sub list_type{
+sub list_files{
 	my $type = "\." . $_[0];
+	my $dir = $_[1];
 	my $file;
-	opendir(IMD, $data_location) or die print("Cannot open directory");
+	opendir(IMD, $data_location."/".$dir) or die print("Cannot open directory" . $data_location."/".$dir);
 	my @thefiles= readdir(IMD);
 	closedir(IMD); 
 	foreach $file (@thefiles) {

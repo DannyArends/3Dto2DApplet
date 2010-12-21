@@ -31,22 +31,24 @@ import java.awt.Graphics2D;
 import java.util.Vector;
 
 import objects.Point2D;
+import rendering.Engine;
 import rendering.Hud;
 import rendering.Scene;
 
 public class HudWindow extends HudButton{
 	boolean showTopMenu = true;
+	private boolean active = false;
 	Point2D fromSlide;
 	
 	Vector<HudObject> topMenu = new Vector<HudObject>();
 
-	public HudWindow(int x, int y, String name) {
-		super(x, y, name);
+	public HudWindow(int x, int y, String name,HudObject p) {
+		super(x, y, name,p);
 		initTopMenu();
 	}
 	
-	public HudWindow(int x, int y, int sx, int sy, String name) {
-		super(x, y, sx, sy,null, name,Color.darkGray);
+	public HudWindow(int x, int y, int sx, int sy, String name,HudObject p) {
+		super(x, y, sx, sy, p, name,Color.darkGray);
 		initTopMenu();
 	}
 	
@@ -80,7 +82,9 @@ public class HudWindow extends HudButton{
 	}
 	
 	public void runPayload() {
-		Utils.console("Window at "+x+","+y+" clicked");
+		if(Engine.verbose) Utils.console("HudWindow " + getName() + "at: " + x + ", " + y + " clicked");
+		Hud.deactivateChildren();
+		setActive(true);
 		if(showTopMenu && !ButtonControler.checkLocation(topMenu, (int)MyHandler.getMouse().x, (int)MyHandler.getMouse().y)){
 			if((int)MyHandler.getMouse().y < this.y+20){
 				fromSlide = new Point2D(MyHandler.getMouse().x-x,MyHandler.getMouse().y-y);
@@ -88,6 +92,8 @@ public class HudWindow extends HudButton{
 			}
 		}
 		ButtonControler.checkLocation(children, (int)MyHandler.getMouse().x, (int)MyHandler.getMouse().y);
+		Scene.updateScene();
+		Scene.reDrawScene();
 	}
 	
 	@Override
@@ -105,7 +111,7 @@ public class HudWindow extends HudButton{
 	public void render(Graphics2D g) {
 		if(isVisible()){
 			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (!isMinimized()) ? (int)getSize().y:20, Color.darkGray);
-			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, Color.blue);
+			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, (isActive())?Color.blue:Color.lightGray);
 			Hud.setFont(g, 0);
 			Hud.drawString(g, getName(), (int)x+10, (int)y+15);
 			Hud.setFont(g, 1);
@@ -125,6 +131,14 @@ public class HudWindow extends HudButton{
 				}
 			}
 		}
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public boolean isActive() {
+		return active;
 	}
 
 }

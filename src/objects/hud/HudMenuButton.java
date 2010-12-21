@@ -23,6 +23,7 @@
 package objects.hud;
 
 import generic.Utils;
+import rendering.Engine;
 import rendering.Scene;
 
 public class HudMenuButton extends HudButton{
@@ -33,11 +34,11 @@ public class HudMenuButton extends HudButton{
 	
 	@Override
 	public void runPayload() {
-		Utils.console("MenuButton at:"+x+","+y+"clicked");
+		if(Engine.verbose) Utils.console("HudMenuButton "+getName()+"at: " + x + ", " + y + " clicked");
 		for(int wb=0;wb<children.size();wb++){
-			Utils.console("wb" + wb);
 			children.get(wb).setVisible(!children.get(wb).isVisible());
 		}
+		if(Engine.verbose) Utils.console("Opened "+ children.size() +" subwindows");
 		Scene.reDrawScene();
 		Scene.updateScene();
 	}

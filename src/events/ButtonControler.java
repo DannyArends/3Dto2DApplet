@@ -42,6 +42,7 @@ public class ButtonControler {
 	}
 	
 	public static boolean checkLocation(int x,  int y){
+		checkLocation(Hud.getHudObjectWindows(),x,y);
 		return checkLocation(monitored,x,y);
 	}
 	

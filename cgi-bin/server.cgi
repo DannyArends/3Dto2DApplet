@@ -28,11 +28,15 @@ require "user.cgi";
 
 #Main
 printTXTHeader();
-printPost();
-printServerStats();
-printUserStats();
+receivePost();
 writeIPtoLog();
-print("#AVAILABLE_DATASETS" . "\n");
-list_type("dat");
-print("#AVAILABLE_MODELS" . "\n");
-list_type("3ds");
+if($form{"online"} eq "true"){
+	printPost();
+	printServerStats();
+	printUserStats();
+}
+
+if($form{"list_files"} ne ""){
+	print("#AVAILABLE_ICONS" . "\n");
+	list_files($form{"list_files"},$form{"dir"});
+}

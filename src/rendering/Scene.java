@@ -22,6 +22,7 @@
 
 package rendering;
 
+import events.ServerConnection;
 import generic.Utils;
 import genetics.QTLdataset;
 import genetics.QTLheatmap;
@@ -37,7 +38,7 @@ import objects.Camera;
 import objects.renderables.Object3D;
 
 
-public class Scene extends Engine{
+public class Scene{
 	static private Camera camera = new Camera(0.0, 20.0, 0.0, -45, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
 	public static int softmyobjectslimit = 12500;
@@ -45,16 +46,15 @@ public class Scene extends Engine{
 	private static QTLdataset dataset;
 	static QTLheatmap heatmap;
 	
-	public Scene(Applet parent){
-		super(parent);
-		headsupdisplay=new Hud();
+	public Scene(ServerConnection s){
+		headsupdisplay=new Hud(Engine.width,Engine.height);
 		try{
 			dataset = new QTLdataset("data/data.dat");
 			heatmap = new QTLheatmap();
 			headsupdisplay.addDataset(dataset);
 			reDrawScene();
 		}catch(Exception e){
-			Utils.log("Connot load dataset", e);
+			Utils.log("Error unable to load dataset", e);
 		}
 	}
 	
@@ -69,16 +69,17 @@ public class Scene extends Engine{
 	}
 	
 	public static void updateScene() {
-		//Utils.console("Updating Scene");
-		Scene.getBackBufferGraphics().setColor(Color.black);
-		Scene.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
+		if(Engine.verbose) Utils.console("Re-rendering on back buffer");
+		Engine.getBackBufferGraphics().setColor(Color.black);
+		Engine.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
 		for(Object3D myobject : myobjects){
 			myobject.update(camera);
-			myobject.render(getBackBufferGraphics(),camera);
+			myobject.render(Engine.getBackBufferGraphics(),camera);
 		}
-		((Graphics2D) Scene.getBackBufferGraphics()).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
-		headsupdisplay.render((Graphics2D)getBackBufferGraphics());
-		updateGraphics(getParentApplet().getGraphics());
+		((Graphics2D) Engine.getBackBufferGraphics()).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
+		headsupdisplay.render((Graphics2D)Engine.getBackBufferGraphics());
+		if(Engine.verbose) Utils.console("DONE Re-rendering on back buffer");
+		updateGraphics(Engine.getParentApplet().getGraphics());
 	}
 	
 	public static void addObject(Object3D o){
@@ -90,9 +91,9 @@ public class Scene extends Engine{
 	}
 	
 	public static void updateGraphics(Graphics g) {
-		//Utils.console("Updating Graphics");
-		g.drawImage(getBackBuffer(), 0, 0,Scene.width,Scene.height, getParentApplet());
-		getParentApplet().showStatus("Hrot: " + camera.getHorizontalRotation() + " deg, Vrot: " + camera.getVerticalRotation() + " deg");
+		if(Engine.verbose) Utils.console("Back buffer to front buffer");
+		g.drawImage(Engine.getBackBuffer(), 0, 0,Engine.width,Engine.height, Engine.getParentApplet());
+		Engine.getParentApplet().showStatus("Hrot: " + camera.getHorizontalRotation() + " deg, Vrot: " + camera.getVerticalRotation() + " deg");
 	}
 	
 	public static Camera getCamera() {

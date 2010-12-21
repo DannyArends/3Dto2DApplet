@@ -47,18 +47,15 @@ public class Loader3DS {
 	}
 
 	public Vector<Object3DS> load3DS(String filename) {
-		Utils.console("Loading file: "
-				+ Engine.getParentApplet().getCodeBase().toString() + filename);
+		if(Engine.verbose) Utils.console("Loading file: " + Engine.getParentApplet().getCodeBase().toString() + filename);
 		Vector<Object3DS> objects = new Vector<Object3DS>();
 		Vector<Material3DS> materials = new Vector<Material3DS>();
 		Object3DS object = null;
 		Material3DS material = null;
 		try {
-			url = new URL(Engine.getParentApplet().getCodeBase().toString()
-					+ filename);
+			url = new URL(Engine.getParentApplet().getCodeBase().toString()	+ filename);
 			stream = url.openStream();
-			System.out.println("File: " + filename + " "
-					+ (filelength = stream.available()));
+			if(Engine.verbose) Utils.console("File: " + filename + " " + (filelength = stream.available()));
 			byte[] shortconversion = new byte[2];
 			byte[] doubleconversion = new byte[8];
 			String tempstring;
@@ -72,8 +69,7 @@ public class Loader3DS {
 			while (stream.available() > 0) {
 				stream.read(chunkId, 0, 2);
 				stream.read(chunkLength, 0, 4);
-				// Utils.console("chunkid: " + unsignedShortToInt(chunkId) +
-				// " length: " + unsignedIntToLong(chunkLength));
+				// Utils.console("chunkid: " + unsignedShortToInt(chunkId) + " length: " + unsignedIntToLong(chunkLength));
 				switch (BinaryUtils.arr2int(chunkId)) {
 				case 19789:
 					// Utils.console("#0x4d4d");
@@ -198,8 +194,7 @@ public class Loader3DS {
 				case 16704:
 					// Utils.console("#0x4140");
 					stream.read(shortconversion, 0, 2);
-					Utils.console("# of mapcoords: "
-							+ (length = BinaryUtils.arr2int(shortconversion)));
+					Utils.console("# of mapcoords: " + (length = BinaryUtils.arr2int(shortconversion)));
 					Point2D[] mapcoords = new Point2D[length];
 					for (int i = 0; i < length; i++) {
 						stream.read(doubleconversion, 0, 4);

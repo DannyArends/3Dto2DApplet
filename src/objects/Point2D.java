@@ -24,7 +24,7 @@ package objects;
 
 import rendering.Engine;
 
-public class Point2D{
+public class Point2D extends Object{
 	public double x=-1;
 	public double y=-1;
 	public Point2D(){

@@ -23,19 +23,23 @@
 package rendering;
 
 import events.ButtonControler;
+import generic.Utils;
 import genetics.QTLdataset;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.util.Vector;
 
-import objects.hud.HudWindow;
+import objects.hud.HudImage;
 import objects.hud.HudObject;
 import objects.hud.HudText;
+import objects.hud.HudWindow;
 
-public class Hud {
+public class Hud extends HudObject{
 	QTLdataset dataset;
-	static Vector<HudWindow> children = new Vector<HudWindow>();
+	private static Vector<HudWindow> hudWindows = new Vector<HudWindow>();
 	private ButtonControler buttonarray = new ButtonControler();
 	
 	static Font[] fonts = new Font[]{
@@ -43,7 +47,8 @@ public class Hud {
 		new Font("Dialog", Font.PLAIN, 10)
 	};
 	
-	public Hud(){
+	public Hud(int sx, int sy){
+		super(sx,sy);
 //		addtestWindow();
 		addHelpWindow(100, 100);
 		addControlsWindow(100, 100);
@@ -98,33 +103,54 @@ public class Hud {
 	}
 
 	public void render(Graphics2D g){
-		for(HudObject o : children){
-			o.render(g);
+		buttonarray.render(g);
+		HudWindow a=null;
+		for(HudWindow o : getHudWindows()){
+			if(!o.isActive()){
+				o.render(g);
+			}else{
+				a = o;
+			}
 		}
-		buttonarray.render(g);		
+		if(a!=null)a.render(g);
 	}
 	
 	public static void showChildWindowByName(String name){
-		for(HudWindow h : children){
-			if(h.getName().equalsIgnoreCase(name)) h.setVisible(!h.isVisible());
+		deactivateChildren();
+		for(HudWindow h : getHudWindows()){
+			if(h.getName().equalsIgnoreCase(name)){
+				h.setVisible(!h.isVisible());
+				h.setActive(true);
+				if(Engine.verbose) Utils.console("Showing Window" + h.getName() + " is visible, active:" + h.isVisible() +","+h.isActive());
+			}
 		}
 	}
 
 	public static void addWindow(HudWindow window){
-		children.add(window);
+		getHudWindows().add(window);
+	}
+	
+	public static void deactivateChildren(){
+		for(HudWindow h : getHudWindows()){
+			h.setActive(false);
+		}
 	}
 
 	public void addHelpWindow(int x, int y) {
-		HudWindow h = new HudWindow(x,y,400,200,"HELP");
+		HudWindow h = new HudWindow(x,y,400,200,"HELP",this);
 		h.setVisible(false);
 		new HudText(10,10,"Open Triangle: QTL at marker",h);
 		new HudText(10,25,"Filled triangles: Selected Cofactor at marker",h);
 		new HudText(10,40,"Triangle size: QTL effect/likelihood",h);
-		children.add(h);
+		new HudImage(10,150,"user.png",h);
+		new HudImage(60,150,"user_id.png",h);
+		new HudImage(110,150,"users.png",h);
+		new HudImage(160,150,"user_add.png",h);
+		new HudImage(210,150,"user_delete.png",h);
 	}
 
 	public void addControlsWindow(int x, int y) {
-		HudWindow h = new HudWindow(x,y,400,200,"CONTROLS");
+		HudWindow h = new HudWindow(x,y,400,200,"CONTROLS",this);
 		h.setVisible(false);
 		new HudText(10,10,"Click and move mouse to look around",h);
 		new HudText(10,25,"[Left]       step left",h);
@@ -135,16 +161,60 @@ public class Hud {
 		new HudText(10,100,"[Page Up]    float up",h);
 		new HudText(10,115,"[M]          Toggle between model only view",h);
 		new HudText(10,130,"[+]/[-]      Increade/Decrease LOD score Cut-off",h);
-		children.add(h);
+		new HudImage(10,110,"arrow_left.png",h);
+		new HudImage(60,110,"arrow_up.png",h);
+		new HudImage(110,110,"arrow_down.png",h);
+		new HudImage(160,110,"arrow_right.png",h);
 	}
 
 	public void addAboutWindow(int x, int y) {
-		HudWindow h = new HudWindow(x,y,400,200,"ABOUT");
+		HudWindow h = new HudWindow(x,y,400,200,"ABOUT",this);
 		h.setVisible(false);
 		new HudText(10,10,"QTL viewing applet",h);
 		new HudText(10,25,"Part of the iqtl package",h);
 		new HudText(10,40,"(c) 2010 Danny Arends - GBIC",h);
 		new HudText(10,55,"https://github.com/DannyArends/3Dto2DApplet",h);
-		children.add(h);
+		h.addChild(IconLoader.getIcon(10,110,"file.png"));
+		h.addChild(IconLoader.getIcon(60,110,"file_check.png"));
+		h.addChild(IconLoader.getIcon(110,110,"file_cfg.png"));
+		h.addChild(IconLoader.getIcon(160,110,"file_search.png"));
+		h.addChild(IconLoader.getIcon(210,110,"file.png"));
+	}
+	
+	public void addChild(HudObject o){
+		try{
+			getHudWindows().add((HudWindow)o);
+		}catch(Exception e){
+			Utils.log("Trying to add a non HudWindow to the HUD", System.err);
+		}
+	}
+
+	@Override
+	public void handleKeystroke(KeyEvent e) {
+		
+	}
+
+	@Override
+	public boolean handleSlide(int mx, int my) {
+		return false;
+	}
+
+	public static void setHudWindows(Vector<HudWindow> hudWindows) {
+		Hud.hudWindows = hudWindows;
+	}
+
+	public static Vector<HudWindow> getHudWindows() {
+		return Hud.hudWindows;
+	}
+	
+	public static Vector<HudObject> getHudObjectWindows() {
+		Vector<HudObject> t = new Vector<HudObject>();
+		for(HudWindow h : hudWindows){
+			if(h.isActive())t.add((HudObject)h);
+		}
+		for(HudWindow h : hudWindows){
+			if(!h.isActive())t.add((HudObject)h);
+		}
+		return t;
 	}
 }

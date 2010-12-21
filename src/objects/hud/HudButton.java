@@ -22,7 +22,6 @@
 
 package objects.hud;
 
-import events.ButtonControler;
 import generic.Utils;
 
 import java.awt.Color;
@@ -30,28 +29,22 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import objects.Point2D;
+import rendering.Engine;
 import rendering.Hud;
 import rendering.Scene;
 
 public class HudButton extends HudObject{
 	private String name;
-	private HudObject parent;
 	
 	public HudButton(int x,int y, int sx, int sy,HudObject p){
-		super(x,y);
+		super(x,y,p);
 		setSize(new Point2D(sx,sy));
-		if(p==null){
-			ButtonControler.addButton(this);
-		}else{
-			p.addChild(this);
-		}
 	}
 	
 	public HudButton(int x,int y, int sx, int sy,HudObject p, String name,Color c){
 		this(x,y,sx,sy,p);
 		setSize(new Point2D(sx,sy));
 		setName(name);
-		setParent(p);
 		setColor(c);
 	}
 	
@@ -90,7 +83,7 @@ public class HudButton extends HudObject{
 	}
 
 	public void runPayload() {
-		Utils.console("Button at:"+x+","+y+"clicked");
+		if(Engine.verbose) Utils.console("HudButton " + getName() + "at: " + x + ", " + y + " clicked");
 		Scene.updateScene();
 	}
 
@@ -119,14 +112,5 @@ public class HudButton extends HudObject{
 	@Override
 	public boolean handleSlide(int mx, int my) {
 		return false;	
-	}
-
-
-	public void setParent(HudObject parent) {
-		this.parent = parent;
-	}
-
-	public HudObject getParent() {
-		return parent;
 	}
 }

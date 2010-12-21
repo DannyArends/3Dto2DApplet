@@ -26,21 +26,29 @@ import java.applet.Applet;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import events.ServerConnection;
+
 public class Engine {
 	private static Image backBuffer;
 	private static Graphics backBufferGraphics;
+	public static boolean verbose=false;
 	public static int width;
 	public static int height;
 	public static double near = 3.0f;
 	public static double nearToObj = 2.5f;
 	private static Applet parentApplet;
+	MyTimer timer;
+	IconLoader iconloader;
 	
-	public Engine(Applet parent){
+	public Engine(Applet parent, ServerConnection s){
+		parentApplet=parent;
 		width = parent.getSize().width;
 		height = parent.getSize().height;
 		backBuffer = parent.createImage(width, height);
 		setBackBufferGraphics(backBuffer.getGraphics());
-		parentApplet=parent;
+		timer = new MyTimer(s);
+		iconloader = new IconLoader(s);
+		new Scene(s);
 	}
 
 	public static Image getBackBuffer() {

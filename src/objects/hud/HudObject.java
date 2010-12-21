@@ -27,23 +27,27 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
 
+import events.ButtonControler;
+
 import objects.Point2D;
 
 abstract public class HudObject extends Point2D{
 	private Point2D size = new Point2D();
 	private boolean visible = true;
 	private boolean minimized = false;
-	Vector<HudObject> children = new Vector<HudObject>();
+	private HudObject parent;
+	public Vector<HudObject> children = new Vector<HudObject>();
 	private Color color = Color.darkGray;
 	
-	HudObject(int x, int y){
-		super(x,y);
-	}
-
-	public HudObject(double x, double y) {
+	public HudObject(int x, int y){
 		super(x,y);
 	}
 	
+	public HudObject(int x, int y, HudObject p){
+		super(x,y);
+		this.setParent(p);
+	}
+
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
@@ -93,5 +97,18 @@ abstract public class HudObject extends Point2D{
 
 	public Color getColor() {
 		return color;
+	}
+	
+	public void setParent(HudObject parent) {
+		this.parent = parent;
+		if(parent==null){
+			ButtonControler.addButton(this);
+		}else{
+			parent.addChild(this);
+		}
+	}
+
+	public HudObject getParent() {
+		return parent;
 	}
 }

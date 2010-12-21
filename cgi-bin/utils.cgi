@@ -24,10 +24,16 @@ sub printHTTPHeader{
 	print("Content-type: text/html"."\n\n");
 }
 
-sub printPost{
+sub receivePost{
   print("#FROM_CLIENT" . "\n");
 	foreach my $p (param()) {
 		$form{$p} = param($p);
+	}
+}
+
+sub printPost{
+  print("#FROM_CLIENT" . "\n");
+	foreach my $p (param()) {
     	print($p . " = " . $form{$p} . "\n");
 	}
 }
@@ -60,10 +66,10 @@ sub writeIPtoLog{
 	if(!$found){
 		close (MYFILE);
 		open(MYFILE, ">>$filename") or die print("Error: opening file for writing");
-		print("ADD: $ENV{REMOTE_ADDR}" . "\n");
+		#print("ADD: $ENV{REMOTE_ADDR}" . "\n");
 		print MYFILE $ENV{REMOTE_ADDR} . "\n";
 	}else{
-		print("FOUND: $ENV{REMOTE_ADDR}" . "\n");
+		#print("FOUND: $ENV{REMOTE_ADDR}" . "\n");
 	}
  	close (MYFILE);
 }

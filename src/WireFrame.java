@@ -33,22 +33,21 @@ import rendering.Scene;
 
 import events.MyHandler;
 import events.ServerConnection;
+import generic.Utils;
 
 public class WireFrame extends Applet implements KeyListener, MouseListener{
 	private static final long serialVersionUID = 1L;
 	
 	MyHandler eventListener= new MyHandler();
-	MyTimer timer;
+	ServerConnection s = new ServerConnection();
 	
 	public void init() {
-		new Engine(this);
-		timer = new MyTimer();
-		new Scene(this);
+		String response = s.commandToServer("online=true");
+		new Engine(this,s);
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(eventListener);
 		Scene.updateScene();
-		new ServerConnection();
 	}
 
 
