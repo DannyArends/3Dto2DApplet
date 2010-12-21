@@ -35,9 +35,13 @@ abstract public class HudObject extends Point2D{
 	private Point2D size = new Point2D();
 	private boolean visible = true;
 	private boolean minimized = false;
+	private String name;
 	private HudObject parent;
 	public Vector<HudObject> children = new Vector<HudObject>();
 	private Color color = Color.darkGray;
+	
+	public HudObject(){
+	}
 	
 	public HudObject(int x, int y){
 		super(x,y);
@@ -50,6 +54,9 @@ abstract public class HudObject extends Point2D{
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+		for(HudObject h : children){
+			h.setVisible(visible);
+		}
 	}
 
 	public boolean isVisible() {
@@ -91,6 +98,14 @@ abstract public class HudObject extends Point2D{
 		return minimized;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
 	public void setColor(Color color) {
 		this.color = color;
 	}
@@ -101,11 +116,6 @@ abstract public class HudObject extends Point2D{
 	
 	public void setParent(HudObject parent) {
 		this.parent = parent;
-		if(parent==null){
-			ButtonControler.addButton(this);
-		}else{
-			parent.addChild(this);
-		}
 	}
 
 	public HudObject getParent() {

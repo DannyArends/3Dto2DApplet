@@ -24,17 +24,21 @@
 package events;
 
 
+import generic.Utils;
+
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Vector;
 
 import objects.hud.HudButton;
 import objects.hud.HudMenuButton;
 import objects.hud.HudObject;
+import rendering.Engine;
 import rendering.Hud;
 import rendering.Scene;
 
 public class ButtonControler {
-	
+	static HudButton tmp_button;
 	static Vector<HudObject> monitored = new Vector<HudObject>();
 	
 	public ButtonControler(){
@@ -48,10 +52,10 @@ public class ButtonControler {
 	
 	public static boolean checkLocation(Vector<HudObject> tocheck, int x,  int y){
 		for(HudObject b : tocheck){
-			//Utils.console(""+x+","+y+"=="+b.x+","+b.y);
 			if(b.x < x && b.y < y){
 				if(b.getAbsoluteSizeX() > x && b.getAbsoluteSizeY() > y){
 					if(b.isVisible()){
+						Utils.console(b.getName()+ " "+x+","+y+"=="+b.x+","+b.y);
 						((HudButton)b).runPayload();
 						return true;
 					}
@@ -62,28 +66,20 @@ public class ButtonControler {
 	}
 	
 	public static void addMainMenu(){
-		new HudMenuButton(0,0,"File");
-		new HudMenuButton(70,0,"Edit");
-		new HudMenuButton(140,0,"View");
-		HudMenuButton mb = new HudMenuButton(210,0,"Help");
-		mb.addChild(new HudButton(0,0,100,"Controls",false){
-			public void runPayload() {
-				Hud.showChildWindowByName(getName());
-				Scene.updateScene();
-			}
-		});
-		mb.addChild(new HudButton(0,20,100,"About",false){
-			public void runPayload() {
-				Hud.showChildWindowByName(getName());
-				Scene.updateScene();
-			}
-		});
-		mb.addChild(new HudButton(0,40,100,"Help",false){
-			public void runPayload() {
-				Hud.showChildWindowByName(getName());
-				Scene.updateScene();
-			}
-		});
+		addButton(new HudMenuButton(0,0,70,20,"File"));
+		addButton(new HudMenuButton(70,0,70,20,"Edit"));
+		addButton(new HudMenuButton(140,0,70,20,"View"));
+		HudMenuButton mb = new HudMenuButton(210,0,70,20,"Help");
+		tmp_button = new HudButton(0,0,70,20,"Controls",false,Color.darkGray);
+		addButton(tmp_button);
+		mb.addChild(tmp_button);
+		tmp_button = new HudButton(0,20,70,20,"About",false,Color.darkGray);
+		addButton(tmp_button);
+		mb.addChild(tmp_button);
+		tmp_button = new HudButton(0,40,70,20,"Help",false,Color.darkGray);
+		addButton(tmp_button);
+		mb.addChild(tmp_button);
+		addButton(mb);
 	}
 	
 	public static void addButton(HudObject b){

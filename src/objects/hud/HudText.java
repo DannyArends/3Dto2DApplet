@@ -1,6 +1,8 @@
 package objects.hud;
 
 
+import generic.Utils;
+
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
@@ -9,12 +11,9 @@ import rendering.Hud;
 public class HudText extends HudObject{
 	private String text;
 	
-	public HudText(int x,int y, String t){
-		this(x,y,t,null);
-	}
-
-	public HudText(int x, int y, String t, HudWindow p) {
-		super(x,y,p);
+	public HudText(int x, int y, String t){
+		super(x,y);
+		setName("text");
 		setText(t);
 	}
 

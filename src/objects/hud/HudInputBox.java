@@ -36,13 +36,9 @@ public class HudInputBox extends HudButton {
 	String input="";
 	int size;
 	
-	public HudInputBox(int x, int y,int s,HudWindow p) {
-		super(x, y,s*15,20,p);
+	public HudInputBox(int x, int y,int s) {
+		super(x, y);
 		this.size=s;
-	}
-	
-	public HudInputBox(int x, int y, int s) {
-		this(x,y,s,null);
 	}
 
 	@Override

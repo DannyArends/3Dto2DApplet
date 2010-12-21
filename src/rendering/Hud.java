@@ -53,6 +53,7 @@ public class Hud extends HudObject{
 		addHelpWindow(100, 100);
 		addControlsWindow(100, 100);
 		addAboutWindow(100, 100);
+		addIconBar(0,Engine.height-100);
 	}
 	
 	public void addDataset(QTLdataset d){
@@ -118,10 +119,11 @@ public class Hud extends HudObject{
 	public static void showChildWindowByName(String name){
 		deactivateChildren();
 		for(HudWindow h : getHudWindows()){
+			Utils.console("Showing Window " + name + " " + h.getName());
 			if(h.getName().equalsIgnoreCase(name)){
 				h.setVisible(!h.isVisible());
 				h.setActive(true);
-				if(Engine.verbose) Utils.console("Showing Window" + h.getName() + " is visible, active:" + h.isVisible() +","+h.isActive());
+				Utils.console("Showing Window" + h.getName() + " is visible, active:" + h.isVisible() +","+h.isActive());
 			}
 		}
 	}
@@ -137,48 +139,57 @@ public class Hud extends HudObject{
 	}
 
 	public void addHelpWindow(int x, int y) {
-		HudWindow h = new HudWindow(x,y,400,200,"HELP",this);
+		HudWindow h = new HudWindow(x,y,400,100,"HELP");
 		h.setVisible(false);
-		new HudText(10,10,"Open Triangle: QTL at marker",h);
-		new HudText(10,25,"Filled triangles: Selected Cofactor at marker",h);
-		new HudText(10,40,"Triangle size: QTL effect/likelihood",h);
-		new HudImage(10,150,"user.png",h);
-		new HudImage(60,150,"user_id.png",h);
-		new HudImage(110,150,"users.png",h);
-		new HudImage(160,150,"user_add.png",h);
-		new HudImage(210,150,"user_delete.png",h);
+		h.addChild(new HudText(10,10,"Open Triangle: QTL at marker"));
+		h.addChild(new HudText(10,25,"Filled triangles: Selected Cofactor at marker"));
+		h.addChild(new HudText(10,40,"Triangle size: QTL effect/likelihood"));
+		h.addChild(new HudImage(300,10,"help.png"));
+		this.addChild(h);
 	}
 
 	public void addControlsWindow(int x, int y) {
-		HudWindow h = new HudWindow(x,y,400,200,"CONTROLS",this);
+		HudWindow h = new HudWindow(x,y,400,200,"CONTROLS");
 		h.setVisible(false);
-		new HudText(10,10,"Click and move mouse to look around",h);
-		new HudText(10,25,"[Left]       step left",h);
-		new HudText(10,40,"[Right]      step right",h);
-		new HudText(10,55,"[Down]       step back",h);
-		new HudText(10,70,"[Up]         step forward",h);
-		new HudText(10,85,"[Page Up]    float up",h);
-		new HudText(10,100,"[Page Up]    float up",h);
-		new HudText(10,115,"[M]          Toggle between model only view",h);
-		new HudText(10,130,"[+]/[-]      Increade/Decrease LOD score Cut-off",h);
-		new HudImage(10,110,"arrow_left.png",h);
-		new HudImage(60,110,"arrow_up.png",h);
-		new HudImage(110,110,"arrow_down.png",h);
-		new HudImage(160,110,"arrow_right.png",h);
+		h.addChild(new HudText(10,10,"Click and move mouse to look around"));
+		h.addChild(new HudText(10,25,"[Left]       step left"));
+		h.addChild(new HudText(10,40,"[Right]      step right"));
+		h.addChild(new HudText(10,55,"[Down]       step back"));
+		h.addChild(new HudText(10,70,"[Up]         step forward"));
+		h.addChild(new HudText(10,85,"[Page Up]    float up"));
+		h.addChild(new HudText(10,100,"[Page Up]    float up"));
+		h.addChild(new HudText(10,115,"[M]          Toggle between model only view"));
+		h.addChild(new HudText(10,130,"[+]/[-]      Increade/Decrease LOD score Cut-off"));
+		this.addChild(h);
 	}
 
 	public void addAboutWindow(int x, int y) {
-		HudWindow h = new HudWindow(x,y,400,200,"ABOUT",this);
+		HudWindow h = new HudWindow(x,y,400,100,"ABOUT");
 		h.setVisible(false);
-		new HudText(10,10,"QTL viewing applet",h);
-		new HudText(10,25,"Part of the iqtl package",h);
-		new HudText(10,40,"(c) 2010 Danny Arends - GBIC",h);
-		new HudText(10,55,"https://github.com/DannyArends/3Dto2DApplet",h);
-		h.addChild(IconLoader.getIcon(10,110,"file.png"));
-		h.addChild(IconLoader.getIcon(60,110,"file_check.png"));
-		h.addChild(IconLoader.getIcon(110,110,"file_cfg.png"));
-		h.addChild(IconLoader.getIcon(160,110,"file_search.png"));
-		h.addChild(IconLoader.getIcon(210,110,"file.png"));
+		h.addChild(new HudText(10,10,"QTL viewing applet"));
+		h.addChild(new HudText(10,25,"Part of the iqtl package"));
+		h.addChild(new HudText(10,40,"(c) 2010 Danny Arends - GBIC"));
+		h.addChild(new HudText(10,55,"https://github.com/DannyArends/3Dto2DApplet"));
+		h.addChild(new HudImage(300,10,"signup.png"));
+		this.addChild(h);
+	}
+	
+	public void addIconBar(int x, int y) {
+		HudWindow h = new HudWindow(0,Engine.height-100,650,100,"ICONBAR");
+		h.addChild(IconLoader.getIcon(25,0,"user_id.png"));
+		h.addChild(IconLoader.getIcon(75,0,"walk.png"));
+		h.addChild(IconLoader.getIcon(125,0,"world.png"));
+		h.addChild(IconLoader.getIcon(175,0,"fight.png"));
+		h.addChild(IconLoader.getIcon(225,0,"magic.png"));
+		h.addChild(IconLoader.getIcon(275,0,"hammer.png"));
+		h.addChild(IconLoader.getIcon(325,0,"leaf.png"));
+		
+		h.addChild(IconLoader.getIcon(450,0,"settings.png"));
+		h.addChild(IconLoader.getIcon(500,0,"stats.png"));
+		h.addChild(IconLoader.getIcon(550,0,"help.png"));
+		h.setShowTopMenu(false);
+		h.setVisible(true);
+		this.addChild(h);
 	}
 	
 	public void addChild(HudObject o){

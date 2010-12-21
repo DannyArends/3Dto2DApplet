@@ -42,30 +42,32 @@ public class HudWindow extends HudButton{
 	
 	Vector<HudObject> topMenu = new Vector<HudObject>();
 
-	public HudWindow(int x, int y, String name,HudObject p) {
-		super(x, y, name,p);
+	public HudWindow(int x, int y, String name) {
+		super(x, y);
+		setSize(new Point2D(400,600));
 		initTopMenu();
 	}
 	
-	public HudWindow(int x, int y, int sx, int sy, String name,HudObject p) {
-		super(x, y, sx, sy, p, name,Color.darkGray);
+	public HudWindow(int x, int y, int sx, int sy, String name) {
+		super(x, y, name);
+		setSize(new Point2D(sx,sy));
 		initTopMenu();
 	}
 	
 	void initTopMenu(){
-		topMenu.add(new HudButton(0,0,22,16,this,"X",Color.lightGray){
+		topMenu.add(new HudButton(0,0,22,16,"X",true,Color.lightGray,this){
 			public void runPayload() {
 				getParent().setVisible(false);
 				Scene.updateScene();
 			}
 		});
-		topMenu.add(new HudButton(0,0,22,16,this,"M",Color.lightGray){
+		topMenu.add(new HudButton(0,0,22,16,"M",true,Color.lightGray,this){
 			public void runPayload() {
 				getParent().setMinimized(false);
 				Scene.updateScene();
 			}
 		});
-		topMenu.add(new HudButton(0,0,22,16,this,"-",Color.lightGray){
+		topMenu.add(new HudButton(0,0,22,16,"-",true,Color.lightGray,this){
 			public void runPayload() {
 				getParent().setMinimized(true);
 				Scene.updateScene();
@@ -111,22 +113,20 @@ public class HudWindow extends HudButton{
 	public void render(Graphics2D g) {
 		if(isVisible()){
 			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (!isMinimized()) ? (int)getSize().y:20, Color.darkGray);
-			Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, (isActive())?Color.blue:Color.lightGray);
-			Hud.setFont(g, 0);
-			Hud.drawString(g, getName(), (int)x+10, (int)y+15);
-			Hud.setFont(g, 1);
-			HudObject b;
 			if(showTopMenu){
+				Hud.drawBox(g, (int)x, (int)y, (int)getSize().x, (int)20, (isActive())?Color.blue:Color.lightGray);
+				Hud.setFont(g, 0);
+				Hud.drawString(g, getName(), (int)x+10, (int)y+15);
+				Hud.setFont(g, 1);
+				HudObject b;
 				for(int wb=0;wb<topMenu.size();wb++){
-					b=topMenu.get(wb);b.setLocation((x+getSize().x)-(15*(wb)+24), y+2);
+					b=topMenu.get(wb);
+					b.setLocation((x+getSize().x)-(15*(wb)+24), y+2);
+					b.render(g);
 				}
 			}
 			if(!isMinimized()){
 				for(HudObject o : children){
-					o.render(g);
-				}
-			}else{
-				for(HudObject o : topMenu){
 					o.render(g);
 				}
 			}

@@ -22,6 +22,8 @@
 
 package objects.hud;
 
+import events.ButtonControler;
+import events.MyHandler;
 import generic.Utils;
 
 import java.awt.Color;
@@ -34,65 +36,48 @@ import rendering.Hud;
 import rendering.Scene;
 
 public class HudButton extends HudObject{
-	private String name;
+
+	public HudButton(){
+		
+	}
 	
-	public HudButton(int x,int y, int sx, int sy,HudObject p){
+	public HudButton(int x,int y){
+		super(x,y);
+		setSize(new Point2D(100,20));
+	}
+	
+	public HudButton(int x,int y,HudObject p){
 		super(x,y,p);
-		setSize(new Point2D(sx,sy));
+		setSize(new Point2D(100,20));
 	}
 	
-	public HudButton(int x,int y, int sx, int sy,HudObject p, String name,Color c){
-		this(x,y,sx,sy,p);
+	public HudButton(int x,int y,String name){
+		super(x,y);
+		setSize(new Point2D(100,20));
+		setName(name);
+	}
+	
+	public HudButton(int x,int y, int sx, int sy, String name, boolean visible, Color c){
+		this(x,y);
 		setSize(new Point2D(sx,sy));
 		setName(name);
 		setColor(c);
+		setVisible(visible);
 	}
 	
-	public HudButton(int x,int y, String name){
-		this(x,y,name,null);
-	}
-	
-	public HudButton(int x,int y, String name,HudObject p){
-		this(x,y,name.length()*10,20,p);
+	public HudButton(int x,int y, int sx, int sy, String name, boolean visible, Color c,HudObject p){
+		this(x,y,p);
+		setSize(new Point2D(sx,sy));
 		setName(name);
-	}
-	
-	public HudButton(Point2D loc,Point2D size){
-		this((int)loc.x,(int)loc.y,(int)size.x,(int)size.y,null);
-		setName("None");
-	}
-	
-	public HudButton(int x, int y, String name, boolean b) {
-		this(x, y, name, b,null);
-	}
-	
-	public HudButton(int x, int y, String name, boolean b,HudObject p) {
-		this(x, y, name, b,Color.darkGray,p);
-	}
-
-	public HudButton(int x, int y, String name, boolean b,Color c,HudObject p) {
-		this(x,y,name,p);
-		setVisible(b);
 		setColor(c);
+		setVisible(visible);
+		setParent(p);
 	}
-
-	public HudButton(int x, int y, int s, String name, boolean b) {
-		this(x,y,s,20,null);
-		setName(name);
-		setVisible(b);
-	}
-
+	
 	public void runPayload() {
-		if(Engine.verbose) Utils.console("HudButton " + getName() + "at: " + x + ", " + y + " clicked");
+		Utils.console("Window: " + getName());
+		Hud.showChildWindowByName(getName());
 		Scene.updateScene();
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	@Override

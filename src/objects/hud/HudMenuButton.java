@@ -22,23 +22,31 @@
 
 package objects.hud;
 
+import objects.Point2D;
+import events.ButtonControler;
 import generic.Utils;
 import rendering.Engine;
 import rendering.Scene;
 
 public class HudMenuButton extends HudButton{
 	public HudMenuButton(int x, int y, String name) {
-		super(x, y, name);
-
+		super(x, y);
+		setName(name);
+	}
+	
+	public HudMenuButton(int x, int y, int sx, int sy, String name) {
+		super(x, y);
+		setSize(new Point2D(sx,sy));
+		setName(name);
 	}
 	
 	@Override
 	public void runPayload() {
-		if(Engine.verbose) Utils.console("HudMenuButton "+getName()+"at: " + x + ", " + y + " clicked");
+		Utils.console("HudMenuButton "+getName()+" at: " + x + ", " + y + " clicked");
 		for(int wb=0;wb<children.size();wb++){
 			children.get(wb).setVisible(!children.get(wb).isVisible());
 		}
-		if(Engine.verbose) Utils.console("Opened "+ children.size() +" subwindows");
+		Utils.console("Opened "+ children.size() +" subwindows");
 		Scene.reDrawScene();
 		Scene.updateScene();
 	}

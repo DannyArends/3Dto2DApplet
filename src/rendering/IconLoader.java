@@ -30,7 +30,7 @@ public class IconLoader {
 			if(h.getName().equalsIgnoreCase(name)){
 				image = new HudImage(h);
 				image.setLocation(x, y);
-				image.setVisible(true);
+				image.setVisible(false);
 			}
 		}
 		return image;
