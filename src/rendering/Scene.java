@@ -27,7 +27,6 @@ import generic.Utils;
 import genetics.QTLdataset;
 import genetics.QTLheatmap;
 
-import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

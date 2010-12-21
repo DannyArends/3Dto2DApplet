@@ -16,7 +16,7 @@ public class IconLoader {
 		Utils.console("From server: " + iconlist.split("\n").length + " icons");
 		for(String line : iconlist.split("\n")){
 			if(!line.startsWith("#") && !line.equals("")){
-				Utils.console("We got icon: '"+line+"'from server");
+				if(Engine.verbose) Utils.console("We got icon: '"+line+"'from server");
 				HudImage h = new HudImage(0,0,line);
 				h.setVisible(false);
 				icons.add(h);

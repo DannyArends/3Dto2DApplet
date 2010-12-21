@@ -28,12 +28,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import rendering.Engine;
-import rendering.MyTimer;
 import rendering.Scene;
-
 import events.MyHandler;
 import events.ServerConnection;
-import generic.Utils;
 
 public class WireFrame extends Applet implements KeyListener, MouseListener{
 	private static final long serialVersionUID = 1L;
@@ -42,7 +39,7 @@ public class WireFrame extends Applet implements KeyListener, MouseListener{
 	ServerConnection s = new ServerConnection();
 	
 	public void init() {
-		String response = s.commandToServer("online=true");
+		s.commandToServer("online=true");
 		new Engine(this,s);
 		addKeyListener(this);
 		addMouseListener(this);

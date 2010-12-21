@@ -71,7 +71,7 @@ public class ServerConnection {
 				response += aLine + "\n"; 
 				aLine = in.readLine();
 			} 
-			Utils.console(response);
+			if(Engine.verbose) Utils.console(response);
 			in.close(); 
 			oStream.close(); 
 		} catch (Exception e) {

@@ -4,7 +4,6 @@ import generic.Utils;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -29,13 +28,12 @@ public class HudImage extends HudButton{
 	
 	public HudImage(int x, int y,String name,HudObject p) {
 		super((int)x, (int)y, name,p);
-		Utils.console(name);
 		TryLoadingFromName(name);
 	}
 	
 	void TryLoadingFromName(String name){
 		try {
-			Utils.console(Engine.getParentApplet().getCodeBase().toString()	+ "data/icons/" + name);
+			if(Engine.verbose) Utils.console(Engine.getParentApplet().getCodeBase().toString()	+ "data/icons/" + name);
 			url = new URL(Engine.getParentApplet().getCodeBase().toString()	+ "data/icons/" + name); 
 			i= new ImageIcon(url);
 		}catch (Exception e) {
