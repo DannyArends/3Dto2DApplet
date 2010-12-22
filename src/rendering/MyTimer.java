@@ -14,15 +14,17 @@ public class MyTimer implements ActionListener{
 	Date timeholder;
 	DateFormat df = DateFormat.getDateInstance();
 	DateFormat tf = DateFormat.getTimeInstance();
+	ServerConnection server;
 	
 	public MyTimer(ServerConnection s) {
-		timer = new Timer(10000, this);
+		timer = new Timer(1000, this);
 		timer.start();
+		server=s;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		timeholder = new Date(System.currentTimeMillis());
-		//s.commandToServer("update=true");
+		//server.commandToServer("online=true");
 		Scene.updateGraphics(Engine.getParentApplet().getGraphics());
 		Scene.updateScene();
 	}

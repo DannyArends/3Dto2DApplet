@@ -43,6 +43,8 @@ public class Scene{
 	static Hud headsupdisplay;
 //	private static QTLdataset dataset;
 	static QTLheatmap heatmap;
+	private static float renderTime;
+	private static float hudTime;
 	
 	public Scene(ServerConnection s){
 		headsupdisplay=new Hud(Engine.width,Engine.height);
@@ -59,7 +61,9 @@ public class Scene{
 	
 	public static void reDrawScene() {
 		clearObjects();
-		Scene.addObject(Object3DSLoader.getModel(10,0,10, "humanoid.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(10,0,5, "lung_0.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(10,0,15, "avatar_1.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(15,0,10, "avatar_2.3ds"));
 
 //		for(Object3D x : heatmap.getQTLObjects(dataset)){
 //			Scene.addObject(x);
@@ -86,9 +90,8 @@ public class Scene{
 		((Graphics2D) Engine.getBackBufferGraphics()).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
 		headsupdisplay.render((Graphics2D)Engine.getBackBufferGraphics());
 		long l3 = System.nanoTime();
-		long difference_render = l2 - l1;
-		long difference_hud = l3 - l2;
-	    System.out.println("Elapsed seconds: " + (double)difference_render/1000000000 + " " + (double)difference_hud/1000000000);
+		setRenderTime(l2 - l1);
+		setHudTime(l3 - l2);
 		if(Engine.verbose) Utils.console("DONE Re-rendering on back buffer");
 		updateGraphics(Engine.getParentApplet().getGraphics());
 	}
@@ -113,5 +116,21 @@ public class Scene{
 
 	public static void setCamera(Camera camera) {
 		Scene.camera = camera;
+	}
+
+	public static void setRenderTime(long renderTime) {
+		Scene.renderTime = ((int)renderTime/1000000);
+	}
+
+	public static float getRenderTime() {
+		return renderTime;
+	}
+
+	public static void setHudTime(long hudTime) {
+		Scene.hudTime = (int)hudTime/1000000;
+	}
+
+	public static float getHudTime() {
+		return hudTime;
 	}
 }

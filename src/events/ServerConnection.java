@@ -39,7 +39,8 @@ public class ServerConnection {
 	OutputStream oStream;
 	byte[] parameterAsBytes;
 	BufferedReader in;
-	long up,down;
+	public static long up;
+	public static long down;
 	
 	public ServerConnection(){
 		up=0;

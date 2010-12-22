@@ -1,5 +1,6 @@
 package objects.renderables;
 
+import events.ServerConnection;
 import generic.BinaryUtils;
 import generic.Utils;
 
@@ -14,7 +15,6 @@ import objects.Edge;
 import objects.Material3DS;
 import objects.Point2D;
 import objects.Point3D;
-import objects.TriangleMesh;
 import rendering.Engine;
 
 
@@ -41,6 +41,7 @@ public class Model3DS extends Object3D{
 		}
 		setObjects(copy);
 		setMaterials(h.getMaterials());
+		setEdgeColors(h.getEdgeColors());
 		setLoaded(h.isLoaded());
 	}
 
@@ -108,6 +109,7 @@ public class Model3DS extends Object3D{
 			url = new URL(Engine.getParentApplet().getCodeBase().toString()	+ "data/models/" + getName());
 			stream = url.openStream();
 			if(Engine.verbose) Utils.console("File: " + getName() + " " + (filelength = stream.available()));
+			ServerConnection.down+=filelength;
 			byte[] shortconversion = new byte[2];
 			byte[] doubleconversion = new byte[8];
 			String tempstring;
@@ -181,7 +183,7 @@ public class Model3DS extends Object3D{
 					object.setEdges(edges);
 					break;
 				case 16688:
-					// Utils.console("#0x4130 - Triangle Materials");
+					//Utils.console("#0x4130 - Triangle Materials");
 					tempstring = BinaryUtils.read3dsstring(stream);
 					stream.read(shortconversion, 0, 2);
 					length = BinaryUtils.arr2int(shortconversion);
@@ -190,10 +192,13 @@ public class Model3DS extends Object3D{
 					for (int i = 0; i < length; i++) {
 						stream.read(shortconversion, 0, 2);
 						triangleMeshData[i] = BinaryUtils.arr2int(shortconversion);
-						// Utils.console("triangle: " + triangle + " material: "
-						// + tempstring);
 					}
-					object.addTriangleMesh(new TriangleMesh(tempstring,triangleMeshData));
+					for(Material3DS m : materials){
+						if(m.getName().equals(tempstring)){
+							object.addTriangleColor(triangleMeshData,m);
+						}
+					}
+					
 					break;
 				case 45055:
 					// Utils.console("#0xAFFF");
@@ -203,35 +208,36 @@ public class Model3DS extends Object3D{
 					if (material != null)
 						materials.add(material);
 					tempstring = BinaryUtils.read3dsstring(stream);
-					if(Engine.verbose) Utils.console("Found new material: " + tempstring);
+					Utils.console("Found new material: " + tempstring);
 					material = new Material3DS(tempstring);
 					break;
 				case 40976:
-					// Utils.console("#0xA010");
+					//Utils.console("#0xA010");
 					material.is_diffuse = false;
 					material.is_specular = false;
 					material.is_ambient = true;
 					break;
 				case 40992:
-					// Utils.console("#0xA020");
+					//Utils.console("#0xA020");
 					material.is_diffuse = true;
 					material.is_specular = false;
 					material.is_ambient = false;
 					break;
 				case 41008:
-					// Utils.console("#0xA030");
+					//Utils.console("#0xA030");
 					material.is_diffuse = false;
 					material.is_specular = true;
 					material.is_ambient = false;
 					break;
 				case 41472:
-					// Utils.console("#0xA200");
+					//Utils.console("#0xA200");
 					break;
 				case 41728:
-					// Utils.console("#0xA300");
+					//Utils.console("#0xA300");
+					tempstring = BinaryUtils.read3dsstring(stream);
 					break;
 				case 17:
-					// Utils.console("#0x0011");
+					//Utils.console("#0x0011");
 					red=stream.read();
 					green=stream.read();
 					blue=stream.read();
@@ -245,7 +251,7 @@ public class Model3DS extends Object3D{
 					}
 					break;
 				case 16704:
-					// Utils.console("#0x4140");
+					//Utils.console("#0x4140");
 					stream.read(shortconversion, 0, 2);
 					length = BinaryUtils.arr2int(shortconversion);
 					if(Engine.verbose) Utils.console("# of mapcoords: " + length);
@@ -260,6 +266,7 @@ public class Model3DS extends Object3D{
 					object.setMapcoords(mapcoords);
 					break;
 				default:
+					//Utils.console("Skipping:" + BinaryUtils.arr2int(chunkId));
 					stream.skip((BinaryUtils.arr2long(chunkLength) - 6));
 					break;
 				}

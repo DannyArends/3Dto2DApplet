@@ -42,16 +42,16 @@ public class IconLoader {
 		return image;
 	}
 	
-	public static Vector<HudImage> getAvailableIcons(){
-		return icons;
+	public static int getAvailable(){
+		return icons.size();
 	}
 	
-	public static Vector<HudImage> getUsedIcons(){
-		Vector<HudImage> i = new Vector<HudImage>();
+	public static int getUsed(){
+		int cnt=0;
 		for(HudImage h : icons){
-			if(h.isLoaded()) i.add(h);
+			if(h.isLoaded()) cnt++;
 		}
-		return i;
+		return cnt;
 	}
 	
 }

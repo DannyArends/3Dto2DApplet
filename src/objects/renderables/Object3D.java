@@ -27,13 +27,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
-import java.util.Vector;
 
 import objects.Camera;
 import objects.Edge;
+import objects.Material3DS;
 import objects.Point2D;
 import objects.Point3D;
-import objects.TriangleMesh;
 import rendering.Engine;
 
 
@@ -42,7 +41,6 @@ public class Object3D extends Point3D{
 	private Edge[] edges;
 	private double objectScale=1.0;
 	private Color[] edgeColors;
-	private Vector<TriangleMesh> targets;
 	private Point3D[] vertices;
 	private Point2D[] mapcoords;
 
@@ -51,7 +49,6 @@ public class Object3D extends Point3D{
 		super(x,y,z);
 		setHorizontalRotation(0);
 		setVerticalRotation(0);
-		this.targets = new Vector<TriangleMesh>();
 	}
 	
 	public Object3D(double x, double y, double z,int hrot,int vrot){
@@ -63,11 +60,10 @@ public class Object3D extends Point3D{
 	public Object3D(Object3D o) {
 		super(o.x,o.y,o.z);
 		setRotation(o.getHorizontalRotation(),o.getVerticalRotation());
-		targets = o.targets;
 		vertices = o.vertices;
 		mapcoords = o.mapcoords;
 		edges = o.edges;
-		targets = o.targets;
+		edgeColors = o.edgeColors;
 	}
 
 	public void setRotation(int hrot,int vrot){
@@ -85,14 +81,20 @@ public class Object3D extends Point3D{
 	
 	public void setEdges(Edge[] edges) {
 		this.edges = edges;
+		this.edgeColors = new Color[edges.length];
+		for(int x=0;x<edges.length;x++){
+			this.edgeColors[x] = Color.white;
+		}
 	}
 	
 	public Edge[] getEdges() {
 		return edges;
 	}
 	
-	public void addTriangleMesh(TriangleMesh t){
-		targets.add(t);
+	public void addTriangleColor(int[] targets,Material3DS m){
+		for(int x : targets){
+			this.edgeColors[x] = m.getAmbientColor();
+		}
 	}
 	
 
@@ -100,11 +102,10 @@ public class Object3D extends Point3D{
 		// project vertices onto the 2D viewport
 		Graphics2D g2d = (Graphics2D)g;
 		Point2D[] points = new Point2D[vertices.length];
-		GeneralPath path;
+		GeneralPath path = null;
 		int width = Engine.getWidth();
 		int height = Engine.getHeight();
 		int scaleFactor = (int) ((width / 8));
-		g2d.setColor(Color.gray);
 		double[] d;
 		for (int j = 0; j < vertices.length; ++j) {
 			d = computeOrtogonalProjection(vertices[j].x*objectScale,vertices[j].y*objectScale,vertices[j].z*objectScale,ownrotation);
@@ -116,20 +117,29 @@ public class Object3D extends Point3D{
 			}
 		}
 		for(int j=0; j < edges.length;j+=3){
-			path = new GeneralPath(GeneralPath.WIND_NON_ZERO);
-			path.moveTo(points[edges[j].a].x, points[edges[j].a].y);
-			path.lineTo(points[edges[j].a].x, points[edges[j].a].y);
-			path.lineTo(points[edges[j].b].x, points[edges[j].b].y);
-			path.lineTo(points[edges[j+1].a].x, points[edges[j+1].a].y);
-			path.lineTo(points[edges[j+1].b].x, points[edges[j+1].b].y);
-			path.lineTo(points[edges[j+2].a].x, points[edges[j+2].a].y);
-			path.lineTo(points[edges[j+2].b].x, points[edges[j+2].b].y);
-			path.closePath();
-			g2d.draw(path);
-			if(!wireframe) g2d.fill(path);	
+			if(points[edges[j].a] != null && points[edges[j+1].a] != null && points[edges[j+2].a] != null){
+			if(points[edges[j].b] != null && points[edges[j+1].b] != null && points[edges[j+2].b] != null){
+				path = new GeneralPath(GeneralPath.WIND_NON_ZERO);
+				path.moveTo(points[edges[j].a].x, points[edges[j].a].y);
+				path.lineTo(points[edges[j].a].x, points[edges[j].a].y);
+				path.lineTo(points[edges[j].b].x, points[edges[j].b].y);
+				path.lineTo(points[edges[j+1].a].x, points[edges[j+1].a].y);
+				path.lineTo(points[edges[j+1].b].x, points[edges[j+1].b].y);
+				path.lineTo(points[edges[j+2].a].x, points[edges[j+2].a].y);
+				path.lineTo(points[edges[j+2].b].x, points[edges[j+2].b].y);
+				path.closePath();
+				g2d.draw(path);
+				if(this.edgeColors!=null){
+					g2d.setColor(edgeColors[j/3]);	
+				}else{
+					g2d.setColor(Color.green);
+				}
+				if(!wireframe) g2d.fill(path);	
+			}
+			}
 		}
 	}
-
+	
 	public void setEdgeColors(Color[] edgeColors) {
 		this.edgeColors = edgeColors;
 	}

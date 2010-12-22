@@ -31,7 +31,7 @@ import generic.Utils;
 
 public class Object3DSLoader {
 	static Vector<Model3DS> models = new Vector<Model3DS>();
-	static int notfound = 0;
+	public static int notfound = 0;
 	URL url;
 
 	public Object3DSLoader(ServerConnection s) {
@@ -62,5 +62,16 @@ public class Object3DSLoader {
 		return image;
 	}
 
+	public static int getAvailable(){
+		return models.size();
+	}
+	
+	public static int getUsed(){
+		int cnt = 0;
+		for(Model3DS h : models){
+			if(h.isLoaded()) cnt++;
+		}
+		return cnt;
+	}
 
 }

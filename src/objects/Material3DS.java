@@ -67,6 +67,12 @@ public class Material3DS {
 	public Color getDiffuseColor() {
 		return diffuseColor;
 	}
+
+
+	public Object getName() {
+		// TODO Auto-generated method stub
+		return materialname;
+	}
 	
 
 }
