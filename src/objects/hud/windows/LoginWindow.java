@@ -12,8 +12,7 @@ public class LoginWindow extends HudWindow {
 	
 	
 	public LoginWindow() {
-		super(Engine.width/2-200,Engine.height/2-100, "Login");
-		setSize(325,200);
+		super(Engine.width/2-200,Engine.height/2-100,325,200, "Login");
 		setColor(Color.orange);
 		HudText t = new HudText(10,10,"Login to the system");
 		t.addLine("Username: ");

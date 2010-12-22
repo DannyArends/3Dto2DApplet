@@ -24,7 +24,6 @@ package rendering;
 
 import events.ServerConnection;
 import generic.Utils;
-import genetics.QTLdataset;
 import genetics.QTLheatmap;
 
 import java.awt.Color;
@@ -34,7 +33,6 @@ import java.awt.RenderingHints;
 import java.util.Vector;
 
 import objects.Camera;
-import objects.renderables.Model3DS;
 import objects.renderables.Object3D;
 
 
@@ -43,13 +41,11 @@ public class Scene{
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
 	public static int softmyobjectslimit = 12500;
 	static Hud headsupdisplay;
-	private static QTLdataset dataset;
+//	private static QTLdataset dataset;
 	static QTLheatmap heatmap;
-	static Model3DS m = new Model3DS((double)10,0.0,(double) 10,"humanoid.3ds");
 	
 	public Scene(ServerConnection s){
 		headsupdisplay=new Hud(Engine.width,Engine.height);
-		m.TryLoadingFromName();
 //		try{
 //			dataset = new QTLdataset("data/data.dat");
 //			heatmap = new QTLheatmap();
@@ -63,7 +59,7 @@ public class Scene{
 	
 	public static void reDrawScene() {
 		clearObjects();
-		Scene.addObject(m);
+		Scene.addObject(Object3DSLoader.getModel(10,0,10, "humanoid.3ds"));
 
 //		for(Object3D x : heatmap.getQTLObjects(dataset)){
 //			Scene.addObject(x);

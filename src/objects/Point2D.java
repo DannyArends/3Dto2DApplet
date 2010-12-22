@@ -22,14 +22,12 @@
 
 package objects;
 
-import rendering.Engine;
 
 public class Point2D extends Object{
-	public int x=-1;
-	public int y=-1;
+	public int x;
+	public int y;
 	
-	public Point2D(){
-		
+	public Point2D() {
 	}
 	
 	public Point2D(int x,int y){

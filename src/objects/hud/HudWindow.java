@@ -43,13 +43,6 @@ public class HudWindow extends HudButton{
 	
 	Vector<HudObject> topMenu = new Vector<HudObject>();
 
-	public HudWindow(int x, int y, String name) {
-		super(x, y,name);
-		setSize(400,600);
-		originalsize = new Point2D(400,600);
-		initTopMenu();
-	}
-	
 	public HudWindow(int x, int y, int sx, int sy, String name) {
 		super(x, y, name);
 		setSize(sx,sy);

@@ -8,8 +8,7 @@ public class IconBar extends HudWindow {
 	
 	
 	public IconBar() {
-		super(0,Engine.height-100, "IconBar");
-		setSize(650,100);
+		super(0,Engine.height-100,650,100, "IconBar");
 		addChild(IconLoader.getIcon(25,0,"user_id.png"));
 		addChild(IconLoader.getIcon(75,0,"walk.png"));
 		addChild(IconLoader.getIcon(125,0,"world.png"));

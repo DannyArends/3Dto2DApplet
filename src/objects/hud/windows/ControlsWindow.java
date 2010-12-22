@@ -7,8 +7,7 @@ public class ControlsWindow extends HudWindow {
 	HudText t;
 	
 	public ControlsWindow(int x, int y) {
-		super(x, y, "Controls");
-		setSize(400,250);
+		super(x, y,400,250, "Controls");
 		setVisible(false);
 		t = new HudText(10,10,"Click and move mouse to look around");
 		t.addLine("[Left]       step left");

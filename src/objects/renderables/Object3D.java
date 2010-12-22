@@ -100,55 +100,34 @@ public class Object3D extends Point3D{
 		// project vertices onto the 2D viewport
 		Graphics2D g2d = (Graphics2D)g;
 		Point2D[] points = new Point2D[vertices.length];
-		int j;
-		int scaleFactor = (int) ((Engine.getWidth() / 8));
-
+		GeneralPath path;
+		int width = Engine.getWidth();
+		int height = Engine.getHeight();
+		int scaleFactor = (int) ((width / 8));
+		g2d.setColor(Color.gray);
 		double[] d;
-		for (j = 0; j < vertices.length; ++j) {
-			Point2D p = new Point2D();
+		for (int j = 0; j < vertices.length; ++j) {
 			d = computeOrtogonalProjection(vertices[j].x*objectScale,vertices[j].y*objectScale,vertices[j].z*objectScale,ownrotation);
 			d = computeOrtogonalProjection(d[0]+ (this.x - c.x),d[1]+ (this.y - c.y),d[2]+ (this.z - c.z),rotation);
 			if(!((d[2] + Engine.near + Engine.nearToObj) < 0)){
 				//Calculate a perspective projection
 				d=computePerspectiveProjection(d[0],d[1],d[2]);
-				if(!((Engine.getWidth()/2 - scaleFactor * d[0]) < 0) && !((Engine.getWidth()/2 - scaleFactor * d[0])<0)){
-					p.setLocation((int)(Engine.getWidth()/2 - scaleFactor * d[0]),(int)(Engine.getHeight()/2  - scaleFactor * d[1]));
-				}
+				points[j] = new Point2D((int)(width/2 - scaleFactor * d[0]),(int)(height/2  - scaleFactor * d[1]));
 			}
-			points[j] = p;
 		}
-
-		// draw the wireframe
-		GeneralPath p = new GeneralPath(GeneralPath.WIND_NON_ZERO);
-		Point2D from;
-		boolean started=false;
-		Point2D to;
-		for (j = 0; j < edges.length; ++j) {
-			from = points[edges[j].a];
-			to = points[edges[j].b];
-			if((j%3)==0){
-				if(started){
-					p.closePath();
-				}
-				g2d.setColor(Color.gray);
-				g2d.draw(p);
-				if(!wireframe) g2d.fill(p);
-				p = new GeneralPath(GeneralPath.WIND_NON_ZERO);
-				started=false;
-			}
-			if(!started){
-				p.moveTo((int)from.x, (int)from.y);
-				started=true;
-			}
-			p.lineTo((int)from.x, (int)from.y);
-			p.lineTo((int)to.x, (int)to.y);
+		for(int j=0; j < edges.length;j+=3){
+			path = new GeneralPath(GeneralPath.WIND_NON_ZERO);
+			path.moveTo(points[edges[j].a].x, points[edges[j].a].y);
+			path.lineTo(points[edges[j].a].x, points[edges[j].a].y);
+			path.lineTo(points[edges[j].b].x, points[edges[j].b].y);
+			path.lineTo(points[edges[j+1].a].x, points[edges[j+1].a].y);
+			path.lineTo(points[edges[j+1].b].x, points[edges[j+1].b].y);
+			path.lineTo(points[edges[j+2].a].x, points[edges[j+2].a].y);
+			path.lineTo(points[edges[j+2].b].x, points[edges[j+2].b].y);
+			path.closePath();
+			g2d.draw(path);
+			if(!wireframe) g2d.fill(path);	
 		}
-		if(started){
-			p.closePath();
-			g2d.setColor(Color.gray);
-			g2d.draw(p);
-			if(!wireframe) g2d.fill(p);	
-		};
 	}
 
 	public void setEdgeColors(Color[] edgeColors) {

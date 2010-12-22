@@ -22,23 +22,12 @@
 
 package rendering;
 
-import events.ServerConnection;
-import generic.BinaryUtils;
-import generic.Utils;
-
-import java.awt.Color;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.Vector;
 
-import objects.Edge;
-import objects.Material3DS;
-import objects.Point2D;
-import objects.Point3D;
-import objects.TriangleMesh;
-import objects.hud.HudImage;
 import objects.renderables.Model3DS;
-import objects.renderables.Object3DS;
+import events.ServerConnection;
+import generic.Utils;
 
 public class Object3DSLoader {
 	static Vector<Model3DS> models = new Vector<Model3DS>();

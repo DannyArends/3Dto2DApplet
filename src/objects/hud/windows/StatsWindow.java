@@ -11,8 +11,7 @@ public class StatsWindow extends HudWindow {
 	
 	
 	public StatsWindow(int x, int y) {
-		super(x, y, "Stats");
-		setSize(325,200);
+		super(x, y, 325, 200, "Stats");
 		update();
 		setVisible(false);
 		setNeedUpdate(true);
