@@ -24,7 +24,7 @@ public class IconLoader {
 		}
 	}
 	
-	static HudImage getIcon(int x, int y,String name){
+	public static HudImage getIcon(int x, int y,String name){
 		HudImage image = null;
 		for(HudImage h : icons){
 			if(h.getName().equalsIgnoreCase(name)){
@@ -35,4 +35,9 @@ public class IconLoader {
 		}
 		return image;
 	}
+	
+	public static Vector<HudImage> getIcons(){
+		return icons;
+	}
+	
 }

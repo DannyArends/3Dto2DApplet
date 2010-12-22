@@ -67,6 +67,10 @@ public class Scene{
 		}
 	}
 	
+	public static Vector<Object3D> getObjects() {
+		return myobjects;
+	}
+	
 	public static void updateScene() {
 		if(Engine.verbose) Utils.console("Re-rendering on back buffer");
 		Engine.getBackBufferGraphics().setColor(Color.black);

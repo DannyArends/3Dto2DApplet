@@ -38,12 +38,13 @@ import rendering.Scene;
 public class HudWindow extends HudButton{
 	boolean showTopMenu = true;
 	private boolean active = false;
+	private boolean needUpdate = false;
 	private Point2D fromSlide,originalsize;
 	
 	Vector<HudObject> topMenu = new Vector<HudObject>();
 
 	public HudWindow(int x, int y, String name) {
-		super(x, y);
+		super(x, y,name);
 		setSize(400,600);
 		originalsize = new Point2D(400,600);
 		initTopMenu();
@@ -138,6 +139,22 @@ public class HudWindow extends HudButton{
 
 	public boolean isActive() {
 		return active;
+	}
+
+	public void setNeedUpdate(boolean needsUpdate) {
+		this.needUpdate = needsUpdate;
+	}
+
+	public boolean isNeedUpdate() {
+		return needUpdate;
+	}
+	
+	public void clearChildren(){
+		if(this.children != null) this.children.clear();
+	}
+	
+	public void update(){
+		
 	}
 
 }
