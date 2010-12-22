@@ -21,6 +21,7 @@ public class IconBar extends HudWindow {
 		addChild(IconLoader.getIcon(450,0,"settings.png"));
 		addChild(IconLoader.getIcon(500,0,"stats.png"));
 		addChild(IconLoader.getIcon(550,0,"help.png"));
+		addChild(IconLoader.getIcon(600,0,"notthere.png"));
 		setShowTopMenu(false);
 		setActive(true);
 		setVisible(true);

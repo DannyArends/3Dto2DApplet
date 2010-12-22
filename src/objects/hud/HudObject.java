@@ -82,8 +82,10 @@ abstract public class HudObject extends Point2D{
 	}
 	
 	public void addChild(HudObject o){
-		o.setLocation(o.x+x, o.y+y+20);
-		children.add(o);
+		if(o!=null){
+			o.setLocation(o.x+x, o.y+y+20);
+			children.add(o);
+		}
 	}
 	
 	public abstract void render(Graphics2D g);

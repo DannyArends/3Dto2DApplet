@@ -9,6 +9,7 @@ import generic.Utils;
 
 public class IconLoader {
 	String iconlist;
+	public static int notfound = 0;
 	static Vector<HudImage> icons = new Vector<HudImage>();
 	
 	IconLoader(ServerConnection s){
@@ -28,16 +29,29 @@ public class IconLoader {
 		HudImage image = null;
 		for(HudImage h : icons){
 			if(h.getName().equalsIgnoreCase(name)){
+				h.TryLoadingFromName();
 				image = new HudImage(h);
 				image.setLocation(x, y);
 				image.setVisible(false);
 			}
 		}
+		if(image==null){
+			notfound++;
+			return new HudImage(x, y, "error");
+		}
 		return image;
 	}
 	
-	public static Vector<HudImage> getIcons(){
+	public static Vector<HudImage> getAvailableIcons(){
 		return icons;
+	}
+	
+	public static Vector<HudImage> getUsedIcons(){
+		Vector<HudImage> i = new Vector<HudImage>();
+		for(HudImage h : icons){
+			if(h.isLoaded()) i.add(h);
+		}
+		return i;
 	}
 	
 }

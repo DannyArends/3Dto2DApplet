@@ -24,7 +24,7 @@ public class StatsWindow extends HudWindow {
 		HudText t = new HudText(10,10,"Verbose: " + Engine.verbose);
 		t.addLine("Objects (current,softlimit) : (" + Scene.getObjects().size() + "/" + Scene.softmyobjectslimit + ")");
 		t.addLine("HUD windows (visible/hidden): (" + Hud.getVisibleWindows().size() + "/" + Hud.getHudWindows().size() + ")");
-		t.addLine("Images (# of icons): " + IconLoader.getIcons().size());
+		t.addLine("Images (used/available-notfound): " + IconLoader.getUsedIcons().size() + "/" + IconLoader.getAvailableIcons().size() + "-" + IconLoader.notfound);
 		t.addLine("Camera Location (x,y,z:H/V): " + Scene.getCamera().x + "," + Scene.getCamera().y + "," + Scene.getCamera().z + ":" + Scene.getCamera().getHorizontalRotation() +"/"+ Scene.getCamera().getVerticalRotation());		
 		addChild(t);
 	}
