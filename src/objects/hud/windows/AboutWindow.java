@@ -1,6 +1,5 @@
 package objects.hud.windows;
 
-import objects.hud.HudImage;
 import objects.hud.HudText;
 import objects.hud.HudWindow;
 import rendering.IconLoader;

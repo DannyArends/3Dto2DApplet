@@ -29,7 +29,7 @@ public class IconLoader {
 		HudImage image = null;
 		for(HudImage h : icons){
 			if(h.getName().equalsIgnoreCase(name)){
-				h.TryLoadingFromName();
+				if(!h.isLoaded())h.TryLoadingFromName();
 				image = new HudImage(h);
 				image.setLocation(x, y);
 				image.setVisible(false);
