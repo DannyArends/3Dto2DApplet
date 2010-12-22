@@ -3,6 +3,7 @@ package objects.hud.windows;
 import objects.hud.HudImage;
 import objects.hud.HudText;
 import objects.hud.HudWindow;
+import rendering.IconLoader;
 
 public class AboutWindow extends HudWindow {
 	HudText t;
@@ -16,7 +17,7 @@ public class AboutWindow extends HudWindow {
 		t.addLine("(c) 2010 Danny Arends - GBIC");
 		t.addLine("https://github.com/DannyArends/3Dto2DApplet");
 		addChild(t);
-		addChild(new HudImage(300,10,"signup.png"));
+		addChild(IconLoader.getIcon(300,10,"signup.png"));
 	}
 
 }

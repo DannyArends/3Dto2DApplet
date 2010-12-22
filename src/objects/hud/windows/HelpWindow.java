@@ -3,6 +3,7 @@ package objects.hud.windows;
 import objects.hud.HudImage;
 import objects.hud.HudText;
 import objects.hud.HudWindow;
+import rendering.IconLoader;
 
 public class HelpWindow extends HudWindow {
 	HudText t;
@@ -15,7 +16,7 @@ public class HelpWindow extends HudWindow {
 		t.addLine("Filled triangles: Selected Cofactor at marker");
 		t.addLine("Triangle size: QTL effect/likelihood");
 		addChild(t);
-		addChild(new HudImage(300,10,"help.png"));
+		addChild(IconLoader.getIcon(300,10,"help.png"));
 	}
 
 }
