@@ -39,6 +39,7 @@ public class Engine {
 	private static Applet parentApplet;
 	MyTimer timer;
 	IconLoader iconloader;
+	Object3DSLoader objectloader;
 	
 	public Engine(Applet parent, ServerConnection s){
 		parentApplet=parent;
@@ -48,6 +49,7 @@ public class Engine {
 		setBackBufferGraphics(backBuffer.getGraphics());
 		timer = new MyTimer(s);
 		iconloader = new IconLoader(s);
+		objectloader = new Object3DSLoader(s);
 		new Scene(s);
 	}
 
@@ -80,10 +82,10 @@ public class Engine {
 	}
 	
 	public static int getWidth() {
-		return parentApplet.getSize().width;
+		return width;
 	}
 	
 	public static int getHeight() {
-		return parentApplet.getSize().height;
+		return height;
 	}
 }

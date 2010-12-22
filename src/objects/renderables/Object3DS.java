@@ -39,6 +39,17 @@ public class Object3DS extends Object3D{
 		setObjectScale(0.10);
 		this.objectName=name;
 	}
+
+	public Object3DS(Object3DS o) {
+		super((Object3D) o);
+		setRotation(0,90);
+		setObjectScale(0.10);
+		this.objectName=o.getName();
+	}
+
+	public String getName() {
+		return objectName;
+	}
 	
 
 }

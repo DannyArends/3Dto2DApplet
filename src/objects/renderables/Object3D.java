@@ -39,38 +39,37 @@ import rendering.Engine;
 
 public class Object3D extends Point3D{
 	private boolean wireframe = false;
-
 	private Edge[] edges;
-	
-	public boolean isWireframe() {
-		return wireframe;
-	}
-
-	public void setWireframe(boolean wireframe) {
-		this.wireframe = wireframe;
-	}
-
 	private double objectScale=1.0;
 	private Color[] edgeColors;
-
-
 	private Vector<TriangleMesh> targets;
 	private Point3D[] vertices;
 	private Point2D[] mapcoords;
-		
-	protected Object3D(double x, double y, double z){
+
+	
+	public Object3D(double x, double y, double z){
 		super(x,y,z);
 		setHorizontalRotation(0);
 		setVerticalRotation(0);
 		this.targets = new Vector<TriangleMesh>();
 	}
 	
-	protected Object3D(double x, double y, double z,int hrot,int vrot){
+	public Object3D(double x, double y, double z,int hrot,int vrot){
 		this(x,y,z);
 		setHorizontalRotation(hrot);
 		setVerticalRotation(vrot);
 	}
 	
+	public Object3D(Object3D o) {
+		super(o.x,o.y,o.z);
+		setRotation(o.getHorizontalRotation(),o.getVerticalRotation());
+		targets = o.targets;
+		vertices = o.vertices;
+		mapcoords = o.mapcoords;
+		edges = o.edges;
+		targets = o.targets;
+	}
+
 	public void setRotation(int hrot,int vrot){
 		setHorizontalRotation(hrot);
 		setVerticalRotation(vrot);
@@ -97,17 +96,6 @@ public class Object3D extends Point3D{
 	}
 	
 
-	public void drawGeneralPath(Graphics2D g2d, GeneralPath p){
-		
-		if(getEdgeColors() != null && getEdgeColors().length==1){
-			g2d.setColor(getEdgeColors()[0]);
-		}else{
-			g2d.setColor(Color.white);
-		}
-		g2d.draw(p);
-		if(!wireframe) g2d.fill(p);
-	}
-	
 	public void render(Graphics g, Camera c){
 		// project vertices onto the 2D viewport
 		Graphics2D g2d = (Graphics2D)g;
@@ -124,7 +112,7 @@ public class Object3D extends Point3D{
 				//Calculate a perspective projection
 				d=computePerspectiveProjection(d[0],d[1],d[2]);
 				if(!((Engine.getWidth()/2 - scaleFactor * d[0]) < 0) && !((Engine.getWidth()/2 - scaleFactor * d[0])<0)){
-					p.setLocation((Engine.getWidth()/2 - scaleFactor * d[0]),(Engine.getHeight()/2  - scaleFactor * d[1]));
+					p.setLocation((int)(Engine.getWidth()/2 - scaleFactor * d[0]),(int)(Engine.getHeight()/2  - scaleFactor * d[1]));
 				}
 			}
 			points[j] = p;
@@ -138,24 +126,29 @@ public class Object3D extends Point3D{
 		for (j = 0; j < edges.length; ++j) {
 			from = points[edges[j].a];
 			to = points[edges[j].b];
-			 if((j%3)==0){
+			if((j%3)==0){
 				if(started){
 					p.closePath();
 				}
-				drawGeneralPath(g2d,p);
+				g2d.setColor(Color.gray);
+				g2d.draw(p);
+				if(!wireframe) g2d.fill(p);
 				p = new GeneralPath(GeneralPath.WIND_NON_ZERO);
 				started=false;
 			}
-			if(from.isDefined() && to.isDefined() && from.isOnScreen() && to.isOnScreen() ){
-				if(!started){
-					p.moveTo((int)from.x, (int)from.y);
-					started=true;
-				}
-				p.lineTo((int)from.x, (int)from.y);
-				p.lineTo((int)to.x, (int)to.y);
+			if(!started){
+				p.moveTo((int)from.x, (int)from.y);
+				started=true;
 			}
+			p.lineTo((int)from.x, (int)from.y);
+			p.lineTo((int)to.x, (int)to.y);
 		}
-		if(started){p.closePath(); drawGeneralPath(g2d,p);};
+		if(started){
+			p.closePath();
+			g2d.setColor(Color.gray);
+			g2d.draw(p);
+			if(!wireframe) g2d.fill(p);	
+		};
 	}
 
 	public void setEdgeColors(Color[] edgeColors) {
@@ -180,6 +173,14 @@ public class Object3D extends Point3D{
 
 	public double getObjectScale() {
 		return objectScale;
+	}
+	
+	public boolean isWireframe() {
+		return wireframe;
+	}
+
+	public void setWireframe(boolean wireframe) {
+		this.wireframe = wireframe;
 	}
 	
 }

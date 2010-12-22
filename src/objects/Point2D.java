@@ -25,28 +25,21 @@ package objects;
 import rendering.Engine;
 
 public class Point2D extends Object{
-	public double x=-1;
-	public double y=-1;
+	public int x=-1;
+	public int y=-1;
 	
 	public Point2D(){
 		
 	}
 	
-	public Point2D(double x,double y){
+	public Point2D(int x,int y){
 		this.x=x;
 		this.y=y;
 	}
 	
-	public void setLocation(double x,double y){
+	public void setLocation(int x,int y){
 		this.x=x;
 		this.y=y;
 	}
 	
-	public boolean isDefined(){
-		return !(this.x==-1);
-	}
-	
-	public boolean isOnScreen(){
-		return (this.x>0 && this.y > 0 && this.x < Engine.getWidth() && this.y < Engine.getHeight());
-	}
 }

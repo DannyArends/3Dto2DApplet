@@ -14,10 +14,10 @@ public class IconLoader {
 	
 	IconLoader(ServerConnection s){
 		String iconlist = s.commandToServer("list_files=png&dir=icons");
-		Utils.console("From server: " + iconlist.split("\n").length + " icons");
+		Utils.console("From server: " + (iconlist.split("\n").length - 3) + " icons");
 		for(String line : iconlist.split("\n")){
 			if(!line.startsWith("#") && !line.equals("")){
-				if(Engine.verbose) Utils.console("We got icon: '"+line+"'from server");
+				if(Engine.verbose) Utils.console("We got icon: '"+line+"' from server");
 				HudImage h = new HudImage(0,0,line);
 				h.setVisible(false);
 				icons.add(h);
