@@ -35,7 +35,6 @@ import objects.Point2D;
 import objects.Point3D;
 import rendering.Engine;
 
-
 public class Object3D extends Point3D{
 	private boolean wireframe = false;
 	private Edge[] edges;
@@ -43,7 +42,6 @@ public class Object3D extends Point3D{
 	private Color[] edgeColors;
 	private Point3D[] vertices;
 	private Point2D[] mapcoords;
-
 	
 	public Object3D(double x, double y, double z){
 		super(x,y,z);
@@ -140,8 +138,15 @@ public class Object3D extends Point3D{
 		}
 	}
 	
-	public void setEdgeColors(Color[] edgeColors) {
-		this.edgeColors = edgeColors;
+	public void setEdgeColors(Color[] ec) {
+		if(ec != null && ec.length==1){
+			this.edgeColors = new Color[edges.length];
+			for(int x=0;x<edges.length;x++){
+				this.edgeColors[x] = ec[0];
+			}
+		}else{
+			this.edgeColors = ec;
+		}
 	}
 
 	public Color[] getEdgeColors() {

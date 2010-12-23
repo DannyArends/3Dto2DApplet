@@ -121,11 +121,11 @@ public class Point3D {
 	}
 	
 	public double magnitude(Point3D p){
-		return (Math.sqrt((p.x * p.x) + (p.y * p.y) + (p.z * p.z)));
+		return ((this.x - p.x) * (this.y - p.y) * (this.z - p.z));
 	}
 	
 	public double xymagnitude(Point3D p){
-		return (Math.sqrt((p.x * p.x) + (p.z * p.z)));
+		return (Math.sqrt((p.x * p.x) + (this.z * p.z)));
 	}
 	
 	public void normalize(){

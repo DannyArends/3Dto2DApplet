@@ -34,6 +34,7 @@ import java.util.Vector;
 
 import objects.Camera;
 import objects.renderables.Object3D;
+import objects.renderables.Surface;
 
 
 public class Scene{
@@ -61,10 +62,12 @@ public class Scene{
 	
 	public static void reDrawScene() {
 		clearObjects();
-		Scene.addObject(Object3DSLoader.getModel(10,0,5, "lung_0.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(10,0,15, "avatar_1.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(15,0,10, "avatar_2.3ds"));
-
+		Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
+		Scene.addObject(Object3DSLoader.getModel(10,1,10, "lung_0.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(10,1,15, "avatar_1.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(15,1,10, "avatar_2.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(30,1,30, "humanoid.3ds"));
+//		sortObjects(myobjects);
 //		for(Object3D x : heatmap.getQTLObjects(dataset)){
 //			Scene.addObject(x);
 //		}
@@ -80,6 +83,7 @@ public class Scene{
 	public static void updateScene() {
 		if(Engine.verbose) Utils.console("Re-rendering on back buffer");
 		long l1 = System.nanoTime();
+		reDrawScene();
 		Engine.getBackBufferGraphics().setColor(Color.black);
 		Engine.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
 		for(Object3D myobject : myobjects){
@@ -133,4 +137,36 @@ public class Scene{
 	public static float getHudTime() {
 		return hudTime;
 	}
+	//TODO:Add ray-tracing to establish which order	
+//	public static class Object3DComparator implements Comparator{
+//		Camera camera;
+//		public Object3DComparator(Camera c){
+//			this.camera = c;
+//		}
+//	    public int compare(Object emp1, Object emp2){
+//	    	float d1 = (float)((Object3D)emp1).magnitude(camera);
+//	    	float d2 = (float)((Object3D)emp2).magnitude(camera);
+//	    	if(d1 > d2){
+//	    		return 1;
+//	    	}else if(d1 < d2){
+//	    		return -1;
+//	    	}else{
+//	    		return 0;
+//	    	}
+//	    }
+//	}
+//	
+//	public static void sortObjects(Vector<Object3D> mo){
+//		int cnt=0;
+//		Object3D[] x = new Object3D[mo.size()];
+//		for(Object3D myobject : mo){
+//			x[cnt] = myobject;cnt++;
+//		}
+//		Arrays.sort(x,new Object3DComparator(camera));
+//		mo.clear();
+//		for(int o=0;o<x.length;o++){
+//			mo.add(x[o]);
+//		}
+//		System.out.print("\n");
+//	}
 }

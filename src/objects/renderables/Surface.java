@@ -29,9 +29,8 @@ import objects.Point3D;
 
 public class Surface extends Object3D {
 
-	Surface(double x, double y, double z) {
+	public Surface(double x, double y, double z) {
 		super(x, y, z);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Surface(double x, double y, double z,int hrot,int vrot, double hscale, double vscale, Color c) {

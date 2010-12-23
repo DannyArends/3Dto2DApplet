@@ -17,8 +17,8 @@ public class MyTimer implements ActionListener{
 	ServerConnection server;
 	
 	public MyTimer(ServerConnection s) {
-		timer = new Timer(1000, this);
-		timer.setInitialDelay(10000); //So we don't render when still booting,
+		timer = new Timer(200, this);
+		timer.setInitialDelay(1000); //So we don't render when still booting,
 		timer.start();
 		server=s;
 	}
@@ -26,8 +26,9 @@ public class MyTimer implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timeholder = new Date(System.currentTimeMillis());
 		//server.commandToServer("online=true");
-		Scene.updateGraphics(Engine.getParentApplet().getGraphics());
-		Scene.updateScene();
+		//Scene.updateScene();
+		//Scene.updateGraphics(Engine.getParentApplet().getGraphics());
+		
 	}
 
 }
