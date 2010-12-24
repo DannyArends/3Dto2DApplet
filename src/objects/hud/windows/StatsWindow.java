@@ -28,7 +28,7 @@ public class StatsWindow extends HudWindow {
 		t.addLine("HUD windows (visible/hidden): (" + Hud.getVisibleWindows().size() + "/" + Hud.getHudWindows().size() + ")");
 		t.addLine("Images (used/available-notfound): " + IconLoader.getUsed() + "/" + IconLoader.getAvailable() + "-" + IconLoader.notfound);
 		t.addLine("Objects (used/available-notfound): " + Object3DSLoader.getUsed() + "/" + Object3DSLoader.getAvailable() + "-" + Object3DSLoader.notfound);
-		t.addLine("Camera Location (x,y,z:H/V): " + Scene.getCamera().x + "," + Scene.getCamera().y + "," + Scene.getCamera().z + ":" + Scene.getCamera().getHorizontalRotation() +"/"+ Scene.getCamera().getVerticalRotation());		
+		t.addLine("Camera Location (x,y,z:H/V): " + Scene.getCamera().location[0] + "," + Scene.getCamera().location[1] + "," + Scene.getCamera().location[2] + ":" + Scene.getCamera().getHorizontalRotation() +"/"+ Scene.getCamera().getVerticalRotation());		
 		t.addLine("Server Traffic (up/down): " + (int)ServerConnection.up/1024 + " kb/" + (int)ServerConnection.down/1024 + " kb");
 		addChild(t);
 	}

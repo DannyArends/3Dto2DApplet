@@ -29,7 +29,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import objects.Camera;
-import objects.Point3D;
 import rendering.Engine;
 
 public class Text3D extends Object3D {
@@ -71,13 +70,13 @@ public class Text3D extends Object3D {
 	public void render(Graphics g, Camera c){
 		Graphics2D g2d = (Graphics2D)g;
 		int scaleFactor = (int) ((Engine.getWidth() / 8));
-		double[] d = computeOrtogonalProjection((this.x - c.x),(this.y - c.y),(this.z - c.z),rotation);
+		double[] d = computeOrtogonalProjection(difference(c),rotation);
 		int fontid;
 		if(!((d[2] + Engine.near + Engine.nearToObj) < 0)){
 			//Calculate a perspective projection
-			d=computePerspectiveProjection(d[0],d[1],d[2]);
+			d=computePerspectiveProjection(d);
 			if(!((Engine.getWidth()/2 - scaleFactor * d[0]) < 0) && !((Engine.getWidth()/2 - scaleFactor * d[0])<0)){
-				fontid = (int)magnitude(difference(new Point3D(c.x,c.y,c.z)))/50;
+				fontid = (int)pointDifference(difference(c))/25;
 				
 				g2d.setFont(fonts[fontid<10?fontid:10]);
 				g2d.setColor(Color.white);

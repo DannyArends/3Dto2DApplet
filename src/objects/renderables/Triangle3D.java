@@ -38,8 +38,7 @@ public class Triangle3D extends Object3D{
 		Edge[] edges = {new Edge(0, 1), new Edge(1, 2), new Edge(2, 0)};
 		this.setEdges(edges);
 		
-		Color[] colors = new Color[1];
-		colors[0] = c;
+		Color[] colors = new Color[]{c};
 		setEdgeColors(colors);
 	}
 }

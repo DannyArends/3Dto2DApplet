@@ -23,6 +23,9 @@
 package objects.renderables;
 
 
+import generic.MathUtils;
+import generic.Utils;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -33,15 +36,36 @@ import objects.Edge;
 import objects.Material3DS;
 import objects.Point2D;
 import objects.Point3D;
+import objects.Vector3D;
 import rendering.Engine;
 
 public class Object3D extends Point3D{
 	private boolean wireframe = false;
 	private Edge[] edges;
+	protected double[] rotation = new double[8];
+	public double[] ownrotation = new double[8];
+	private int horizontalRotation;
+	private int verticalRotation;
 	private double objectScale=1.0;
 	private Color[] edgeColors;
 	private Point3D[] vertices;
 	private Point2D[] mapcoords;
+	
+	public void setHorizontalRotation(int horizontalRotation) {
+		this.horizontalRotation = horizontalRotation;
+	}
+
+	public int getHorizontalRotation() {
+		return horizontalRotation;
+	}
+
+	public void setVerticalRotation(int verticalRotation) {
+		this.verticalRotation = verticalRotation;
+	}
+
+	public int getVerticalRotation() {
+		return verticalRotation;
+	}
 	
 	public Object3D(double x, double y, double z){
 		super(x,y,z);
@@ -55,8 +79,32 @@ public class Object3D extends Point3D{
 		setVerticalRotation(vrot);
 	}
 	
+	public void update(Camera c){
+		double theta = Math.PI * (c.getHorizontalRotation()) / 180.0;
+		double phi = Math.PI * (c.getVerticalRotation()) / 180.0;
+		rotation[0] = (float) Math.cos(theta);
+		rotation[1] = (float) Math.sin(theta);
+		rotation[2] = (float) Math.cos(phi);
+		rotation[3] = (float) Math.sin(phi);
+		rotation[4] = rotation[0] * rotation[2]; 
+		rotation[5] = rotation[0] * rotation[3];
+		rotation[6] = rotation[1] * rotation[2];
+		rotation[7] = rotation[1] * rotation[3];
+		
+		theta = Math.PI * (getHorizontalRotation()) / 180.0;
+		phi = Math.PI * (getVerticalRotation()) / 180.0;
+		ownrotation[0] = (float) Math.cos(theta);
+		ownrotation[1] = (float) Math.sin(theta);
+		ownrotation[2] = (float) Math.cos(phi);
+		ownrotation[3] = (float) Math.sin(phi);
+		ownrotation[4] = ownrotation[0] * ownrotation[2]; 
+		ownrotation[5] = ownrotation[0] * ownrotation[3];
+		ownrotation[6] = ownrotation[1] * ownrotation[2];
+		ownrotation[7] = ownrotation[1] * ownrotation[3];
+	}
+	
 	public Object3D(Object3D o) {
-		super(o.x,o.y,o.z);
+		super(o.location[0],o.location[1],o.location[2]);
 		setRotation(o.getHorizontalRotation(),o.getVerticalRotation());
 		vertices = o.vertices;
 		mapcoords = o.mapcoords;
@@ -106,11 +154,11 @@ public class Object3D extends Point3D{
 		int scaleFactor = (int) ((width / 8));
 		double[] d;
 		for (int j = 0; j < vertices.length; ++j) {
-			d = computeOrtogonalProjection(vertices[j].x*objectScale,vertices[j].y*objectScale,vertices[j].z*objectScale,ownrotation);
-			d = computeOrtogonalProjection(d[0]+ (this.x - c.x),d[1]+ (this.y - c.y),d[2]+ (this.z - c.z),rotation);
+			d = computeOrtogonalProjection(vertices[j].getMultipleVector(objectScale),ownrotation);
+			d = computeOrtogonalProjection(difference(c).sum(d),rotation);
 			if(!((d[2] + Engine.near + Engine.nearToObj) < 0)){
 				//Calculate a perspective projection
-				d=computePerspectiveProjection(d[0],d[1],d[2]);
+				d=computePerspectiveProjection(d);
 				points[j] = new Point2D((int)(width/2 - scaleFactor * d[0]),(int)(height/2  - scaleFactor * d[1]));
 			}
 		}
@@ -175,6 +223,73 @@ public class Object3D extends Point3D{
 
 	public void setWireframe(boolean wireframe) {
 		this.wireframe = wireframe;
+	}
+
+	public double intersect(Vector3D ray) {
+		return intersectGeometric(ray);
+	}
+	
+	/**
+	 * Calculate the intersection distance of this sphere with the given ray.
+	 * Calculations are done in a geometric method, using pythagorean calculations. 
+	 * Some references claim that this method may work faster than the algebraic method. 
+	 * 
+	 * @param ray
+	 * @return
+	 */
+	private double intersectGeometric(Vector3D ray) {
+		
+		// Note that locals are named according to the equations in the lecture notes.
+		double[] L = MathUtils.calcPointsDiff(ray.getLocation(), location);
+		double[] V = ray.getDirection();
+		
+		double tCA = MathUtils.dotProduct(L, V);
+		
+		if(tCA < 0) {
+			// In this case the camera is inside the sphere or the sphere center lies
+			// behind the ray, which means we have no intersection
+			return Double.POSITIVE_INFINITY;
+		}
+		
+		double LSquare = MathUtils.dotProduct(L, L);
+		
+		double dSquare =  LSquare - MathUtils.sqr(tCA);
+		double radiusSquare = MathUtils.sqr(5);
+
+		if(dSquare > radiusSquare) {
+			// In this case the ray misses the sphere
+			return Double.POSITIVE_INFINITY;
+		}
+		
+		double tHC = Math.sqrt(radiusSquare - dSquare);
+
+		// We now check where the ray originated:
+		// Gur: CHECK. LSquare == MathUtils.dotProduct(L, L), can't be smaller
+		if(MathUtils.dotProduct(L, L) < LSquare){
+			// The ray originated in the sphere - the intersection is with the exit point
+			Utils.console("in");
+			return tCA + tHC;
+			
+		}else{
+			// The ray originated ouside the sphere - the intersection is with the entrance point
+			return tCA - tHC;
+		}
+	}
+
+	public Material3DS getMaterialAt(double[] pointOfIntersection) {
+		// TODO Auto-generated method stub
+		return new Material3DS("test");
+	}
+
+	public double[] getColorAt(double[] pointOfIntersection) {
+		// TODO Auto-generated method stub
+		return new double[]{0.5,0.0,0.5};
+	}
+
+	public double[] getNormalAt(double[] pointOfIntersection) {
+		double[] normal = MathUtils.calcPointsDiff(location, pointOfIntersection);		
+		MathUtils.normalize(normal);
+		return normal;
 	}
 	
 }

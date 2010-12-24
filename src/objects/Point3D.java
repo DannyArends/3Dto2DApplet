@@ -21,129 +21,100 @@
 */
 package objects;
 
+import generic.MathUtils;
 import rendering.Engine;
 
 public class Point3D {
-	public double x, y, z;
-	protected double[] rotation = new double[8];
-	protected double[] ownrotation = new double[8];
-	private int horizontalRotation;
-	private int verticalRotation;
+	public double[] location = new double[3];
 
 	public Point3D(){
 
 	}
 	
-	public void update(Camera c){
-		double theta = Math.PI * (c.getHorizontalRotation()) / 180.0;
-		double phi = Math.PI * (c.getVerticalRotation()) / 180.0;
-		rotation[0] = (float) Math.cos(theta);
-		rotation[1] = (float) Math.sin(theta);
-		rotation[2] = (float) Math.cos(phi);
-		rotation[3] = (float) Math.sin(phi);
-		rotation[4] = rotation[0] * rotation[2]; 
-		rotation[5] = rotation[0] * rotation[3];
-		rotation[6] = rotation[1] * rotation[2];
-		rotation[7] = rotation[1] * rotation[3];
-		
-		theta = Math.PI * (getHorizontalRotation()) / 180.0;
-		phi = Math.PI * (getVerticalRotation()) / 180.0;
-		ownrotation[0] = (float) Math.cos(theta);
-		ownrotation[1] = (float) Math.sin(theta);
-		ownrotation[2] = (float) Math.cos(phi);
-		ownrotation[3] = (float) Math.sin(phi);
-		ownrotation[4] = ownrotation[0] * ownrotation[2]; 
-		ownrotation[5] = ownrotation[0] * ownrotation[3];
-		ownrotation[6] = ownrotation[1] * ownrotation[2];
-		ownrotation[7] = ownrotation[1] * ownrotation[3];
-	}
-	
-	public void setHorizontalRotation(int horizontalRotation) {
-		this.horizontalRotation = horizontalRotation;
-	}
-
-	public int getHorizontalRotation() {
-		return horizontalRotation;
-	}
-
-	public void setVerticalRotation(int verticalRotation) {
-		this.verticalRotation = verticalRotation;
-	}
-
-	public int getVerticalRotation() {
-		return verticalRotation;
-	}
-	
-	public Point3D(double X, double Y, double Z){
-		x = X;
-		y = Y;
-		z = Z;
+	public Point3D(double x, double y, double z){
+		location[0] = x;
+		location[1] = y;
+		location[2] = z;
 	}
 	
 	public void setLocation(double X, double Y, double Z){
-		x = X;
-		y = Y;
-		z = Z;
+		location[0] = X;
+		location[1] = Y;
+		location[2] = Z;
+	}
+	
+	public double[] getLocation(){
+		return location;
 	}
 	
 	public Point3D(Point3D point3d) {
-		x=point3d.x;
-		y=point3d.y;
-		z=point3d.z;
+		location[0]=point3d.location[0];
+		location[1]=point3d.location[1];
+		location[2]=point3d.location[2];
 	}
 
 	public Point3D difference(Point3D c){
-		Point3D d = new Point3D(this.x-c.x,this.y-c.y,this.z-c.z);
+		Point3D d = new Point3D(location[0]-c.location[0],location[1]-c.location[1],location[2]-c.location[2]);
+		return d;
+	}
+	
+	public double[] difference(double[] c){
+		double[] d = new double[]{location[0]-c[0],location[1]-c[1],location[2]-c[2]};
 		return d;
 	}
 	
 	public Point3D sum(Point3D c){
-		Point3D d = new Point3D(this.x+c.x,this.y+c.y,this.z+c.z);
+		Point3D d = new Point3D(location[0]+c.location[0],location[1]+c.location[1],location[2]+c.location[2]);
 		return d;
 	}
 	
-	public void multiply(float factor){
-		this.x *=factor;
-		this.y *=factor;
-		this.z *=factor;
+	public Point3D sum(double[] c){
+		Point3D d = new Point3D(location[0]+c[0],location[1]+c[1],location[2]+c[2]);
+		return d;
 	}
 	
-	public Point3D getMultipleVector(float factor){
+	public void multiply(double factor){
+		location[0] *=factor;
+		location[1] *=factor;
+		location[2] *=factor;
+	}
+	
+	public Point3D getMultipleVector(double objectScale){
 		Point3D r = new Point3D(this);
-		r.x *=factor;
-		r.y *=factor;
-		r.z *=factor;
+		r.multiply(objectScale);
 		return r;
 	}
 	
 	public double magnitude(){
-		return (Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z)));
+		return (Math.sqrt(MathUtils.sqr(location[0]) + MathUtils.sqr(location[1]) + MathUtils.sqr(location[2])));
 	}
 	
-	public double magnitude(Point3D p){
-		return ((this.x - p.x) * (this.y - p.y) * (this.z - p.z));
+	public double pointDifference(Point3D p){
+		return (Math.sqrt(MathUtils.sqrDiff(location[0] , p.location[0]) + MathUtils.sqrDiff(location[1] , p.location[1])+ MathUtils.sqrDiff(location[2] , p.location[2])));
 	}
 	
-	public double xymagnitude(Point3D p){
-		return (Math.sqrt((p.x * p.x) + (this.z * p.z)));
+	public double xypointDifference(Point3D p){
+		return (Math.sqrt(MathUtils.sqrDiff(location[0] , p.location[0]) + MathUtils.sqrDiff(location[2] , p.location[2])));
 	}
 	
 	public void normalize(){
 		double length = magnitude();
 		if(length==0) length = 1.0;
-		this.x /=length;
-		this.y /=length;
-		this.z /=length;
+		location[0] /=length;
+		location[1] /=length;
+		location[2] /=length;
 	}
 	
 	public Point3D getNormalizedVector(){
 		double length = magnitude();
 		if(length==0) length = 1.0;
 		Point3D r = new Point3D(this);
-		r.x /=length;
-		r.y /=length;
-		r.z /=length;
+		r.normalize();
 		return r;
+	}
+	
+	protected double[] computeOrtogonalProjection(Point3D p,double[] rotation){
+		return computeOrtogonalProjection(p.location[0],p.location[1],p.location[2],rotation);
 	}
 	
 	protected double[] computeOrtogonalProjection(double x0,double y0,double z0,double[] rotation){
@@ -154,10 +125,11 @@ public class Point3D {
 		return d;
 	}
 	
-	protected double[] computePerspectiveProjection(double x0,double y0,double z0){
+	protected double[] computePerspectiveProjection(double[] x){
 		double[] d = new double[2];
-		d[0] = x0 * Engine.near / (z0 + Engine.near + Engine.nearToObj);
-		d[1] = y0 * Engine.near / (z0 + Engine.near + Engine.nearToObj);
+		double t = Engine.near / (x[2] + Engine.near + Engine.nearToObj);
+		d[0] = x[0] * t;
+		d[1] = x[1] * t;
 		return d;
 	}
 }

@@ -24,6 +24,7 @@ package rendering;
 
 import events.ServerConnection;
 import generic.Utils;
+import genetics.QTLdataset;
 import genetics.QTLheatmap;
 
 import java.awt.Color;
@@ -35,39 +36,55 @@ import java.util.Vector;
 import objects.Camera;
 import objects.renderables.Object3D;
 import objects.renderables.Surface;
+import objects.renderables.light.Light;
+import objects.renderables.light.PointLight;
 
 
 public class Scene{
 	static private Camera camera = new Camera(0.0, 20.0, 0.0, -45, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
+	static Vector<Light> lights = new Vector<Light>();
 	public static int softmyobjectslimit = 12500;
 	static Hud headsupdisplay;
-//	private static QTLdataset dataset;
+	private static QTLdataset dataset;
 	static QTLheatmap heatmap;
 	private static float renderTime;
 	private static float hudTime;
+	static RayTracer r;
 	
 	public Scene(ServerConnection s){
 		headsupdisplay=new Hud(Engine.width,Engine.height);
-//		try{
-//			dataset = new QTLdataset("data/data.dat");
-//			heatmap = new QTLheatmap();
-//			headsupdisplay.addDataset(dataset);
+		r= new RayTracer();
+		lights.add(new PointLight(10.0,-10.0,0.0));
+		try{
+			dataset = new QTLdataset("data/data.dat");
+			heatmap = new QTLheatmap();
+			headsupdisplay.addDataset(dataset);
 			reDrawScene();
-//		}catch(Exception e){
-//			Utils.log("Error unable to load dataset", e);
+		}catch(Exception e){
+			Utils.log("Error unable to load dataset", e);
+		}
+		//Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
+		//Scene.addObject(Object3DSLoader.getModel(10,1,10, "lung_0.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(10,1,15, "avatar_1.3ds"));
+		//Scene.addObject(Object3DSLoader.getModel(15,1,10, "avatar_2.3ds"));
+		//Scene.addObject(Object3DSLoader.getModel(30,1,30, "humanoid.3ds"));
+//		for(Object3D x : heatmap.getQTLObjects(dataset)){
+//			Scene.addObject(x);
 //		}
-		
+//		for(Object3D x : heatmap.getAnnotationObjects(dataset)){
+//			Scene.addObject(x);
+//		}
 	}
 	
 	public static void reDrawScene() {
-		clearObjects();
-		Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
-		Scene.addObject(Object3DSLoader.getModel(10,1,10, "lung_0.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(10,1,15, "avatar_1.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(15,1,10, "avatar_2.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(30,1,30, "humanoid.3ds"));
-//		sortObjects(myobjects);
+//		clearObjects();
+//		Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
+//		Scene.addObject(Object3DSLoader.getModel(10,1,10, "lung_0.3ds"));
+//		Scene.addObject(Object3DSLoader.getModel(10,1,15, "avatar_1.3ds"));
+//		Scene.addObject(Object3DSLoader.getModel(15,1,10, "avatar_2.3ds"));
+//		Scene.addObject(Object3DSLoader.getModel(30,1,30, "humanoid.3ds"));
+//		//sortObjects(myobjects);
 //		for(Object3D x : heatmap.getQTLObjects(dataset)){
 //			Scene.addObject(x);
 //		}
@@ -80,12 +97,23 @@ public class Scene{
 		return myobjects;
 	}
 	
+	public static Color getRandomColor(){
+		return new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)Math.random()*255);
+	}
+	
 	public static void updateScene() {
 		if(Engine.verbose) Utils.console("Re-rendering on back buffer");
 		long l1 = System.nanoTime();
 		reDrawScene();
 		Engine.getBackBufferGraphics().setColor(Color.black);
 		Engine.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
+		r.render(camera);
+//		for(int x = 1; x < Engine.width;x+=3){
+//			for(int y = 1; y < Engine.height;y+=3){
+//				Engine.getBackBufferGraphics().setColor(getRandomColor());
+//				Engine.getBackBufferGraphics().fillRect(x, y, 3, 3);
+//			}
+//		}
 		for(Object3D myobject : myobjects){
 			myobject.update(camera);
 			myobject.render(Engine.getBackBufferGraphics(),camera);
@@ -169,4 +197,19 @@ public class Scene{
 //		}
 //		System.out.print("\n");
 //	}
+
+	public static double[] getBackgroundColor() {
+		// TODO Auto-generated method stub
+		return new double[]{0,0,0};
+	}
+
+	public static Vector<Light> getLights() {
+		// TODO Auto-generated method stub
+		return lights;
+	}
+
+	public static double[] getAmbientLight() {
+		// TODO Auto-generated method stub
+		return new double[]{0.1,0,0};
+	}
 }

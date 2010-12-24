@@ -59,7 +59,7 @@ public class HudImage extends HudButton{
 	@Override
 	public void render(Graphics2D g) {
 		  if(isLoaded() && isVisible()){
-			 g.drawImage(i.getImage(), (int)x, (int)y, Engine.getParentApplet());
+			 g.drawImage(i.getImage(), (int)x, (int)y,i.getIconWidth(),i.getIconHeight(), Engine.getParentApplet());
 		  }else{
 			 Hud.drawBox(g, (int)x, (int)y, 50, 50, Color.red);
 		  }
