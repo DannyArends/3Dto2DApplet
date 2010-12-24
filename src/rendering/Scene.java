@@ -35,7 +35,6 @@ import java.util.Vector;
 
 import objects.Camera;
 import objects.renderables.Object3D;
-import objects.renderables.Surface;
 import objects.renderables.light.Light;
 import objects.renderables.light.PointLight;
 
