@@ -7,13 +7,17 @@
 # last modified Dec, 2010
 # first written Dec, 2010
 #
+# Start by pushing the location of the includes
+BEGIN {
+  push @INC,"c:/Rtools/perl/lib";
+}
 
 use strict;
 use Socket;
 use CGI qw(:standard);
 
 #Global Variables across all includes
-our %form;
+our %form = ();
 our $write_location = "../dist/write/";
 our $data_location = "../dist/data/";
 
@@ -25,6 +29,8 @@ require "user.cgi";
 #Constants
 
 #Variables
+$form{"online"} = '';
+$form{"list_files"} = '';
 
 #Main
 printTXTHeader();

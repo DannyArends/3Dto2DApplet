@@ -61,7 +61,7 @@ sub writeIPtoLog{
 	my $filename = $write_location . "output.log";
 	open(MYFILE, "$filename") or die print("Error: opening file for reading");
  	while (<MYFILE>) {chomp;
- 		if($_ == $ENV{REMOTE_ADDR}){ $found = 1; }
+ 		if($_ eq $ENV{REMOTE_ADDR}){ $found = 1; }
  	}
 	if(!$found){
 		close (MYFILE);
