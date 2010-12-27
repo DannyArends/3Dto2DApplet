@@ -40,7 +40,7 @@ import objects.renderables.light.PointLight;
 
 
 public class Scene{
-	static private Camera camera = new Camera(0.0, 0.0, 0.0, -45, 15);
+	static private Camera camera = new Camera(-2.0, 2.0, -2.0, -45, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
 	static Vector<Light> lights = new Vector<Light>();
 	public static int softmyobjectslimit = 12500;
@@ -54,21 +54,20 @@ public class Scene{
 	public Scene(ServerConnection s){
 		headsupdisplay=new Hud(Engine.width,Engine.height);
 		r= new RayTracer();
-		lights.add(new PointLight(0,0.0,0));
-		lights.add(new PointLight(0,10.0,10));
-		lights.add(new PointLight(5,5.0,5));
-		//try{
-		//	dataset = new QTLdataset("data/data.dat");
-		//	heatmap = new QTLheatmap();
-		//	headsupdisplay.addDataset(dataset);
-		//	reDrawScene();
-		//}catch(Exception e){
-		//	Utils.log("Error unable to load dataset", e);
-		//}
+		//lights.add(new PointLight(0.0,-1.0,0.0,0.0,1.0,0.0));
+		lights.add(new PointLight(-5,10.0,0));
+		try{
+			dataset = new QTLdataset("data/data.dat");
+			heatmap = new QTLheatmap();
+			headsupdisplay.addDataset(dataset);
+			reDrawScene();
+		}catch(Exception e){
+			Utils.log("Error unable to load dataset", e);
+		}
 		//Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
 		//Scene.addObject(Object3DSLoader.getModel(10,1,10, "lung_0.3ds"));
 		Scene.addObject(Object3DSLoader.getModel(1,0,1, "avatar_1.3ds"));
-		//Scene.addObject(Object3DSLoader.getModel(15,1,10, "avatar_2.3ds"));
+		//Scene.addObject(Object3DSLoader.getModel(1,1,1, "avatar_2.3ds"));
 		//Scene.addObject(Object3DSLoader.getModel(30,1,30, "humanoid.3ds"));
 //		for(Object3D x : heatmap.getQTLObjects(dataset)){
 //			Scene.addObject(x);
@@ -92,6 +91,7 @@ public class Scene{
 //		for(Object3D x : heatmap.getAnnotationObjects(dataset)){
 //			Scene.addObject(x);
 //		}
+		r.update(camera);
 	}
 	
 	public static Vector<Object3D> getObjects() {
@@ -108,13 +108,7 @@ public class Scene{
 		reDrawScene();
 		Engine.getBackBufferGraphics().setColor(Color.black);
 		Engine.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
-		r.render(camera);
-//		for(int x = 1; x < Engine.width;x+=3){
-//			for(int y = 1; y < Engine.height;y+=3){
-//				Engine.getBackBufferGraphics().setColor(getRandomColor());
-//				Engine.getBackBufferGraphics().fillRect(x, y, 3, 3);
-//			}
-//		}
+		r.render();
 		for(Object3D myobject : myobjects){
 			myobject.update(camera);
 			myobject.render(Engine.getBackBufferGraphics(),camera);
@@ -211,6 +205,6 @@ public class Scene{
 
 	public static double[] getAmbientLight() {
 		// TODO Auto-generated method stub
-		return new double[]{0.1,0,0};
+		return new double[]{0.1,0.1,0.1};
 	}
 }

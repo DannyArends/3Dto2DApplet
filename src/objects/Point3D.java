@@ -85,7 +85,7 @@ public class Point3D {
 		return r;
 	}
 	
-	public double magnitude(){
+	public double getLength(){
 		return (Math.sqrt(MathUtils.sqr(location[0]) + MathUtils.sqr(location[1]) + MathUtils.sqr(location[2])));
 	}
 	
@@ -95,22 +95,6 @@ public class Point3D {
 	
 	public double xypointDifference(Point3D p){
 		return (Math.sqrt(MathUtils.sqrDiff(location[0] , p.location[0]) + MathUtils.sqrDiff(location[2] , p.location[2])));
-	}
-	
-	public void normalize(){
-		double length = magnitude();
-		if(length==0) length = 1.0;
-		location[0] /=length;
-		location[1] /=length;
-		location[2] /=length;
-	}
-	
-	public Point3D getNormalizedVector(){
-		double length = magnitude();
-		if(length==0) length = 1.0;
-		Point3D r = new Point3D(this);
-		r.normalize();
-		return r;
 	}
 	
 	protected double[] computeOrtogonalProjection(Point3D p,double[] rotation){

@@ -254,7 +254,7 @@ public class Object3D extends Point3D{
 		double LSquare = MathUtils.dotProduct(L, L);
 		
 		double dSquare =  LSquare - MathUtils.sqr(tCA);
-		double radiusSquare = MathUtils.sqr(1.3);
+		double radiusSquare = MathUtils.sqr(0.4);
 
 		if(dSquare > radiusSquare) {
 			// In this case the ray misses the sphere

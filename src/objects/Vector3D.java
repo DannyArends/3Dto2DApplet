@@ -22,6 +22,8 @@
 
 package objects;
 
+import generic.MathUtils;
+
 
 public class Vector3D extends Point3D{
 	public double[] direction = new double[3];
@@ -33,6 +35,10 @@ public class Vector3D extends Point3D{
 	
 	public Vector3D(double x, double y, double z){
 		super(x,y,z);
+	}
+	
+	public Vector3D(Vector3D o){
+		this(o.location[0],o.location[1],o.location[2],o.direction[0],o.direction[1],o.direction[2],o.magnitude);
 	}
 	
 	public Vector3D(double x, double y, double z,double vx, double vy, double vz){
@@ -48,11 +54,9 @@ public class Vector3D extends Point3D{
 	}
 	
 	public Vector3D(double[] loc,double[] dir,double m){
-		super(loc[0],loc[1],loc[2]);
-		direction[0]=dir[0];
-		direction[1]=dir[1];
-		direction[2]=dir[2];
-		magnitude=m;
+		location  = loc;
+		direction = dir;
+		magnitude = m;
 	}
 	
 	public void setDirection(double[] dir){
@@ -63,6 +67,20 @@ public class Vector3D extends Point3D{
 		return this.direction;
 	}
 	
+	public void normalize(){
+		double norm  = MathUtils.norm(direction);
+		direction[0] /=norm;
+		direction[1] /=norm;
+		direction[2] /=norm;
+		magnitude = 1;
+	}
+	
+	public Vector3D getNormalizedVector(){
+		Vector3D r = new Vector3D(this);
+		r.normalize();
+		return r;
+	}
+
 	public double[] getEndPoint() {
 		double[] endPoint = { location[0] + magnitude * direction[0], location[1] + magnitude * direction[1], location[2] + magnitude * direction[2] };
 		return endPoint;

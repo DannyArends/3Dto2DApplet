@@ -30,11 +30,12 @@ public class Material3DS {
 	public boolean is_specular = false;
 	public boolean is_ambient = false;
 	double reflectance=0;
-	double shininess=0;
+	double shininess=4;
 	
-	private Color ambientColor = new Color(125,0,0);
-	private Color specularColor = new Color(0,125,0);
-	private Color diffuseColor = new Color(0,0,125);
+	private double[] ambientColor = new double[]{1.0,0.0,0.0};
+	private double[] specularColor = new double[]{0.0,1.0,0.0};
+	private double[] diffuseColor = new double[]{0.0,0.0,1.0};
+	private double[] emissionColor = new double[]{0.0,0.0,0.0};
 	
 	public Material3DS(String name){
 		this.materialname=name;
@@ -42,57 +43,61 @@ public class Material3DS {
 
 
 	public void setAmbientColor(Color ambientColor) {
-		this.ambientColor = ambientColor;
+		this.ambientColor[0] = (float)ambientColor.getRed()/255.0;
+		this.ambientColor[1] = (float)ambientColor.getGreen()/255.0;
+		this.ambientColor[2] = (float)ambientColor.getBlue()/255.0;
 	}
 
 
-	public Color getAmbientColor() {
+	public double[] getAmbient() {
 		return ambientColor;
 	}
 
+	public Color getAmbientColor() {
+		return new Color((int)(ambientColor[0]*255),(int)(ambientColor[1]*255),(int)(ambientColor[2]*255));
+	}
 
 	public void setSpecularColor(Color specularColor) {
-		this.specularColor = specularColor;
+		this.specularColor[0] = (float)specularColor.getRed()/255.0;
+		this.specularColor[1] = (float)specularColor.getGreen()/255.0;
+		this.specularColor[2] = (float)specularColor.getBlue()/255.0;
 	}
 
 
-	public Color getSpecularColor() {
+	public double[] getSpecular() {
 		return specularColor;
+	}
+	
+	public Color getSpecularColor() {
+		return new Color((int)(specularColor[0]*255),(int)(specularColor[1]*255),(int)(specularColor[2]*255));
 	}
 
 
 	public void setDiffuseColor(Color diffuseColor) {
-		this.diffuseColor = diffuseColor;
+		this.diffuseColor[0] = (float)diffuseColor.getRed()/255.0;
+		this.diffuseColor[1] = (float)diffuseColor.getGreen()/255.0;
+		this.diffuseColor[2] = (float)diffuseColor.getBlue()/255.0;
 	}
 
 
-	public Color getDiffuseColor() {
+	public double[] getDiffuse() {
 		return diffuseColor;
 	}
+	
+	public Color getDiffuseColor() {
+		return new Color((int)(diffuseColor[0]*255),(int)(diffuseColor[1]*255),(int)(diffuseColor[2]*255));
+	}
+	
+	public double[] getEmission() {
+		return emissionColor;
+	}
+	
 
 
 	public Object getName() {
 		// TODO Auto-generated method stub
 		return materialname;
 	}
-
-
-	public double[] getSpecular() {
-		return new double[]{specularColor.getRed()/255,specularColor.getGreen()/255,specularColor.getBlue()/255};
-	}
-
-
-	public double[] getAmbient() {
-		// TODO Auto-generated method stub
-		return new double[]{ambientColor.getRed()/255,ambientColor.getGreen()/255,ambientColor.getBlue()/255};
-	}
-
-
-	public double[] getEmission() {
-		// TODO Auto-generated method stub
-		return new double[]{diffuseColor.getRed()/255,diffuseColor.getGreen()/255,diffuseColor.getBlue()/255};
-	}
-
 
 	public double getReflectance() {
 		return reflectance;

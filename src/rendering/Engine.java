@@ -47,7 +47,7 @@ public class Engine {
 		height = parent.getSize().height;
 		backBuffer = parent.createImage(width, height);
 		setBackBufferGraphics(backBuffer.getGraphics());
-		timer = new MyTimer(s);
+		//timer = new MyTimer(s);
 		iconloader = new IconLoader(s);
 		objectloader = new Object3DSLoader(s);
 		new Scene(s);

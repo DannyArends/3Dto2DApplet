@@ -4,10 +4,14 @@ import generic.MathUtils;
 
 
 public class PointLight extends Light{
-	double[] attenuation = {1, 0, 0};
+	double[] attenuation = {0.9, 0.2, 0.1};
 	
 	public PointLight(double x, double y, double z){
 		super(x,y,z);
+	}
+	
+	public PointLight(double x, double y, double z,double c1,double c2,double c3){
+		super(x,y,z,c1,c2,c3);
 	}
 	
 	public double[] getAmountOfLight(double[] point) {

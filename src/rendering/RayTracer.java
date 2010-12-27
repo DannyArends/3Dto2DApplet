@@ -21,24 +21,27 @@ public class RayTracer {
 	double[] direction;
 	double[] lookAt = new double[]{0,0,0};
 	double screenDist=1;
-	double pixelWidth=0.1;		
-	double pixelHeight=0.1;
-	int superSampleWidth=2;
+	double pixelWidth = 2.0 / Engine.width;
+	double pixelHeight = (Engine.width / Engine.height) * pixelWidth;
+	int superSampleWidth=1;
 	
-	
-	public void render(Camera c){
-		eye = new double[]{c.location[0],c.location[1]+1,c.location[2]};
+	public void update(Camera c){
+		eye = new double[]{c.location[0],c.location[1]+5,c.location[2]};
 		lookAt = new double[]{c.location[0]+2,c.location[1],c.location[2]+2};
 		direction = MathUtils.calcPointsDiff(eye, lookAt);
 		rightDirection = MathUtils.crossProduct(upDirection, direction);
 		MathUtils.normalize(rightDirection);
 		MathUtils.multiplyVectorByScalar(rightDirection, -1);
-		//viewplaneUp = MathUtils.crossProduct(rightDirection, direction);
+		viewplaneUp = MathUtils.crossProduct(rightDirection, direction);
+	}
+	
+	public void render(){
+		MathUtils.normalize(viewplaneUp);
 		Engine.getBackBufferGraphics().setColor(Color.black);
 		Engine.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
 		long l1 = System.nanoTime();
-		for(int y = 1; y < Engine.height; y+=4){			
-			for(int x = 1; x < Engine.width; x+=4){									
+		for(int y = 0; y < Engine.height; y+=3){			
+			for(int x = 0; x < Engine.width; x+=3){									
 				int hits = 0;
 				double[] color = new double[3];								
 				
@@ -48,15 +51,12 @@ public class RayTracer {
 						double[] sampleColor = null;
 						// Create the ray
 						Vector3D ray = constructRayThroughPixel(x, y, k, l);
-						if(x==1){
-							Utils.console("x" + ray.location[0] +",y:" + ray.location[1] + ",z:"+ ray.location[2]);
-							Utils.console("x" + ray.direction[0] +",y:" + ray.direction[1] + ",z:"+ ray.direction[2]);
-						}
 						// Find the intersecting primitive
 						Intersection intersection = findIntersection(ray, null);
 						// If we hit something, get its color
 						if (intersection.getPrimitive() != null) {
 							hits++;
+							//Utils.console("hits: " + hits);
 							sampleColor = getColor(ray, intersection, 1);
 							MathUtils.addVector(color, sampleColor);
 							ray.setMagnitude(intersection.getDistance());																																						
@@ -67,12 +67,11 @@ public class RayTracer {
 				if (hits == 0) {
 					color = new double[]{0,0,0};		
 				}else{
-					//color = new double[]{1-hits/100,0,0};
 					if(Engine.verbose) Utils.console(x + "," + y + " number of hits " + hits);
 					MathUtils.multiplyVectorByScalar(color, 1F / hits);
 				}
 				Engine.getBackBufferGraphics().setColor(Utils.floatArrayToColor(color));
-				Engine.getBackBufferGraphics().fillRect(x, y, 3, 3);
+				Engine.getBackBufferGraphics().fillRect(x, y, 2, 2);
 			}
 			//long l3 = System.nanoTime();
 			//Utils.console("scanline: " + (l3-l1)/1000000 + " ms");
@@ -93,7 +92,7 @@ public class RayTracer {
 		MathUtils.addVectorAndMultiply(endPoint, rightDirection, rightOffset);
 				
 		ray.setDirection(MathUtils.calcPointsDiff(eye, endPoint));						
-		MathUtils.normalize(ray.direction);
+		ray.normalize();
 		return ray;
 	}
 	
@@ -131,9 +130,6 @@ public class RayTracer {
 				
 		// Stretch the ray to the point of intersection
 		ray.setMagnitude(intersection.getDistance());
-		
-						
-		
 		double[] diffuse = primitive.getColorAt(pointOfIntersection);
 		if (diffuse==null) {
 			System.err.print("NUL");
@@ -159,7 +155,7 @@ public class RayTracer {
 			boolean lightVisible = distanceToBlockingPrimitive <= EPSILON 
 				|| distanceToBlockingPrimitive >= distanceToLight;
 				
-			if (lightVisible) {								
+			if (lightVisible) {
 				// Measure the distance to the light and find the amount of light hitting the primitive				
 				double[] amountOfLightAtIntersection = light.getAmountOfLight(pointOfIntersection);								
 				
