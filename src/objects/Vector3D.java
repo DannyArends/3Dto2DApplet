@@ -24,7 +24,7 @@ package objects;
 
 
 public class Vector3D extends Point3D{
-	double[] direction = new double[3];
+	public double[] direction = new double[3];
 	double magnitude;
 
 	public Vector3D() {
