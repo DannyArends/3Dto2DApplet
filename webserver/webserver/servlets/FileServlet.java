@@ -72,7 +72,6 @@ public class FileServlet extends Servlet {
 	static final String[] DEFAULTINDEXPAGES = { "index.html", "index.htm", "default.htm", "default.html" };
 	static final DecimalFormat lengthftm = new DecimalFormat("#");
 	static final String BYTES_UNIT = "bytes";
-	private static final boolean logenabled = false;
 	private Method canExecute, getFreeSpace;
 	private boolean useCompression;
 
@@ -118,27 +117,29 @@ public class FileServlet extends Servlet {
 		dispatchPathname(req, res, headOnly, path);
 	}
 
-	private void dispatchPathname(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path)
-			throws IOException {
-		Utils.console("Canonical path: " + path + " from " + req.getPathInfo() + " translated: " + req.getPathTranslated());
+	private void dispatchPathname(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path) throws IOException {
 		String filename = req.getPathTranslated() != null ? req.getPathTranslated().replace('/', File.separatorChar) : "";
 		File file = new File(filename);
-		if (logenabled) Utils.console("retrieving '" + filename + "' for path " + path);
+		if (isLogenabled()) Utils.console("retrieving '" + filename + "' for path " + path);
 		if (file.exists()) {
-			if (!file.isDirectory())
+			if (!file.isDirectory()){
 				serveFile(req, res, headOnly, path, file);
-			else {
-				if (logenabled) Utils.console("showing dir " + file);
-				if (redirectDirectory(req, res, path, file) == false)
+				Utils.console("Served file: " + file + " " +  file.length()/1024 + " Kb");
+			} else {
+				if (isLogenabled()) Utils.console("showing dir " + file);
+				if (redirectDirectory(req, res, path, file) == false){
 					showIdexFile(req, res, headOnly, path, filename);
+				}
 			}
-		} else
+		} else{
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+			
 	}
 
 	private void showIdexFile(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path,
 			String parent) throws IOException {
-		if (logenabled) Utils.console("Showing index in directory " + parent);
+		if (isLogenabled()) Utils.console("Showing index in directory " + parent);
 		for (int i = 0; i < DEFAULTINDEXPAGES.length; i++) {
 			File indexFile = new File(parent, DEFAULTINDEXPAGES[i]);
 			if (indexFile.exists()) {
@@ -152,7 +153,7 @@ public class FileServlet extends Servlet {
 
 	private void serveFile(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path, File file)
 			throws IOException {
-		if (logenabled) {
+		if (isLogenabled()) {
 			Utils.console("Getting " + file);
 			Enumeration<?> enh = req.getHeaderNames();
 			while (enh.hasMoreElements()) {
@@ -187,7 +188,7 @@ public class FileServlet extends Servlet {
 		long sr = 0;
 		long er = -1;
 		if (range != null) {
-			if (logenabled) Utils.console("Range:" + range);
+			if (isLogenabled()) Utils.console("Range:" + range);
 			if (range.regionMatches(true, 0, BYTES_UNIT, 0, BYTES_UNIT.length())) {
 				int i = range.indexOf('-');
 				if (i > 0) {
@@ -205,7 +206,7 @@ public class FileServlet extends Servlet {
 					}
 				} // else invalid range? ignore?
 			} // else other units not supported
-			if (logenabled) Utils.console("range values " + sr + " to " + er);
+			if (isLogenabled()) Utils.console("range values " + sr + " to " + er);
 		}
 		long clen = er < 0 ? flen : (er - sr + 1);
 		res.setDateHeader("Last-modified", lastMod);
@@ -218,7 +219,7 @@ public class FileServlet extends Servlet {
 			}
 			res.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
 			res.setHeader("Content-Range", BYTES_UNIT + " " + sr + '-' + er + '/' + flen);
-			if (logenabled) Utils.console("content-range:" + BYTES_UNIT + " " + sr + '-' + er + '/' + flen);
+			if (isLogenabled()) Utils.console("content-range:" + BYTES_UNIT + " " + sr + '-' + er + '/' + flen);
 		}
 		// String ifRange = req.getHeader("If-Range");
 		// res.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
@@ -269,7 +270,7 @@ public class FileServlet extends Servlet {
 	}
 
 	private void serveDirectory(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path,	File file) throws IOException {
-		if (logenabled) Utils.console("Indexing directory: " + file);
+		if (isLogenabled()) Utils.console("Indexing directory: " + file);
 		if (!file.canRead()) {
 			res.sendError(HttpServletResponse.SC_FORBIDDEN);
 			return;
@@ -369,7 +370,7 @@ public class FileServlet extends Servlet {
 				path += '/';
 			else
 				path = path.substring(sp + 1) + '/';
-			if (logenabled) Utils.console("Redirecting dir " + path);
+			if (isLogenabled()) Utils.console("Redirecting dir " + path);
 			res.sendRedirect(path);
 			return true;
 		}

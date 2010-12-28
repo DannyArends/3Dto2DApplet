@@ -50,9 +50,9 @@ public class CommandExecutor implements Runnable{
 			}
 			try {
 				if (p.waitFor() != 0) {
-					Utils.log("Command "+ command + " exit=" + p.exitValue(),System.err);
+					Utils.log("Command: "+ command + " exit=" + p.exitValue(),System.err);
 				}else{
-					Utils.console("Command "+ command +" succesfull");
+					Utils.console("Command: "+ command +" succesfull");
 				}
 			} catch (InterruptedException e) {
 				Utils.log("Interupted: ",e);

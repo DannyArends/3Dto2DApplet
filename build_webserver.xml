@@ -3,13 +3,13 @@
         ANT file to build a standalone DWF jar
     </description>
   <!-- set global properties for this build -->
-  <property name="applet_src"   	location="src"       />
-  <property name="webserver_src"   	location="webserver" />
-  <property name="build" 			location="build"     />
-  <property name="dist"  			location="dist"      />
-  <property name="libraries" 		location="libs"      />
-  <property name="myname" 			value="Danny Arends" />
-  <property name="version"          value="3.3.0"        />
+  <property name="applet_src"   	location="applet/generic"	/>
+  <property name="webserver_src"   	location="webserver" 		/>
+  <property name="build" 			location="build"     		/>
+  <property name="dist"  			location="dist"      		/>
+  <property name="libraries" 		location="libs"      		/>
+  <property name="myname" 			value="Danny Arends" 		/>
+  <property name="version"          value="3.3.0"        		/>
   <property environment="env"/>
   
 	<target name="init">
@@ -27,6 +27,7 @@
   	<unjar src="${libraries}/servlet-2-3.jar" dest="${build}"/>
   	<javac srcdir="${applet_src}" destdir="${build}" classpath="${build}/" />
   	<javac srcdir="${webserver_src}" destdir="${build}" classpath="${build}/" />
+	<copy todir="${build}/generic" file="${webserver_src}/generic/mime.properties"/>
   </target>
 
   <target name="package" depends="compile" description="Package the distribution" >

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class Servlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private String charSet;
+	private static boolean logenabled = false;
 	
 	public Servlet(){
 		setCharSet("UTF8");
@@ -24,4 +25,12 @@ public abstract class Servlet extends HttpServlet{
 	}
 	
 	abstract public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException;
+
+	public static boolean isLogenabled() {
+		return logenabled;
+	}
+	
+	public static void setLogenabled(boolean b) {
+		logenabled=b;
+	}
 }

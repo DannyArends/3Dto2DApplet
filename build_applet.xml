@@ -3,7 +3,7 @@
         ANT file to build a standalone DWF jar
     </description>
   <!-- set global properties for this build -->
-  <property name="src" 				location="src"       />
+  <property name="src" 				location="applet"    />
   <property name="build" 			location="build"     />
   <property name="dist"  			location="dist"      />
   <property name="libraries" 		location="libs"      />
