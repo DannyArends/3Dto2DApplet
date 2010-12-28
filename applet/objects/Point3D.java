@@ -97,8 +97,12 @@ public class Point3D {
 		return (Math.sqrt(MathUtils.sqrDiff(location[0] , p.location[0]) + MathUtils.sqrDiff(location[2] , p.location[2])));
 	}
 	
-	protected double[] computeOrtogonalProjection(Point3D p,double[] rotation){
+	public double[] computeOrtogonalProjection(Point3D p,double[] rotation){
 		return computeOrtogonalProjection(p.location[0],p.location[1],p.location[2],rotation);
+	}
+	
+	public double[] computeOrtogonalProjection(double[] p,double[] rotation){
+		return computeOrtogonalProjection(p[0],p[1],p[2],rotation);
 	}
 	
 	protected double[] computeOrtogonalProjection(double x0,double y0,double z0,double[] rotation){

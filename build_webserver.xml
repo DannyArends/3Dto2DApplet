@@ -1,0 +1,45 @@
+<project name="Build" default="package" basedir=".">
+    <description>
+        ANT file to build a standalone DWF jar
+    </description>
+  <!-- set global properties for this build -->
+  <property name="applet_src"   	location="src"       />
+  <property name="webserver_src"   	location="webserver" />
+  <property name="build" 			location="build"     />
+  <property name="dist"  			location="dist"      />
+  <property name="libraries" 		location="libs"      />
+  <property name="myname" 			value="Danny Arends" />
+  <property name="version"          value="3.3.0"        />
+  <property environment="env"/>
+  
+	<target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <echo message="Number of Processors = ${env.NUMBER_OF_PROCESSORS}"/>
+    <echo message="ANT_HOME is set to = ${env.ANT_HOME}"/>
+    <!-- Create the build directory structure used by compile -->
+    <delete dir="${build}"/>
+    <mkdir dir="${build}"/>
+	<mkdir dir="${dist}"/>
+  </target>
+
+  <target name="compile" depends="init" description="compile the Standalone source " >
+  	<unjar src="${libraries}/servlet-2-3.jar" dest="${build}"/>
+  	<javac srcdir="${applet_src}" destdir="${build}" classpath="${build}/" />
+  	<javac srcdir="${webserver_src}" destdir="${build}" classpath="${build}/" />
+  </target>
+
+  <target name="package" depends="compile" description="Package the distribution" >
+    <jar jarfile="webserver.jar" basedir="${build}">
+    	<manifest>
+     	    <attribute name="Built-By" value="${myname}"/>
+     	    <attribute name="Main-Class" value="StandAlone"/>
+     	</manifest>
+    </jar>
+  </target>
+
+  <target name="clean" depends="package" description="clean up" >
+    <!-- Delete the ${build} directory tree -->
+	<delete dir="${build}"/>
+  </target>
+</project>

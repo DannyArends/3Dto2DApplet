@@ -29,13 +29,13 @@ public class Material3DS {
 	public boolean is_diffuse = false;
 	public boolean is_specular = false;
 	public boolean is_ambient = false;
-	double reflectance=0;
-	double shininess=4;
+	double reflectance=2;
+	double shininess=5;
 	
-	private double[] ambientColor = new double[]{1.0,0.0,0.0};
-	private double[] specularColor = new double[]{0.0,1.0,0.0};
-	private double[] diffuseColor = new double[]{0.0,0.0,1.0};
-	private double[] emissionColor = new double[]{0.0,0.0,0.0};
+	private double[] ambientColor = new double[]{1.0,1.0,1.0};
+	private double[] specularColor = new double[]{1.0,1.0,1.0};
+	private double[] diffuseColor = new double[]{1.0,1.0,1.0};
+	private double[] emissionColor = new double[]{0.1,0.1,0.1};
 	
 	public Material3DS(String name){
 		this.materialname=name;

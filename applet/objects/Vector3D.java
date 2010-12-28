@@ -80,6 +80,13 @@ public class Vector3D extends Point3D{
 		r.normalize();
 		return r;
 	}
+	
+	// Returns the dot product of the current vector's direction with the other vector's direction
+	public double dotProduct(Vector3D otherVec) {
+		return (this.direction[0] * otherVec.direction[0] + 
+				this.direction[1] * otherVec.direction[1] +
+				this.direction[2] * otherVec.direction[2]);
+	}
 
 	public double[] getEndPoint() {
 		double[] endPoint = { location[0] + magnitude * direction[0], location[1] + magnitude * direction[1], location[2] + magnitude * direction[2] };

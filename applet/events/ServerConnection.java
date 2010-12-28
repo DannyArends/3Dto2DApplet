@@ -56,7 +56,7 @@ public class ServerConnection {
 			//FOR DEPLOY: 
 			//Utils.console(Engine.getAppletURL() + "cgi-bin/server.cgi");
 			//url = new URL(Engine.getAppletURL() + "cgi-bin/server.cgi");
-			url = new URL("http://localhost/Testing/cgi-bin/server.cgi"); 
+			url = new URL("http://localhost:8080/cgi-bin/server.cgi"); 
 			con = (HttpURLConnection) url.openConnection();
 			con.setDoOutput(true); 
 			con.setDoInput(true); 

@@ -17,12 +17,12 @@
     <echo message="Number of Processors = ${env.NUMBER_OF_PROCESSORS}"/>
     <echo message="ANT_HOME is set to = ${env.ANT_HOME}"/>
     <!-- Create the build directory structure used by compile -->
+    <delete dir="${build}"/>
     <mkdir dir="${build}"/>
 	<mkdir dir="${dist}"/>
   </target>
 
   <target name="compile" depends="init" description="compile the Standalone source " >
- <!--   <unjar src="${libraries}/servlet-2-3.jar" dest="${build}"/>    -->
   	<javac srcdir="${src}" destdir="${build}" classpath="${build}/" />
   </target>
 

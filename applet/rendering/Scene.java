@@ -40,7 +40,7 @@ import objects.renderables.light.PointLight;
 
 
 public class Scene{
-	static private Camera camera = new Camera(-2.0, 2.0, -2.0, -45, 15);
+	static private Camera camera = new Camera(-4.0, 2.0, -4.0, 0, 0);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
 	static Vector<Light> lights = new Vector<Light>();
 	public static int softmyobjectslimit = 12500;
@@ -54,8 +54,9 @@ public class Scene{
 	public Scene(ServerConnection s){
 		headsupdisplay=new Hud(Engine.width,Engine.height);
 		r= new RayTracer();
-		//lights.add(new PointLight(0.0,-1.0,0.0,0.0,1.0,0.0));
-		lights.add(new PointLight(-5,10.0,0));
+		lights.add(new PointLight(4.0, 0.0, -5.0, 0.0, 1.0, 1.0));
+		lights.add(new PointLight(-5.0, 0.0, 5.0, 1.0, 0.0, 0.0));
+		//lights.add(new PointLight(0,-5.0,0,0.1,0.1,1.0));
 		try{
 			dataset = new QTLdataset("data/data.dat");
 			heatmap = new QTLheatmap();
@@ -66,7 +67,9 @@ public class Scene{
 		}
 		//Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
 		//Scene.addObject(Object3DSLoader.getModel(10,1,10, "lung_0.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(1,0,1, "avatar_1.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(0,0,0, "avatar_1.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(5,0,0, "lung_0.3ds"));
+		Scene.addObject(Object3DSLoader.getModel(0,0,15, "humanoid.3ds"));
 		//Scene.addObject(Object3DSLoader.getModel(1,1,1, "avatar_2.3ds"));
 		//Scene.addObject(Object3DSLoader.getModel(30,1,30, "humanoid.3ds"));
 //		for(Object3D x : heatmap.getQTLObjects(dataset)){

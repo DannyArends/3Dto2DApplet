@@ -58,20 +58,24 @@ sub printUserStats{
 
 sub writeIPtoLog{
 	my $found = 0;
+	my $line = '';
 	my $filename = $write_location . "output.log";
-	open(MYFILE, "$filename") or die print("Error: opening file for reading");
- 	while (<MYFILE>) {chomp;
- 		if($_ eq $ENV{REMOTE_ADDR}){ $found = 1; }
- 	}
-	if(!$found){
-		close (MYFILE);
-		open(MYFILE, ">>$filename") or die print("Error: opening file for writing");
-		#print("ADD: $ENV{REMOTE_ADDR}" . "\n");
-		print MYFILE $ENV{REMOTE_ADDR} . "\n";
-	}else{
-		#print("FOUND: $ENV{REMOTE_ADDR}" . "\n");
+	if(defined($ENV{REMOTE_ADDR})){
+		open(MYFILE, $filename) or die print("Error: opening file for reading");
+ 		while($line  = <MYFILE>) {
+ 			chomp($line);
+ 			if($line eq $ENV{REMOTE_ADDR}){ $found = 1; }
+ 		}
+		if(!$found){
+			close (MYFILE);
+			open(MYFILE, ">>$filename") or die print("Error: opening file for writing");
+			#print("ADD: $ENV{REMOTE_ADDR}" . "\n");
+			print MYFILE $ENV{REMOTE_ADDR} . "\n";
+		}else{
+			#print("FOUND: $ENV{REMOTE_ADDR}" . "\n");
+		}
+ 		close (MYFILE);
 	}
- 	close (MYFILE);
 }
 
 return 1;

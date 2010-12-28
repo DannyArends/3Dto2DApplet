@@ -24,7 +24,6 @@ package objects.renderables;
 
 
 import generic.MathUtils;
-import generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -42,7 +41,7 @@ import rendering.Engine;
 public class Object3D extends Point3D{
 	private boolean wireframe = false;
 	private Edge[] edges;
-	protected double[] rotation = new double[8];
+	public double[] rotation = new double[8];
 	public double[] ownrotation = new double[8];
 	private int horizontalRotation;
 	private int verticalRotation;
@@ -104,7 +103,7 @@ public class Object3D extends Point3D{
 	}
 	
 	public Object3D(Object3D o) {
-		super(o.location[0],o.location[1],o.location[2]);
+		location = o.location;
 		setRotation(o.getHorizontalRotation(),o.getVerticalRotation());
 		vertices = o.vertices;
 		mapcoords = o.mapcoords;
@@ -155,7 +154,9 @@ public class Object3D extends Point3D{
 		double[] d;
 		for (int j = 0; j < vertices.length; ++j) {
 			d = computeOrtogonalProjection(vertices[j].getMultipleVector(objectScale),ownrotation);
-			d = computeOrtogonalProjection(difference(c).sum(d),rotation);
+			MathUtils.addVector(d, location);
+			d = computeOrtogonalProjection(MathUtils.calcPointsDiff(c.location,d),c.rotation);
+			
 			if(!((d[2] + Engine.near + Engine.nearToObj) < 0)){
 				//Calculate a perspective projection
 				d=computePerspectiveProjection(d);
@@ -238,38 +239,25 @@ public class Object3D extends Point3D{
 	 * @return
 	 */
 	private double intersectGeometric(Vector3D ray) {
-		
 		// Note that locals are named according to the equations in the lecture notes.
-		double[] L = MathUtils.calcPointsDiff(ray.getLocation(), location);
+		double[] L = MathUtils.calcPointsDiff(ray.getLocation(), getLocation());
 		double[] V = ray.getDirection();
 		
 		double tCA = MathUtils.dotProduct(L, V);
 		
-		if(tCA < 0) {
-			// In this case the camera is inside the sphere or the sphere center lies
-			// behind the ray, which means we have no intersection
-			return Double.POSITIVE_INFINITY;
-		}
+		if(tCA < 0) return Double.POSITIVE_INFINITY;
 		
 		double LSquare = MathUtils.dotProduct(L, L);
-		
 		double dSquare =  LSquare - MathUtils.sqr(tCA);
-		double radiusSquare = MathUtils.sqr(0.4);
+		double radiusSquare = MathUtils.sqr(0.5);
 
-		if(dSquare > radiusSquare) {
-			// In this case the ray misses the sphere
-			return Double.POSITIVE_INFINITY;
-		}
+		if(dSquare > radiusSquare) return Double.POSITIVE_INFINITY;
 		
 		double tHC = Math.sqrt(radiusSquare - dSquare);
 
-		// We now check where the ray originated:
-		// Gur: CHECK. LSquare == MathUtils.dotProduct(L, L), can't be smaller
 		if(MathUtils.dotProduct(L, L) < LSquare){
 			// The ray originated in the sphere - the intersection is with the exit point
-			Utils.console("in");
 			return tCA + tHC;
-			
 		}else{
 			// The ray originated ouside the sphere - the intersection is with the entrance point
 			return tCA - tHC;
@@ -277,17 +265,15 @@ public class Object3D extends Point3D{
 	}
 
 	public Material3DS getMaterialAt(double[] pointOfIntersection) {
-		// TODO Auto-generated method stub
 		return new Material3DS("test");
 	}
 
 	public double[] getColorAt(double[] pointOfIntersection) {
-		// TODO Auto-generated method stub
-		return new double[]{0.5,0.0,0.5};
+		return new double[]{1.0,1.0,1.0};
 	}
 
 	public double[] getNormalAt(double[] pointOfIntersection) {
-		double[] normal = MathUtils.calcPointsDiff(location, pointOfIntersection);		
+		double[] normal = MathUtils.calcPointsDiff(pointOfIntersection,location);		
 		MathUtils.normalize(normal);
 		return normal;
 	}

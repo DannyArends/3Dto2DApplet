@@ -10,6 +10,7 @@
 # Start by pushing the location of the includes
 BEGIN {
   push @INC,"c:/Rtools/perl/lib";
+  push @INC,"./cgi-bin";
 }
 
 use strict;
@@ -18,8 +19,8 @@ use CGI qw(:standard);
 
 #Global Variables across all includes
 our %form = ();
-our $write_location = "../dist/write/";
-our $data_location = "../dist/data/";
+our $write_location = "dist/write/";
+our $data_location = "dist/data/";
 
 #include our own files & functions
 require "utils.cgi";

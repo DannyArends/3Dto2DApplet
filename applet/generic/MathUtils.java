@@ -45,7 +45,7 @@ public class MathUtils {
 		}	
 		
 		/**
-		 * Calculates the differnce between two point in 3D space
+		 * Calculates the difference between two point in 3D space
 		 * @param p1
 		 * @param p2
 		 * @return
@@ -65,7 +65,6 @@ public class MathUtils {
 			
 			if (norm == 0)
 				return;
-			
 			vec[0] /= norm;
 			vec[1] /= norm;
 			vec[2] /= norm;

@@ -35,7 +35,7 @@ public class Engine {
 	public static int width;
 	public static int height;
 	public static double near = 3.0f;
-	public static double nearToObj = 2.5f;
+	public static double nearToObj = 1.0f;
 	private static Applet parentApplet;
 	MyTimer timer;
 	IconLoader iconloader;

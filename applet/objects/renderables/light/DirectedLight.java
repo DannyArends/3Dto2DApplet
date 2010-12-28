@@ -11,13 +11,13 @@ public class DirectedLight extends Light{
 	}
 	
 	public void setDirection(double[] dir){
+		MathUtils.normalize(dir);
 		direction = dir;
-		MathUtils.normalize(direction);
-		oppositeDirection = MathUtils.oppositeVector(direction);
+		oppositeDirection = MathUtils.oppositeVector(dir);
 	}
 	
 	public double[] getAmountOfLight(double[] point) {					
-		return getColor(); // constant light, regardless of distance to target
+		return color;
 	}
 	
 	@Override
