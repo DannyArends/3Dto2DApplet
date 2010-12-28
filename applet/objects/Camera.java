@@ -23,7 +23,6 @@
 package objects;
 
 import objects.renderables.Object3D;
-import rendering.Scene;
 
 public class Camera extends Object3D{
 
