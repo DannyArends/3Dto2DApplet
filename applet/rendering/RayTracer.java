@@ -2,6 +2,7 @@ package rendering;
 
 import java.awt.Color;
 
+import generic.ColorUtils;
 import generic.MathUtils;
 import generic.Utils;
 import objects.Camera;
@@ -20,14 +21,14 @@ public class RayTracer {
 	double[] upDirection= new double[]{0,1,0};
 	double[] direction= new double[3];
 	double screenDist= 3;
-	double pixelWidth = 2.0 / Engine.width;
-	double pixelHeight = (Engine.width / Engine.height) * pixelWidth;
+	double pixelWidth = 2.0 / Engine.getWidth();
+	double pixelHeight = (Engine.getWidth() / Engine.getHeight()) * pixelWidth;
 	int superSampleWidth=1;
 	
 	public void update(Camera c){
 		c.update(c);
 		eye = c.location;
-		direction[0] = c.rotation[6];
+		direction[0] = -c.rotation[6];
 		direction[1] = -c.rotation[3];
 		direction[2] = c.rotation[4];
 		// Compute a right direction and a view plane up direction (perpendicular to the look-at vector)
@@ -41,10 +42,10 @@ public class RayTracer {
 	
 	public void render(){
 		Engine.getBackBufferGraphics().setColor(Color.black);
-		Engine.getBackBufferGraphics().fillRect(0, 0, Engine.width, Engine.height);
-		long l1 = System.nanoTime();
-		for(int y = 0; y < Engine.height; y+=2){			
-			for(int x = 0; x < Engine.width; x+=2){									
+		Engine.getBackBufferGraphics().fillRect(0, 0, Engine.getWidth(), Engine.getHeight());
+		//long l1 = System.nanoTime();
+		for(int y = 0; y < Engine.getHeight(); y+=2){			
+			for(int x = 0; x < Engine.getWidth(); x+=2){									
 				int hits = 0;
 				double[] color = new double[3];
 				// Supersampling loops
@@ -72,22 +73,22 @@ public class RayTracer {
 					if(Engine.verbose) Utils.console(x + "," + y + " number of hits " + hits);
 					MathUtils.multiplyVectorByScalar(color, 1F / hits);
 				}
-				Engine.getBackBufferGraphics().setColor(Utils.floatArrayToColor(color));
+				Engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(color));
 				Engine.getBackBufferGraphics().fillRect(x, y, 1, 1);
 			}
 			//long l3 = System.nanoTime();
 			//Utils.console("scanline: " + (l3-l1)/1000000 + " ms");
 		}
-		long l2 = System.nanoTime();
-		Utils.console("Rendered one image: " + (l2-l1)/1000000 + " ms");
+		//long l2 = System.nanoTime();
+		//Utils.console("Rendered one image: " + (l2-l1)/1000000 + " ms");
 	}
 
 	public Vector3D constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																
 		Vector3D ray = new Vector3D(eye, direction, screenDist);
 		double[] endPoint = ray.getEndPoint();		
 		
-		double upOffset = -1 * (y - (Engine.height / 2) - (sampleYOffset / superSampleWidth)) * pixelHeight;
-		double rightOffset = (x - (Engine.width / 2) + (sampleXOffset / superSampleWidth)) * pixelWidth;
+		double upOffset = -1 * (y - (Engine.getHeight() / 2) - (sampleYOffset / superSampleWidth)) * pixelHeight;
+		double rightOffset = (x - (Engine.getWidth() / 2) + (sampleXOffset / superSampleWidth)) * pixelWidth;
 		
 		MathUtils.addVectorAndMultiply(endPoint, rightDirection, rightOffset);
 		MathUtils.addVectorAndMultiply(endPoint, viewplaneUp, upOffset);

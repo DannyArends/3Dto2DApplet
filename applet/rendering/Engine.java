@@ -22,70 +22,71 @@
 
 package rendering;
 
-import java.applet.Applet;
+import events.ServerConnection;
+import generic.RenderWindow;
+
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import events.ServerConnection;
-
 public class Engine {
-	private static Image backBuffer;
-	private static Graphics backBufferGraphics;
 	public static boolean verbose=false;
-	public static int width;
-	public static int height;
-	public static double near = 3.0f;
-	public static double nearToObj = 1.0f;
-	private static Applet parentApplet;
+	
+	private static Image backBuffer = null;
+	private static Graphics backBufferGraphics = null;
+
+	public static Dimension size;
+	private static RenderWindow parent;
+	
 	MyTimer timer;
+	Scene scene;
 	IconLoader iconloader;
 	Object3DSLoader objectloader;
 	
-	public Engine(Applet parent, ServerConnection s){
-		parentApplet=parent;
-		width = parent.getSize().width;
-		height = parent.getSize().height;
-		backBuffer = parent.createImage(width, height);
+	public Engine(RenderWindow p, ServerConnection s){
+		parent=p;
+		size = p.getSize();
+		backBuffer = p.createImage(size.width, size.height);
 		setBackBufferGraphics(backBuffer.getGraphics());
 		//timer = new MyTimer(s);
 		iconloader = new IconLoader(s);
 		objectloader = new Object3DSLoader(s);
-		new Scene(s);
+		scene = new Scene(this,size);
 	}
 
 	public static Image getBackBuffer() {
 		return backBuffer;
 	}
 
-	public void setBackBuffer(Image backBuffer) {
-		Engine.backBuffer = backBuffer;
+	public void setBackBuffer(Image bb) {
+		backBuffer = bb;
 	}
 
-	public void setBackBufferGraphics(Graphics backbufferGraphics) {
-		Engine.backBufferGraphics = backbufferGraphics;
+	public void setBackBufferGraphics(Graphics bbG) {
+		backBufferGraphics = bbG;
 	}
 
 	public static Graphics getBackBufferGraphics() {
 		return backBufferGraphics;
 	}
 
-	public void setParentApplet(Applet parentApplet) {
-		Engine.parentApplet = parentApplet;
+	public void setRenderWindow(RenderWindow p) {
+		parent = p;
 	}
 
-	public static Applet getParentApplet() {
-		return parentApplet;
+	public static RenderWindow getRenderWindow() {
+		return parent;
 	}
 	
 	public static String getAppletURL(){
-		return (Engine.getParentApplet().getDocumentBase().toExternalForm().substring(0,Engine.getParentApplet().getDocumentBase().toExternalForm().lastIndexOf('/'))+"/");
+		return (parent.getDocumentBase().toExternalForm().substring(0,parent.getDocumentBase().toExternalForm().lastIndexOf('/'))+"/");
 	}
 	
 	public static int getWidth() {
-		return width;
+		return size.width;
 	}
 	
 	public static int getHeight() {
-		return height;
+		return size.height;
 	}
 }

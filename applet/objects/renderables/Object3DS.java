@@ -24,32 +24,25 @@ package objects.renderables;
 
 
 public class Object3DS extends Object3D{
-	String objectName;
 	
 	public Object3DS(String name){
 		super(0,0,0);
 		setRotation(0,90);		//Always there is a 90Degree flip
 		setObjectScale(0.10);	//And objects are designed quite large
-		this.objectName=name;
+		setName(name);
 	}
 	
 	public Object3DS(String name, double x,double y,double z){
 		super(x,y,z);
 		setRotation(0,90);
 		setObjectScale(0.10);
-		this.objectName=name;
+		setName(name);
 	}
 
 	public Object3DS(Object3DS o) {
 		super((Object3D) o);
 		setRotation(0,90);
 		setObjectScale(0.10);
-		this.objectName=o.getName();
+		setName(o.getName());
 	}
-
-	public String getName() {
-		return objectName;
-	}
-	
-
 }

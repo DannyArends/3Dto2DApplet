@@ -73,7 +73,7 @@ public class HudButton extends HudObject{
 	public void runPayload() {
 		Utils.console("Window: " + getName());
 		Hud.showChildWindowByName(getName());
-		Scene.updateScene();
+		Scene.updateScene(true,false);
 	}
 
 	@Override

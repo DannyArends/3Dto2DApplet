@@ -22,7 +22,6 @@
 
 package generic;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,6 +51,15 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 public class Utils{
+	
+	static public String printDoubleArray(double[] d){
+		String t="";
+		for(double v : d){
+			t+= v + " "; 
+		}
+		return t;
+	}
+	
 	// / Returns a date string formatted in Unix ls style - if it's within
 	// six months of now, Mmm dd hh:ss, else Mmm dd yyyy.
 	static final SimpleDateFormat shortfmt = new SimpleDateFormat("MMM dd HH:mm");
@@ -67,14 +75,6 @@ public class Utils{
 	public static final Object[] EMPTY_OBJECTS = {};
 	
 	public static JTextArea guireporter=null;
-	
-	public static Color doubleToColor(double x,double maxx){
-	    float cR = (float) (0.5 + (x / (2 * maxx)));
-	    float cG = (float) (0.5 - (x / (2*maxx)));
-	    float cB = (float) (0.5 -(x / (2 * maxx)));
-	    Color c = new Color(cR, cG, cB);
-	    return c;
-	}
 	
 	public static final Enumeration<?> EMPTY_ENUMERATION = new Enumeration<Object>() {
 		public boolean hasMoreElements() {
@@ -1406,24 +1406,4 @@ public class Utils{
 			return emptyBuffer;
 		}
 	}
-
-	// Converts an array of double in [0, 1] to SWT Color
-	public static Color floatArrayToColor(double[] color) {
-		int r = Math.min(255, (int)Math.round(color[0] * 255));
-		int g = Math.min(255, (int)Math.round(color[1] * 255));
-		int b = Math.min(255, (int)Math.round(color[2] * 255));
-						
-		return new Color(r, g, b);
-	}
-	
-	// Converts an array of double in [0, 1] to an Integer representing a color
-	public static int floatArrayToColorInt(double[] color) {
-		int colorInt = Math.min(255, (int)Math.round(color[0] * 255)) << 16 & 0xFF0000 |
-					   Math.min(255, (int)Math.round(color[1] * 255)) << 8 & 0xFF00 |
-					   Math.min(255, (int)Math.round(color[2] * 255));
-						
-		return colorInt;
-	}
-	
-	
 }

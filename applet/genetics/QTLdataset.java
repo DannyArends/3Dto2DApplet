@@ -43,9 +43,9 @@ public class QTLdataset {
 	public GeneticLocation[] traits;
 
 	public QTLdataset(String path) {
-		Utils.console("MODEL: Loading location: " + Engine.getParentApplet().getCodeBase().toString() + path);
+		Utils.console("MODEL: Loading location: " + Engine.getRenderWindow().getCodeBase().toString() + path);
 	    try {
-			URL url = new URL(Engine.getParentApplet().getCodeBase().toString()	+ path);
+			URL url = new URL(Engine.getRenderWindow().getCodeBase().toString()	+ path);
 			InputStream stream = url.openStream();
 			readmodeldata(stream);
 			System.out.println("MODEL: Parsing done");

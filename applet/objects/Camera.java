@@ -25,6 +25,9 @@ package objects;
 import objects.renderables.Object3D;
 
 public class Camera extends Object3D{
+	
+	private static double near = 3.0f;
+	private static double nearToObj = 1.0f;
 
 	public Camera(double x, double y, double z){
 		super(x,y,z);
@@ -38,5 +41,21 @@ public class Camera extends Object3D{
 		location[0] += 0.5*x;
 		location[1] += 0.5*y;
 		location[2] += 0.5*z;
+	}
+
+	public void setNear(double n) {
+		near = n;
+	}
+
+	public static double getNear() {
+		return near;
+	}
+
+	public void setNearToObj(double nto) {
+		nearToObj = nto;
+	}
+
+	public static double getNearToObj() {
+		return nearToObj;
 	}
 }

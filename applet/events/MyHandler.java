@@ -25,22 +25,35 @@ package events;
 import generic.Utils;
 import genetics.QTLheatmap;
 
+import java.applet.Applet;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
+import javax.swing.JPanel;
 
 import objects.Point2D;
 import objects.hud.HudObject;
 import rendering.Engine;
 import rendering.Scene;
 
-public class MyHandler implements MouseMotionListener{
+public class MyHandler implements MouseMotionListener,KeyListener, MouseListener{
 	static int mx; // the most recently recorded mouse coordinates
 	static int my;
 	static HudObject keyinputlistener = null;
 	static HudObject sliderinputlistener = null;
 	
 	public MyHandler(){
+
+	}
+	
+	public MyHandler(Applet parent){
+
+	}
+	
+	public MyHandler(JPanel parent){
 
 	}
 	
@@ -89,7 +102,7 @@ public class MyHandler implements MouseMotionListener{
 		mx = new_mx;
 		my = new_my;
 
-		Engine.getParentApplet().repaint();
+		Engine.getRenderWindow().repaint();
 		e.consume();
 	}
 	
@@ -103,11 +116,11 @@ public class MyHandler implements MouseMotionListener{
 	    	case KeyEvent.VK_PAGE_UP:Utils.console("UP");Scene.getCamera().move(0,1,0);break;
 	    	case KeyEvent.VK_PAGE_DOWN:Utils.console("DOWN");Scene.getCamera().move(0,-1,0);break;
 	    	case KeyEvent.VK_ESCAPE:System.exit(0);break;
-	    	case KeyEvent.VK_M:Utils.console("Modelonly");QTLheatmap.setModelonly(!QTLheatmap.isModelonly());Scene.reDrawScene();break;
-	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();Scene.reDrawScene();break;
-	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();Scene.reDrawScene();break;
+	    	case KeyEvent.VK_M:Utils.console("Modelonly");QTLheatmap.setModelonly(!QTLheatmap.isModelonly());Scene.updateScene(false,true);break;
+	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();Scene.updateScene(false,true);break;
+	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();Scene.updateScene(false,true);break;
 	      }
-	    Engine.getParentApplet().repaint();
+	    Engine.getRenderWindow().repaint();
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -127,6 +140,11 @@ public class MyHandler implements MouseMotionListener{
 	public static Point2D getMouse() {
 		Point2D p = new Point2D(mx,my);
 		return p;
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
 	}
 
 }

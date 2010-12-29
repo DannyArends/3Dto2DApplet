@@ -53,7 +53,7 @@ public class ButtonControler {
 			if(b.x < x && b.y < y){
 				if(b.getAbsoluteSizeX() > x && b.getAbsoluteSizeY() > y){
 					if(b.isVisible()){
-						Utils.console(b.getName()+ " "+x+","+y+"=="+b.x+","+b.y);
+						//Utils.console(b.getName()+ " "+x+","+y+"=="+b.x+","+b.y);
 						((HudButton)b).runPayload();
 						return true;
 					}
@@ -64,10 +64,10 @@ public class ButtonControler {
 	}
 	
 	public static void addMainMenu(){
-		addButton(new HudMenuButton(0,0,70,20,"File"));
-		addButton(new HudMenuButton(70,0,70,20,"Edit"));
-		addButton(new HudMenuButton(140,0,70,20,"View"));
-		HudMenuButton mb = new HudMenuButton(210,0,70,20,"Help");
+		addButton(new HudMenuButton(0,20,70,20,"File"));
+		addButton(new HudMenuButton(70,20,70,20,"Edit"));
+		addButton(new HudMenuButton(140,20,70,20,"View"));
+		HudMenuButton mb = new HudMenuButton(210,20,70,20,"Help");
 		tmp_button = new HudButton(0,0,70,20,"Controls",false,Color.darkGray);
 		addButton(tmp_button);
 		mb.addChild(tmp_button);
@@ -78,6 +78,7 @@ public class ButtonControler {
 		addButton(tmp_button);
 		mb.addChild(tmp_button);
 		addButton(mb);
+		Utils.console("MainMenu");
 	}
 	
 	public static void addButton(HudObject b){

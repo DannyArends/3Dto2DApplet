@@ -45,13 +45,13 @@ public class HudImage extends HudButton{
 	
 	public void TryLoadingFromName(){
 		try {
-			Utils.console(Engine.getParentApplet().getCodeBase().toString()	+ "data/icons/" + getName());
-			url = new URL(Engine.getParentApplet().getCodeBase().toString()	+ "data/icons/" + getName()); 
+			Utils.console(Engine.getRenderWindow().getCodeBase().toString()	+ "data/icons/" + getName());
+			url = new URL(Engine.getRenderWindow().getCodeBase().toString()	+ "data/icons/" + getName()); 
 			i= new ImageIcon(url);
 			setSize(50,50);
 			loaded=true;
 		}catch (Exception e) {
-			Utils.log("No such image at:" + Engine.getParentApplet().getCodeBase().toString() + getName() , System.out);
+			Utils.log("No such image at:" + Engine.getRenderWindow().getCodeBase().toString() + getName() , System.out);
 			loaded=false;
 		}	
 	}
@@ -59,7 +59,7 @@ public class HudImage extends HudButton{
 	@Override
 	public void render(Graphics2D g) {
 		  if(isLoaded() && isVisible()){
-			 g.drawImage(i.getImage(), (int)x, (int)y,i.getIconWidth(),i.getIconHeight(), Engine.getParentApplet());
+			 g.drawImage(i.getImage(), (int)x, (int)y,i.getIconWidth(),i.getIconHeight(), Engine.getRenderWindow());
 		  }else{
 			 Hud.drawBox(g, (int)x, (int)y, 50, 50, Color.red);
 		  }

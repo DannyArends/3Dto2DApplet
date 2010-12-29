@@ -56,7 +56,7 @@ public class HudInputBox extends HudButton {
 	    	default: this.input += c;
 			}
 		}
-		Scene.updateScene();
+		Scene.updateScene(true,false);
 	}
 
 	@Override

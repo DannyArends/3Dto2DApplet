@@ -31,8 +31,9 @@ import rendering.Engine;
 import rendering.Scene;
 import events.MyHandler;
 import events.ServerConnection;
+import generic.RenderWindow;
 
-public class WireFrame extends Applet implements KeyListener, MouseListener{
+public class WireFrame extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = 1L;
 	
 	MyHandler eventListener= new MyHandler();
@@ -44,13 +45,13 @@ public class WireFrame extends Applet implements KeyListener, MouseListener{
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(eventListener);
-		Scene.updateScene();
+		Scene.updateScene(true,true);
 	}
 
 
 	public void update(Graphics g) {
+		Scene.updateScene(true,true);
 		Scene.updateGraphics(g);
-		Scene.updateScene();
 	}
 
 	public void paint(Graphics g) {

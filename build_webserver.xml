@@ -3,7 +3,7 @@
         ANT file to build a standalone DWF jar
     </description>
   <!-- set global properties for this build -->
-  <property name="applet_src"   	location="applet/generic"	/>
+  <property name="applet_src"   	location="applet"			/>
   <property name="webserver_src"   	location="webserver" 		/>
   <property name="build" 			location="build"     		/>
   <property name="dist"  			location="dist"      		/>
@@ -34,9 +34,10 @@
     <jar jarfile="webserver.jar" basedir="${build}">
     	<manifest>
      	    <attribute name="Built-By" value="${myname}"/>
-     	    <attribute name="Main-Class" value="StandAlone"/>
+     	    <attribute name="Main-Class" value="DWF"/>
      	</manifest>
     </jar>
+    <delete dir="${build}"/>
   </target>
 
   <target name="clean" depends="package" description="clean up" >

@@ -32,6 +32,7 @@
      	    <attribute name="Built-By" value="${myname}"/>
      	</manifest>
     </jar>
+    <delete dir="${build}"/>
   </target>
 
   <target name="clean" depends="package" description="clean up" >

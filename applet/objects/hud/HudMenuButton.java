@@ -44,7 +44,6 @@ public class HudMenuButton extends HudButton{
 			children.get(wb).setVisible(!children.get(wb).isVisible());
 		}
 		Utils.console("Opened "+ children.size() +" subwindows");
-		Scene.reDrawScene();
-		Scene.updateScene();
+		Scene.updateScene(true,false);
 	}
 }

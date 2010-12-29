@@ -60,6 +60,7 @@ public class PerlServlet extends Servlet {
 					}
 				}
 			}
+			o.close();
 			Utils.console("Served file: " + file + " " +  length + " bytes");
 		}else{
 			Utils.log("No such file: " + filename,System.err);

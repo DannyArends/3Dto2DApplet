@@ -44,7 +44,7 @@ import objects.hud.windows.StatsWindow;
 public class Hud extends HudObject{
 	QTLdataset dataset;
 	private static Vector<HudWindow> hudWindows = new Vector<HudWindow>();
-	private ButtonControler buttonarray = new ButtonControler();
+	private ButtonControler buttonarray= new ButtonControler();
 	
 	static Font[] fonts = new Font[]{
 		new Font("Dialog", Font.BOLD,  12),
@@ -97,11 +97,11 @@ public class Hud extends HudObject{
 	}
 
 	public void render(Graphics2D g){
-		buttonarray.render(g);
 		for(HudWindow o : getSortedHudWindows()){
 			if(o.isNeedUpdate()) o.update();
 			o.render(g);
 		}
+		buttonarray.render(g);
 	}
 	
 	public static void showChildWindowByName(String name){

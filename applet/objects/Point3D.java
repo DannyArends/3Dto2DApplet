@@ -22,7 +22,6 @@
 package objects;
 
 import generic.MathUtils;
-import rendering.Engine;
 
 public class Point3D {
 	public double[] location = new double[3];
@@ -115,9 +114,13 @@ public class Point3D {
 	
 	protected double[] computePerspectiveProjection(double[] x){
 		double[] d = new double[2];
-		double t = Engine.near / (x[2] + Engine.near + Engine.nearToObj);
+		double t = Camera.getNear() / (x[2] + Camera.getNear() + Camera.getNearToObj());
 		d[0] = x[0] * t;
 		d[1] = x[1] * t;
 		return d;
+	}
+	
+	public boolean inFrontOfCamera(double d){
+		return ((d + Camera.getNear() + Camera.getNearToObj()) < 0);
 	}
 }

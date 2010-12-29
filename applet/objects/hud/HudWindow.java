@@ -54,21 +54,21 @@ public class HudWindow extends HudButton{
 		topMenu.add(new HudButton(0,0,22,16,"X",true,Color.lightGray,this){
 			public void runPayload() {
 				getParent().setVisible(false);
-				Scene.updateScene();
+				Scene.updateScene(true,false);
 			}
 		});
 		topMenu.add(new HudButton(0,0,22,16,"M",true,Color.lightGray,this){
 			public void runPayload() {
 				getParent().setMinimized(false);
 				getParent().setSize(originalsize);
-				Scene.updateScene();
+				Scene.updateScene(true,false);
 			}
 		});
 		topMenu.add(new HudButton(0,0,22,16,"-",true,Color.lightGray,this){
 			public void runPayload() {
 				getParent().setMinimized(true);
 				getParent().setSize((int)originalsize.x,20);
-				Scene.updateScene();
+				Scene.updateScene(true,false);
 			}
 		});
 	}
@@ -88,8 +88,7 @@ public class HudWindow extends HudButton{
 			}
 		}
 		ButtonControler.checkLocation(children, (int)MyHandler.getMouse().x, (int)MyHandler.getMouse().y);
-		Scene.updateScene();
-		Scene.reDrawScene();
+		Scene.updateScene(true,false);
 	}
 	
 	@Override

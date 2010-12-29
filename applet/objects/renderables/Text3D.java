@@ -72,7 +72,7 @@ public class Text3D extends Object3D {
 		int scaleFactor = (int) ((Engine.getWidth() / 8));
 		double[] d = computeOrtogonalProjection(difference(c),rotation);
 		int fontid;
-		if(!((d[2] + Engine.near + Engine.nearToObj) < 0)){
+		if(!inFrontOfCamera(d[2])){
 			//Calculate a perspective projection
 			d=computePerspectiveProjection(d);
 			if(!((Engine.getWidth()/2 - scaleFactor * d[0]) < 0) && !((Engine.getWidth()/2 - scaleFactor * d[0])<0)){

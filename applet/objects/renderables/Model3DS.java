@@ -6,8 +6,10 @@ import generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.io.InputStream;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Vector;
 
 import objects.Camera;
@@ -21,9 +23,8 @@ import rendering.Engine;
 public class Model3DS extends Object3D{
 	private Vector<Object3DS> objects;
 	private Vector<Material3DS> materials;
-	private boolean loaded = false;
 	private String name;
-	InputStream stream;
+	ByteArrayInputStream stream;
 	int filelength;
 	URL url;
 	
@@ -51,10 +52,6 @@ public class Model3DS extends Object3D{
 
 	public Vector<Object3DS> getObjects() {
 		return objects;
-	}
-
-	public void setLoaded(boolean loaded) {
-		this.loaded = loaded;
 	}
 
 	public void setMaterials(Vector<Material3DS> materials) {
@@ -95,20 +92,32 @@ public class Model3DS extends Object3D{
 		return name;
 	}
 
-	public boolean isLoaded() {
-		return loaded;
-	}
-	
 	public void TryLoadingFromName() {
-		if(Engine.verbose) Utils.console("Loading file: " + Engine.getParentApplet().getCodeBase().toString()	+ "data/models/" + getName());
+		if(Engine.verbose) Utils.console("Loading file: " + Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
 		Vector<Object3DS> objects = new Vector<Object3DS>();
 		Vector<Material3DS> materials = new Vector<Material3DS>();
 		Object3DS object = null;
 		Material3DS material = null;
+		byte[] b = null;
 		try {
-			url = new URL(Engine.getParentApplet().getCodeBase().toString()	+ "data/models/" + getName());
-			stream = url.openStream();
-			if(Engine.verbose) Utils.console("File: " + getName() + " " + (filelength = stream.available()));
+			url = new URL(Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
+			URLConnection conn = url.openConnection();
+			filelength = conn.getContentLength();
+			BufferedInputStream s = new BufferedInputStream(conn.getInputStream());
+			b = new byte[conn.getContentLength()];
+			Utils.console("File: " + getName() + " " + conn.getContentLength() + " M: " + b.length);
+			for(int i=0;i < filelength; i++){
+				b[i] = (byte) s.read();
+				if(i%1024==0)System.out.print(".");
+			}
+			System.out.print("\n");
+			s.close();
+		}catch(Exception e){
+			Utils.log("Error downloading file from server",e);
+		}
+		if(b==null) return;
+		try{
+			stream = new ByteArrayInputStream(b);
 			ServerConnection.down+=filelength;
 			byte[] shortconversion = new byte[2];
 			byte[] doubleconversion = new byte[8];
@@ -208,7 +217,7 @@ public class Model3DS extends Object3D{
 					if (material != null)
 						materials.add(material);
 					tempstring = BinaryUtils.read3dsstring(stream);
-					Utils.console("Found new material: " + tempstring);
+					//Utils.console("Found new material: " + tempstring);
 					material = new Material3DS(tempstring);
 					break;
 				case 40976:
@@ -272,15 +281,25 @@ public class Model3DS extends Object3D{
 				}
 
 			}
+			stream.close();
 		} catch (Exception e) {
 			Utils.log("Cannot open URL", e);
-			setLoaded(loaded);
+			setLoaded(false);
 		}
 		if (object != null)	objects.add(object);
 		
 		setObjects(objects);
 		setMaterials(materials);
-		setLoaded(true);
+		if(objects.isEmpty()){
+			setLoaded(false);
+		}else{
+			setLoaded(true);
+			for(Object3DS o : objects){
+				if(o.edges == null)setLoaded(false);
+				if(o.vertices == null)setLoaded(false);
+			}
+		}
+		
 		Utils.console("Loaded object:" + getName());
 	}
 	

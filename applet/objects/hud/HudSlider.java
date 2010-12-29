@@ -26,7 +26,7 @@ public class HudSlider extends HudButton  {
 		if(Math.abs(my-y) > 20) return false;
 		if((mx-x) < 0 || (mx-x) > 150) return true;
 		this.cur = (int) (mx-x);
-		Scene.updateScene();
+		Scene.updateScene(true,false);
 		return true;
 	}
 	

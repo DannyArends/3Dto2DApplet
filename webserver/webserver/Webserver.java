@@ -88,7 +88,12 @@ public class Webserver implements ServletContext, Serializable {
 	public static final String BGCOLOR = "BGCOLOR=\"WHITE\"";
 	protected static final int DEF_MAX_CONN_USE = 100;
 	public static final String UTF8 = "UTF-8"; // default encoding
-	protected String hostName;
+	private String hostName;
+	
+	public String getHostName() {
+		return "http://" +((hostName =="0.0.0.0")? "localhost": hostName) +  ":" + Webserver.DEF_PORT + "/";
+	}
+
 	private transient PrintStream logStream;
 
 	public void setLogStream(PrintStream logStream) {
@@ -227,12 +232,19 @@ public class Webserver implements ServletContext, Serializable {
 	protected int getMaxTimesConnectionUse() {
 		return maxAliveConnUse;
 	}
+	
+	private boolean mimeLoaded = false;
+
+	public boolean isMimeLoaded() {
+		return mimeLoaded;
+	}
 
 	protected void initMime() {
 		mime = new Properties();
 		try {
 			mime.load(getClass().getClassLoader().getResourceAsStream("generic/mime.properties"));
 			Utils.console("MIME loaded from: generic/mime.properties");
+			mimeLoaded=true;
 		} catch (Exception ex) {
 			log("MIME map can't be loaded:" + ex);
 		}
@@ -366,6 +378,10 @@ public class Webserver implements ServletContext, Serializable {
 
 	// Run the server. Returns only on errors.
 	transient boolean running = true;
+
+	public boolean isRunning() {
+		return running;
+	}
 
 	protected transient Acceptor acceptor;
 
@@ -1383,7 +1399,7 @@ public class Webserver implements ServletContext, Serializable {
 
 		// / Constructor.
 		public ServeConnection(Socket socket, Webserver serve) {
-			//serve.log("+++++++"+this);
+			serve.log("+++++++"+this);
 			// Save arguments.
 			this.socket = socket;
 			this.serve = serve;
@@ -1553,14 +1569,14 @@ public class Webserver implements ServletContext, Serializable {
 				//System.err.println("Drop "+ioe);
 				//ioe.printStackTrace();
 				if (ioe instanceof SocketTimeoutException) {
-					//serve.log("Keepalive timeout, async " + asyncMode, null);
+					Utils.log("Keepalive timeout, async " + asyncMode, System.err);
 				} else {
 					String errMsg = ioe.getMessage();
 					if ((errMsg == null || errMsg.indexOf("ocket closed") < 0)
 							&& ioe instanceof java.nio.channels.AsynchronousCloseException == false)
 						if (socket != null)
-							serve.log("IO error: " + ioe + " in processing a request from " + socket.getInetAddress()
-									+ ":" + socket.getLocalPort() + " / " + socket.getClass().getName()/*, ioe*/);
+							Utils.log("IO error: " + ioe + " in processing a request from " + socket.getInetAddress()
+									+ ":" + socket.getLocalPort() + " / " + socket.getClass().getName(), ioe);
 						else
 							serve.log("IO error: " + ioe + "(socket NULL)");
 					else
@@ -3703,6 +3719,8 @@ public class Webserver implements ServletContext, Serializable {
 				} else {
 					//TODO figure a working fix for R so we don't have a timeout of 30secs
 					len = in.read(b, off, len);
+					//Utils.console("" +b[0]);
+					//len=1;
 				}
 					
 			}
