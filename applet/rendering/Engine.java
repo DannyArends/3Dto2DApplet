@@ -48,7 +48,7 @@ public class Engine {
 		size = p.getSize();
 		backBuffer = p.createImage(size.width, size.height);
 		setBackBufferGraphics(backBuffer.getGraphics());
-		//timer = new MyTimer(s);
+		timer = new MyTimer(s);
 		iconloader = new IconLoader(s);
 		objectloader = new Object3DSLoader(s);
 		scene = new Scene(this,size);

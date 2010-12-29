@@ -1,7 +1,5 @@
 package rendering;
 
-import java.awt.Color;
-
 import generic.ColorUtils;
 import generic.MathUtils;
 import generic.Utils;
@@ -13,7 +11,7 @@ import objects.renderables.light.Light;
 
 public class RayTracer {
 	public final double EPSILON = 0.00000001F;
-	public final int MAX_REFLECTION_RECURSION_DEPTH = 4;
+	public final int MAX_REFLECTION_RECURSION_DEPTH = 8;
 	// These are some of the camera's properties for easy (fast) access
 	double[] eye= new double[3];
 	double[] rightDirection = new double[3];	
@@ -23,30 +21,45 @@ public class RayTracer {
 	double screenDist= 3;
 	double pixelWidth = 2.0 / Engine.getWidth();
 	double pixelHeight = (Engine.getWidth() / Engine.getHeight()) * pixelWidth;
-	int superSampleWidth=1;
+	int superSampleWidth=3;
+	boolean[] raster;
+	long l1=0;
+	long l2=0;
+	long l3=0;
 	
 	public void update(Camera c){
 		c.update(c);
+		raster = new boolean[(Engine.getWidth() * Engine.getHeight())];
 		eye = c.location;
 		direction[0] = -c.rotation[6];
 		direction[1] = -c.rotation[3];
 		direction[2] = c.rotation[4];
+		MathUtils.normalize(direction);
 		// Compute a right direction and a view plane up direction (perpendicular to the look-at vector)
 		rightDirection = MathUtils.crossProduct(upDirection, direction);
 		MathUtils.normalize(rightDirection);
 		MathUtils.oppositeVector(rightDirection);
 		MathUtils.multiplyVectorByScalar(rightDirection, -1);
 		viewplaneUp = MathUtils.crossProduct(rightDirection, direction);		
-		MathUtils.normalize(viewplaneUp);		
+		MathUtils.normalize(viewplaneUp);	
+		for(int i = 0; i < Engine.getHeight()*Engine.getWidth(); i+=(Math.random()* 250 )){
+			raster[i] = false;
+		}
 	}
 	
 	public void render(){
-		Engine.getBackBufferGraphics().setColor(Color.black);
-		Engine.getBackBufferGraphics().fillRect(0, 0, Engine.getWidth(), Engine.getHeight());
-		//long l1 = System.nanoTime();
-		for(int y = 0; y < Engine.getHeight(); y+=2){			
-			for(int x = 0; x < Engine.getWidth(); x+=2){									
-				int hits = 0;
+		l1 = System.nanoTime();
+		int y=0;
+		int x=0;
+		int width = Engine.getWidth();
+		if(Scene.grainedness < 10) Scene.grainedness = 5;
+		//Utils.console("g: "+Scene.grainedness);
+		for(int i = 0; i < Engine.getHeight()*Engine.getWidth(); i+=Math.random()* Scene.grainedness){			
+			if(!raster[i]){
+			raster[i] = true;
+			x = i % width;
+			y = i / width;
+			int hits = 0;
 				double[] color = new double[3];
 				// Supersampling loops
 				for (int k = 0; k < superSampleWidth; k++) {															
@@ -75,11 +88,11 @@ public class RayTracer {
 				}
 				Engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(color));
 				Engine.getBackBufferGraphics().fillRect(x, y, 1, 1);
+			}else{
+				//Utils.console("tasret skip");
 			}
-			//long l3 = System.nanoTime();
-			//Utils.console("scanline: " + (l3-l1)/1000000 + " ms");
 		}
-		//long l2 = System.nanoTime();
+		l2 = System.nanoTime();
 		//Utils.console("Rendered one image: " + (l2-l1)/1000000 + " ms");
 	}
 

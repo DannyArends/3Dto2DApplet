@@ -56,7 +56,7 @@ public class DWF extends JFrame implements RenderWindow {
 		Utils.log("-- Starting webserver --",System.err);
 		new Thread(webserver).start();
 		Utils.log("-- Serving: http://localhost:8080/ --",System.err);
-		new DWF(800,600,title);
+		new DWF(1024,768,title);
 	}
 
 	@Override

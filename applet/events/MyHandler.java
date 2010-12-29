@@ -95,14 +95,14 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 			if(!sliderinputlistener.handleSlide(mx,my))sliderinputlistener=null ;
 		}else{
 			// since the last event
-			Scene.getCamera().setHorizontalRotation(Scene.getCamera().getHorizontalRotation() - (new_mx - mx));
-			Scene.getCamera().setVerticalRotation(Scene.getCamera().getVerticalRotation() + (new_my - my));
+			Scene.getCamera().setHorizontalRotation((int)(Scene.getCamera().getHorizontalRotation() - 0.3*(new_mx - mx)));
+			Scene.getCamera().setVerticalRotation((int)(Scene.getCamera().getVerticalRotation() +  0.3*(new_my - my)));
 		}
 		// update our data
 		mx = new_mx;
 		my = new_my;
 
-		Engine.getRenderWindow().repaint();
+		Scene.updateScene(false, true);
 		e.consume();
 	}
 	

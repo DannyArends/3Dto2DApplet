@@ -1576,7 +1576,7 @@ public class Webserver implements ServletContext, Serializable {
 							&& ioe instanceof java.nio.channels.AsynchronousCloseException == false)
 						if (socket != null)
 							Utils.log("IO error: " + ioe + " in processing a request from " + socket.getInetAddress()
-									+ ":" + socket.getLocalPort() + " / " + socket.getClass().getName(), ioe);
+									+ ":" + socket.getLocalPort() + " / " + socket.getClass().getName(), System.err);
 						else
 							serve.log("IO error: " + ioe + "(socket NULL)");
 					else

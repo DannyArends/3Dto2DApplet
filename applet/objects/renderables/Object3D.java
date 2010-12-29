@@ -108,11 +108,13 @@ public class Object3D extends Point3D{
 		ownrotation[5] = ownrotation[0] * ownrotation[3];
 		ownrotation[6] = ownrotation[1] * ownrotation[2];
 		ownrotation[7] = ownrotation[1] * ownrotation[3];
+		
 		if(vertices!=null){
 			Point2D[] points = new Point2D[vertices.length];
 			int width = Engine.getWidth();
 			int height = Engine.getHeight();
-			int scaleFactor = (int) ((width / 8));
+			int scaleFactor_w = (int) ((width / 1.90));
+			int scaleFactor_h = (int) ((height / 1.40));
 			double[] d;
 			
 			for (int j = 0; j < vertices.length; ++j) {
@@ -123,7 +125,7 @@ public class Object3D extends Point3D{
 				if(!inFrontOfCamera(d[2])){
 					//Calculate a perspective projection
 					d=computePerspectiveProjection(d);
-					points[j] = new Point2D((int)(width/2 - scaleFactor * d[0]),(int)(height/2  - scaleFactor * d[1]));
+					points[j] = new Point2D((int)(width/2 - scaleFactor_w * d[0]),(int)(height/2  - scaleFactor_h * d[1]));
 				}
 			}
 			setPoints(points);

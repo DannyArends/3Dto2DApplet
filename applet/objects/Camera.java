@@ -27,7 +27,7 @@ import objects.renderables.Object3D;
 public class Camera extends Object3D{
 	
 	private static double near = 3.0f;
-	private static double nearToObj = 1.0f;
+	private static double nearToObj = 0.1f;
 
 	public Camera(double x, double y, double z){
 		super(x,y,z);

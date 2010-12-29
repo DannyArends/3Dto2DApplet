@@ -73,9 +73,9 @@ public class Hud extends HudObject{
 	}
 	
 	public static void drawBox(Graphics2D g, int x, int y, int width,int height,Color c){
-		g.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), 150));
+		g.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), 255));
 		g.fillRect(x, y+2, width-10, height);
-		g.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), 150));
+		g.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), 255));
 		g.fillRect(x, y+4, width-15, height-2);
 	}
 	

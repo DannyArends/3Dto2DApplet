@@ -29,8 +29,8 @@ public class Material3DS {
 	public boolean is_diffuse = false;
 	public boolean is_specular = false;
 	public boolean is_ambient = false;
-	double reflectance=2;
-	double shininess=5;
+	double reflectance=4;
+	double shininess=10;
 	
 	private double[] ambientColor = new double[]{1.0,1.0,1.0};
 	private double[] specularColor = new double[]{1.0,1.0,1.0};
