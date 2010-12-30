@@ -71,7 +71,9 @@ public class Scene{
 			Utils.log("Error unable to load dataset", e);
 		}
 		//Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
-		Scene.addObject(Object3DSLoader.getModel(10,1,10, "lung_0.3ds"));
+		Object3D i = Object3DSLoader.getModel(1,1,1, "lung_0.3ds");
+		i.setTransparant(0.4);
+		Scene.addObject(i);
 		Scene.addObject(Object3DSLoader.getModel(0,0,0, "avatar_1.3ds"));
 		Scene.addObject(Object3DSLoader.getModel(5,0,0, "lung_0.3ds"));
 		Scene.addObject(Object3DSLoader.getModel(0,0,15, "humanoid.3ds"));

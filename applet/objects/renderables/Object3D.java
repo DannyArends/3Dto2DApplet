@@ -54,6 +54,17 @@ public class Object3D extends Point3D{
 	private Point2D[] mapcoords;
 	private Point2D[] points = null;
 	
+	double transparant = 0.9;
+	
+	public double getTransparant() {
+		return transparant;
+	}
+
+
+	public void setTransparant(double transparant) {
+		this.transparant = transparant;
+	}
+	
 	public void setHorizontalRotation(int horizontalRotation) {
 		this.horizontalRotation = horizontalRotation;
 	}
@@ -133,7 +144,9 @@ public class Object3D extends Point3D{
 	}
 	
 	public Object3D(Object3D o) {
-		location = o.location;
+		location[0] = o.location[0];
+		location[1] = o.location[1];
+		location[2] = o.location[2];
 		setRotation(o.getHorizontalRotation(),o.getVerticalRotation());
 		vertices = o.vertices;
 		mapcoords = o.mapcoords;

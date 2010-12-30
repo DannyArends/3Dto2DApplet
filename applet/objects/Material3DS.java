@@ -31,7 +31,7 @@ public class Material3DS {
 	public boolean is_ambient = false;
 	double reflectance=4;
 	double shininess=10;
-	
+
 	private double[] ambientColor = new double[]{1.0,1.0,1.0};
 	private double[] specularColor = new double[]{1.0,1.0,1.0};
 	private double[] diffuseColor = new double[]{1.0,1.0,1.0};

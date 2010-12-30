@@ -12,6 +12,7 @@ use strict;
 
 #Global Variables across all includes
 our %form;
+our @paramnames;
 our $write_location;
 our $data_location;
 
@@ -25,14 +26,15 @@ sub printHTTPHeader{
 }
 
 sub receivePost{
-  print("#FROM_CLIENT" . "\n");
+  	#print("#FROM_CLIENT" . "\n");
 	foreach my $p (param()) {
+		push (@paramnames, $p);
 		$form{$p} = param($p);
 	}
 }
 
 sub printPost{
-  print("#FROM_CLIENT" . "\n");
+    print("#FROM_CLIENT" . "\n");
 	foreach my $p (param()) {
     	print($p . " = " . $form{$p} . "\n");
 	}
@@ -61,14 +63,14 @@ sub writeIPtoLog{
 	my $line = '';
 	my $filename = $write_location . "output.log";
 	if(defined($ENV{REMOTE_ADDR})){
-		open(MYFILE, $filename) or die print("Error: opening file for reading");
+		open(MYFILE, $filename) or die print("Error: opening ip log file for reading");
  		while($line  = <MYFILE>) {
  			chomp($line);
  			if($line eq $ENV{REMOTE_ADDR}){ $found = 1; }
  		}
 		if(!$found){
 			close (MYFILE);
-			open(MYFILE, ">>$filename") or die print("Error: opening file for writing");
+			open(MYFILE, ">>$filename") or die print("Error: opening ip log file for writing");
 			#print("ADD: $ENV{REMOTE_ADDR}" . "\n");
 			print MYFILE $ENV{REMOTE_ADDR} . "\n";
 		}else{

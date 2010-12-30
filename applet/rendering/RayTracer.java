@@ -122,8 +122,10 @@ public class RayTracer {
 			double t = primitive.intersect(ray);
 			// If we found a closer intersecting primitive, keep a reference to and it
 			if (t < minDistance && t > EPSILON && primitive != ignorePrimitive){
-				minPrimitive = primitive;
-				minDistance = t;
+				if(primitive.getTransparant() == 0 | primitive.getTransparant() < Math.random()){
+					minPrimitive = primitive;
+					minDistance = t;
+				}
 			}
 		}
 		return new Intersection(minDistance, minPrimitive);
@@ -132,7 +134,7 @@ public class RayTracer {
 	public double[] getColor(Vector3D ray, Intersection intersection, int recursionDepth){
 		// Avoid infinite loops and help performance by limiting the recursion depth
 		if (recursionDepth > MAX_REFLECTION_RECURSION_DEPTH){
-			return Scene.getBackgroundColor();
+			return new double[]{0.0,0.0,1.0};
 		}
 		Object3D primitive = intersection.getPrimitive();
 		if (primitive == null){
