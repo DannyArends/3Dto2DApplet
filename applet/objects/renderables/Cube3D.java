@@ -24,6 +24,7 @@ package objects.renderables;
 
 import objects.Edge;
 import objects.Point3D;
+import objects.Vector3D;
 
 public class Cube3D extends Object3D{
 	public Cube3D(double x,double y, double z,int hrot, int vrot,double size){
@@ -54,5 +55,25 @@ public class Cube3D extends Object3D{
 		edges[10] = new Edge(5, 7);
 		edges[11] = new Edge(6, 7);
 		this.setEdges(edges);
+	}
+
+	@Override
+	public double[] getTextureCoords(double[] point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double intersect(Vector3D ray) {
+		for(int i=0;i< edges.length/3;i++){
+			double distance = intersectWithPlane(ray,i);
+			if(distance != Double.POSITIVE_INFINITY  &&  distance != Double.NEGATIVE_INFINITY){
+				distance = intersectBarycentric(ray, i, distance);
+				if(distance != Double.POSITIVE_INFINITY  &&  distance != Double.NEGATIVE_INFINITY){
+					return distance;
+				}
+			}
+		}
+		return Double.POSITIVE_INFINITY;
 	}
 }

@@ -30,7 +30,6 @@ import java.util.Vector;
 import objects.renderables.Object3D;
 import objects.renderables.Text3D;
 import objects.renderables.Triangle3D;
-import rendering.Engine;
 import rendering.Scene;
 
 public class QTLheatmap {
@@ -60,7 +59,6 @@ public class QTLheatmap {
 		        			Triangle3D qtl = new Triangle3D(cm,0.0,x,0,0,1,d.qtlmatrix[x].scores[m]/10,ColorUtils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
 		        			Text3D t = new Text3D(""+d.qtlmatrix[x].scores[m],cm,(d.qtlmatrix[x].scores[m]/10)+1,x); 
 		        			qtl.setWireframe(false);
-		        			qtl.render(Engine.getBackBufferGraphics(),Scene.getCamera());
 		        			r.add((Object3D)qtl);
 		        			r.add((Object3D)t);
 		        		}
@@ -68,7 +66,6 @@ public class QTLheatmap {
 		        		//Surface triangle = new Surface(cm,0.0,x,0,0,d.qtlmatrix[x].scores[m]/100,d.qtlmatrix[x].scores[m]/100,Utils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
 		        		Triangle3D qtl = new Triangle3D((d.qtlmatrix[x].scores.length-1)-m,0.0,(d.qtlmatrix.length-1)-x,0,0,1,d.qtlmatrix[x].scores[m]/20,ColorUtils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
 		        		if(d.modelmatrix[x].scores[m]>0){qtl.setWireframe(false); }else{ qtl.setWireframe(true); }
-		        		qtl.render(Engine.getBackBufferGraphics(),Scene.getCamera());
 		        		r.add((Object3D)qtl);
 		        	}
 		        	if(r.size() > Scene.softmyobjectslimit && !isModelonly()){

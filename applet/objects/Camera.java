@@ -58,4 +58,16 @@ public class Camera extends Object3D{
 	public static double getNearToObj() {
 		return nearToObj;
 	}
+
+	@Override
+	public double[] getTextureCoords(double[] point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double intersect(Vector3D ray) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

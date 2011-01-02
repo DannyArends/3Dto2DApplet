@@ -30,16 +30,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
+import java.util.Vector;
 
 import objects.Camera;
 import objects.Edge;
-import objects.Material3DS;
+import objects.Material;
 import objects.Point2D;
 import objects.Point3D;
+import objects.Texture;
 import objects.Vector3D;
 import rendering.Engine;
 
-public class Object3D extends Point3D{
+public abstract class Object3D extends Point3D{
 	private String name = "Object3D";
 	private boolean wireframe = false;
 	private boolean loaded = false;
@@ -58,6 +60,7 @@ public class Object3D extends Point3D{
 	double[][][] triangles;
 	double[][] normals;
 	double[] distancequotients;
+	Vector<Material> materials = new Vector<Material>();
 	
 	public Object3D(double x, double y, double z){
 		super(x,y,z);
@@ -70,7 +73,7 @@ public class Object3D extends Point3D{
 		setHorizontalRotation(hrot);
 		setVerticalRotation(vrot);
 	}
-	
+
 	public Object3D(Object3D o) {
 		location[0] = o.location[0];
 		location[1] = o.location[1];
@@ -90,7 +93,6 @@ public class Object3D extends Point3D{
 	
 	public void bufferMyObject(){
 		if(!buffered && edges != null){
-			Utils.log("starting", System.err);
 			triangles = new double[edges.length/3][3][3];
 			normals = new double[edges.length/3][3];
 			distancequotients = new double[edges.length/3];
@@ -110,7 +112,6 @@ public class Object3D extends Point3D{
 				normals[l] = normal;
 				distancequotients[l] = -(MathUtils.dotProduct(normal, triangles[l][0]));
 			}
-			Utils.log("done", System.err);
 			buffered = true;
 		}
 	}
@@ -212,7 +213,8 @@ public class Object3D extends Point3D{
 		return edges;
 	}
 	
-	public void addTriangleColor(int[] targets,Material3DS m){
+	public void addTriangleColor(int[] targets,Material m){
+		materials.add(m);
 		for(int x : targets){
 			edgeColors[x] = m.getAmbientColor();
 		}
@@ -296,9 +298,7 @@ public class Object3D extends Point3D{
 		this.wireframe = wireframe;
 	}
 
-	public double intersect(Vector3D ray) {
-		return intersectGeometric(ray,0.1);
-	}
+	public abstract double intersect(Vector3D ray);
 	
 	/**
 	 * Calculate the intersection distance of this sphere with the given ray.
@@ -312,14 +312,12 @@ public class Object3D extends Point3D{
 		if(vertices==null) return Double.POSITIVE_INFINITY; 
 		// Note that locals are named according to the equations in the lecture notes.
 		double[] v = new double[3];
-		int i = (int)(Math.random()*vertices.length);
-		v[0] = vertices[i].location[0];
-		v[1] = vertices[i].location[1];
-		v[2] = vertices[i].location[2];
-		MathUtils.multiplyVectorByScalar(v, 0.1);
+		v[0] = location[0];
+		v[1] = location[1];
+		v[2] = location[2];
 		double[] L = MathUtils.calcPointsDiff(ray.location, v);
 		double[] V = ray.getDirection();
-		
+
 		double tCA = MathUtils.dotProduct(L, V);
 		
 		if(tCA < 0) return Double.POSITIVE_INFINITY;
@@ -341,12 +339,21 @@ public class Object3D extends Point3D{
 		}
 	}
 
-	public Material3DS getMaterialAt(double[] pointOfIntersection) {
-		return new Material3DS("test");
+	public Material getMaterialAt(double[] pointOfIntersection) {
+		if(materials.isEmpty()){
+			return new Material("test");
+		}else{
+			return materials.elementAt(0);
+		}
 	}
 
 	public double[] getColorAt(double[] pointOfIntersection) {
-		return new double[]{1.0,1.0,1.0};
+		Material m = getMaterialAt(pointOfIntersection);
+		if(m.getTexture() != null){
+			return m.getTextureColor(getTextureCoords(pointOfIntersection));
+		}else{
+			return m.getAmbient();
+		}
 	}
 
 	public double[] getNormalAt(double[] pointOfIntersection) {
@@ -369,6 +376,8 @@ public class Object3D extends Point3D{
 		if(distance <= 0) return Double.POSITIVE_INFINITY;
 		return distance;
 	}
+	
+	public abstract double[] getTextureCoords(double[] point);
 
 	public double intersectBarycentric(Vector3D ray,int i, double distance) {
 		if(vertices==null) return Double.POSITIVE_INFINITY;
@@ -426,6 +435,12 @@ public class Object3D extends Point3D{
 
 	public boolean isLoaded() {
 		return loaded;
+	}
+
+	public void setTexture(Texture t) {
+		Material m = new Material(t.getName());
+		m.setTexture(t);
+		materials.add(m);
 	}
 	
 }

@@ -4,7 +4,7 @@ import generic.MathUtils;
 
 
 public class PointLight extends Light{
-	double[] attenuation = {0.2, 0.05, 0.01};
+	double[] attenuation = {1, 0, 0};
 	
 	public PointLight(double x, double y, double z){
 		super(x,y,z);
@@ -23,7 +23,7 @@ public class PointLight extends Light{
 
 	@Override
 	public double[] getVectorToLight(double[] pointOfIntersection){
-		double[] vec = MathUtils.calcPointsDiff(pointOfIntersection,location);
+		double[] vec = MathUtils.calcPointsDiff(location,pointOfIntersection);
 		MathUtils.normalize(vec);
 		return vec;
 	}

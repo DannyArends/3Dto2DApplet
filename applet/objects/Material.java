@@ -22,23 +22,49 @@
 
 package objects;
 
+import generic.Utils;
+
 import java.awt.Color;
 
-public class Material3DS {
+public class Material {
 	String materialname;
 	public boolean is_diffuse = false;
 	public boolean is_specular = false;
 	public boolean is_ambient = false;
-	double reflectance=4;
-	double shininess=10;
-
-	private double[] ambientColor = new double[]{1.0,1.0,1.0};
-	private double[] specularColor = new double[]{1.0,1.0,1.0};
-	private double[] diffuseColor = new double[]{1.0,1.0,1.0};
+	double reflectance=0;
+	double shininess=0;
+	Texture texture = null;
+	
+	private double[] ambientColor = new double[]{0.1,0.1,1.0};
+	private double[] specularColor = new double[]{0.0,0.0,0.0};
+	private double[] diffuseColor = new double[]{0.0,0.0,0.0};
 	private double[] emissionColor = new double[]{0.1,0.1,0.1};
 	
-	public Material3DS(String name){
+	public Material(String name){
 		this.materialname=name;
+	}
+	
+	// Returns the texture color for a given 2D point in [0, 1] coordinates
+	public double[] getTextureColor(double[] p) {		
+		if(texture != null && texture.width > 0 && texture.height > 0){
+			int textureX = Math.abs((int)Math.round(p[0] * texture.width)) % texture.width; 
+			int textureY = Math.abs((int)Math.round(p[1] * texture.height)) % texture.height;
+			
+			return texture.texturedata[textureY][textureX];
+		}else{
+			return new double[]{1,0,0};
+		}
+	}
+	
+	public Texture getTexture() {
+		return texture;
+	}
+
+	public void setTexture(Texture t) {
+		texture = t;
+		ambientColor = t.ambientcolor;
+		Utils.console("ambient:" + ambientColor[0] + " " + ambientColor[1] +" "+ ambientColor[2]);
+		diffuseColor = t.diffuseColor;
 	}
 
 

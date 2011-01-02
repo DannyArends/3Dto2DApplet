@@ -31,6 +31,10 @@ import objects.Point3D;
 import objects.Vector3D;
 
 public class Surface extends Object3D {
+	private double[] AB, AC;
+	private double ABdotAB, ACdotAC;
+	private double ABnorm;
+	private double ACnorm;
 
 	public Surface(double x, double y, double z) {
 		super(x, y, z);
@@ -48,6 +52,16 @@ public class Surface extends Object3D {
 		Color[] colors = new Color[1];
 		colors[0] = c;
 		setEdgeColors(colors);
+	}
+	
+	public void bufferMyObject(){
+		super.bufferMyObject();
+		AB = MathUtils.calcPointsDiff(triangles[0][0], triangles[0][1]);
+		ABdotAB = MathUtils.dotProduct(AB, AB);
+		AC = MathUtils.calcPointsDiff(triangles[0][0], triangles[0][2]);
+		ACdotAC = MathUtils.dotProduct(AC, AC);
+		ABnorm = MathUtils.norm(AB);
+		ACnorm = MathUtils.norm(AC);
 	}
 	
 	@Override
@@ -92,5 +106,23 @@ public class Surface extends Object3D {
 		}
 		
 		return Double.POSITIVE_INFINITY;
+	}
+
+	@Override
+	public double[] getTextureCoords(double[] point) {
+		
+		double[] AP;
+		
+		// Calculate the projection of the intersection point onto the rectangle vectors
+		AP = MathUtils.calcPointsDiff(triangles[0][0], point);
+		double q = 1 / MathUtils.norm(MathUtils.calcPointsDiff(triangles[0][0], triangles[0][1]));
+				
+		double u = MathUtils.dotProduct(AB, AP) / ABdotAB;
+		double v = MathUtils.dotProduct(AC, AP) / ACdotAC;
+		
+		u /= ABnorm * q;
+		v /= ACnorm * q;
+		
+		return new double[] { u, v };
 	}
 }

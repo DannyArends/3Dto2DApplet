@@ -41,6 +41,7 @@ public class Engine {
 	MyTimer timer;
 	Scene scene;
 	IconLoader iconloader;
+	TextureLoader texturesloader;
 	Object3DSLoader objectloader;
 	
 	public Engine(RenderWindow p, ServerConnection s){
@@ -50,6 +51,7 @@ public class Engine {
 		setBackBufferGraphics(backBuffer.getGraphics());
 		timer = new MyTimer(s);
 		iconloader = new IconLoader(s);
+		texturesloader = new TextureLoader(s);
 		objectloader = new Object3DSLoader(s);
 		scene = new Scene(this,size);
 	}

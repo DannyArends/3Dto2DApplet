@@ -14,7 +14,7 @@ import java.util.Vector;
 
 import objects.Camera;
 import objects.Edge;
-import objects.Material3DS;
+import objects.Material;
 import objects.Point2D;
 import objects.Point3D;
 import objects.Vector3D;
@@ -23,11 +23,11 @@ import rendering.Engine;
 
 public class Model3DS extends Object3D{
 	private Vector<Object3DS> objects;
-	private Vector<Material3DS> materials;
+	private Vector<Material> materials;
 	private String name;
 	ByteArrayInputStream stream;
 	int filelength;
-	URL url;
+	
 	
 	public Model3DS(double x, double y, double z,String name) {
 		super(x, y, z);
@@ -55,11 +55,11 @@ public class Model3DS extends Object3D{
 		return objects;
 	}
 
-	public void setMaterials(Vector<Material3DS> materials) {
+	public void setMaterials(Vector<Material> materials) {
 		this.materials = materials;
 	}
 
-	public Vector<Material3DS> getMaterials() {
+	public Vector<Material> getMaterials() {
 		return materials;
 	}
 	
@@ -106,12 +106,12 @@ public class Model3DS extends Object3D{
 	public void TryLoadingFromName() {
 		if(Engine.verbose) Utils.console("Loading file: " + Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
 		Vector<Object3DS> objects = new Vector<Object3DS>();
-		Vector<Material3DS> materials = new Vector<Material3DS>();
+		Vector<Material> materials = new Vector<Material>();
 		Object3DS object = null;
-		Material3DS material = null;
+		Material material = null;
 		byte[] b = null;
 		try {
-			url = new URL(Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
+			URL url = new URL(Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
 			URLConnection conn = url.openConnection();
 			filelength = conn.getContentLength();
 			BufferedInputStream s = new BufferedInputStream(conn.getInputStream());
@@ -213,7 +213,7 @@ public class Model3DS extends Object3D{
 						stream.read(shortconversion, 0, 2);
 						triangleMeshData[i] = BinaryUtils.arr2int(shortconversion);
 					}
-					for(Material3DS m : materials){
+					for(Material m : materials){
 						if(m.getName().equals(tempstring)){
 							object.addTriangleColor(triangleMeshData,m);
 						}
@@ -229,7 +229,7 @@ public class Model3DS extends Object3D{
 						materials.add(material);
 					tempstring = BinaryUtils.read3dsstring(stream);
 					//Utils.console("Found new material: " + tempstring);
-					material = new Material3DS(tempstring);
+					material = new Material(tempstring);
 					break;
 				case 40976:
 					//Utils.console("#0xA010");
@@ -312,6 +312,12 @@ public class Model3DS extends Object3D{
 		}
 		
 		Utils.console("Loaded object:" + getName());
+	}
+
+	@Override
+	public double[] getTextureCoords(double[] point) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -34,7 +34,9 @@ import java.awt.RenderingHints;
 import java.util.Vector;
 
 import objects.Camera;
+import objects.Texture;
 import objects.renderables.Object3D;
+import objects.renderables.Sphere;
 import objects.renderables.Surface;
 import objects.renderables.light.Light;
 import objects.renderables.light.PointLight;
@@ -42,7 +44,7 @@ import objects.renderables.light.PointLight;
 
 public class Scene{
 	static private Dimension size = new Dimension(10,10);
-	static private Camera camera = new Camera(-25.0, 10.0, -25.0, -35, 15);
+	static private Camera camera = new Camera(-10.0, 10.0, -10.0, -35, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
 	static Vector<Light> lights = new Vector<Light>();
 	public static int softmyobjectslimit = 12500;
@@ -55,14 +57,14 @@ public class Scene{
 	public static boolean render_2d = true;
 	public static boolean render_3d = true;
 	static RayTracer r = null;
-	static int grainedness=250;
 	
 	public Scene(Engine p, Dimension s){
 		size=s;
 		headsupdisplay=new Hud(size.width, size.height);
-		lights.add(new PointLight(4.0, 2.0, -5.0, 0.0, 0.5, 1.0));
-		lights.add(new PointLight(-5.0, 2.0, 5.0, 1.0, 0.0, 0.0));
-		lights.add(new PointLight(0,5.0,0,0.1,0.1,1.0));
+		lights.add(new PointLight(25.0,  10.0, 0.0, 1, 0, 0));
+		lights.add(new PointLight(0.0, 10.0, 25.0, 1, 1.0, 1.0));
+		lights.add(new PointLight(100.0, 10.0, 100.0, 1, 1.0, 1.0));
+		//lights.add(new PointLight(10.0, 10.0, 10.0,0.0,0.0,1.0));
 		try{
 			dataset = new QTLdataset("data/data.dat");
 			heatmap = new QTLheatmap();
@@ -71,9 +73,18 @@ public class Scene{
 		}catch(Exception e){
 			Utils.log("Error unable to load dataset", e);
 		}
-		Object3D sur = new Surface(50.0, -10.0, 50.0,0,0,50.0,50.0,Color.green);
+		Texture one =  TextureLoader.getTexture("Ground_0.bmp");
+		Texture two =  TextureLoader.getTexture("Sky_0.bmp");
+		Object3D sur = new Surface(50.0, 0.0, 50.0,0,0,50.0,50.0,Color.green);
 		sur.setTransparant(0.0);
+		sur.setTexture(one);
 		Scene.addObject(sur);
+		
+		Sphere sph = new Sphere(25.0, 4.0, 25.0,2.0);
+		sph.setTransparant(0.0);
+		sph.setTexture(two);
+		Scene.addObject(sph);
+		
 //		Object3D i = Object3DSLoader.getModel(1,1,1, "lung_0.3ds");
 //		i.setTransparant(0.0);
 //		Scene.addObject(i);
@@ -81,10 +92,14 @@ public class Scene{
 //		Scene.addObject(Object3DSLoader.getModel(5,0,0, "lung_0.3ds"));
 //		Scene.addObject(Object3DSLoader.getModel(0,0,15, "humanoid.3ds"));
 //		Scene.addObject(Object3DSLoader.getModel(5,1,1, "avatar_2.3ds"));
-		//Scene.addObject(Object3DSLoader.getModel(1,1,5, "humanoid.3ds"));
+	//	Scene.addObject(Object3DSLoader.getModel(1,1,5, "humanoid.3ds"));
 //		Scene.addObject(Object3DSLoader.getModel(0,0,0, "humanoid.3ds"));
+//		int counter=0;
 //		for(Object3D x : heatmap.getQTLObjects(dataset)){
-//			Scene.addObject(x);
+////			if(counter < 3){
+////				Scene.addObject(x);
+////			}
+//			counter++;
 //		}
 //		for(Object3D x : heatmap.getAnnotationObjects(dataset)){
 //			Scene.addObject(x);
@@ -201,6 +216,6 @@ public class Scene{
 	}
 
 	public static double[] getAmbientLight() {
-		return new double[]{0.1,0.1,0.1};
+		return new double[]{0.3,0.3,0.3};
 	}
 }

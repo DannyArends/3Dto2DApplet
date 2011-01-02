@@ -52,5 +52,11 @@ public class Triangle3D extends Object3D{
 		}
 		return Double.POSITIVE_INFINITY;
 	}
+
+	@Override
+	public double[] getTextureCoords(double[] point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

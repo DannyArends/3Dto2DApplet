@@ -29,6 +29,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import objects.Camera;
+import objects.Vector3D;
 import rendering.Engine;
 
 public class Text3D extends Object3D {
@@ -95,5 +96,17 @@ public class Text3D extends Object3D {
 
 	public int getFontId() {
 		return fontId;
+	}
+
+	@Override
+	public double[] getTextureCoords(double[] point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double intersect(Vector3D ray) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

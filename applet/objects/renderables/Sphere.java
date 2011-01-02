@@ -23,56 +23,68 @@
 
 package objects.renderables;
 
+import java.awt.Color;
+
+import generic.MathUtils;
 import objects.Edge;
 import objects.Point3D;
-import generic.Utils;
+import objects.Vector3D;
 
 public class Sphere extends Object3D {
-	double size = 0.0f;
-	int p = 20;
-	double twopi = 6.28318530717958f;
-	double pidtwo = 1.57079632679489f;
+	double radius;
 
-	public Sphere(double x, double y, double z) {
+	public Sphere(double x, double y, double z, double r) {
 		super(x, y, z);
-		Point3D[] vertices = new Point3D[2*p];
-		Edge[] edges = new Edge[p];
-	  double theta1,theta2,theta3;
-	  double ex,ey,ez;
-	  double px,py,pz;
-	  int tsum = 0;
-	  int ssum = 0;
-	  double si;
-	  for(int i = 0; i < p; i++ ){
-	    ssum++;
-	    si = (double) (i)/2.0f;
-	    theta1 = si * twopi / p - pidtwo;
-	    theta2 = (si + 1) * twopi / p - pidtwo;
-	    for(int j = 0; j < p; j++ ){
-		      tsum++;
-		      theta3 = (p-j) * twopi / p;
-		      ex = Math.cos(theta2) * Math.cos(theta3);
-		      ey = Math.sin(theta2);
-		      ez = Math.cos(theta2) * Math.sin(theta3);
-			  px = size * ex;
-			  py = size * ey;
-			  pz = size * ez;
-		      vertices[(i*p)+j] = new Point3D(px, py, pz);
-      
-		      ex = Math.cos(theta1) * Math.cos(theta3);
-		      ey = Math.sin(theta1);
-		      ez = Math.cos(theta1) * Math.sin(theta3);
-		      
-		      px = size * ex;
-		      py = size * ey;
-		      pz = size * ez;
-     
-		      vertices[p+(i*p)+j] = new Point3D(px, py, pz);
-			  edges[i] = new Edge((i*p)+j, p+(i*p)+j);
-		    }
-		  }
-		this.setVertices(vertices);
-		this.setEdges(edges);
-		Utils.console("Done");
+		radius = r;
+		// TODO Auto-generated constructor stub
+		Point3D[] vertices = {new Point3D(x, y, z), new Point3D(x, y, z), new Point3D(x, y, z), new Point3D(x, y, z)};
+		setVertices(vertices);
+	
+		Edge[] edges = {new Edge(0, 1), new Edge(1, 2), new Edge(2, 0),new Edge(0, 1), new Edge(1, 3), new Edge(3, 2)};
+		setEdges(edges);
+		
+		Color[] colors = new Color[1];
+		colors[0] = Color.red;
+		setEdgeColors(colors);
+	}
+
+	@Override
+	public double[] getTextureCoords(double[] point) {
+	double[] rp = MathUtils.calcPointsDiff(location, point);
+		
+        double v = rp[2] / radius;
+        
+        if (Math.abs(v) > 1) v -= 1 * Math.signum(v);
+        v = Math.acos(v);
+        
+        double u = rp[0] / (radius * Math.sin(v));
+        
+        if (Math.abs(u) > 1) u = Math.signum(u);
+        u = Math.acos(u);               
+        
+        if (rp[1] < 0)
+            u = -u;
+        if (rp[2] < 0)
+            v = v + Math.PI;
+        
+        if (Double.isNaN(u)) {
+        	int a = 0; a++;
+        }
+        
+        u = (u / (2 * Math.PI));
+        v = (v / Math.PI);
+        
+        if (u > 1) u -= 1;
+        if (u < 0) u += 1;
+        
+        if (v > 1) v -= 1;
+        if (v < 0) v += 1;
+        
+        return new double[] {u , v };			
+	}
+
+	@Override
+	public double intersect(Vector3D ray) {
+		return intersectGeometric(ray,radius);
 	}
 }

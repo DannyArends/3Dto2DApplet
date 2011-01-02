@@ -4,7 +4,7 @@ import generic.ColorUtils;
 import generic.MathUtils;
 import generic.Utils;
 import objects.Camera;
-import objects.Material3DS;
+import objects.Material;
 import objects.Vector3D;
 import objects.renderables.Object3D;
 import objects.renderables.light.Light;
@@ -21,15 +21,21 @@ public class RayTracer {
 	double screenDist= 3;
 	double pixelWidth = 2.0 / Engine.getWidth();
 	double pixelHeight = (Engine.getWidth() / Engine.getHeight()) * pixelWidth;
-	int superSampleWidth=3;
-	boolean[] raster;
-	long l1=0;
-	long l2=0;
-	long l3=0;
+	int superSampleWidth=4;
+	long l1=0;	
+	long l0=0;	
+	double[][][] raygrid;
+	boolean[][] raster;
+	int num_pixels;
+	int interpolation = 1;
+	
+	RayTracer(){
+		l0 = System.nanoTime();
+		raster = new boolean[Engine.getWidth()][Engine.getHeight()];
+	}
 	
 	public void update(Camera c){
 		c.update(c);
-		raster = new boolean[(Engine.getWidth() * Engine.getHeight())];
 		eye = c.location;
 		direction[0] = -c.rotation[6];
 		direction[1] = -c.rotation[3];
@@ -41,35 +47,35 @@ public class RayTracer {
 		MathUtils.oppositeVector(rightDirection);
 		MathUtils.multiplyVectorByScalar(rightDirection, -1);
 		viewplaneUp = MathUtils.crossProduct(rightDirection, direction);		
-		MathUtils.normalize(viewplaneUp);	
-		for(int i = 0; i < (Engine.getHeight()*Engine.getWidth()); i+=(Math.random()* 250 )){
-			raster[i] = false;
-		}
+		MathUtils.normalize(viewplaneUp);
+		raster = new boolean[Engine.getWidth()][Engine.getHeight()];
 	}
 	
 	public void render(){
+		double[] color;
+		int hits;
+		double[] sampleColor;
 		l1 = System.nanoTime();
-		int y=0;
-		int x=0;
-		int width = Engine.getWidth();
-		int cnt_rh = 0;
-		int cnt_pixels = 0;
-		while((l2-l1)/1000000 < 175){
-			int i = (int) (Math.random()*(Engine.getHeight()*Engine.getWidth())-1);
-			if(!raster[i]){
-				raster[i] = true;
-				x = i % width;
-				y = i / width;
-				int hits = 0;
-				double[] color = new double[3];
-				// Supersampling loops
+		int x,y,w,h;
+		int pixels = 0;
+		int bpixels = 0;
+		w=Engine.getWidth();
+		h=Engine.getHeight();
+		while((System.nanoTime()-l1)/1000000 < 170){
+			y = (int) (Math.random() * h);
+			x = (int) (Math.random() * w);
+			while(x < w && raster[x][y]){
+				x++;
+			}
+			if(x < w && y < h && !raster[x][y]){
+				hits = 0;
+				raster[x][y]=true;
+				color = new double[3];
 				for (int k = 0; k < superSampleWidth; k++) {															
 					for (int l = 0; l < superSampleWidth; l++) {					
-						double[] sampleColor = null;
-						// Create the ray
+						sampleColor = null;
 						Vector3D ray = constructRayThroughPixel(x, y, k, l);
 						Intersection intersection = findIntersection(ray, null);
-
 						if (intersection.getPrimitive() != null) {
 							hits++;
 							sampleColor = getColor(ray, intersection, 1);
@@ -78,7 +84,6 @@ public class RayTracer {
 						}
 					}					
 				}
-
 				if (hits == 0) {
 					color = new double[]{0,0,0};		
 				}else{
@@ -86,13 +91,49 @@ public class RayTracer {
 				}
 				Engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(color));
 				Engine.getBackBufferGraphics().fillRect(x, y, 1, 1);
-				cnt_pixels++;
+				pixels++;
 			}else{
-				cnt_rh++;
+				bpixels++;
 			}
-			l2 = System.nanoTime();
 		}
-		//Utils.console("Rendered one image: " + (l2-l1)/1000000 + " ms + " + cnt_pixels + "/" + cnt_rh);
+		num_pixels += pixels;
+		//Utils.console("Rendered: "+ pixels + "/"+bpixels+" in " + (System.nanoTime()-l1)/1000000 + " ms");
+		if(((System.nanoTime()-l0)/1000000) % 10==0)Utils.console("avg: "+ num_pixels / ((System.nanoTime()-l0)/1000000) + " pix/ms");
+	}
+
+	void doLineairInterpolation(){
+		int py = 0;
+		for(int y=0;py+interpolation<Engine.getHeight();y+=interpolation/3){
+			int px=0;
+			for(int x=0;px+interpolation<Engine.getWidth();x+=interpolation/3){
+				//Utils.console("("+ x + "," + y +")=" + px +" "+ (px + 10) + " " + py +" "+ (py + 10));
+				if(!(px == x && py == y)){
+				raygrid[x][y]= interpretcolors(
+						raygrid[px][py],
+						raygrid[px+interpolation][py],
+						raygrid[px][py+interpolation],
+						raygrid[px+interpolation][py+interpolation],
+						(px+interpolation)-x + (py+interpolation)-y, 
+						x-px + (py+interpolation)-y,
+						(px+interpolation)-x + y-py,
+						x-px + y-py);
+				}
+				try{
+				Engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(raygrid[x][y]));
+				}catch(Exception e){
+					Utils.console(""+x+ " "+y +  " " +raygrid[x][y][0]+  " " +raygrid[x][y][1] +  " "+raygrid[x][y][2]);
+				}
+				Engine.getBackBufferGraphics().fillRect(x, y, 3, 3);
+				px = (int)(Math.floor(x/interpolation) * interpolation);
+			}
+			py = (int)(Math.floor(y/interpolation) * interpolation);
+		}
+		Utils.console("Rendered one image: " + (System.nanoTime()-l1)/1000000 + " ms");
+	}
+	
+	double[] interpretcolors(double[] c1, double[] c2,double[] c3, double[] c4,int d1, int d2,int d3, int d4){
+		double denom= d1+d2+d3+d4;
+		return new double[]{(d1*c1[0] + d2*c2[0] + d3*c3[0] + d4*c4[0])/denom,(d1*c1[1] + d2*c2[1] + d3*c3[1] + d4*c4[1])/denom,(d1*c1[2] + d2*c2[2] + d3*c3[2] + d4*c4[2])/denom};
 	}
 
 	public Vector3D constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																
@@ -141,7 +182,7 @@ public class RayTracer {
 		}
 		double[] pointOfIntersection = ray.getEndPoint();
 		
-		Material3DS surface = primitive.getMaterialAt(pointOfIntersection);			
+		Material surface = primitive.getMaterialAt(pointOfIntersection);			
 		
 		double[] color = new double[]{0,0,0};		
 		double[] specular = surface.getSpecular();
