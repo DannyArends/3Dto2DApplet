@@ -47,14 +47,18 @@ sub printTime{
 
 sub printServerStats{
 	print("#SERVER_STATUS" . "\n");
-	print("L: " . $ENV{REMOTE_HOST} . " " . $ENV{SERVER_SOFTWARE} . "\n");
+	if(defined($ENV{REMOTE_ADDR}) && defined($ENV{SERVER_SOFTWARE})){
+		print("L: " . $ENV{REMOTE_HOST} . " " . $ENV{SERVER_SOFTWARE} . "\n");
+	}
 	print("V: 0.0.1" . "\n");
 	printTime();
 }
 
 sub printUserStats{
 	print("#USER_STATUS"."\n");
-	print("L: 0 " . $ENV{REMOTE_ADDR} . "\n");
+	if(defined($ENV{REMOTE_ADDR})){
+		print("L: 0 " . $ENV{REMOTE_ADDR} . "\n");
+	}
 	print("N: Anonymous" . "\n");
 }
 

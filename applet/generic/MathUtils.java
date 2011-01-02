@@ -72,7 +72,7 @@ public class MathUtils {
 
 		// Returns the cross product of 2 vectors
 		public static double[] crossProduct(double[] d1, double[] d2) {				
-			double[] result = { (d1[1] * d2[2]) - (d1[2] * d2[1]), (d1[2] * d2[0]) - (d1[0] * d2[2]), (d1[0] * d2[1]) - (d1[1] * d2[0]) };
+			double[] result = new double[]{ (d1[1] * d2[2]) - (d1[2] * d2[1]), (d1[2] * d2[0]) - (d1[0] * d2[2]), (d1[0] * d2[1]) - (d1[1] * d2[0]) };
 			
 			return result;  		
 		}	

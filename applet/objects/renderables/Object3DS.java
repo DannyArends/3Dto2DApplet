@@ -22,6 +22,8 @@
 
 package objects.renderables;
 
+import objects.Vector3D;
+
 
 public class Object3DS extends Object3D{
 	
@@ -44,5 +46,19 @@ public class Object3DS extends Object3D{
 		setRotation(0,90);
 		setObjectScale(0.10);
 		setName(o.getName());
+	}
+	
+	@Override
+	public double intersect(Vector3D ray) {
+		for(int i=0;i< edges.length/3;i++){
+			double distance = intersectWithPlane(ray,i);
+			if(distance != Double.POSITIVE_INFINITY  &&  distance != Double.NEGATIVE_INFINITY){
+				distance = intersectBarycentric(ray, i, distance);
+				if(distance != Double.POSITIVE_INFINITY  &&  distance != Double.NEGATIVE_INFINITY){
+					return distance;
+				}
+			}
+		}
+		return Double.POSITIVE_INFINITY;
 	}
 }

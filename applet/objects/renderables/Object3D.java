@@ -43,21 +43,76 @@ public class Object3D extends Point3D{
 	private String name = "Object3D";
 	private boolean wireframe = false;
 	private boolean loaded = false;
-	protected Edge[] edges;
+	protected boolean buffered = false;
+	public Edge[] edges = null;
 	public double[] rotation = new double[8];
 	public double[] ownrotation = new double[8];
 	private int horizontalRotation;
 	private int verticalRotation;
 	private double objectScale=1.0;
 	private Color[] edgeColors;
-	protected Point3D[] vertices;
-	private Point2D[] mapcoords;
+	public Point3D[] vertices;
+	public Point2D[] mapcoords;
 	private Point2D[] points = null;
+	double transparant = 0.0;
+	double[][][] triangles;
+	double[][] normals;
+	double[] distancequotients;
 	
-	double transparant = 0.9;
+	public Object3D(double x, double y, double z){
+		super(x,y,z);
+		setHorizontalRotation(0);
+		setVerticalRotation(0);
+	}
+	
+	public Object3D(double x, double y, double z,int hrot,int vrot){
+		this(x,y,z);
+		setHorizontalRotation(hrot);
+		setVerticalRotation(vrot);
+	}
+	
+	public Object3D(Object3D o) {
+		location[0] = o.location[0];
+		location[1] = o.location[1];
+		location[2] = o.location[2];
+		setRotation(o.getHorizontalRotation(),o.getVerticalRotation());
+		vertices = o.vertices;
+		mapcoords = o.mapcoords;
+		edges = o.edges;
+		triangles = o.triangles;
+		normals = o.normals;
+		edgeColors = o.edgeColors;
+	}
 	
 	public double getTransparant() {
 		return transparant;
+	}
+	
+	public void bufferMyObject(){
+		if(!buffered && edges != null){
+			Utils.log("starting", System.err);
+			triangles = new double[edges.length/3][3][3];
+			normals = new double[edges.length/3][3];
+			distancequotients = new double[edges.length/3];
+			for (int i = 0; i < edges.length; i+=3) {
+				int l = (int) Math.floor(i/3.0);
+				triangles[l][0][0] = vertices[edges[i].a].location[0];
+				triangles[l][0][1] = vertices[edges[i].a].location[1];
+				triangles[l][0][2] = vertices[edges[i].a].location[2];
+				triangles[l][1][0] = vertices[edges[i].b].location[0];
+				triangles[l][1][1] = vertices[edges[i].b].location[1];
+				triangles[l][1][2] = vertices[edges[i].b].location[2];
+				triangles[l][2][0] = vertices[edges[i+1].b].location[0];
+				triangles[l][2][1] = vertices[edges[i+1].b].location[1];
+				triangles[l][2][2] = vertices[edges[i+1].b].location[2];
+				double[] normal  = MathUtils.crossProduct(MathUtils.calcPointsDiff(triangles[l][0], triangles[l][1]), MathUtils.calcPointsDiff(triangles[l][0], triangles[l][2]));
+				MathUtils.normalize(normal);
+				normals[l] = normal;
+				distancequotients[l] = -(MathUtils.dotProduct(normal, triangles[l][0]));
+			}
+			Utils.log("done", System.err);
+			buffered = true;
+		}
 	}
 
 
@@ -79,18 +134,6 @@ public class Object3D extends Point3D{
 
 	public int getVerticalRotation() {
 		return verticalRotation;
-	}
-	
-	public Object3D(double x, double y, double z){
-		super(x,y,z);
-		setHorizontalRotation(0);
-		setVerticalRotation(0);
-	}
-	
-	public Object3D(double x, double y, double z,int hrot,int vrot){
-		this(x,y,z);
-		setHorizontalRotation(hrot);
-		setVerticalRotation(vrot);
 	}
 	
 	public void TryLoadingFromName() {
@@ -143,17 +186,6 @@ public class Object3D extends Point3D{
 		}
 	}
 	
-	public Object3D(Object3D o) {
-		location[0] = o.location[0];
-		location[1] = o.location[1];
-		location[2] = o.location[2];
-		setRotation(o.getHorizontalRotation(),o.getVerticalRotation());
-		vertices = o.vertices;
-		mapcoords = o.mapcoords;
-		edges = o.edges;
-		edgeColors = o.edgeColors;
-	}
-
 	public void setRotation(int hrot,int vrot){
 		setHorizontalRotation(hrot);
 		setVerticalRotation(vrot);
@@ -167,11 +199,12 @@ public class Object3D extends Point3D{
 		return vertices;
 	}
 	
-	public void setEdges(Edge[] edges) {
-		this.edges = edges;
-		this.edgeColors = new Color[edges.length];
+	public void setEdges(Edge[] e) {
+		edges = e;
+		bufferMyObject();
+		edgeColors = new Color[edges.length];
 		for(int x=0;x<edges.length;x++){
-			this.edgeColors[x] = Color.white;
+			edgeColors[x] = Color.white;
 		}
 	}
 	
@@ -181,7 +214,7 @@ public class Object3D extends Point3D{
 	
 	public void addTriangleColor(int[] targets,Material3DS m){
 		for(int x : targets){
-			this.edgeColors[x] = m.getAmbientColor();
+			edgeColors[x] = m.getAmbientColor();
 		}
 	}
 	
@@ -243,6 +276,12 @@ public class Object3D extends Point3D{
 
 	public void setObjectScale(double d) {
 		this.objectScale = d;
+		if(vertices!=null){
+			for(int x =0;x < vertices.length;x++){
+				MathUtils.multiplyVectorByScalar(vertices[x].location, 0.1);
+			}
+			bufferMyObject();
+		}
 	}
 
 	public double getObjectScale() {
@@ -258,7 +297,7 @@ public class Object3D extends Point3D{
 	}
 
 	public double intersect(Vector3D ray) {
-		return intersectGeometric(ray);
+		return intersectGeometric(ray,0.1);
 	}
 	
 	/**
@@ -269,9 +308,16 @@ public class Object3D extends Point3D{
 	 * @param ray
 	 * @return
 	 */
-	private double intersectGeometric(Vector3D ray) {
+	protected double intersectGeometric(Vector3D ray, double size) {
+		if(vertices==null) return Double.POSITIVE_INFINITY; 
 		// Note that locals are named according to the equations in the lecture notes.
-		double[] L = MathUtils.calcPointsDiff(ray.getLocation(), getLocation());
+		double[] v = new double[3];
+		int i = (int)(Math.random()*vertices.length);
+		v[0] = vertices[i].location[0];
+		v[1] = vertices[i].location[1];
+		v[2] = vertices[i].location[2];
+		MathUtils.multiplyVectorByScalar(v, 0.1);
+		double[] L = MathUtils.calcPointsDiff(ray.location, v);
 		double[] V = ray.getDirection();
 		
 		double tCA = MathUtils.dotProduct(L, V);
@@ -280,7 +326,7 @@ public class Object3D extends Point3D{
 		
 		double LSquare = MathUtils.dotProduct(L, L);
 		double dSquare =  LSquare - MathUtils.sqr(tCA);
-		double radiusSquare = MathUtils.sqr(0.5);
+		double radiusSquare = MathUtils.sqr(size);
 
 		if(dSquare > radiusSquare) return Double.POSITIVE_INFINITY;
 		
@@ -307,6 +353,55 @@ public class Object3D extends Point3D{
 		double[] normal = MathUtils.calcPointsDiff(pointOfIntersection,location);		
 		MathUtils.normalize(normal);
 		return normal;
+	}
+	
+	public double intersectWithPlane(Vector3D ray, int i) {
+		if(vertices==null) return Double.POSITIVE_INFINITY;
+		// raySouce is called p0 in the lecture notes, it was rename to avoid conflicting names
+		double[] raySource = ray.getLocation();
+		double[] V = ray.getDirection();
+		double distance = 0;
+		double[] normal = normals[i];
+		double d = distancequotients[i]; 	
+		if(MathUtils.dotProduct(V, normal) != 0){
+			distance = (-(MathUtils.dotProduct(raySource, normal) + d)) / MathUtils.dotProduct(V, normal);
+		}
+		if(distance <= 0) return Double.POSITIVE_INFINITY;
+		return distance;
+	}
+
+	public double intersectBarycentric(Vector3D ray,int i, double distance) {
+		if(vertices==null) return Double.POSITIVE_INFINITY;
+		double[] v0, v1, v2;
+		double dot00, dot01, dot02, dot11, dot12;
+		double denominator, u, v;
+		// Get the intersection point with the rectangle's plane
+		ray.setMagnitude(distance);
+		double[] intersectionPoint = ray.getEndPoint();
+
+		// Compute vectors        
+		v0 = MathUtils.calcPointsDiff(triangles[i][0], triangles[i][2]);
+		v1 = MathUtils.calcPointsDiff(triangles[i][0], triangles[i][1]);
+		v2 = MathUtils.calcPointsDiff(triangles[i][0], intersectionPoint);
+
+		// Compute dot products
+		dot00 = MathUtils.dotProduct(v0, v0);
+		dot01 = MathUtils.dotProduct(v0, v1);
+		dot02 = MathUtils.dotProduct(v0, v2);
+		dot11 = MathUtils.dotProduct(v1, v1);
+		dot12 = MathUtils.dotProduct(v1, v2);
+
+		// Compute barycentric coordinates
+		denominator = 1 / (dot00 * dot11 - dot01 * dot01);
+		u = (dot11 * dot02 - dot01 * dot12) * denominator;
+		v = (dot00 * dot12 - dot01 * dot02) * denominator;
+
+		// Check if point is in triangle
+		if ((u > 0) && (v > 0) && (u + v < 1)) {
+			return distance;
+		}
+		
+		return Double.POSITIVE_INFINITY;
 	}
 
 	public String getName() {

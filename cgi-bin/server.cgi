@@ -77,5 +77,5 @@ if($form{"function"} ne ""){
 		}
 	}
 	print($form{"function"} . "(".$temp.")" . "\n");
-	print(eval $form{"function"} . "(".$temp.")");
+	#print(eval $form{"function"} . "(".$temp.")");
 }

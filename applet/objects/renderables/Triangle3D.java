@@ -26,13 +26,14 @@ import java.awt.Color;
 
 import objects.Edge;
 import objects.Point3D;
+import objects.Vector3D;
 
 
 public class Triangle3D extends Object3D{
 	
 	public Triangle3D(double x,double y, double z,int hrot, int vrot, double hscale, double vscale, Color c){
 		super(x,y,z,hrot,vrot);
-		Point3D[] vertices = {new Point3D(0, 0, .2*hscale), new Point3D(0, vscale, 0), new Point3D(0.0, 0, -0.2*hscale)};
+		Point3D[] vertices = {new Point3D(x, y, z+(0.2*hscale)), new Point3D(x, y+vscale, z), new Point3D(x, y, z+(-0.2*hscale))};
 		this.setVertices(vertices);
 	
 		Edge[] edges = {new Edge(0, 1), new Edge(1, 2), new Edge(2, 0)};
@@ -40,6 +41,16 @@ public class Triangle3D extends Object3D{
 		
 		Color[] colors = new Color[]{c};
 		setEdgeColors(colors);
+	}
+	
+	@Override
+	public double intersect(Vector3D ray) {
+
+		double distance = intersectWithPlane(ray,0);
+		if(distance != Double.POSITIVE_INFINITY  &&  distance != Double.NEGATIVE_INFINITY){
+			return intersectBarycentric(ray,0, distance);			
+		}
+		return Double.POSITIVE_INFINITY;
 	}
 }
 

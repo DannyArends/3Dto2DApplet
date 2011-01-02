@@ -42,7 +42,7 @@ public class RayTracer {
 		MathUtils.multiplyVectorByScalar(rightDirection, -1);
 		viewplaneUp = MathUtils.crossProduct(rightDirection, direction);		
 		MathUtils.normalize(viewplaneUp);	
-		for(int i = 0; i < Engine.getHeight()*Engine.getWidth(); i+=(Math.random()* 250 )){
+		for(int i = 0; i < (Engine.getHeight()*Engine.getWidth()); i+=(Math.random()* 250 )){
 			raster[i] = false;
 		}
 	}
@@ -52,14 +52,15 @@ public class RayTracer {
 		int y=0;
 		int x=0;
 		int width = Engine.getWidth();
-		if(Scene.grainedness < 10) Scene.grainedness = 5;
-		//Utils.console("g: "+Scene.grainedness);
-		for(int i = 0; i < Engine.getHeight()*Engine.getWidth(); i+=Math.random()* Scene.grainedness){			
+		int cnt_rh = 0;
+		int cnt_pixels = 0;
+		while((l2-l1)/1000000 < 175){
+			int i = (int) (Math.random()*(Engine.getHeight()*Engine.getWidth())-1);
 			if(!raster[i]){
-			raster[i] = true;
-			x = i % width;
-			y = i / width;
-			int hits = 0;
+				raster[i] = true;
+				x = i % width;
+				y = i / width;
+				int hits = 0;
 				double[] color = new double[3];
 				// Supersampling loops
 				for (int k = 0; k < superSampleWidth; k++) {															
@@ -67,33 +68,31 @@ public class RayTracer {
 						double[] sampleColor = null;
 						// Create the ray
 						Vector3D ray = constructRayThroughPixel(x, y, k, l);
-						// Find the intersecting primitive
 						Intersection intersection = findIntersection(ray, null);
-						// If we hit something, get its color
+
 						if (intersection.getPrimitive() != null) {
 							hits++;
-							//Utils.console("hits: " + hits);
 							sampleColor = getColor(ray, intersection, 1);
 							MathUtils.addVector(color, sampleColor);
 							ray.setMagnitude(intersection.getDistance());																																						
 						}
 					}					
 				}
-				// If we didn't anything in any of the samples, use the background color
+
 				if (hits == 0) {
 					color = new double[]{0,0,0};		
 				}else{
-					if(Engine.verbose) Utils.console(x + "," + y + " number of hits " + hits);
 					MathUtils.multiplyVectorByScalar(color, 1F / hits);
 				}
 				Engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(color));
 				Engine.getBackBufferGraphics().fillRect(x, y, 1, 1);
+				cnt_pixels++;
 			}else{
-				//Utils.console("tasret skip");
+				cnt_rh++;
 			}
+			l2 = System.nanoTime();
 		}
-		l2 = System.nanoTime();
-		//Utils.console("Rendered one image: " + (l2-l1)/1000000 + " ms");
+		//Utils.console("Rendered one image: " + (l2-l1)/1000000 + " ms + " + cnt_pixels + "/" + cnt_rh);
 	}
 
 	public Vector3D constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																

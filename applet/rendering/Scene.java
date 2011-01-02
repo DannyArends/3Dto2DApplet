@@ -35,13 +35,14 @@ import java.util.Vector;
 
 import objects.Camera;
 import objects.renderables.Object3D;
+import objects.renderables.Surface;
 import objects.renderables.light.Light;
 import objects.renderables.light.PointLight;
 
 
 public class Scene{
 	static private Dimension size = new Dimension(10,10);
-	static private Camera camera = new Camera(-4.0, 2.0, -4.0, 0, 0);
+	static private Camera camera = new Camera(-25.0, 10.0, -25.0, -35, 15);
 	static Vector<Object3D> myobjects = new Vector<Object3D>();
 	static Vector<Light> lights = new Vector<Light>();
 	public static int softmyobjectslimit = 12500;
@@ -51,17 +52,17 @@ public class Scene{
 	private static float renderTime;
 	private static float hudTime;
 	static private double[] backgroundColor = new double[]{0.0, 0.0, 0.0};
-	private static boolean render_2d = true;
-	private static boolean render_3d = true;
+	public static boolean render_2d = true;
+	public static boolean render_3d = true;
 	static RayTracer r = null;
-	static int grainedness=150;
+	static int grainedness=250;
 	
 	public Scene(Engine p, Dimension s){
 		size=s;
 		headsupdisplay=new Hud(size.width, size.height);
-		lights.add(new PointLight(4.0, 0.0, -5.0, 0.0, 1.0, 1.0));
-		lights.add(new PointLight(-5.0, 0.0, 5.0, 1.0, 0.0, 0.0));
-		//lights.add(new PointLight(0,-5.0,0,0.1,0.1,1.0));
+		lights.add(new PointLight(4.0, 2.0, -5.0, 0.0, 0.5, 1.0));
+		lights.add(new PointLight(-5.0, 2.0, 5.0, 1.0, 0.0, 0.0));
+		lights.add(new PointLight(0,5.0,0,0.1,0.1,1.0));
 		try{
 			dataset = new QTLdataset("data/data.dat");
 			heatmap = new QTLheatmap();
@@ -70,16 +71,18 @@ public class Scene{
 		}catch(Exception e){
 			Utils.log("Error unable to load dataset", e);
 		}
-		//Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
-		Object3D i = Object3DSLoader.getModel(1,1,1, "lung_0.3ds");
-		i.setTransparant(0.4);
-		Scene.addObject(i);
-		Scene.addObject(Object3DSLoader.getModel(0,0,0, "avatar_1.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(5,0,0, "lung_0.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(0,0,15, "humanoid.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(5,1,1, "avatar_2.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(1,1,5, "humanoid.3ds"));
-		Scene.addObject(Object3DSLoader.getModel(1,3,5, "humanoid.3ds"));
+		Object3D sur = new Surface(50.0, -10.0, 50.0,0,0,50.0,50.0,Color.green);
+		sur.setTransparant(0.0);
+		Scene.addObject(sur);
+//		Object3D i = Object3DSLoader.getModel(1,1,1, "lung_0.3ds");
+//		i.setTransparant(0.0);
+//		Scene.addObject(i);
+//		Scene.addObject(Object3DSLoader.getModel(0,0,0, "avatar_1.3ds"));
+//		Scene.addObject(Object3DSLoader.getModel(5,0,0, "lung_0.3ds"));
+//		Scene.addObject(Object3DSLoader.getModel(0,0,15, "humanoid.3ds"));
+//		Scene.addObject(Object3DSLoader.getModel(5,1,1, "avatar_2.3ds"));
+		//Scene.addObject(Object3DSLoader.getModel(1,1,5, "humanoid.3ds"));
+//		Scene.addObject(Object3DSLoader.getModel(0,0,0, "humanoid.3ds"));
 //		for(Object3D x : heatmap.getQTLObjects(dataset)){
 //			Scene.addObject(x);
 //		}
@@ -104,10 +107,10 @@ public class Scene{
 //		}
 		if(r!= null){
 			r.update(camera);
-			//for(Object3D myobject : myobjects){
-			//	myobject.update(camera);
-				//if(!myobject.isLoaded()) myobject.TryLoadingFromName();
-			//}
+			for(Object3D myobject : myobjects){
+				myobject.update(camera);
+				if(!myobject.isLoaded()) myobject.TryLoadingFromName();
+			}
 		}
 	}
 	
@@ -122,18 +125,18 @@ public class Scene{
 		}
 		if(redraw3d) reDraw3DScene();
 		long l1 = System.nanoTime();
-		if(!redraw2d && !redraw3d && grainedness > 0){
-			grainedness-=3;
+		if(!redraw2d && !redraw3d){
 		}else{
-			grainedness=150;
 			Engine.getBackBufferGraphics().setColor(Color.black);
 			Engine.getBackBufferGraphics().fillRect(0, 0, size.width, size.height);
 		}
 		if(render_3d && r != null){
 			r.render();
-			//for(Object3D myobject : myobjects){
-			//	myobject.render(Engine.getBackBufferGraphics(),camera);
-			//}
+			for(Object3D myobject : myobjects){
+				myobject.bufferMyObject();
+				//myobject.render(Engine.getBackBufferGraphics(),camera);
+				//Utils.console(""+myobject.getEdges()[0]);
+			}
 		}
 		long l2 = System.nanoTime();
 		if(render_2d && headsupdisplay != null){

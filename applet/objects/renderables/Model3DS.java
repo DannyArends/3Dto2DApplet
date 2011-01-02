@@ -17,6 +17,7 @@ import objects.Edge;
 import objects.Material3DS;
 import objects.Point2D;
 import objects.Point3D;
+import objects.Vector3D;
 import rendering.Engine;
 
 
@@ -82,6 +83,16 @@ public class Model3DS extends Object3D{
 		}else{
 			Utils.log("Object not loaded",System.err);
 		}
+	}
+	
+	@Override
+	public double intersect(Vector3D ray) {
+		double mdistance = Double.POSITIVE_INFINITY;
+		for(Object3DS o : objects){
+			double d = o.intersect(ray);
+			if(d < mdistance) mdistance=d;
+		}
+		return mdistance;
 	}
 
 	public void setName(String name) {

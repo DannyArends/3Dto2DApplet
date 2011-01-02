@@ -26,14 +26,14 @@ public class PerlServlet extends Servlet {
 		
 		filename = req.getPathTranslated() != null ? req.getPathTranslated().replace('/', File.separatorChar) : "";
 		filename = "." + File.separator + "cgi-bin" + filename.substring(1);
-//		Utils.console("Need to interpret file: " + filename);
+		//Utils.console("Need to interpret file: " + filename);
 		
 		for (Enumeration<?> e = req.getParameterNames() ; e.hasMoreElements() ;) {
 			if((tempstring = (String) e.nextElement()) !=  null){
 				arguments += tempstring + "=" + req.getParameter(tempstring) + ";";
 			}
 	    }
-//		Utils.console("With arguments: " + arguments);
+		//Utils.console("With arguments: " + "perl -w " + filename + " " + arguments);
 
 		File file = new File(filename);
 		if(file.exists()){
@@ -43,7 +43,7 @@ public class PerlServlet extends Servlet {
 			try {
 				myInterpreter.join();
 			} catch (InterruptedException e) {
-				throw new ServletException("Interpretation of " + filename + " didn't finish correctly");
+				Utils.log("Interpretation of " + filename + " didn't finish correctly",System.err);
 			}
 			OutputStream o = res.getOutputStream();
 			tempstring = "" + myCommandExe.res;
