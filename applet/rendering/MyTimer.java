@@ -17,10 +17,9 @@ public class MyTimer implements ActionListener{
 	ServerConnection server;
 	
 	public MyTimer(ServerConnection s) {
-		timer = new Timer(179, this);
-		timer.setInitialDelay(2000); //So we don't render when still booting,
-		timer.start();
 		server=s;
+		timer = new Timer(100, this);
+		timer.start();
 	}
 	
 	public void actionPerformed(ActionEvent e) {

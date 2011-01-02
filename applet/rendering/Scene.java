@@ -22,6 +22,7 @@
 
 package rendering;
 
+import events.ServerConnection;
 import generic.Utils;
 import genetics.QTLdataset;
 import genetics.QTLheatmap;
@@ -42,37 +43,83 @@ import objects.renderables.light.Light;
 import objects.renderables.light.PointLight;
 
 
-public class Scene{
+public class Scene implements Runnable{
 	static private Dimension size = new Dimension(10,10);
-	static private Camera camera = new Camera(-10.0, 10.0, -10.0, -35, 15);
-	static Vector<Object3D> myobjects = new Vector<Object3D>();
-	static Vector<Light> lights = new Vector<Light>();
-	public static int softmyobjectslimit = 12500;
-	static Hud headsupdisplay;
+	private ServerConnection server;
+	private static int softmyobjectslimit = 12500;
+	private static Hud headsupdisplay;
 	private static QTLdataset dataset;
-	static QTLheatmap heatmap;
+	private static QTLheatmap heatmap;
 	private static float renderTime;
 	private static float hudTime;
-	static private double[] backgroundColor = new double[]{0.0, 0.0, 0.0};
+	private static  double[] backgroundColor = new double[]{0.0, 0.0, 0.0};
+	public static boolean loading = true;
+	public static int loadingPercentage = 0;
+	public static String loadingMsg = "";
 	public static boolean render_2d = true;
 	public static boolean render_3d = true;
-	static RayTracer r = null;
 	
-	public Scene(Engine p, Dimension s){
-		size=s;
-		headsupdisplay=new Hud(size.width, size.height);
+	private static RayTracer raytracer = new RayTracer();
+	private static Vector<Object3D> myobjects = new Vector<Object3D>();
+	private static Vector<Light> lights = new Vector<Light>();
+	private static Camera camera = new Camera(-10.0, 10.0, -10.0, -35, 15);
+	
+	public Scene(Dimension dim, ServerConnection s){
+		size=dim;
+		server = s;
+	}
+	
+	@Override
+	public void run() {
+		UpdateLoading(0,"Querying server");
+		Engine.setIconLoader(new IconLoader(server));
+		Engine.setTextureLoader( new TextureLoader(server));
+		Engine.setObjectLoader(new Object3DSLoader(server));
+		UpdateLoading(10,"Loading HUD");
+		headsupdisplay = new Hud(size.width, size.height);
+		UpdateLoading(30,"Adding Lights");
 		lights.add(new PointLight(25.0,  10.0, 0.0, 1, 0, 0));
 		lights.add(new PointLight(0.0, 10.0, 25.0, 1, 1.0, 1.0));
 		lights.add(new PointLight(100.0, 10.0, 100.0, 1, 1.0, 1.0));
-		//lights.add(new PointLight(10.0, 10.0, 10.0,0.0,0.0,1.0));
+		UpdateLoading(50,"Loading Dataset");
+		loadBasicDataSet();
+		UpdateLoading(70,"Loading Scene");
+		loadBasicScene();
+		UpdateLoading(80,"PreComputing Object statistics");
+		PreComputeLoadedObjects();
+		UpdateLoading(90,"Starting rendering");
+		Engine.setTimer(new MyTimer(server));
+		loading=false;
+	}
+	
+	void UpdateLoading(int percentage,String m){
+		loadingPercentage = percentage;
+		loadingMsg = m;
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	void loadBasicDataSet(){
 		try{
 			dataset = new QTLdataset("data/data.dat");
 			heatmap = new QTLheatmap();
 			headsupdisplay.addDataset(dataset);
-			reDraw3DScene();
+//			for(Object3D x : heatmap.getQTLObjects(dataset)){
+//				Utils.console(""+x.getName());
+//				//Scene.addObject(x);
+//			}
+//			for(Object3D x : heatmap.getAnnotationObjects(dataset)){
+//				Utils.console(""+x.getName());
+//				//Scene.addObject(x);
+//			}
 		}catch(Exception e){
 			Utils.log("Error unable to load dataset", e);
 		}
+	}
+		
+	static void loadBasicScene(){	
 		Texture one =  TextureLoader.getTexture("Ground_0.bmp");
 		Texture two =  TextureLoader.getTexture("Sky_0.bmp");
 		Object3D sur = new Surface(50.0, 0.0, 50.0,0,0,50.0,50.0,Color.green);
@@ -84,49 +131,20 @@ public class Scene{
 		sph.setTransparant(0.0);
 		sph.setTexture(two);
 		Scene.addObject(sph);
+	}
 		
-//		Object3D i = Object3DSLoader.getModel(1,1,1, "lung_0.3ds");
-//		i.setTransparant(0.0);
-//		Scene.addObject(i);
-//		Scene.addObject(Object3DSLoader.getModel(0,0,0, "avatar_1.3ds"));
-//		Scene.addObject(Object3DSLoader.getModel(5,0,0, "lung_0.3ds"));
-//		Scene.addObject(Object3DSLoader.getModel(0,0,15, "humanoid.3ds"));
-//		Scene.addObject(Object3DSLoader.getModel(5,1,1, "avatar_2.3ds"));
-	//	Scene.addObject(Object3DSLoader.getModel(1,1,5, "humanoid.3ds"));
-//		Scene.addObject(Object3DSLoader.getModel(0,0,0, "humanoid.3ds"));
-//		int counter=0;
-//		for(Object3D x : heatmap.getQTLObjects(dataset)){
-////			if(counter < 3){
-////				Scene.addObject(x);
-////			}
-//			counter++;
-//		}
-//		for(Object3D x : heatmap.getAnnotationObjects(dataset)){
-//			Scene.addObject(x);
-//		}
-		r= new RayTracer();
+	static void PreComputeLoadedObjects(){
+		raytracer.update(camera);
+		for(Object3D myobject : myobjects){
+			myobject.update(camera);
+			if(!myobject.isLoaded()) myobject.TryLoadingFromName();
+		}
 	}
 	
 	public static void reDraw3DScene() {
-//		clearObjects();
-//		Scene.addObject(new Surface(50.0, -50.0, 50.0,0,0,50.0,50.0,Color.green));
-//		Scene.addObject(Object3DSLoader.getModel(10,1,10, "lung_0.3ds"));
-//		Scene.addObject(Object3DSLoader.getModel(10,1,15, "avatar_1.3ds"));
-//		Scene.addObject(Object3DSLoader.getModel(15,1,10, "avatar_2.3ds"));
-//		Scene.addObject(Object3DSLoader.getModel(30,1,30, "humanoid.3ds"));
-//		for(Object3D x : heatmap.getQTLObjects(dataset)){
-//			Scene.addObject(x);
-//		}
-//		for(Object3D x : heatmap.getAnnotationObjects(dataset)){
-//			Scene.addObject(x);
-//		}
-		if(r!= null){
-			r.update(camera);
-			for(Object3D myobject : myobjects){
-				myobject.update(camera);
-				if(!myobject.isLoaded()) myobject.TryLoadingFromName();
-			}
-		}
+		clearObjects();
+		loadBasicScene();
+		PreComputeLoadedObjects();
 	}
 	
 	public static Vector<Object3D> getObjects() {
@@ -145,8 +163,8 @@ public class Scene{
 			Engine.getBackBufferGraphics().setColor(Color.black);
 			Engine.getBackBufferGraphics().fillRect(0, 0, size.width, size.height);
 		}
-		if(render_3d && r != null){
-			r.render();
+		if(render_3d && raytracer != null){
+			raytracer.render();
 			for(Object3D myobject : myobjects){
 				myobject.bufferMyObject();
 				//myobject.render(Engine.getBackBufferGraphics(),camera);
@@ -176,7 +194,7 @@ public class Scene{
 	public static void updateGraphics(Graphics g) {
 		if(Engine.verbose) Utils.console("Back buffer to front buffer");
 		if(Engine.getBackBuffer()!=null && Engine.getRenderWindow() != null){
-			g.drawImage(Engine.getBackBuffer(), 0, 0,size.width,size.height, Engine.getRenderWindow());
+			g.drawImage(Engine.getBackBuffer(), 0, 0,size.width, size.height, Engine.getRenderWindow());
 			Engine.getRenderWindow().showStatus("Hrot: " + camera.getHorizontalRotation() + " deg, Vrot: " + camera.getVerticalRotation() + " deg");
 		}else{
 			Utils.log("No backbuffer created yet", System.err);
@@ -218,4 +236,13 @@ public class Scene{
 	public static double[] getAmbientLight() {
 		return new double[]{0.3,0.3,0.3};
 	}
+
+	public static void setSoftmyobjectslimit(int softmyobjectslimit) {
+		Scene.softmyobjectslimit = softmyobjectslimit;
+	}
+
+	public static int getSoftmyobjectslimit() {
+		return softmyobjectslimit;
+	}
+
 }

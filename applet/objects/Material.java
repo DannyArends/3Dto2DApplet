@@ -22,8 +22,6 @@
 
 package objects;
 
-import generic.Utils;
-
 import java.awt.Color;
 
 public class Material {
@@ -63,7 +61,6 @@ public class Material {
 	public void setTexture(Texture t) {
 		texture = t;
 		ambientColor = t.ambientcolor;
-		Utils.console("ambient:" + ambientColor[0] + " " + ambientColor[1] +" "+ ambientColor[2]);
 		diffuseColor = t.diffuseColor;
 	}
 

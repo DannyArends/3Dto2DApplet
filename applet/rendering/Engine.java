@@ -29,31 +29,27 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
-public class Engine {
+public class Engine{
 	public static boolean verbose=false;
 	
 	private static Image backBuffer = null;
 	private static Graphics backBufferGraphics = null;
-
-	public static Dimension size;
+	private static Dimension size;
 	private static RenderWindow parent;
 	
-	MyTimer timer;
+	static MyTimer timer;
 	Scene scene;
-	IconLoader iconloader;
-	TextureLoader texturesloader;
-	Object3DSLoader objectloader;
+	static IconLoader iconloader;
+	static TextureLoader textureloader;
+	static Object3DSLoader objectloader;
 	
 	public Engine(RenderWindow p, ServerConnection s){
 		parent=p;
 		size = p.getSize();
 		backBuffer = p.createImage(size.width, size.height);
 		setBackBufferGraphics(backBuffer.getGraphics());
-		timer = new MyTimer(s);
-		iconloader = new IconLoader(s);
-		texturesloader = new TextureLoader(s);
-		objectloader = new Object3DSLoader(s);
-		scene = new Scene(this,size);
+		Thread t = new Thread(new Scene(size,s));
+		t.start();
 	}
 
 	public static Image getBackBuffer() {
@@ -90,5 +86,24 @@ public class Engine {
 	
 	public static int getHeight() {
 		return size.height;
+	}
+
+	public static void setIconLoader(IconLoader i) {
+		iconloader=i;
+		
+	}
+
+	public static void setTextureLoader(TextureLoader t) {
+		textureloader=t;
+		
+	}
+
+	public static void setObjectLoader(Object3DSLoader o) {
+		objectloader = o;
+		
+	}
+
+	public static void setTimer(MyTimer t) {
+		timer=t;
 	}
 }

@@ -41,6 +41,7 @@ public class ServerConnection {
 	BufferedReader in;
 	public static long up;
 	public static long down;
+	public static boolean online = false;
 	
 	public ServerConnection(){
 		up=0;
@@ -78,9 +79,14 @@ public class ServerConnection {
 		} catch (Exception e) {
 			Utils.log(e.getMessage(),System.err);
 		}
+		if(response.length() > 1) online = true;
 		up += parameterAsBytes.length;
 		down += response.length();
 		Utils.console("Server traffic: " + up + "/" + down);
 		return response;
+	}
+
+	public boolean getOnline() {
+		return online;
 	}
 }

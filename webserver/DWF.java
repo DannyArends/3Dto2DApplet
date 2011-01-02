@@ -22,7 +22,7 @@ public class DWF extends JFrame implements RenderWindow {
 	MyHandler eventListener= new MyHandler();
 	ServerConnection s = new ServerConnection();
 	Engine e; 
-
+	
 	DWF(int w, int h,String title){
 	    setSize(w,h); 
 		setTitle(title);
@@ -32,7 +32,7 @@ public class DWF extends JFrame implements RenderWindow {
 		addKeyListener(eventListener);
 		addMouseListener(eventListener);
 		addMouseMotionListener(eventListener);
-		Scene.render_3d=true;
+		Scene.render_3d=false;
 		Scene.updateScene(true,true);
 	}
 	

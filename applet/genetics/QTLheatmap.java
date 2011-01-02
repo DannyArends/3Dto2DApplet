@@ -68,7 +68,7 @@ public class QTLheatmap {
 		        		if(d.modelmatrix[x].scores[m]>0){qtl.setWireframe(false); }else{ qtl.setWireframe(true); }
 		        		r.add((Object3D)qtl);
 		        	}
-		        	if(r.size() > Scene.softmyobjectslimit && !isModelonly()){
+		        	if(r.size() > Scene.getSoftmyobjectslimit() && !isModelonly()){
 		        		Utils.log("Too many objects, going into model only mode",System.err);
 		        		r.clear();
 		        		setModelonly(true);

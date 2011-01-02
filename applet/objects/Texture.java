@@ -160,6 +160,7 @@ public class Texture {
 		        	System.out.println ("Not a 24-bit or 8-bit Windows Bitmap, aborting...");
 		        }
 		        fs.close();
+		        loaded=true;
 			}catch(Exception e){
 				Utils.log("Error downloading file from server",e);
 			}

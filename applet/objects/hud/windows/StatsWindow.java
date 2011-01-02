@@ -23,7 +23,7 @@ public class StatsWindow extends HudWindow {
 	public void update(){
 		clearChildren();
 		HudText t = new HudText(10,10,"Verbose: " + Engine.verbose);
-		t.addLine("Objects (current,softlimit) : " + Scene.getObjects().size() + "/" + Scene.softmyobjectslimit + "");
+		t.addLine("Objects (current,softlimit) : " + Scene.getObjects().size() + "/" + Scene.getSoftmyobjectslimit() + "");
 		t.addLine("Rendering Time (Hud, 3D Scene) : " + Scene.getHudTime() + " ms/" + Scene.getRenderTime() + " ms");
 		t.addLine("HUD windows (visible/hidden): (" + Hud.getVisibleWindows().size() + "/" + Hud.getHudWindows().size() + ")");
 		t.addLine("Images (used/available-notfound): " + IconLoader.getUsed() + "/" + IconLoader.getAvailable() + "-" + IconLoader.notfound);
