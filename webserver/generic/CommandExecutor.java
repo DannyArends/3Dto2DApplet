@@ -3,10 +3,10 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class CommandExecutor implements Runnable{
-	private Vector<String> commands = new Vector<String>();
+	private ArrayList<String> commands = new ArrayList<String>();
 	public String res = "";
 	
 	public CommandExecutor(){
@@ -16,7 +16,7 @@ public class CommandExecutor implements Runnable{
 		addCommand(cmd);
 	}
 	
-	public CommandExecutor(Vector<String> cmd){
+	public CommandExecutor(ArrayList<String> cmd){
 		setCommands(cmd);
 	}
 
@@ -71,7 +71,7 @@ public class CommandExecutor implements Runnable{
 		}
 	}
 
-	public void setCommands(Vector<String> commands) {
+	public void setCommands(ArrayList<String> commands) {
 		this.commands = commands;
 	}
 	
@@ -79,7 +79,7 @@ public class CommandExecutor implements Runnable{
 		this.commands.add(command);
 	}
 
-	public Vector<String> getCommands() {
+	public ArrayList<String> getCommands() {
 		return commands;
 	}
 	

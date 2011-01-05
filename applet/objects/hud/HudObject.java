@@ -25,7 +25,7 @@ package objects.hud;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.Point2D;
 
@@ -35,7 +35,7 @@ abstract public class HudObject extends Point2D{
 	private boolean minimized = false;
 	private String name;
 	private HudObject parent;
-	public Vector<HudObject> children = new Vector<HudObject>();
+	public ArrayList<HudObject> children = new ArrayList<HudObject>();
 	private Color color = Color.darkGray;
 	
 	public HudObject(){

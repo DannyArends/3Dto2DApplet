@@ -30,7 +30,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.hud.HudObject;
 import objects.hud.HudWindow;
@@ -43,7 +43,7 @@ import objects.hud.windows.StatsWindow;
 
 public class Hud extends HudObject{
 	QTLdataset dataset;
-	private static Vector<HudWindow> hudWindows = new Vector<HudWindow>();
+	private static ArrayList<HudWindow> hudWindows = new ArrayList<HudWindow>();
 	private ButtonControler buttonarray= new ButtonControler();
 	
 	static Font[] fonts = new Font[]{
@@ -144,24 +144,24 @@ public class Hud extends HudObject{
 		return false;
 	}
 
-	public static void setHudWindows(Vector<HudWindow> hudWindows) {
+	public static void setHudWindows(ArrayList<HudWindow> hudWindows) {
 		Hud.hudWindows = hudWindows;
 	}
 
-	public static Vector<HudWindow> getHudWindows() {
+	public static ArrayList<HudWindow> getHudWindows() {
 		return Hud.hudWindows;
 	}
 	
-	public static Vector<HudWindow> getVisibleWindows() {
-		Vector<HudWindow> visibleWindows = new Vector<HudWindow>();
+	public static ArrayList<HudWindow> getVisibleWindows() {
+		ArrayList<HudWindow> visibleWindows = new ArrayList<HudWindow>();
 		for(HudWindow e : hudWindows){
 			if(e.isVisible())visibleWindows.add(e);
 		}
 		return visibleWindows;
 	}
 	
-	public static Vector<HudObject> getHudObjectWindows() {
-		Vector<HudObject> t = new Vector<HudObject>();
+	public static ArrayList<HudObject> getHudObjectWindows() {
+		ArrayList<HudObject> t = new ArrayList<HudObject>();
 		for(HudWindow h : hudWindows){
 			if(h.isActive())t.add((HudObject)h);
 		}
@@ -171,8 +171,8 @@ public class Hud extends HudObject{
 		return t;
 	}
 	
-	public static Vector<HudWindow> getSortedHudWindows() {
-		Vector<HudWindow> t = new Vector<HudWindow>();
+	public static ArrayList<HudWindow> getSortedHudWindows() {
+		ArrayList<HudWindow> t = new ArrayList<HudWindow>();
 		for(HudWindow h : hudWindows){
 			if(!h.isActive()) t.add(h);
 		}

@@ -28,7 +28,7 @@ import generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.Point2D;
 import rendering.Engine;
@@ -41,7 +41,7 @@ public class HudWindow extends HudButton{
 	private boolean needUpdate = false;
 	private Point2D fromSlide,originalsize;
 	
-	Vector<HudObject> topMenu = new Vector<HudObject>();
+	ArrayList<HudObject> topMenu = new ArrayList<HudObject>();
 
 	public HudWindow(int x, int y, int sx, int sy, String name) {
 		super(x, y, name);

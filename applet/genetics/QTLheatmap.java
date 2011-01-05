@@ -25,7 +25,7 @@ package genetics;
 import generic.ColorUtils;
 import generic.Utils;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.renderables.Object3D;
 import objects.renderables.Text3D;
@@ -42,8 +42,8 @@ public class QTLheatmap {
 		setModelonly(false);
 	}
 	
-	public Vector<Object3D> getQTLObjects(QTLdataset d){
-		Vector<Object3D> r = new Vector<Object3D>();
+	public ArrayList<Object3D> getQTLObjects(QTLdataset d){
+		ArrayList<Object3D> r = new ArrayList<Object3D>();
 		double cm = 0;
 //		double maxcm = d.markers[(d.qtlmatrix[0].scores.length-1)].location/3 + d.markers[(d.qtlmatrix[0].scores.length-1)].chromosome + d.chrlengths[d.markers[(d.qtlmatrix[0].scores.length-1)].chromosome]/1.5;
 //		Surface triangle = new Surface((double)maxcm/2,(double)cutoff, (double)(d.qtlmatrix.length-1)/2,0,0,(double)maxcm/2,(d.qtlmatrix.length-1)/2,Color.green);//new Surface((double)maxcm/2,(double)cutoff,(double)(d.qtlmatrix.length-1)/2,0,0,0.0,Utils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
@@ -57,14 +57,14 @@ public class QTLheatmap {
 		        		if(d.modelmatrix[x].scores[m]>0){
 		        			//Surface triangle = new Surface(cm,0.0,x,0,0,d.qtlmatrix[x].scores[m]/100,d.qtlmatrix[x].scores[m]/100,Utils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
 		        			Triangle3D qtl = new Triangle3D(cm,0.0,x,0,0,1,d.qtlmatrix[x].scores[m]/10,ColorUtils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
-		        			Text3D t = new Text3D(""+d.qtlmatrix[x].scores[m],cm,(d.qtlmatrix[x].scores[m]/10)+1,x); 
+		        			Text3D t = new Text3D(""+d.qtlmatrix[x].scores[m],cm,0.0,x); 
 		        			qtl.setWireframe(false);
 		        			r.add((Object3D)qtl);
 		        			r.add((Object3D)t);
 		        		}
 		        	}else{
 		        		//Surface triangle = new Surface(cm,0.0,x,0,0,d.qtlmatrix[x].scores[m]/100,d.qtlmatrix[x].scores[m]/100,Utils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
-		        		Triangle3D qtl = new Triangle3D((d.qtlmatrix[x].scores.length-1)-m,0.0,(d.qtlmatrix.length-1)-x,0,0,1,d.qtlmatrix[x].scores[m]/20,ColorUtils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
+		        		Triangle3D qtl = new Triangle3D(cm,0.0,x,0,0,1,d.qtlmatrix[x].scores[m]/20,ColorUtils.doubleToColor(d.qtlmatrix[x].scores[m],d.maxqtl));
 		        		if(d.modelmatrix[x].scores[m]>0){qtl.setWireframe(false); }else{ qtl.setWireframe(true); }
 		        		r.add((Object3D)qtl);
 		        	}
@@ -81,8 +81,8 @@ public class QTLheatmap {
 		return r;
 	}
 	
-	public Vector<Object3D> getAnnotationObjects(QTLdataset d){
-		Vector<Object3D> r = new Vector<Object3D>();
+	public ArrayList<Object3D> getAnnotationObjects(QTLdataset d){
+		ArrayList<Object3D> r = new ArrayList<Object3D>();
 		double cm = 0;
 		for(int x=(d.qtlmatrix.length-1);x>=0;x--){	
 			Text3D text = new Text3D(d.qtlmatrix[x].name,-10,0.0,x);

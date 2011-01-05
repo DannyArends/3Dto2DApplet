@@ -3,12 +3,12 @@ package objects.hud;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import rendering.Hud;
 
 public class HudText extends HudObject{
-	private Vector<String> text = new Vector<String>();
+	private ArrayList<String> text = new ArrayList<String>();
 	
 	public HudText(int x, int y, String t){
 		super(x,y);
@@ -42,7 +42,7 @@ public class HudText extends HudObject{
 		this.text.add(line);
 	}
 
-	public Vector<String> getTextVector() {
+	public ArrayList<String> getTextVector() {
 		return text;
 	}
 }

@@ -1,16 +1,15 @@
 package rendering;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.hud.HudImage;
-
 import events.ServerConnection;
 import generic.Utils;
 
 public class IconLoader {
 	String iconlist;
 	public static int notfound = 0;
-	static Vector<HudImage> icons = new Vector<HudImage>();
+	static ArrayList<HudImage> icons = new ArrayList<HudImage>();
 	
 	IconLoader(ServerConnection s){
 		String iconlist = s.commandToServer("list_files=png&dir=icons");

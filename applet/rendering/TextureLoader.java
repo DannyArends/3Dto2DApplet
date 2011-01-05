@@ -1,14 +1,13 @@
 package rendering;
 
 import java.net.URL;
-import java.util.Vector;
-
+import java.util.ArrayList;
 import objects.Texture;
 import events.ServerConnection;
 import generic.Utils;
 
 public class TextureLoader {
-	static Vector<Texture> models = new Vector<Texture>();
+	static ArrayList<Texture> models = new ArrayList<Texture>();
 	public static int notfound = 0;
 	URL url;
 

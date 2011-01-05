@@ -22,17 +22,12 @@
 
 package rendering;
 
-import events.ServerConnection;
-import generic.Utils;
-import genetics.QTLdataset;
-import genetics.QTLheatmap;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.Camera;
 import objects.Texture;
@@ -41,6 +36,10 @@ import objects.renderables.Sphere;
 import objects.renderables.Surface;
 import objects.renderables.light.Light;
 import objects.renderables.light.PointLight;
+import events.ServerConnection;
+import generic.Utils;
+import genetics.QTLdataset;
+import genetics.QTLheatmap;
 
 
 public class Scene implements Runnable{
@@ -60,8 +59,8 @@ public class Scene implements Runnable{
 	public static boolean render_3d = true;
 	
 	private static RayTracer raytracer = new RayTracer();
-	private static Vector<Object3D> myobjects = new Vector<Object3D>();
-	private static Vector<Light> lights = new Vector<Light>();
+	private static ArrayList<Object3D> myobjects = new ArrayList<Object3D>();
+	private static ArrayList<Light> lights = new ArrayList<Light>();
 	private static Camera camera = new Camera(-10.0, 10.0, -10.0, -35, 15);
 	
 	public Scene(Dimension dim, ServerConnection s){
@@ -106,12 +105,14 @@ public class Scene implements Runnable{
 			dataset = new QTLdataset("data/data.dat");
 			heatmap = new QTLheatmap();
 			headsupdisplay.addDataset(dataset);
-//			for(Object3D x : heatmap.getQTLObjects(dataset)){
-//				Utils.console(""+x.getName());
-//				//Scene.addObject(x);
-//			}
+			int cnt=0;
+			for(Object3D x : heatmap.getQTLObjects(dataset)){
+				//Utils.console(""+x.getName());
+				if(cnt < 10){Scene.addObject(x);}
+				cnt++;
+			}
 //			for(Object3D x : heatmap.getAnnotationObjects(dataset)){
-//				Utils.console(""+x.getName());
+//				//Utils.console(""+x.getName());
 //				//Scene.addObject(x);
 //			}
 		}catch(Exception e){
@@ -142,12 +143,12 @@ public class Scene implements Runnable{
 	}
 	
 	public static void reDraw3DScene() {
-		clearObjects();
-		loadBasicScene();
+//		clearObjects();
+//		loadBasicScene();
 		PreComputeLoadedObjects();
 	}
 	
-	public static Vector<Object3D> getObjects() {
+	public static ArrayList<Object3D> getObjects() {
 		return myobjects;
 	}
 	
@@ -164,12 +165,12 @@ public class Scene implements Runnable{
 			Engine.getBackBufferGraphics().fillRect(0, 0, size.width, size.height);
 		}
 		if(render_3d && raytracer != null){
-			raytracer.render();
 			for(Object3D myobject : myobjects){
 				myobject.bufferMyObject();
 				//myobject.render(Engine.getBackBufferGraphics(),camera);
 				//Utils.console(""+myobject.getEdges()[0]);
 			}
+			raytracer.render();
 		}
 		long l2 = System.nanoTime();
 		if(render_2d && headsupdisplay != null){
@@ -229,7 +230,7 @@ public class Scene implements Runnable{
 		return backgroundColor;
 	}
 
-	public static Vector<Light> getLights() {
+	public static ArrayList<Light> getLights() {
 		return lights;
 	}
 

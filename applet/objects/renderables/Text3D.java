@@ -23,6 +23,8 @@
 package objects.renderables;
 
 
+import generic.MathUtils;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -70,20 +72,20 @@ public class Text3D extends Object3D {
 	
 	public void render(Graphics g, Camera c){
 		Graphics2D g2d = (Graphics2D)g;
-		int scaleFactor = (int) ((Engine.getWidth() / 8));
-		double[] d = computeOrtogonalProjection(difference(c),rotation);
+		int width = Engine.getWidth();
+		int height = Engine.getHeight();
+		int scaleFactor_w = (int) ((width / 1.90));
+		int scaleFactor_h = (int) ((height / 1.40));
+		double[] d = computeOrtogonalProjection(MathUtils.calcPointsDiff(c.location,location),c.rotation);
 		int fontid;
 		if(!inFrontOfCamera(d[2])){
 			//Calculate a perspective projection
 			d=computePerspectiveProjection(d);
-			if(!((Engine.getWidth()/2 - scaleFactor * d[0]) < 0) && !((Engine.getWidth()/2 - scaleFactor * d[0])<0)){
-				fontid = (int)pointDifference(difference(c))/25;
+			fontid = (int)pointDifference(difference(c))/30;
 				
-				g2d.setFont(fonts[fontid<10?fontid:10]);
-				g2d.setColor(Color.white);
-				g2d.drawString(getText(), (int)(Engine.getWidth()/2 - scaleFactor * d[0]), (int)(Engine.getHeight()/2 - scaleFactor * d[1]));
-				
-			}
+			g2d.setFont(fonts[fontid<10?fontid:10]);
+			g2d.setColor(Color.white);
+			g2d.drawString(getText(), (int)(width/2 - scaleFactor_w * d[0]), (int)(height/2 - scaleFactor_h * d[1]));
 		}
 	}
 

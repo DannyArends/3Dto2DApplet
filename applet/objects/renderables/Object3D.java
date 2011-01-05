@@ -174,7 +174,7 @@ public abstract class Object3D extends Point3D{
 			
 			for (int j = 0; j < vertices.length; ++j) {
 				d = computeOrtogonalProjection(vertices[j].getMultipleVector(objectScale),ownrotation);
-				MathUtils.addVector(d, location);
+				//MathUtils.addVector(d, location);
 				d = computeOrtogonalProjection(MathUtils.calcPointsDiff(c.location,d),c.rotation);
 				
 				if(!inFrontOfCamera(d[2])){

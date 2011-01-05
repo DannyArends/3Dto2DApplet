@@ -28,7 +28,7 @@ import generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.hud.HudButton;
 import objects.hud.HudMenuButton;
@@ -37,7 +37,7 @@ import rendering.Hud;
 
 public class ButtonControler {
 	static HudButton tmp_button;
-	static Vector<HudObject> monitored = new Vector<HudObject>();
+	static ArrayList<HudObject> monitored = new ArrayList<HudObject>();
 	
 	public ButtonControler(){
 		addMainMenu();
@@ -48,7 +48,7 @@ public class ButtonControler {
 		return checkLocation(monitored,x,y);
 	}
 	
-	public static boolean checkLocation(Vector<HudObject> tocheck, int x,  int y){
+	public static boolean checkLocation(ArrayList<HudObject> tocheck, int x,  int y){
 		for(HudObject b : tocheck){
 			if(b.x < x && b.y < y){
 				if(b.getAbsoluteSizeX() > x && b.getAbsoluteSizeY() > y){

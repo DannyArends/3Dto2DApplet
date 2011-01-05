@@ -10,7 +10,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.Camera;
 import objects.Edge;
@@ -22,8 +22,8 @@ import rendering.Engine;
 
 
 public class Model3DS extends Object3D{
-	private Vector<Object3DS> objects;
-	private Vector<Material> materials;
+	private ArrayList<Object3DS> objects;
+	private ArrayList<Material> materials;
 	private String name;
 	ByteArrayInputStream stream;
 	int filelength;
@@ -37,7 +37,7 @@ public class Model3DS extends Object3D{
 	public Model3DS(Model3DS h) {
 		super((Object3D) h);
 		setName(h.name);
-		Vector<Object3DS> copy = new Vector<Object3DS>();
+		ArrayList<Object3DS> copy = new ArrayList<Object3DS>();
 		for(Object3DS o : h.getObjects()){
 			copy.add(new Object3DS(o));
 		}
@@ -47,19 +47,19 @@ public class Model3DS extends Object3D{
 		setLoaded(h.isLoaded());
 	}
 
-	public void setObjects(Vector<Object3DS> objects) {
+	public void setObjects(ArrayList<Object3DS> objects) {
 		this.objects = objects;
 	}
 
-	public Vector<Object3DS> getObjects() {
+	public ArrayList<Object3DS> getObjects() {
 		return objects;
 	}
 
-	public void setMaterials(Vector<Material> materials) {
+	public void setMaterials(ArrayList<Material> materials) {
 		this.materials = materials;
 	}
 
-	public Vector<Material> getMaterials() {
+	public ArrayList<Material> getMaterials() {
 		return materials;
 	}
 	
@@ -105,8 +105,8 @@ public class Model3DS extends Object3D{
 
 	public void TryLoadingFromName() {
 		if(Engine.verbose) Utils.console("Loading file: " + Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
-		Vector<Object3DS> objects = new Vector<Object3DS>();
-		Vector<Material> materials = new Vector<Material>();
+		ArrayList<Object3DS> objects = new ArrayList<Object3DS>();
+		ArrayList<Material> materials = new ArrayList<Material>();
 		Object3DS object = null;
 		Material material = null;
 		byte[] b = null;

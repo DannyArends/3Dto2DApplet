@@ -23,14 +23,14 @@
 package rendering;
 
 import java.net.URL;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.renderables.Model3DS;
 import events.ServerConnection;
 import generic.Utils;
 
 public class Object3DSLoader {
-	static Vector<Model3DS> models = new Vector<Model3DS>();
+	static ArrayList<Model3DS> models = new ArrayList<Model3DS>();
 	public static int notfound = 0;
 	URL url;
 
