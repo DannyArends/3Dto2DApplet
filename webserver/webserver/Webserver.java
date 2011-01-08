@@ -48,7 +48,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.*;
 
-
+/// Class to serve java servlets using HTTP
+//<p>
+//See TJWS
+//</p>
+//
 
 public class Webserver implements ServletContext, Serializable {
 	private static final long serialVersionUID = 1L;
@@ -306,7 +310,7 @@ public class Webserver implements ServletContext, Serializable {
 	 * 	 
 	 * @param urlPat servlet invoker URL pattern
 	 * @param servlet already instantiated servlet but init
-	 * @param host name the servlet attached to, when verual hosts are used, use null for all hosts
+	 * @param hostName name the servlet attached to, when verual hosts are used, use null for all hosts
 	 */
 	public void addServlet(String urlPat, Servlet servlet, String hostName) {
 		addServlet(urlPat, servlet, (Hashtable<String,Object>) null, hostName);
@@ -326,9 +330,10 @@ public class Webserver implements ServletContext, Serializable {
 
 	/** Register a Servlet
 	 * 
-	 * @param urlPat
-	 * @param servlet
-	 * @param initParams
+	 * @param urlPat url pattern to match
+	 * @param servlet Servlet to add
+	 * @param initParams Init parameters for the servlet
+	 * @param virtualHost Host name of the serving servlet
 	 */
 	public synchronized void addServlet(String urlPat, Servlet servlet, Hashtable<String,Object> initParams, String virtualHost) {
 		setHost(virtualHost);
@@ -847,8 +852,7 @@ public class Webserver implements ServletContext, Serializable {
 	 * getResourcePaths("/catalog/") returns {"/catalog/index.html", "/catalog/products.html", "/catalog/offers/"}.
 	 * <p>
 	 * 
-	 * @param the -
-	 *            partial path used to match the resources, which must start with a /
+	 * @param path partial path used to match the resources, which must start with a /
 	 * @return a Set containing the directory listing, or null if there are no resources in the web application whose path begins with the supplied path.
 	 * @since Servlet 2.3
 	 * 

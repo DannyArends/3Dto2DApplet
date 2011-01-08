@@ -5,6 +5,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+
+/// CommandExecutor - command executor class
+//<p>
+//Add the ability to any project to execute a-sync threaded system commands on local host
+//</p>
+//
+
 public class CommandExecutor implements Runnable{
 	private ArrayList<String> commands = new ArrayList<String>();
 	public String res = "";

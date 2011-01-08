@@ -20,6 +20,11 @@ import objects.Point3D;
 import objects.Vector3D;
 import rendering.Engine;
 
+/// 3DS model (single file) can contain multiple Object3DS
+//<p>
+//TODO
+//</p>
+//
 
 public class Model3DS extends Object3D{
 	private ArrayList<Object3DS> objects;

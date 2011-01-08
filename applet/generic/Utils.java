@@ -60,7 +60,7 @@ public class Utils{
 		return t;
 	}
 	
-	// / Returns a date string formatted in Unix ls style - if it's within
+	/// Returns a date string formatted in Unix ls style - if it's within
 	// six months of now, Mmm dd hh:ss, else Mmm dd yyyy.
 	static final SimpleDateFormat shortfmt = new SimpleDateFormat("MMM dd HH:mm");
 
@@ -690,14 +690,11 @@ public class Utils{
 	/**
 	 * base 64 encoding, string converted to bytes using specified encoding
 	 * 
-	 * @param String
-	 *            <val>_s</val> original string to encode
-	 * @param String
-	 *            encoding, can be null, then iso-8859-1 used
+	 * @param _s original string to encode
+	 * @param _enc can be null, then iso-8859-1 used
 	 * @return String result of encoding as iso-8859-1 string<br>
 	 *         return null in case of invalid encoding or original string null
-	 * @exception no
-	 *                exceptions
+	 * @exception no exceptions
 	 */
 	public final static String base64Encode(String _s, String _enc) {
 		if (_s == null)
@@ -715,10 +712,7 @@ public class Utils{
 	/**
 	 * base 64 encoding, array of bytes converted to bytes using specified encoding
 	 * 
-	 * @param String
-	 *            <val>_s</val> original string to encode
-	 * @param String
-	 *            encoding, can be null, then iso-8859-1 used
+	 * @param _bytes byte array to encode to string base64
 	 * @return String result of encoding as iso-8859-1 string<br>
 	 * 
 	 * @exception <code>NullPointerException</code> if input parameter is null
@@ -764,7 +758,8 @@ public class Utils{
 	}
 
 	/**
-	 * Translates a Base64 value to either its 6-bit reconstruction value or a negative number indicating some other meaning.
+	 * Translates a Base64 value to either its 6-bit reconstruction value or a negative number 
+	 * indicating some other meaning.
 	 */
 	protected final static byte[] DECODABET = { -9, -9, -9, -9, -9, -9, -9, -9, -9, // Decimal 0 - 8
 			-5, -5, // Whitespace: Tab and Linefeed
@@ -808,10 +803,8 @@ public class Utils{
 	/**
 	 * base 64 decoding
 	 * 
-	 * @param encoded
-	 *            string
-	 * @param encoding
-	 *            used to get string bytes
+	 * @param _s String to decode
+	 * @param _enc Encoding used to get string bytes
 	 * @return result of encoding, or null if encoding invalid or string null, or string is invalid base 64 encoding
 	 */
 	public final static String base64Decode(String _s, String _enc) {

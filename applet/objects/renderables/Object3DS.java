@@ -24,6 +24,11 @@ package objects.renderables;
 
 import objects.Vector3D;
 
+/// Holds vertices edges and normals
+//<p>
+//Holds vertices edges and normals, and after object buffering triangles
+//</p>
+//
 
 public class Object3DS extends Object3D{
 	

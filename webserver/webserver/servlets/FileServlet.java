@@ -55,15 +55,15 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /// Servlet similar to a standard httpd.
-// <P>
+// <p>
 // Implements the "GET" and "HEAD" methods for files and directories.
 // Handles index.html, index.htm, default.htm, default.html.
 // Redirects directory URLs that lack a trailing /.
 // Handles If-Modified-Since.
-// <P>
+// </p><p>
 // <A HREF="/resources/classes/Acme/Serve/FileServlet.java">Fetch the software.</A><BR>
 // <A HREF="/resources/classes/Acme.tar.Z">Fetch the entire Acme package.</A>
-// <P>
+// </p>
 // @see Acme.Serve.Serve
 
 public class FileServlet extends Servlet {

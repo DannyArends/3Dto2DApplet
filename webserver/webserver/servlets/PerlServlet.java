@@ -12,6 +12,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/// Servlet to serve perl cgi-scripts from the cgi-bin directory
+//<p>
+//class to server perl cgi-script from the cgi-bin directory
+//</p>
+
 public class PerlServlet extends Servlet {
 	private static final long serialVersionUID = 1L;
 	

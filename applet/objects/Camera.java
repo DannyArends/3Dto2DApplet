@@ -25,6 +25,12 @@ package objects;
 import objects.renderables.Object3D;
 import rendering.Scene;
 
+/// Represents the camera in 3D space
+//<p>
+//TODO
+//</p>
+//
+
 public class Camera extends Object3D{
 	
 	private static double near = 3.0f;

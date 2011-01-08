@@ -29,6 +29,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
+/// Main rendering engine class
+//<p>
+//TODO
+//</p>
+//
+
 public class Engine{
 	public static boolean verbose=false;
 	

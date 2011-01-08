@@ -41,6 +41,12 @@ import objects.hud.windows.IconBar;
 import objects.hud.windows.LoginWindow;
 import objects.hud.windows.StatsWindow;
 
+/// Head Up Display
+//<p>
+//TODO
+//</p>
+//
+
 public class Hud extends HudObject{
 	QTLdataset dataset;
 	private static ArrayList<HudWindow> hudWindows = new ArrayList<HudWindow>();

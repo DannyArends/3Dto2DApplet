@@ -41,6 +41,11 @@ import generic.Utils;
 import genetics.QTLdataset;
 import genetics.QTLheatmap;
 
+/// A 'renderable' moment/state of the engine
+//<p>
+//TODO
+//</p>
+//
 
 public class Scene implements Runnable{
 	static private Dimension size = new Dimension(10,10);

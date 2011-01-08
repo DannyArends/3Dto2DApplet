@@ -6,6 +6,12 @@ import objects.hud.HudImage;
 import events.ServerConnection;
 import generic.Utils;
 
+/// Lazy loader to load icons via HTTP 
+//<p>
+//TODO
+//</p>
+//
+
 public class IconLoader {
 	String iconlist;
 	public static int notfound = 0;

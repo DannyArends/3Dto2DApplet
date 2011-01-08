@@ -41,6 +41,12 @@ import objects.Texture;
 import objects.Vector3D;
 import rendering.Engine;
 
+/// 3 Dimensional object
+//<p>
+//TODO
+//</p>
+//
+
 public abstract class Object3D extends Point3D{
 	private String name = "Object3D";
 	private boolean wireframe = false;
@@ -92,9 +98,8 @@ public abstract class Object3D extends Point3D{
 	}
 	
 	/**
-	 * Creates triangles and normals from the vertices and edge arrays
+	 * Buffer the current objects vertices and edges into triangles and calculate the normals
 	 * 
-	 * @param c Camera
 	 * @return
 	 */	
 	public void bufferMyObject(){
@@ -320,7 +325,8 @@ public abstract class Object3D extends Point3D{
 	 * Calculations are done in a geometric method, using pythagorean calculations. 
 	 * Some references claim that this method may work faster than the algebraic method. 
 	 * 
-	 * @param ray
+	 * @param ray Ray to intersect with
+	 * @param size Size of the objects
 	 * @return
 	 */
 	protected double intersectGeometric(Vector3D ray, double size) {
@@ -380,7 +386,8 @@ public abstract class Object3D extends Point3D{
 	/**
 	 * Pre-intersection testing with plane of object
 	 * 
-	 * @param c Camera
+	 * @param ray Ray to intersect with
+	 * @param i Index to the normal of the object
 	 * @return
 	 */	
 	public double intersectWithPlane(Vector3D ray, int i) {
@@ -403,7 +410,9 @@ public abstract class Object3D extends Point3D{
 	/**
 	 * Triangle barycentric intersection algorithm
 	 * 
-	 * @param c Camera
+	 * @param ray Ray to intersect with
+	 * @param i Index to the normal of the object
+	 * @param distance Distance to the intersecting object
 	 * @return
 	 */	
 	public double intersectBarycentric(Vector3D ray,int i, double distance) {

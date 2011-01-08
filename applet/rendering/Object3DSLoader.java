@@ -29,6 +29,12 @@ import objects.renderables.Model3DS;
 import events.ServerConnection;
 import generic.Utils;
 
+/// Lazy loader to load 3DS objects via HTTP 
+//<p>
+//TODO
+//</p>
+//
+
 public class Object3DSLoader {
 	static ArrayList<Model3DS> models = new ArrayList<Model3DS>();
 	public static int notfound = 0;

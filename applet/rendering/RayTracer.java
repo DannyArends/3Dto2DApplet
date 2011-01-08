@@ -9,6 +9,12 @@ import objects.Vector3D;
 import objects.renderables.Object3D;
 import objects.renderables.light.Light;
 
+/// Basic implementation of a ray tracer 
+//<p>
+//Basic implementation of a ray tracer
+//</p>
+//
+
 public class RayTracer {
 	public final double EPSILON = 0.00000001F;
 	public final int MAX_REFLECTION_RECURSION_DEPTH = 8;
@@ -153,7 +159,6 @@ public class RayTracer {
 	 * @param y y-pixel location to start the ray from
 	 * @param sampleXOffset sampling offset in x direction of the ray
 	 * @param sampleYOffset sampling offset in y direction of the ray
-	 * @param ignorePrimitive ignore this primitive
 	 * @return
 	 */	
 	public Vector3D constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																

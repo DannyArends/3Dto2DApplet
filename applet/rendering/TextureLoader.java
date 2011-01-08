@@ -6,6 +6,12 @@ import objects.Texture;
 import events.ServerConnection;
 import generic.Utils;
 
+/// Lazy loader to load textures via HTTP 
+//<p>
+//TODO
+//</p>
+//
+
 public class TextureLoader {
 	static ArrayList<Texture> models = new ArrayList<Texture>();
 	public static int notfound = 0;

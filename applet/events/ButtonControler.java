@@ -35,6 +35,12 @@ import objects.hud.HudMenuButton;
 import objects.hud.HudObject;
 import rendering.Hud;
 
+/// Monitors mouse button click to 'hud' buttons
+//<p>
+//TODO
+//</p>
+//
+
 public class ButtonControler {
 	static HudButton tmp_button;
 	static ArrayList<HudObject> monitored = new ArrayList<HudObject>();
