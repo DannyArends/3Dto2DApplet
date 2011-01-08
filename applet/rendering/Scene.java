@@ -68,6 +68,11 @@ public class Scene implements Runnable{
 		server = s;
 	}
 	
+	/**
+	 * Loading Thread starts the Timer thread when done loading
+	 * 
+	 * @return
+	 */	
 	@Override
 	public void run() {
 		UpdateLoading(0,"Querying server");
@@ -81,7 +86,7 @@ public class Scene implements Runnable{
 		lights.add(new PointLight(0.0, 10.0, 25.0, 1, 1.0, 1.0));
 		lights.add(new PointLight(100.0, 10.0, 100.0, 1, 1.0, 1.0));
 		UpdateLoading(50,"Loading Dataset");
-		loadBasicDataSet();
+		//loadBasicDataSet();
 		UpdateLoading(70,"Loading Scene");
 		loadBasicScene();
 		UpdateLoading(80,"PreComputing Object statistics");
@@ -91,6 +96,13 @@ public class Scene implements Runnable{
 		loading=false;
 	}
 	
+	/**
+	 * Update the loading window
+	 * 
+	 * @param percentage percentage done
+	 * @param m loading message
+	 * @return
+	 */	
 	void UpdateLoading(int percentage,String m){
 		loadingPercentage = percentage;
 		loadingMsg = m;
@@ -100,6 +112,7 @@ public class Scene implements Runnable{
 			e.printStackTrace();
 		}
 	}
+	
 	void loadBasicDataSet(){
 		try{
 			dataset = new QTLdataset("data/data.dat");
@@ -107,14 +120,12 @@ public class Scene implements Runnable{
 			headsupdisplay.addDataset(dataset);
 			int cnt=0;
 			for(Object3D x : heatmap.getQTLObjects(dataset)){
-				//Utils.console(""+x.getName());
-				if(cnt < 10){Scene.addObject(x);}
+				Scene.addObject(x);
 				cnt++;
 			}
-//			for(Object3D x : heatmap.getAnnotationObjects(dataset)){
-//				//Utils.console(""+x.getName());
-//				//Scene.addObject(x);
-//			}
+			for(Object3D x : heatmap.getAnnotationObjects(dataset)){
+				Scene.addObject(x);
+			}
 		}catch(Exception e){
 			Utils.log("Error unable to load dataset", e);
 		}
@@ -152,6 +163,13 @@ public class Scene implements Runnable{
 		return myobjects;
 	}
 	
+	/**
+	 * Update the scene
+	 * 
+	 * @param redraw2d Sometimes the user changes 2D
+	 * @param redraw3d Sometimes the user changes 3D
+	 * @return
+	 */	
 	public static void updateScene(boolean redraw2d, boolean redraw3d) {
 		if(Engine.verbose) Utils.console("Re-rendering on back buffer");
 		if(Engine.getBackBufferGraphics()==null){
@@ -163,13 +181,12 @@ public class Scene implements Runnable{
 		}else{
 			Engine.getBackBufferGraphics().setColor(Color.black);
 			Engine.getBackBufferGraphics().fillRect(0, 0, size.width, size.height);
-		}
-		if(render_3d && raytracer != null){
 			for(Object3D myobject : myobjects){
 				myobject.bufferMyObject();
-				//myobject.render(Engine.getBackBufferGraphics(),camera);
-				//Utils.console(""+myobject.getEdges()[0]);
+				myobject.render(Engine.getBackBufferGraphics(),camera);
 			}
+		}
+		if(render_3d && raytracer != null){
 			raytracer.render();
 		}
 		long l2 = System.nanoTime();
@@ -192,6 +209,10 @@ public class Scene implements Runnable{
 		myobjects.clear();
 	}
 	
+	/**
+	 * Copies the graphical back buffer to the graphics buffer
+	 * 
+	 */	
 	public static void updateGraphics(Graphics g) {
 		if(Engine.verbose) Utils.console("Back buffer to front buffer");
 		if(Engine.getBackBuffer()!=null && Engine.getRenderWindow() != null){

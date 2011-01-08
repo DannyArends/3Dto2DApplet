@@ -11,6 +11,10 @@ public class IconLoader {
 	public static int notfound = 0;
 	static ArrayList<HudImage> icons = new ArrayList<HudImage>();
 	
+	/**
+	 * IconLoader constructor: Gets a list of 2D icons and initializes empty icon models
+	 * 
+	 */	
 	IconLoader(ServerConnection s){
 		String iconlist = s.commandToServer("list_files=png&dir=icons");
 		Utils.console("From server: " + (iconlist.split("\n").length - 3) + " icons");

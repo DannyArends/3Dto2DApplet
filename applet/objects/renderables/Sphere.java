@@ -48,6 +48,11 @@ public class Sphere extends Object3D {
 		setEdgeColors(colors);
 	}
 
+	/**
+	 * Return texture coordinates on a sphere
+	 * 
+	 * @return double[] 2D texture coordinates
+	 */
 	@Override
 	public double[] getTextureCoords(double[] point) {
 	double[] rp = MathUtils.calcPointsDiff(location, point);

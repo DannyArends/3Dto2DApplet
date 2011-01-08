@@ -23,6 +23,7 @@
 package objects;
 
 import objects.renderables.Object3D;
+import rendering.Scene;
 
 public class Camera extends Object3D{
 	
@@ -41,6 +42,7 @@ public class Camera extends Object3D{
 		location[0] += 0.5*x;
 		location[1] += 0.5*y;
 		location[2] += 0.5*z;
+		Scene.updateScene(false, true);
 	}
 
 	public void setNear(double n) {

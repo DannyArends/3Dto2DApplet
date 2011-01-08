@@ -34,6 +34,10 @@ public class Object3DSLoader {
 	public static int notfound = 0;
 	URL url;
 
+	/**
+	 * Object3DSLoader constructor: Gets a list of 3DS files and initializes empty models3DSObjects
+	 * 
+	 */	
 	public Object3DSLoader(ServerConnection s) {
 		String modellist = s.commandToServer("list_files=3ds&dir=models");
 		Utils.console("From server: " + (modellist.split("\n").length - 3) + " models");

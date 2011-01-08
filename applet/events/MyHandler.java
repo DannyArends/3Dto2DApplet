@@ -120,7 +120,6 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	    	case KeyEvent.VK_EQUALS:Utils.console("+");QTLheatmap.increaseCutoff();Scene.updateScene(false,true);break;
 	    	case KeyEvent.VK_MINUS:Utils.console("-");QTLheatmap.decreaseCutoff();Scene.updateScene(false,true);break;
 	      }
-	    Engine.getRenderWindow().repaint();
 	}
 
 	public void keyTyped(KeyEvent e) {

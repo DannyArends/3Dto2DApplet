@@ -51,6 +51,13 @@ public class Hud extends HudObject{
 		new Font("Dialog", Font.PLAIN, 10)
 	};
 	
+	/**
+	 * Initialize the HUD by loading all the windows
+	 * 
+	 * @param sx Width of the HUD
+	 * @param sy Height of the HUD
+	 * @return
+	 */	
 	public Hud(int sx, int sy){
 		super(sx,sy);
 		addChild(new AboutWindow(100, 100));

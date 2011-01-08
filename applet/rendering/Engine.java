@@ -43,6 +43,13 @@ public class Engine{
 	static TextureLoader textureloader;
 	static Object3DSLoader objectloader;
 	
+	/**
+	 * Start the Rendering engine on the specified rendering window with the given server connection
+	 * 
+	 * @param p RenderWindow parent (use extend Applet or JFrame and implements RenderWindow)
+	 * @param s ServerConnection connection to a file server (used for Applets and internal transfer DWF)
+	 * @return
+	 */	
 	public Engine(RenderWindow p, ServerConnection s){
 		parent=p;
 		size = p.getSize();

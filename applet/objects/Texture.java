@@ -48,6 +48,10 @@ public class Texture {
 		return loaded;
 	}
 
+	/**
+	 * Try to load a texture into the empty texture object created by the Loader
+	 * 
+	 */	
 	public void TryLoadingFromName() {
 		int filelength;
 		byte[] b;

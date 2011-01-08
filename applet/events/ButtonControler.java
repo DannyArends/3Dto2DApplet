@@ -43,6 +43,12 @@ public class ButtonControler {
 		addMainMenu();
 	}
 	
+	/**
+	 * Check if location of a mouse click on the HUD hits a HUD object
+	 * @param x x location
+	 * @param y y location
+	 * 
+	 */	
 	public static boolean checkLocation(int x,  int y){
 		checkLocation(Hud.getHudObjectWindows(),x,y);
 		return checkLocation(monitored,x,y);

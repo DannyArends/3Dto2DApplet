@@ -73,6 +73,12 @@ public class Surface extends Object3D {
 		return Double.POSITIVE_INFINITY;
 	}
 	
+	/**
+	 * Plane barycentric intersection algorithm
+	 * 
+	 * @param c Camera
+	 * @return
+	 */
 	public double intersectBarycentric(Vector3D ray,double[] p0,double[] p1,double[] p2, double distance) {
 		if(vertices==null) return Double.POSITIVE_INFINITY;
 		double[] v0, v1, v2;

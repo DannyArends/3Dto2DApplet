@@ -11,6 +11,10 @@ public class TextureLoader {
 	public static int notfound = 0;
 	URL url;
 
+	/**
+	 * TextureLoader constructor: Gets a list of textures and initializes empty texture models
+	 * 
+	 */	
 	public TextureLoader(ServerConnection s) {
 		String modellist = s.commandToServer("list_files=bmp&dir=textures");
 		Utils.log("From server: " + (modellist.split("\n").length - 3) + " textures",System.err);

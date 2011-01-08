@@ -91,6 +91,12 @@ public abstract class Object3D extends Point3D{
 		return transparant;
 	}
 	
+	/**
+	 * Creates triangles and normals from the vertices and edge arrays
+	 * 
+	 * @param c Camera
+	 * @return
+	 */	
 	public void bufferMyObject(){
 		if(!buffered && edges != null){
 			triangles = new double[edges.length/3][3][3];
@@ -141,6 +147,12 @@ public abstract class Object3D extends Point3D{
 		
 	}
 	
+	/**
+	 * Updates the objects rotation vectors based on the camera
+	 * 
+	 * @param c Camera
+	 * @return
+	 */	
 	public void update(Camera c){
 		double theta = Math.PI * (c.getHorizontalRotation()) / 180.0;
 		double phi = Math.PI * (c.getVerticalRotation()) / 180.0;
@@ -174,11 +186,8 @@ public abstract class Object3D extends Point3D{
 			
 			for (int j = 0; j < vertices.length; ++j) {
 				d = computeOrtogonalProjection(vertices[j].getMultipleVector(objectScale),ownrotation);
-				//MathUtils.addVector(d, location);
 				d = computeOrtogonalProjection(MathUtils.calcPointsDiff(c.location,d),c.rotation);
-				
 				if(!inFrontOfCamera(d[2])){
-					//Calculate a perspective projection
 					d=computePerspectiveProjection(d);
 					points[j] = new Point2D((int)(width/2 - scaleFactor_w * d[0]),(int)(height/2  - scaleFactor_h * d[1]));
 				}
@@ -220,15 +229,25 @@ public abstract class Object3D extends Point3D{
 		}
 	}
 	
-
+	/**
+	 * Render the object using the geometric transformation
+	 * 
+	 * @param g Graphics
+	 * @param c Camera
+	 * @return
+	 */
 	public void render(Graphics g, Camera c){
-		// Paint
 		if(points==null){
 			Utils.log("Strange, We try to render something not initialized", System.err);
 			return;
 		}
 		Graphics2D g2d = (Graphics2D)g;
 		GeneralPath path = null;
+		Color ambient = Color.blue;
+		if(!materials.isEmpty()){
+			double[] colorz = materials.elementAt(0).getAmbient();
+			ambient = new Color((int)(colorz[0]*255),(int)(colorz[1]*255),(int)(colorz[2]*255));
+		}
 		for(int j=0; j < edges.length;j+=3){
 			if(points[edges[j].a] != null && points[edges[j+1].a] != null && points[edges[j+2].a] != null){
 			if(points[edges[j].b] != null && points[edges[j+1].b] != null && points[edges[j+2].b] != null){
@@ -242,11 +261,7 @@ public abstract class Object3D extends Point3D{
 				path.lineTo(points[edges[j+2].b].x, points[edges[j+2].b].y);
 				path.closePath();
 				g2d.draw(path);
-				if(edgeColors!=null){
-					g2d.setColor(edgeColors[j/3]);	
-				}else{
-					g2d.setColor(Color.green);
-				}
+				g2d.setColor(ambient);
 				if(!wireframe) g2d.fill(path);	
 			}
 			}
@@ -362,6 +377,12 @@ public abstract class Object3D extends Point3D{
 		return normal;
 	}
 	
+	/**
+	 * Pre-intersection testing with plane of object
+	 * 
+	 * @param c Camera
+	 * @return
+	 */	
 	public double intersectWithPlane(Vector3D ray, int i) {
 		if(vertices==null) return Double.POSITIVE_INFINITY;
 		// raySouce is called p0 in the lecture notes, it was rename to avoid conflicting names
@@ -379,6 +400,12 @@ public abstract class Object3D extends Point3D{
 	
 	public abstract double[] getTextureCoords(double[] point);
 
+	/**
+	 * Triangle barycentric intersection algorithm
+	 * 
+	 * @param c Camera
+	 * @return
+	 */	
 	public double intersectBarycentric(Vector3D ray,int i, double distance) {
 		if(vertices==null) return Double.POSITIVE_INFINITY;
 		double[] v0, v1, v2;

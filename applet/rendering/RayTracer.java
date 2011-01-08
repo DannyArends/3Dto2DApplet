@@ -12,7 +12,6 @@ import objects.renderables.light.Light;
 public class RayTracer {
 	public final double EPSILON = 0.00000001F;
 	public final int MAX_REFLECTION_RECURSION_DEPTH = 8;
-	// These are some of the camera's properties for easy (fast) access
 	double[] eye= new double[3];
 	double[] rightDirection = new double[3];	
 	double[] viewplaneUp= new double[3];
@@ -34,6 +33,13 @@ public class RayTracer {
 		raster = new boolean[Engine.getWidth()][Engine.getHeight()];
 	}
 	
+	
+	/**
+	 * Update the ray tracers parameters used for creating rays
+	 * 
+	 * @param c Camera
+	 * @return
+	 */	
 	public void update(Camera c){
 		c.update(c);
 		eye = c.location;
@@ -51,6 +57,10 @@ public class RayTracer {
 		raster = new boolean[Engine.getWidth()][Engine.getHeight()];
 	}
 	
+	/**
+	 * Render rays for 170 ms onto the back buffer
+	 * 
+	 */	
 	public void render(){
 		double[] color;
 		int hits;
@@ -136,6 +146,16 @@ public class RayTracer {
 		return new double[]{(d1*c1[0] + d2*c2[0] + d3*c3[0] + d4*c4[0])/denom,(d1*c1[1] + d2*c2[1] + d3*c3[1] + d4*c4[1])/denom,(d1*c1[2] + d2*c2[2] + d3*c3[2] + d4*c4[2])/denom};
 	}
 
+	/**
+	 * Construct a ray projecting into the scene
+	 * 
+	 * @param x x-pixel location to start the ray from
+	 * @param y y-pixel location to start the ray from
+	 * @param sampleXOffset sampling offset in x direction of the ray
+	 * @param sampleYOffset sampling offset in y direction of the ray
+	 * @param ignorePrimitive ignore this primitive
+	 * @return
+	 */	
 	public Vector3D constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																
 		Vector3D ray = new Vector3D(eye, direction, screenDist);
 		double[] endPoint = ray.getEndPoint();		
@@ -151,9 +171,14 @@ public class RayTracer {
 		return ray;
 	}
 	
-	// Finds an intersecting primitive. Will ignore the one specificed by ignorePrimitive
-	public Intersection findIntersection(Vector3D ray, Object3D ignorePrimitive)
-	{
+	/**
+	 * Find an intersection with an object in scene
+	 * 
+	 * @param ray ray into scene
+	 * @param ignorePrimitive ignore this primitive
+	 * @return
+	 */	
+	public Intersection findIntersection(Vector3D ray, Object3D ignorePrimitive){
 		// Start off with infinite distance and no intersecting primitive
 		double minDistance = Double.POSITIVE_INFINITY;
 		Object3D minPrimitive = null;
@@ -171,6 +196,14 @@ public class RayTracer {
 		return new Intersection(minDistance, minPrimitive);
 	}
 	
+	/**
+	 * Returns the color of this ray on an object in a single recursion step (ambient, specular, diffuse)
+	 * 
+	 * @param ray ray into scene
+	 * @param intersection Intersection location on the object
+	 * @param recursionDepth Depth of recursion of this ray (used in reflection) 
+	 * @return double[] color in RGB float [0..1]
+	 */	
 	public double[] getColor(Vector3D ray, Intersection intersection, int recursionDepth){
 		// Avoid infinite loops and help performance by limiting the recursion depth
 		if (recursionDepth > MAX_REFLECTION_RECURSION_DEPTH){

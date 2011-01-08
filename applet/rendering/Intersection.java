@@ -6,24 +6,24 @@ public class Intersection {
 	private Object3D primitive;
 	private double distance;
 	
-	public Intersection(double distance, Object3D primitive) {
-		this.primitive = primitive;
-		this.distance = distance;
+	public Intersection(double d, Object3D p) {
+		primitive = p;
+		distance = d;
 	}
 
 	public Object3D getPrimitive() {
 		return primitive;
 	}
 
-	public void setPrimitive(Object3D primitive) {
-		this.primitive = primitive;
+	public void setPrimitive(Object3D p) {
+		primitive = p;
 	}
 
 	public double getDistance() {
 		return distance;
 	}
 
-	public void setDistance(double distance) {
-		this.distance = distance;
+	public void setDistance(double d) {
+		distance = d;
 	}	
 }

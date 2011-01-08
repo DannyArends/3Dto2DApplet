@@ -48,6 +48,11 @@ public class ServerConnection {
 		down=0;
 	}
 	
+	/**
+	 * Send a command to the Perl server REST Api and parse the response
+	 * @param parametersAsString Parameter string formatted as REST to send to server
+	 * 
+	 */	
 	public String commandToServer(String parametersAsString){
 		String response = "\n";
 		try {

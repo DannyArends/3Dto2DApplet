@@ -103,6 +103,10 @@ public class Model3DS extends Object3D{
 		return name;
 	}
 
+	/**
+	 * Try to load an object of type 3DS into the empty object created by the Loader
+	 * 
+	 */	
 	public void TryLoadingFromName() {
 		if(Engine.verbose) Utils.console("Loading file: " + Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
 		ArrayList<Object3DS> objects = new ArrayList<Object3DS>();
