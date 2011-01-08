@@ -15,6 +15,9 @@ our %form;
 our @paramnames;
 our $write_location;
 our $data_location;
+our $title;
+our $theme;
+our $email;
 
 #Functions
 sub printTXTHeader{
@@ -23,6 +26,36 @@ sub printTXTHeader{
 
 sub printHTTPHeader{
 	print("Content-type: text/html"."\n\n");
+	print("
+	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n
+	<html>\n
+		<head>\n
+			<link rel=\"stylesheet\" type=\"text/css\" href=\"$theme\"></style>
+			<title>$title</title>\n
+		</head>\n
+		<body>\n
+			<div align=\"center\">\n
+				<h1>$title</h1>\n
+			</div>\n");
+}
+
+sub printHTTPFooter{
+	print("<ul><li><a href=\"http://localhost:8080/\"><font color=\"black\">Back</font></a></li></ul>
+			<div align=\"center\">\n
+				<a href=\"http://github.com/DannyArends/3Dto2DApplet/webserver\">Github Webserver</a><br/>\n
+				<a href=\"http://github.com/DannyArends/3Dto2DApplet/applet\">Github Applet</a><br/>\n
+			</div>\n
+		</body>\n
+	</html>\n");
+}
+
+sub printError{
+	print("<font color='red' size='+3'>".$form{"error"}."</font>" ."<br/>". "\n");
+	if($form{"page"} ne ""){
+		print("<p>Missing page: ".$form{"page"} . "<br/><br/>". "\n");
+		print("Did you mean to <a href=''><font color='green'>Create page '".$form{"page"} . "'?</font></a><br/>". "\n");
+		print("Contact the admin: ". $email ."</p>" . "\n");
+	}
 }
 
 sub receivePost{

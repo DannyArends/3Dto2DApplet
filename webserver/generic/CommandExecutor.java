@@ -30,7 +30,7 @@ public class CommandExecutor implements Runnable{
 	@Override
 	public void run() {
 		for(String command : commands){
-			
+			Utils.console(command);
 			Process p = null;
 			String os = System.getProperty("os.name").toLowerCase();
 			
@@ -53,9 +53,11 @@ public class CommandExecutor implements Runnable{
 			//Read the output
 			String line;
 			while ((line = br_in.readLine()) != null) {
+				Utils.console(line);
 				res += line + "\n";
 			}
 			try {
+				Utils.console("hmm");
 				if (p.waitFor() != 0) {
 					Utils.log("Command: "+ command + " exit=" + p.exitValue(),System.err);
 				}else{

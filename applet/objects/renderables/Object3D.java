@@ -107,7 +107,7 @@ public abstract class Object3D extends Point3D{
 			triangles = new double[edges.length/3][3][3];
 			normals = new double[edges.length/3][3];
 			distancequotients = new double[edges.length/3];
-			for (int i = 0; i < edges.length; i+=3) {
+			for (int i = 0; i < (edges.length-1); i+=3) {
 				int l = (int) Math.floor(i/3.0);
 				triangles[l][0][0] = vertices[edges[i].a].location[0];
 				triangles[l][0][1] = vertices[edges[i].a].location[1];
@@ -248,12 +248,14 @@ public abstract class Object3D extends Point3D{
 		}
 		Graphics2D g2d = (Graphics2D)g;
 		GeneralPath path = null;
-		Color ambient = Color.blue;
+		
 		if(!materials.isEmpty()){
-			double[] colorz = materials.elementAt(0).getAmbient();
-			ambient = new Color((int)(colorz[0]*255),(int)(colorz[1]*255),(int)(colorz[2]*255));
+			g2d.setPaint(materials.elementAt(0).getTexture().getPaint());
+		}else{
+			//Ugly green when we don't have a texture
+			g2d.setPaint(Color.green);
 		}
-		for(int j=0; j < edges.length;j+=3){
+		for(int j=0; j < (edges.length-1);j+=3){
 			if(points[edges[j].a] != null && points[edges[j+1].a] != null && points[edges[j+2].a] != null){
 			if(points[edges[j].b] != null && points[edges[j+1].b] != null && points[edges[j+2].b] != null){
 				path = new GeneralPath(GeneralPath.WIND_NON_ZERO);
@@ -265,8 +267,10 @@ public abstract class Object3D extends Point3D{
 				path.lineTo(points[edges[j+2].a].x, points[edges[j+2].a].y);
 				path.lineTo(points[edges[j+2].b].x, points[edges[j+2].b].y);
 				path.closePath();
+				if(materials.isEmpty()){
+					g2d.setColor(edgeColors[j/3]);	
+				}
 				g2d.draw(path);
-				g2d.setColor(ambient);
 				if(!wireframe) g2d.fill(path);	
 			}
 			}

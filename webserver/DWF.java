@@ -32,12 +32,12 @@ public class DWF extends JFrame implements RenderWindow {
 		addKeyListener(eventListener);
 		addMouseListener(eventListener);
 		addMouseMotionListener(eventListener);
-		Scene.render_3d=true;
-		Scene.updateScene(true,true);
+		Scene.render_3d=false;
+		Scene.updateScene(true,false);
 	}
 	
 	public void paintComponent(Graphics g) {
-		Scene.updateScene(true,true);
+		Scene.updateScene(true,false);
 		Scene.updateGraphics(g);
 	}
 	

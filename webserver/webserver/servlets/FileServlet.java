@@ -286,12 +286,13 @@ public class FileServlet extends Servlet {
 				return;
 			}
 			PrintStream p = new PrintStream(new BufferedOutputStream(out), false, getCharSet()); // 1.4
-			p.println("<HTML><HEAD>");
-			p.println("<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=" + getCharSet() + "\">");
-			p.println("<TITLE>Index of " + path + "</TITLE>");
-			p.println("</HEAD><BODY>");
-			p.println("<H2>Index of " + path + "</H2>");
-			p.println("<PRE>");
+			p.println("<html><head>");
+			p.println("<meta HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=" + getCharSet() + "\">");
+			p.println("<title>Index of " + path + "</title>");
+			p.println("<link rel=\"stylesheet\" type=\"text/css\" href=\""+req.getServletPath()+"/themes/default.css\"></style>");
+			p.println("</head><body>");
+			p.println("<div align=\"center\"><h1>Index of " + path + "</h1></div>");
+			p.println("<pre>");
 			p.println("mode         bytes  last-changed    name");
 			p.println("<HR>");
 			Arrays.sort(names);
@@ -334,13 +335,13 @@ public class FileServlet extends Servlet {
 				String aFileDirsuf = (aFile.isDirectory() ? "/" : "");
 				String aFileSuf = (aFile.isDirectory() ? "/" : "");
 				p.println(aFileType + aFileRead + aFileWrite + aFileExe + "  " + aFileSize + "  " + aFileDate + "  "
-						+ "<A HREF=\"" + URLEncoder.encode(names[i], getCharSet()) /* 1.4 */
-						+ aFileDirsuf + "\">" + names[i] + aFileSuf + "</A>");
+						+ "<a href=\"" + URLEncoder.encode(names[i], getCharSet()) /* 1.4 */
+						+ aFileDirsuf + "\"><font color=\"black\">" + names[i] + aFileSuf + "</font></a>");
 			}
 			p.println("Used: " + total + " KB of " + (freespace/1024) + " MB");
-			p.println("</PRE>");
-			p.println("<HR>");
-			p.println("</BODY></HTML>");
+			p.println("</pre>");
+			p.println("<hr><ul><li><a href=\"http://localhost:8080/\"><font color=\"black\">Back to index</font></a></li></ul>");
+			p.println("</body></html>");
 			p.flush();
 		}
 		out.close();

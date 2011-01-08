@@ -1,0 +1,54 @@
+#!/usr/bin/perl -w
+
+#
+# server.cgi
+#
+# copyright (c) 2009-2010, Danny Arends
+# last modified Dec, 2010
+# first written Dec, 2010
+#
+# Start by pushing the location of the includes
+BEGIN {
+  push @INC,"c:/Rtools/perl/lib";
+  push @INC,"./cgi-bin";
+}
+
+use strict;
+use Socket;
+use CGI qw(:standard);
+
+#Global Variables across all includes
+our %form = ();
+our @paramnames = ('');
+our $write_location = "dist/write/";
+our $data_location = "dist/data/";
+
+our $title = "Managment console";
+our $theme = "http://localhost:8080/themes/default.css";
+our $email = "Danny.Arends\@gmail.com";
+
+#include our own files & functions
+require "utils.cgi";
+require "data.cgi";
+require "user.cgi";
+
+#Constants
+
+#Variables
+$form{"online"} = '';
+$form{"list_files"} = '';
+
+#Main
+
+printHTTPHeader();
+receivePost();
+writeIPtoLog();
+if($form{"error"} ne ""){
+	printError();
+}else{
+	print "<p>Please Login to continue</p>"."\n";
+	if($form{"page"} ne ""){
+		print "Page requested via rest: " . $form{"page"} . "<br/>\n"; 
+	}
+}
+printHTTPFooter();

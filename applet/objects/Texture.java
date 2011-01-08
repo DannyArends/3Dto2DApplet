@@ -3,6 +3,13 @@ package objects;
 import generic.MathUtils;
 import generic.Utils;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Paint;
+import java.awt.TexturePaint;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.MemoryImageSource;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
@@ -18,6 +25,8 @@ public class Texture {
 	public double[] ambientcolor = new double[]{0,0,0};
 	public double[] diffuseColor = new double[]{0,0,0};
 	boolean loaded = false;
+	public Image image;
+	TexturePaint paint;
 	
 	
 	public Texture(){
@@ -37,6 +46,8 @@ public class Texture {
 		height=h.height;
 		ambientcolor = h.ambientcolor;
 		diffuseColor = h.diffuseColor;
+		image = h.image;
+		paint = h.paint;
 	}
 
 	public String getName() {
@@ -47,6 +58,23 @@ public class Texture {
 		// TODO Auto-generated method stub
 		return loaded;
 	}
+	
+	 public TexturePaint loadTextureResource() {
+		  try {
+			int width = image.getWidth(null);
+		    int height = image.getHeight(null);
+		    BufferedImage buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		    Graphics g = buffImg.getGraphics();
+		    g.drawImage(image,0,0,width,height,null);
+		    g.dispose();
+		    Utils.console("Loaded the paint of the texture: " + width + "," + height);
+		    return new TexturePaint(buffImg,new Rectangle2D.Double(0,0,width,height));
+		  }
+		  catch (Exception e) {
+		   Utils.log("Something wrong with paint", e);
+		  }
+		  return null;
+		}
 
 	/**
 	 * Try to load a texture into the empty texture object created by the Loader
@@ -105,6 +133,7 @@ public class Texture {
 		        if (nbitcount==24){
 		        	int npad = (nsizeimage / height) - width * 3;
 		        	byte brgb[] = new byte [( width + npad) * 3 * height];
+		        	int ndata[] = new int [height * width];
 		        	fs.read (brgb, 0, (width + npad) * 3 * height);
 		        	int nindex = 0;
 		        	texturedata = new double[height][width][3];
@@ -113,12 +142,14 @@ public class Texture {
 		        			texturedata[i][j][0] = ((int)(brgb[nindex+2]) & 0xff)/255.0;
 		        			texturedata[i][j][1] = ((int)(brgb[nindex+1]) & 0xff)/255.0;
 		        			texturedata[i][j][2] = ((int)(brgb[nindex]) & 0xff)/255.0;
+		        			ndata [width * (height - j - 1) + i] = (255&0xff)<<24 | (((int)brgb[nindex+2]&0xff)<<16) | (((int)brgb[nindex+1]&0xff)<<8) | (int)brgb[nindex]&0xff;
 		        			MathUtils.addVector(ambientcolor, texturedata[i][j]);
 		        			nindex += 3;
 		        		}
 		        		MathUtils.addVector(diffuseColor, texturedata[0][j]);
 		        		nindex += npad;
 		            }
+		        	image = Engine.getRenderWindow().createImage(new MemoryImageSource(width, height, ndata, 0, width));
 		        	MathUtils.multiplyVectorByScalar(ambientcolor, 0.5 /(height*width));
 		        	MathUtils.multiplyVectorByScalar(diffuseColor, 0.5 /(width));
 		        }else if (nbitcount == 8){
@@ -145,6 +176,7 @@ public class Texture {
 		        	int npad8 = (nsizeimage / height) - width;
 		        	System.out.println("nPad is:"+npad8);
 		        	byte bdata[] = new byte [(width+npad8)*height];
+		        	int  ndata8[] = new int [width*height];
 		        	fs.read (bdata, 0, (width+npad8)*height);
 		        	nindex8 = 0;
 		        	for (int j8 = 0; j8 < height; j8++){
@@ -152,21 +184,28 @@ public class Texture {
 		        			texturedata[i8][j8][0] = npalette [((int)bdata[nindex8+2]&0xff)] / 255.0;
 		        			texturedata[i8][j8][1] = npalette [((int)bdata[nindex8+1]&0xff)] / 255.0;
 		        			texturedata[i8][j8][2] = npalette [((int)bdata[nindex8]&0xff)] / 255.0;
+		        			ndata8 [width*(height-j8-1)+i8] = npalette [((int)bdata[nindex8]&0xff)];
 		        			MathUtils.addVector(ambientcolor, texturedata[i8][j8]);
 		        			nindex8++;
 		        		}
 		        		MathUtils.addVector(diffuseColor, texturedata[0][j8]);
 		        		nindex8 += npad8;
 		        	}
+		        	image = Engine.getRenderWindow().createImage(new MemoryImageSource(width, height,ndata8, 0, width));
 		        	MathUtils.multiplyVectorByScalar(ambientcolor, 0.5 /(height*width));
 		        	MathUtils.multiplyVectorByScalar(diffuseColor, 0.5 /(width));
 		        }else{
 		        	System.out.println ("Not a 24-bit or 8-bit Windows Bitmap, aborting...");
 		        }
 		        fs.close();
+				paint = loadTextureResource();
 		        loaded=true;
 			}catch(Exception e){
 				Utils.log("Error downloading file from server",e);
 			}
 		}
+
+	public Paint getPaint() {
+		return paint;
+	}
 }

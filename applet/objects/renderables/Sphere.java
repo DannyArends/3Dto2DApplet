@@ -26,23 +26,21 @@ package objects.renderables;
 import java.awt.Color;
 
 import generic.MathUtils;
+import generic.Utils;
 import objects.Edge;
 import objects.Point3D;
 import objects.Vector3D;
 
 public class Sphere extends Object3D {
 	double radius;
+	double p         = 20.0;
+	double twopi     = 6.283185307;
+	double pidtwo    = 1.570796326;
 
 	public Sphere(double x, double y, double z, double r) {
 		super(x, y, z);
 		radius = r;
-		// TODO Auto-generated constructor stub
-		Point3D[] vertices = {new Point3D(x, y, z), new Point3D(x, y, z), new Point3D(x, y, z), new Point3D(x, y, z)};
-		setVertices(vertices);
-	
-		Edge[] edges = {new Edge(0, 1), new Edge(1, 2), new Edge(2, 0),new Edge(0, 1), new Edge(1, 3), new Edge(3, 2)};
-		setEdges(edges);
-		
+		calculatevertices();
 		Color[] colors = new Color[1];
 		colors[0] = Color.red;
 		setEdgeColors(colors);
@@ -86,6 +84,76 @@ public class Sphere extends Object3D {
         if (v < 0) v += 1;
         
         return new double[] {u , v };			
+	}
+	
+	void calculatevertices(){
+		double theta1,theta2,theta3;
+		double ex,ey,ez;
+		double px,py,pz;
+		int tsum = 0;
+		int ssum = 0;
+		double si;
+		int vertexcount = 0;
+		int edgecount = 0;
+		int cnt = 0;
+		Point3D[] vertices = new Point3D[(int) ((p*p)*2)];
+		Edge[] edges = new Edge[(int) ((p*p)*1.75)];
+		for(int i = 0; i < p; i++ ){
+			ssum++;
+			si = i/2.0;
+			theta1 = si * twopi / p - pidtwo;
+			theta2 = (si + 1) * twopi / p - pidtwo;
+			for(int j = 0; j < p; j+=2 ){
+				theta3 = (p-j) * twopi / p;
+				ex = Math.cos(theta2) * Math.cos(theta3);
+			    ey = Math.sin(theta2);
+			    ez = Math.cos(theta2) * Math.sin(theta3);
+			    px = location[0] + radius * ex;
+			    py = location[1] + radius * ey;
+			    pz = location[2] + radius * ez;
+			    vertices[vertexcount] = new Point3D(px, py, pz);
+			    
+			    ex = Math.cos(theta1) * Math.cos(theta3);
+			    ey = Math.sin(theta1);
+			    ez = Math.cos(theta1) * Math.sin(theta3);
+			    px = location[0] + radius * ex;
+			    py = location[1] + radius * ey;
+			    pz = location[2] + radius * ez;
+			    vertices[vertexcount+1] = new Point3D(px, py, pz);
+			    edges[edgecount] = new Edge(vertexcount, vertexcount+1);
+
+				theta3 = (p-j) * twopi / p;
+				ex = Math.cos(theta2) * Math.cos(theta3);
+			    ey = Math.sin(theta2);
+			    ez = Math.cos(theta2) * Math.sin(theta3);
+			    px = location[0] + radius * ex;
+			    py = location[1] + radius * ey;
+			    pz = location[2] + radius * ez;
+			    vertices[vertexcount+2] = new Point3D(px, py, pz);
+			    edges[edgecount+1] = new Edge(vertexcount+1, vertexcount+2);
+			    
+			    ex = Math.cos(theta1) * Math.cos(theta3);
+			    ey = Math.sin(theta1);
+			    ez = Math.cos(theta1) * Math.sin(theta3);
+			    px = location[0] + radius * ex;
+			    py = location[1] + radius * ey;
+			    pz = location[2] + radius * ez;
+			    vertices[vertexcount+3] = new Point3D(px, py, pz);
+			    edges[edgecount+2] = new Edge(vertexcount+2, vertexcount+3);
+			    if(cnt==0){
+			    	edgecount+=3;
+			    	cnt++;
+			    }else{
+			    	edges[edgecount+3] = new Edge(vertexcount-3, vertexcount+1);
+			    	edgecount+=4;
+			    	cnt--;
+			    }
+			    vertexcount+=4;
+			}
+		}
+		setVertices(vertices);
+		setEdges(edges);
+		Utils.console("Created a sphere: " + vertexcount + " vertices, ssum: " + ssum + ", tsum: "+ tsum);
 	}
 
 	@Override
