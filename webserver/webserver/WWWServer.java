@@ -1,7 +1,7 @@
 package webserver;
 
 import webserver.servlets.FileServlet;
-import webserver.servlets.PerlServlet;
+import webserver.servlets.CGIServlet;
 
 
 public class WWWServer extends Webserver implements Runnable{
@@ -11,7 +11,7 @@ public class WWWServer extends Webserver implements Runnable{
 		Webserver.PathTreeDictionary aliases = new Webserver.PathTreeDictionary();
         aliases.put("/", new java.io.File("."));
         setMappingTable(aliases);
-        addServlet("/cgi-bin", new PerlServlet());
+        addServlet("/cgi-bin", new CGIServlet());
         addServlet("/", new FileServlet());
 	}
 	

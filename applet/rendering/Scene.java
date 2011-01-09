@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 import objects.Camera;
 import objects.Texture;
+import objects.hud.windows.ObjectWindow;
 import objects.renderables.Object3D;
 import objects.renderables.Sphere;
 import objects.renderables.Surface;
@@ -143,7 +144,7 @@ public class Scene implements Runnable{
 		sur.setTransparant(0.0);
 		sur.setTexture(one);
 		Scene.addObject(sur);
-		
+		Hud.addWindow(new ObjectWindow(100,100,350,200,sur));
 		Sphere sph = new Sphere(25.0, 4.0, 25.0,2.0);
 		sph.setTransparant(0.0);
 		sph.setTexture(two);
@@ -159,8 +160,8 @@ public class Scene implements Runnable{
 	}
 	
 	public static void reDraw3DScene() {
-//		clearObjects();
-//		loadBasicScene();
+		//clearObjects();
+		//loadBasicScene();
 		PreComputeLoadedObjects();
 	}
 	

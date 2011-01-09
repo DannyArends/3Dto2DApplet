@@ -28,6 +28,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import objects.Point2D;
+import objects.renderables.Object3D;
 
 abstract public class HudObject extends Point2D{
 	private Point2D size = new Point2D();
@@ -37,6 +38,7 @@ abstract public class HudObject extends Point2D{
 	private HudObject parent;
 	public ArrayList<HudObject> children = new ArrayList<HudObject>();
 	private Color color = Color.darkGray;
+	private Object3D target;
 	
 	public HudObject(){
 	}
@@ -124,5 +126,20 @@ abstract public class HudObject extends Point2D{
 
 	public HudObject getParent() {
 		return parent;
+	}
+
+	public void setTarget(Object3D target) {
+		this.target = target;
+	}
+
+	public Object3D getTarget() {
+		if(target==null){
+			if(this.parent!=null){
+				return this.parent.getTarget();
+			}else{
+				return null;
+			}
+		}
+		return target;
 	}
 }

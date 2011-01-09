@@ -114,7 +114,7 @@ public class RayTracer {
 		}
 		num_pixels += pixels;
 		//Utils.console("Rendered: "+ pixels + "/"+bpixels+" in " + (System.nanoTime()-l1)/1000000 + " ms");
-		if(((System.nanoTime()-l0)/1000000) % 10==0)Utils.console("avg: "+ num_pixels / ((System.nanoTime()-l0)/1000000) + " pix/ms");
+		//if(((System.nanoTime()-l0)/1000000) % 10==0)Utils.console("avg: "+ num_pixels / ((System.nanoTime()-l0)/1000000) + " pix/ms");
 	}
 
 	void doLineairInterpolation(){

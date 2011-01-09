@@ -1402,11 +1402,9 @@ public class Webserver implements ServletContext, Serializable {
 		//}
 
 		// / Constructor.
-		public ServeConnection(Socket socket, Webserver serve) {
-			serve.log("+++++++"+this);
-			// Save arguments.
-			this.socket = socket;
-			this.serve = serve;
+		public ServeConnection(Socket s, Webserver ser) {
+			socket = s;
+			serve = ser;
 			expdatefmt.setTimeZone(tz);
 			headerdateformat.setTimeZone(tz);
 			rfc850DateFmt.setTimeZone(tz);
@@ -1573,7 +1571,7 @@ public class Webserver implements ServletContext, Serializable {
 				//System.err.println("Drop "+ioe);
 				//ioe.printStackTrace();
 				if (ioe instanceof SocketTimeoutException) {
-					Utils.log("Keepalive timeout, async " + asyncMode, System.err);
+					//Utils.log("Keepalive timeout, async " + asyncMode, System.err);
 				} else {
 					String errMsg = ioe.getMessage();
 					if ((errMsg == null || errMsg.indexOf("ocket closed") < 0)

@@ -482,5 +482,23 @@ public abstract class Object3D extends Point3D{
 		m.setTexture(t);
 		materials.add(m);
 	}
+
+	public void exposed(String name2, String input) {
+		if(name2.equals("x")){
+			location[0] = Double.parseDouble(input);
+		}
+		if(name2.equals("y")){
+			location[1] = Double.parseDouble(input);
+		}
+		if(name2.equals("z")){
+			location[2] = Double.parseDouble(input);
+		}
+		if(name2.equals("hrot")){
+			horizontalRotation = Integer.parseInt(input);
+		}
+		if(name2.equals("vrot")){
+			verticalRotation = Integer.parseInt(input);
+		}
+	}
 	
 }

@@ -27,6 +27,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import objects.renderables.Object3D;
+
 import rendering.Hud;
 import rendering.Scene;
 
@@ -36,9 +38,17 @@ public class HudInputBox extends HudButton {
 	String input="";
 	int size;
 	
-	public HudInputBox(int x, int y,int s) {
+	public HudInputBox(int x, int y,int s,String exposename) {
 		super(x, y);
+		setName(exposename);
 		this.size=s;
+	}
+	
+	public HudInputBox(int x, int y,int s,double input,String exposename) {
+		super(x, y);
+		setName(exposename);
+		this.size=s;
+		this.input = ""+input;
 	}
 
 	@Override
@@ -51,7 +61,13 @@ public class HudInputBox extends HudButton {
 		char c = e.getKeyChar();
 		if(c != KeyEvent.CHAR_UNDEFINED ) {
 		    switch(c){
-	    	case KeyEvent.VK_ENTER:this.input="";break;
+	    	case KeyEvent.VK_ENTER:
+	    		Object3D t;
+	    		if((t = getTarget())!=null){
+	    			t.exposed(getName(),input);
+	    			input="";
+	    		}
+	    	break;
 	    	case KeyEvent.VK_BACK_SPACE:this.input= this.input.substring(0,(this.input.length()-1 > 0)?this.input.length()-1 : 0);break;
 	    	default: this.input += c;
 			}

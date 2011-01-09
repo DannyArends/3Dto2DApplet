@@ -16,6 +16,7 @@ public class IconBar extends HudWindow {
 		addChild(IconLoader.getIcon(225,0,"magic.png"));
 		addChild(IconLoader.getIcon(275,0,"hammer.png"));
 		addChild(IconLoader.getIcon(325,0,"leaf.png"));
+		addChild(IconLoader.getIcon(375,0,"object.png"));
 		
 		addChild(IconLoader.getIcon(450,0,"settings.png"));
 		addChild(IconLoader.getIcon(500,0,"stats.png"));

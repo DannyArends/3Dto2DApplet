@@ -18,8 +18,8 @@ public class LoginWindow extends HudWindow {
 		t.addLine("Username: ");
 		t.addLine("Password: ");
 		addChild(t);
-		addChild(new HudInputBox(100,32,10));
-		addChild(new HudInputBox(100,52,10));
+		addChild(new HudInputBox(100,32,10,"n"));
+		addChild(new HudInputBox(100,52,10,"p"));
 		addChild(IconLoader.getIcon(25,75,"arrow_right.png"));
 		addChild(IconLoader.getIcon(25,120,"user_add.png"));
 		setShowTopMenu(false);

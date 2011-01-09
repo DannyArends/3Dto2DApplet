@@ -42,8 +42,7 @@ sub printHTTPHeader{
 sub printHTTPFooter{
 	print("<ul><li><a href=\"http://localhost:8080/\"><font color=\"black\">Back</font></a></li></ul>
 			<div align=\"center\">\n
-				<a href=\"http://github.com/DannyArends/3Dto2DApplet/webserver\">Github Webserver</a><br/>\n
-				<a href=\"http://github.com/DannyArends/3Dto2DApplet/applet\">Github Applet</a><br/>\n
+				<a href=\"http://github.com/DannyArends/3Dto2DApplet\">Github</a><br/>\n
 			</div>\n
 		</body>\n
 	</html>\n");

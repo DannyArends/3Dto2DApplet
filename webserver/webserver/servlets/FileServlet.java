@@ -35,9 +35,7 @@ import generic.Utils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
@@ -46,8 +44,6 @@ import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Enumeration;
-import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -71,9 +67,8 @@ public class FileServlet extends Servlet {
 	public static final String DEF_USE_COMPRESSION = "tjws.fileservlet.usecompression";
 	static final String[] DEFAULTINDEXPAGES = { "index.html", "index.htm", "default.htm", "default.html" };
 	static final DecimalFormat lengthftm = new DecimalFormat("#");
-	static final String BYTES_UNIT = "bytes";
 	private Method canExecute, getFreeSpace;
-	private boolean useCompression;
+
 
 	// / Constructor.
 	public FileServlet() {
@@ -88,7 +83,7 @@ public class FileServlet extends Servlet {
 		} catch (SecurityException e) {
 		} catch (NoSuchMethodException e) {
 		}
-		useCompression = System.getProperty(DEF_USE_COMPRESSION) != null;
+		setUseCompression(System.getProperty(DEF_USE_COMPRESSION) != null);
 	}
 
 	// / Returns a string containing information about the author, version, and
@@ -123,7 +118,7 @@ public class FileServlet extends Servlet {
 		if (isLogenabled()) Utils.console("retrieving '" + filename + "' for path " + path);
 		if (file.exists()) {
 			if (!file.isDirectory()){
-				serveFile(req, res, headOnly, path, file);
+				serveFile(req, res, headOnly, file);
 				Utils.console("Served file: " + file + " " +  file.length()/1024 + " Kb");
 			} else {
 				if (isLogenabled()) Utils.console("showing dir " + file);
@@ -143,7 +138,7 @@ public class FileServlet extends Servlet {
 		for (int i = 0; i < DEFAULTINDEXPAGES.length; i++) {
 			File indexFile = new File(parent, DEFAULTINDEXPAGES[i]);
 			if (indexFile.exists()) {
-				serveFile(req, res, headOnly, path, indexFile);
+				serveFile(req, res, headOnly, indexFile);
 				return;
 			}
 		}
@@ -151,123 +146,7 @@ public class FileServlet extends Servlet {
 		serveDirectory(req, res, headOnly, path, new File(parent));
 	}
 
-	private void serveFile(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path, File file)
-			throws IOException {
-		if (isLogenabled()) {
-			Utils.console("Getting " + file);
-			Enumeration<?> enh = req.getHeaderNames();
-			while (enh.hasMoreElements()) {
-				String hn = (String) enh.nextElement();
-				Utils.console("hdr:" + hn + ":" + req.getHeader(hn));
-			}
-		}
-		if (!file.canRead()) {
-			res.sendError(HttpServletResponse.SC_FORBIDDEN);
-			return;
-		} else{
-			try {
-				file.getCanonicalPath();
-			} catch (Exception e) {
-				res.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden, exception:" + e);
-				return;
-			}
-		}
-		// Handle If-Modified-Since.
-		res.setStatus(HttpServletResponse.SC_OK);
-		long lastMod = file.lastModified();
-		long ifModSince = req.getDateHeader("If-Modified-Since");
-		if (ifModSince != -1 && ifModSince >= lastMod) {
-			res.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
-			headOnly = true;
-		}
-		// TODO add processing If-None-Match, If-Unmodified-Since and If-Match
-		String contentType = getServletContext().getMimeType(file.getName());
-		if (contentType != null) res.setContentType(contentType);
-		long flen = file.length();
-		String range = req.getHeader("Range");
-		long sr = 0;
-		long er = -1;
-		if (range != null) {
-			if (isLogenabled()) Utils.console("Range:" + range);
-			if (range.regionMatches(true, 0, BYTES_UNIT, 0, BYTES_UNIT.length())) {
-				int i = range.indexOf('-');
-				if (i > 0) {
-					try {
-						sr = Long.parseLong(range.substring(BYTES_UNIT.length() + 1, i));
-						if (sr < 0)
-							throw new NumberFormatException("Invalid start range value:" + sr);
-						try {
-							er = Long.parseLong(range.substring(i + 1));
-						} catch (NumberFormatException nfe) {
-							er = flen - 1;
-						}
-					} catch (NumberFormatException nfe) {
 
-					}
-				} // else invalid range? ignore?
-			} // else other units not supported
-			if (isLogenabled()) Utils.console("range values " + sr + " to " + er);
-		}
-		long clen = er < 0 ? flen : (er - sr + 1);
-		res.setDateHeader("Last-modified", lastMod);
-
-		if (er > 0) {
-			if (sr > er || er >= flen) {
-				res.setHeader("Content-Range", BYTES_UNIT + " */" + flen);
-				res.setStatus(HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE);
-				return;
-			}
-			res.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
-			res.setHeader("Content-Range", BYTES_UNIT + " " + sr + '-' + er + '/' + flen);
-			if (isLogenabled()) Utils.console("content-range:" + BYTES_UNIT + " " + sr + '-' + er + '/' + flen);
-		}
-		// String ifRange = req.getHeader("If-Range");
-		// res.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
-		boolean doCompress = false;
-		if (useCompression && contentType != null && contentType.startsWith("text")) {
-			if (Utils.isGzipAccepted(req.getHeader("Accept-Encoding")) > 0) {
-				res.setHeader("Content-Encoding", "gzip");
-				doCompress = true;
-			}
-		}
-		if (doCompress == false || headOnly) {
-			if (clen < Integer.MAX_VALUE)
-				res.setContentLength((int) clen);
-			else
-				res.setHeader("Content-Length", Long.toString(clen));
-		}
-		OutputStream out = null;
-		InputStream in = null;
-		try {
-			if (!headOnly) {
-				out = doCompress ? new GZIPOutputStream(res.getOutputStream()) : (OutputStream) res.getOutputStream();
-
-				in = new FileInputStream(file);
-				while (sr > 0) {
-					long sl = in.skip(sr);
-					if (sl > 0)
-						sr -= sl;
-					else {
-						res.sendError(HttpServletResponse.SC_CONFLICT, "Conflict");
-						return;
-					}
-				}
-				Utils.copyStream(in, out, clen);
-				if (doCompress)
-					((GZIPOutputStream) out).finish();
-			}
-		} finally {
-			if (in != null)
-				try {
-					in.close();
-				} catch (IOException ioe) {
-				}
-			if (out != null) {
-				out.flush();
-				out.close();
-			}
-		}
-	}
 
 	private void serveDirectory(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path,	File file) throws IOException {
 		if (isLogenabled()) Utils.console("Indexing directory: " + file);

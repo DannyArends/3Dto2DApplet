@@ -30,7 +30,7 @@ public class CommandExecutor implements Runnable{
 	@Override
 	public void run() {
 		for(String command : commands){
-			Utils.console(command);
+			//Utils.console(command);
 			Process p = null;
 			String os = System.getProperty("os.name").toLowerCase();
 			
@@ -50,20 +50,18 @@ public class CommandExecutor implements Runnable{
 			BufferedReader br_in = new BufferedReader(new InputStreamReader(inbuf));
 			BufferedReader br_in_err = new BufferedReader(new InputStreamReader(inbuferr));
 	
-			//Read the output
-			String line;
-			while ((line = br_in.readLine()) != null) {
-				Utils.console(line);
-				res += line + "\n";
-			}
 			try {
-				Utils.console("hmm");
+				String line;
+				while ((line = br_in.readLine()) != null) {
+					res += line + "\n";
+				}
+				Utils.console("Output of command received");
 				if (p.waitFor() != 0) {
 					Utils.log("Command: "+ command + " exit=" + p.exitValue(),System.err);
 				}else{
 					Utils.console("Command: "+ command +" succesfull");
 				}
-			} catch (InterruptedException e) {
+			} catch (Exception e) {
 				Utils.log("Interupted: ",e);
 			} finally {
 				// Close the InputStreams to the application
