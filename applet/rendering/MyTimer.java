@@ -24,7 +24,7 @@ public class MyTimer implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		timeholder = new Date(System.currentTimeMillis());
-		//server.commandToServer("online=true");
+		//server.commandToServer("function=online");
 		Scene.updateScene(false,false); //So this means, only the ray tracer
 		//Scene.updateGraphics(Engine.getParentApplet().getGraphics());
 		

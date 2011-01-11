@@ -39,16 +39,21 @@ $form{"online"} = '';
 $form{"list_files"} = '';
 
 #Main
-
 printHTTPHeader();
 receivePost();
 writeIPtoLog();
 if($form{"error"} ne ""){
 	printError();
 }else{
-	print "<p>Please Login to continue</p>"."\n";
 	if($form{"page"} ne ""){
+		if(lc($form{"page"}) eq "register"){
+			print "<h3>Please Register</h3>"."\n";
+			create_html_registrar();
+		}
 		print "Page requested via rest: " . $form{"page"} . "<br/>\n"; 
+	}else{
+		print "<p>Please Login to continue</p>"."\n";
+		create_html_login();
 	}
 }
-printHTTPFooter();
+printHTTPFooter("");

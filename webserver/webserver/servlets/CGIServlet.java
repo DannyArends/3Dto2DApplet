@@ -56,7 +56,7 @@ public class CGIServlet extends Servlet {
 		String filename = "";
 		String extension = "";
 		String command = "";
-		
+		Utils.console(req.getMethod());
 		filename = req.getPathTranslated() != null ? req.getPathTranslated().replace('/', File.separatorChar) : "";
 		filename = ((filename.substring(0).equals("") || filename.substring(1).equals(""))? File.separator + mainpage : filename.substring(1));
 		extension = filename.substring(filename.indexOf(".", 2)+1);

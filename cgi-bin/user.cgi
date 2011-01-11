@@ -15,8 +15,6 @@ our %form;
 our $write_location;
 our $data_location;
 
-my $user_file = $write_location . "users.log";
-
 #Functions
 
 sub user_exists{
@@ -24,7 +22,7 @@ sub user_exists{
 	my $found = 0;
 	my $line = '';
 	
-	open(MYFILE, $user_file) or die print("Error: opening " . $user_file . " file for reading");
+	open(MYFILE, $write_location . "users.log") or die print("Error: opening users.log file for reading");
  	while($line  = <MYFILE>) {
  		chomp($line);
  		if($line =~ m/$username\t(.*)/){ $found = 1; }
@@ -33,17 +31,45 @@ sub user_exists{
  	return $found;
 }
 
+sub create_html_login{
+	print "<p>"."\n";
+	print "<form method='post' action='server.cgi'>"."\n";
+	print "<input type='hidden' name='function' value='login_user'>"."\n";
+	print "<input type='hidden' name='file' value=''>"."\n";
+	print "<input type='text' name='username' value='username'><br/>"."\n";
+	print "<input type='password' name='password' value='password'><br/>"."\n";
+	print "<input type='submit' value = 'login'>"."\n";
+	print "</form>"."\n";
+	print "</p>"."\n";
+}
+
+sub create_html_registrar{
+	print "<p>"."\n";
+	print "<form method='post' action='server.cgi'>"."\n";
+	print "<input type='hidden' name='function' value='create_user'>"."\n";
+	print "<input type='hidden' name='file' value='registrars'>"."\n";
+	print "<input type='text' name='username' value='username'><br/>"."\n";
+	print "<input type='text' name='email' value='email\@email.com'><br/>"."\n";
+	print "<input type='password' name='password0' value='password0'><br/>"."\n";
+	print "<input type='password' name='password1' value='password1'><br/>"."\n";
+	print "<input type='submit' value = 'Submit Registration'>"."\n";
+	print "</form>"."\n";
+	print "</p>"."\n";
+}
+
 sub create_user{
-	my $username = lc $_[0];
+	my $file = $write_location . lc $_[0];
 	my $password = $_[1];
+	my $username = lc $_[2];
 	
+	if(!defined($file) || $file eq ""){$file = "registrars";}
 	if(!defined($username) || $username eq ""){return 0;}
 	if(!defined($password) || $password eq ""){return 0;}
 	
 	my $found = user_exists($username);
 	
 	if(!$found){
-		open(MYFILE, ">>$user_file") or die print("Error: opening user log file for writing");
+		open(MYFILE, ">>$file.log") or die print("Error: opening users.log file for writing");
 		print MYFILE $username . "\t" . $password . "\t" . $username . "\t0.0\t0.0\t0.0" .  "\n";
 		close (MYFILE);
 		return 1;
@@ -57,9 +83,14 @@ sub delete_user{
 }
 
 sub list_all_users{
+	my $file = $write_location . lc $_[0];
 	my $line = '';
 	my $return = '';
-	open(MYFILE, $user_file) or die print("Error: opening user log file for reading");
+	if(!defined($file) || $file eq $write_location){
+		$file = $write_location . "registrars";
+	}
+	
+	open(MYFILE, "$file.log") or die print("Error: opening user log file for reading");
 	while($line  = <MYFILE>) {
  		chomp($line);
  		if($line =~ /(.*?)\t/){
@@ -71,14 +102,21 @@ sub list_all_users{
 }
 
 sub login_user{
-	my $username = lc $_[0];
+	my $file = $write_location . lc $_[0];
 	my $password = $_[1];
+	my $username = lc $_[2];
+	
+	if(!defined($file) || $file eq $write_location){
+		$file = $write_location . "users";
+	}
 	if(!defined($username) || $username eq ""){return 0;}
 	if(!defined($password) || $password eq ""){return 0;}
+	
 	my $found = user_exists($username);
 	my $line = '';
+	
 	if($found){
-		open(MYFILE, $user_file) or die print("Error: opening user log file for reading");
+		open(MYFILE, "$file.log") or die print("Error: opening user log file for reading");
 		while($line  = <MYFILE>) {
  			chomp($line);
  			if($line =~ /$username\t(.*?)\t/){
@@ -93,12 +131,17 @@ sub login_user{
 }
 
 sub get_user_location{
-	my $username = lc $_[0];
+	my $file = $write_location . lc $_[0];
+	my $username = lc $_[1];
+	
+	if(!defined($file) || $file eq $write_location){
+		$file = $write_location . "users";
+	}
 	if(!defined($username) || $username eq ""){return 0;}
 	my $found = user_exists($username);
 	my $line = '';
 	if($found){
-		open(MYFILE, $user_file) or die print("Error: opening user log file for reading");
+		open(MYFILE, "$file.log") or die print("Error: opening user log file for reading");
 		while($line  = <MYFILE>) {
  			chomp($line);
  			if($line =~ /$username\t(.*?)\t(.*?)\t(.*?)\t(.*?)\t(.*)/){

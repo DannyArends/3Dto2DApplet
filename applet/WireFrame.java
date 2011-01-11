@@ -40,7 +40,7 @@ public class WireFrame extends Applet implements KeyListener, MouseListener, Ren
 	ServerConnection server = new ServerConnection();
 	
 	public void init() {
-		server.commandToServer("online=true");
+		server.commandToServer("function=online");
 		new Engine(this,server);
 		addKeyListener(this);
 		addMouseListener(this);

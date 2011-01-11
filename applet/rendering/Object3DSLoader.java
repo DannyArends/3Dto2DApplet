@@ -45,7 +45,7 @@ public class Object3DSLoader {
 	 * 
 	 */	
 	public Object3DSLoader(ServerConnection s) {
-		String modellist = s.commandToServer("list_files=3ds&dir=models");
+		String modellist = s.commandToServer("function=list_files&dir=models&extension=3ds");
 		Utils.console("From server: " + (modellist.split("\n").length - 3) + " models");
 		for(String line : modellist.split("\n")){
 			if(!line.startsWith("#") && !line.equals("")){

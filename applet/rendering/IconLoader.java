@@ -22,7 +22,7 @@ public class IconLoader {
 	 * 
 	 */	
 	IconLoader(ServerConnection s){
-		String iconlist = s.commandToServer("list_files=png&dir=icons");
+		String iconlist = s.commandToServer("function=list_files&dir=icons&extension=png");
 		Utils.console("From server: " + (iconlist.split("\n").length - 3) + " icons");
 		for(String line : iconlist.split("\n")){
 			if(!line.startsWith("#") && !line.equals("")){

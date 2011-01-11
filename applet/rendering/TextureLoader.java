@@ -22,7 +22,7 @@ public class TextureLoader {
 	 * 
 	 */	
 	public TextureLoader(ServerConnection s) {
-		String modellist = s.commandToServer("list_files=bmp&dir=textures");
+		String modellist = s.commandToServer("function=list_files&dir=textures&extension=bmp");
 		Utils.log("From server: " + (modellist.split("\n").length - 3) + " textures",System.err);
 		for(String line : modellist.split("\n")){
 			if(!line.startsWith("#") && !line.equals("")){
