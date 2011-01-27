@@ -1,4 +1,5 @@
 #ITEMS and DEFINITIONS
+#Danny Arends - Jan 2011
 #W - WEARABLE
 #C - CREATE		number:amount,number:amount, etc;tool:chance
 #H - HARVEST	tool:chance_break
