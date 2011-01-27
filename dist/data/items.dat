@@ -1,0 +1,47 @@
+#ITEMS and DEFINITIONS
+#W - WEARABLE
+#C - CREATE		number:amount,number:amount, etc;tool:chance
+#H - HARVEST	tool:chance_break
+#E - EATABLE	chance_bless:chance_poison:effect
+0	Gold coins	1	0
+
+#CONSUMABLE
+100	Consumables
+101 Apple 1	E	0.001:0.0005:10
+101 Bread 1	E	0.002:0.005:20
+
+#TOOLS
+200 Tools
+201 Flint 2	W
+202 Rock mold 1
+
+#RESOURCES
+300	Resources
+301 Red flower petal 1	E	0.001:0.5:1
+302 Yellow flower petal 1	E	0.1:0.085:2
+303	Coal 2	H	2001:0.001
+304	Iron ore 4	H	2001:0.002
+
+#ABSTRACTS
+1000	Abstracts
+1001	Wood	2
+1002	Fire	1	C	302:1,303:1,1000:1;201:0.001
+1003	Iron Bar	3	C	303:2,304:4,1001:1,1002:2;202:0.005
+
+#WEARABLES
+2000	Armour
+2001	Wooden stick	1	W
+3000	Weapons
+
+#MAPRESOURCES
+5000	Map resources
+5001	Flint resource
+5002	Wood resource
+5003	Coal resource
+5004	Iron ore resource
+#PLANTS
+5500	Plants
+5501	Rose
+
+#KNOWLEDGE
+6000	Knowledge
