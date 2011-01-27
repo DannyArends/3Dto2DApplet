@@ -6,4 +6,5 @@ build/
 *.jar
 *.applet
 *.db
-*.html
+dist/*.html
+doxygen/generated
