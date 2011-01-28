@@ -61,7 +61,7 @@ sub create_user{
 	my $file = $write_location . lc $_[0];
 	my $password = $_[1];
 	my $username = lc $_[2];
-	
+
 	if(!defined($file) || $file eq ""){$file = "registrars";}
 	if(!defined($username) || $username eq ""){return 0;}
 	if(!defined($password) || $password eq ""){return 0;}
@@ -72,6 +72,9 @@ sub create_user{
 		open(MYFILE, ">>$file.log") or die print("Error: opening users.log file for writing");
 		print MYFILE $username . "\t" . $password . "\t" . $username . "\t0.0\t0.0\t0.0" .  "\n";
 		close (MYFILE);
+		create_empty_storage($username);
+		create_map($username,25,25,8);
+		create_xp($username);
 		return 1;
 	}else{
 		return 0;

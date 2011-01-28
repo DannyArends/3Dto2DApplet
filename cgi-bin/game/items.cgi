@@ -16,17 +16,22 @@ our $write_location;
 our $data_location;
 
 #Functions
-
-sub list_item{
-	my $iid = $_[0];
+sub create_empty_storage{
+	my $username = lc $_[0];
+	print "#Creating storage: 500 * 1 * 2\n";
+	create_map($username."_store",500,1,2,"storages");
+	print "#Creating inventory: 5 * 5 * 1\n";
+	create_map($username."_inv",5,5,1,"storages");
 }
 
 sub get_storage{
-	my $uid = $_[0];
+	my $username = lc $_[0];
+	list_map($username."_store","storages");
 }
 
 sub get_inventory{
-	my $uid = $_[0];
+	my $username = lc $_[0];
+	list_map($username."_inv","storages");
 }
 
 return 1;

@@ -6,7 +6,7 @@ public class Currency extends Item{
 	private int amount;
 	
 	Currency(ServerConnection s) {
-		super(s,0);
+		super(s,1);
 	}
 	
 	

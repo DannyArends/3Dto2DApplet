@@ -4,7 +4,7 @@
 #C - CREATE		number:amount,number:amount, etc;tool:chance
 #H - HARVEST	tool:chance_break
 #E - EATABLE	chance_bless:chance_poison:effect
-0	Gold coins	1	0
+1	Gold coins	1	0
 
 #CONSUMABLE
 100	Consumables

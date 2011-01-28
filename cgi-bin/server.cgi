@@ -27,6 +27,10 @@ our $data_location = "dist/data/";
 require "utils.cgi";
 require "data.cgi";
 require "user.cgi";
+require "game/experience.cgi";
+require "game/items.cgi";
+require "game/map.cgi";
+require "game/movement.cgi";
 
 #Constants
 
@@ -58,5 +62,5 @@ if($form{"function"} ne ""){
 		}
 	}
 	print("#".$form{"function"} . "(".$temp.")" . "\n");
-	print(eval $form{"function"} . "(".$temp.")");
+	eval $form{"function"} . "(".$temp.")";
 }

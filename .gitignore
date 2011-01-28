@@ -8,3 +8,4 @@ build/
 *.db
 dist/*.html
 doxygen/generated
+*.map
