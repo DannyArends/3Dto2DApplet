@@ -268,7 +268,7 @@ public abstract class Object3D extends Point3D{
 				path.lineTo(points[edges[j+2].b].x, points[edges[j+2].b].y);
 				path.closePath();
 				if(materials.isEmpty()){
-					g2d.setColor(edgeColors[j/3]);	
+					g2d.setPaint(edgeColors[j/3]);	
 				}
 				g2d.draw(path);
 				if(!wireframe) g2d.fill(path);	

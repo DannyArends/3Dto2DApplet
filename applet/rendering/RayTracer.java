@@ -16,17 +16,17 @@ import objects.renderables.light.Light;
 //
 
 public class RayTracer {
-	public final double EPSILON = 0.00000001F;
+	public final static double EPSILON = 0.00000001F;
 	public final int MAX_REFLECTION_RECURSION_DEPTH = 8;
-	double[] eye= new double[3];
-	double[] rightDirection = new double[3];	
-	double[] viewplaneUp= new double[3];
+	static double[] eye= new double[3];
+	static double[] rightDirection = new double[3];	
+	static double[] viewplaneUp= new double[3];
 	double[] upDirection= new double[]{0,1,0};
-	double[] direction= new double[3];
-	double screenDist= 3;
-	double pixelWidth = 2.0 / Engine.getWidth();
-	double pixelHeight = (Engine.getWidth() / Engine.getHeight()) * pixelWidth;
-	int superSampleWidth=4;
+	static double[] direction= new double[3];
+	static double screenDist= 3;
+	static double pixelWidth = 2.0 / Engine.getWidth();
+	static double pixelHeight = (Engine.getWidth() / Engine.getHeight()) * pixelWidth;
+	static int superSampleWidth=4;
 	long l1=0;	
 	long l0=0;	
 	double[][][] raygrid;
@@ -161,7 +161,7 @@ public class RayTracer {
 	 * @param sampleYOffset sampling offset in y direction of the ray
 	 * @return
 	 */	
-	public Vector3D constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																
+	public static Vector3D constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																
 		Vector3D ray = new Vector3D(eye, direction, screenDist);
 		double[] endPoint = ray.getEndPoint();		
 		
@@ -183,7 +183,7 @@ public class RayTracer {
 	 * @param ignorePrimitive ignore this primitive
 	 * @return
 	 */	
-	public Intersection findIntersection(Vector3D ray, Object3D ignorePrimitive){
+	public static Intersection findIntersection(Vector3D ray, Object3D ignorePrimitive){
 		// Start off with infinite distance and no intersecting primitive
 		double minDistance = Double.POSITIVE_INFINITY;
 		Object3D minPrimitive = null;

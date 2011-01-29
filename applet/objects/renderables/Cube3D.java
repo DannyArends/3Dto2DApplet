@@ -22,12 +22,14 @@
 
 package objects.renderables;
 
+import java.awt.Color;
+
 import objects.Edge;
 import objects.Point3D;
 import objects.Vector3D;
 
 public class Cube3D extends Object3D{
-	public Cube3D(double x,double y, double z,int hrot, int vrot,double size){
+	public Cube3D(double x,double y, double z,int hrot, int vrot,double size,Color c){
 		super(x,y,z,hrot,vrot);
 		
 		Point3D[] vertices = new Point3D[8];
@@ -39,7 +41,7 @@ public class Cube3D extends Object3D{
 		vertices[5] = new Point3D(+size, -size, +size);
 		vertices[6] = new Point3D(+size, +size, -size);
 		vertices[7] = new Point3D(+size, +size, +size);
-		this.setVertices(vertices);
+		setVertices(vertices);
 		
 		Edge[] edges = new Edge[12];
 		edges[0] = new Edge(0, 1);
@@ -54,7 +56,11 @@ public class Cube3D extends Object3D{
 		edges[9] = new Edge(4, 6);
 		edges[10] = new Edge(5, 7);
 		edges[11] = new Edge(6, 7);
-		this.setEdges(edges);
+		setEdges(edges);
+		
+		Color[] colors = new Color[1];
+		colors[0] = c;
+		setEdgeColors(colors);
 	}
 
 	@Override

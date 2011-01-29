@@ -38,6 +38,7 @@ import objects.renderables.Surface;
 import objects.renderables.light.Light;
 import objects.renderables.light.PointLight;
 import events.ServerConnection;
+import game.GameMap;
 import generic.Utils;
 import genetics.QTLdataset;
 import genetics.QTLheatmap;
@@ -94,7 +95,7 @@ public class Scene implements Runnable{
 		UpdateLoading(50,"Loading Dataset");
 		//loadBasicDataSet();
 		UpdateLoading(70,"Loading Scene");
-		loadBasicScene();
+		loadBasicSceneFromServer();
 		UpdateLoading(80,"PreComputing Object statistics");
 		PreComputeLoadedObjects();
 		UpdateLoading(90,"Starting rendering");
@@ -150,6 +151,13 @@ public class Scene implements Runnable{
 		sph.setTexture(two);
 		Scene.addObject(sph);
 	}
+	
+	void loadBasicSceneFromServer(){	
+		GameMap start = new GameMap(server,"Danny");
+		for(Object3D x : start.getObject3D()){
+			Scene.addObject(x);
+		}
+	}
 		
 	static void PreComputeLoadedObjects(){
 		raytracer.update(camera);
@@ -193,7 +201,7 @@ public class Scene implements Runnable{
 			}
 		}
 		if(render_3d && raytracer != null){
-			raytracer.render();
+			//raytracer.render();
 		}
 		long l2 = System.nanoTime();
 		if(render_2d && headsupdisplay != null){

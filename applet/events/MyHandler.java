@@ -26,6 +26,7 @@ import generic.Utils;
 import genetics.QTLheatmap;
 
 import java.applet.Applet;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -35,8 +36,11 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
 import objects.Point2D;
+import objects.Vector3D;
 import objects.hud.HudObject;
 import rendering.Engine;
+import rendering.Intersection;
+import rendering.RayTracer;
 import rendering.Scene;
 
 public class MyHandler implements MouseMotionListener,KeyListener, MouseListener{
@@ -79,6 +83,15 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 		mx = e.getX();
 		my = e.getY();
 		ButtonControler.checkLocation(mx,my);
+		Utils.console("Checked: " + mx + " " + my);
+		Vector3D ray = RayTracer.constructRayThroughPixel(mx, my, 0, 0);
+		Intersection intersection = RayTracer.findIntersection(ray, null);
+		if(intersection.getPrimitive()!=null){
+			Utils.console("On map at: " + (int)intersection.getPrimitive().location[0]*2.0 + "," + (int)intersection.getPrimitive().location[2]*2.0);
+			Scene.updateScene(false,true);
+		}else{
+			Utils.console("No intersection");
+		}
 	}
 
 	public void mouseReleased(MouseEvent e) {

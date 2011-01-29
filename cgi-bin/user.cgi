@@ -88,7 +88,6 @@ sub delete_user{
 sub list_all_users{
 	my $file = $write_location . lc $_[0];
 	my $line = '';
-	my $return = '';
 	if(!defined($file) || $file eq $write_location){
 		$file = $write_location . "registrars";
 	}
@@ -97,11 +96,10 @@ sub list_all_users{
 	while($line  = <MYFILE>) {
  		chomp($line);
  		if($line =~ /(.*?)\t/){
- 			$return .= $1 . "\n";
+ 			print $1 . "\n";
  		}
  	}
 	close (MYFILE);
-	return $return;
 }
 
 sub login_user{
