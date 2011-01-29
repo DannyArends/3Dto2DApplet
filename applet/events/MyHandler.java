@@ -26,7 +26,6 @@ import generic.Utils;
 import genetics.QTLheatmap;
 
 import java.applet.Applet;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
