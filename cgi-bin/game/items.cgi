@@ -34,4 +34,33 @@ sub get_inventory{
 	list_map($username."_inv","storages");
 }
 
+sub item_stats{
+	my $itemid = lc $_[0];
+	my $location = $_[1];
+	my $file = $data_location;
+	my $line;
+	my @item;
+	my $found=0;
+	if(!defined($location)){$location = "game";}
+	$file .= "$location/items.dat";
+	open(MYFILE, "$file") or die "Missing items.dat";
+	while($line  = <MYFILE>) {
+		chomp($line);
+		@item = split(/\t/,$line);
+		if($item[0] eq $itemid){
+			$found=1;
+ 			print "itemID: " . $item[0] . "\n";
+ 			print "Name: " . $item[1] . "\n";
+ 			print "Weight: " . $item[2] . "\n";
+ 			if($item[3] ne 0){
+ 				print "Class: " . $item[3] . "\n";
+ 				print "ClassInfo: ". $item[4] ."\n";
+ 				if($item[3] eq "C"){print "Tools: ". $item[5] ."\n";}
+ 			}
+		}
+	}
+	if($found eq 0){print "Unknown item";}
+	close (MYFILE);
+}
+
 return 1;

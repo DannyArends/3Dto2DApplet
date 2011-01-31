@@ -51,7 +51,7 @@ import genetics.QTLheatmap;
 
 public class Scene implements Runnable{
 	static private Dimension size = new Dimension(10,10);
-	private ServerConnection server;
+	private static ServerConnection server;
 	private static int softmyobjectslimit = 12500;
 	private static Hud headsupdisplay;
 	private static QTLdataset dataset;
@@ -152,7 +152,7 @@ public class Scene implements Runnable{
 		Scene.addObject(sph);
 	}
 	
-	void loadBasicSceneFromServer(){	
+	static void loadBasicSceneFromServer(){	
 		GameMap start = new GameMap(server,"Danny");
 		for(Object3D x : start.getObject3D()){
 			Scene.addObject(x);
@@ -168,8 +168,6 @@ public class Scene implements Runnable{
 	}
 	
 	public static void reDraw3DScene() {
-		//clearObjects();
-		//loadBasicScene();
 		PreComputeLoadedObjects();
 	}
 	

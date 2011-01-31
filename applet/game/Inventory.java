@@ -9,7 +9,7 @@ public class Inventory extends GameObject{
 	Inventory(ServerConnection s,int userid) {
 		super(s);
 		id=userid;
-		parseItemsList(connection.commandToServer("inventory="+id));
+		parseItemsList(connection.commandToServer("function=get_inventory&p1"+id));
 	}
 
 //	public int getGold(){

@@ -32,6 +32,45 @@ sub list_maps{
 	}
 }
 
+sub get_filecontent{
+	my $file = $_[0];
+	my $line;
+	my $content;
+	open(MYFILE, "<$file") or die "No such file: $file";
+	while($line  = <MYFILE>){
+ 		$content .= $line;
+ 	}
+ 	close (MYFILE);
+ 	return $content;
+}
+
+sub update_map{
+	my $map = lc $_[0];
+	my $location = $_[1];
+	my $file = $write_location;
+	my $content;
+	if(!defined($location)){$location = "maps";}
+	if(!defined($map) || $file eq $write_location){
+		$file .= "$location/$map.map";
+		open(MYFILE, "$file") or die "No such map";
+		my $epoch_timestamp = (stat(MYFILE))[9];
+		close(MYFILE);
+		$content = get_filecontent($file);
+		my $epoch_now		= time;
+		my $fwrd = abs($epoch_timestamp-$epoch_now);
+		if($fwrd > 10){
+			print "Updating map: $file ".$fwrd."\n";
+			open(MYFILE, ">$file") or die "No such map";
+			for my $line (split(/\n/,$content)) {
+				print MYFILE $line."\n";
+			}
+			close (MYFILE);
+		}else{
+			print "Stale map: $file ".$fwrd."\n";
+		}
+	}
+}
+
 sub update_tile{
 	my $map = lc $_[0];
 	my $atx = $_[1];
@@ -48,12 +87,7 @@ sub update_tile{
 	if($atx > 1000 || $aty > 300 || $att > 5){ print "Dimensions unsuited, and we are generous";return}
 	if(!defined($map) || $file eq $write_location){
 		$file .= "$location/$map.map";
-		open(MYFILE, "<$file") or die "No such map";
-		while($line  = <MYFILE>){
- 			chomp($line);
- 			$content .= $line."\n";
- 		}
-		close (MYFILE);
+		$content = get_filecontent($file);
 		open(MYFILE, ">$file") or die "No such map";
 		for my $line (split(/\n/,$content)) {
 			if($atx==0){
@@ -65,7 +99,7 @@ sub update_tile{
  						my $tcnt = 0;
  						for my $tiled (@tiledimension) {
  							if(defined($tiled) && $tiled ne ""){
- 								if($tcnt){print MYFILE ";";}
+ 								if($tcnt){print MYFILE ";";print ";";}
  								print MYFILE $tiled;
  								print $tiled;
  							}
@@ -166,11 +200,15 @@ sub map_stats{
  			chomp($line);
  			$xdimension++;
  			@ydimension = split(/ /,$line);
- 			for my $tile (@ydimension) {
+ 			for my $tile (@ydimension){
  				@tiledimension = split(/;/,$tile);
  			}
 		}
+		my $epoch_timestamp = (stat(MYFILE))[9];
+		my $epoch_now		= time;
 		print "Map: $file\n";
+		print "Last-updated: ".localtime($epoch_timestamp)."\n";
+		print "Time passed since: ".abs($epoch_timestamp-$epoch_now)."\n";
 		print "Dimensions: ". $xdimension ."," . @ydimension  . " * " . @tiledimension . "\n";
 		close (MYFILE);
 	}else{
