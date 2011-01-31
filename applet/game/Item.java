@@ -38,7 +38,7 @@ public class Item extends GameObject{
 			setCommonname(item[3].split(": ")[1]);
 			setWeight(Integer.parseInt(item[4].split(": ")[1]));
 			if(item.length > 4){
-				itemclass = item[5].split(": ")[1].charAt(0);
+				setItemclass(item[5].split(": ")[1].charAt(0));
 			}
 		}
 	}
@@ -53,6 +53,14 @@ public class Item extends GameObject{
 
 	public void setQuality(int q) {
 		quality = q;
+	}
+
+	public void setItemclass(char itemclass) {
+		this.itemclass = itemclass;
+	}
+
+	public char getItemclass() {
+		return itemclass;
 	}
 
 }
