@@ -56,8 +56,10 @@ public class ButtonControler {
 	 * 
 	 */	
 	public static boolean checkLocation(int x,  int y){
-		checkLocation(Hud.getHudObjectWindows(),x,y);
-		return checkLocation(monitored,x,y);
+		boolean r = false;
+		if(checkLocation(Hud.getHudObjectWindows(),x,y)) r = true;
+		if(checkLocation(monitored,x,y)) r= true;	
+		return r;
 	}
 	
 	public static boolean checkLocation(ArrayList<HudObject> tocheck, int x,  int y){

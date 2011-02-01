@@ -20,7 +20,7 @@ public class ObjectWindow extends HudWindow {
 	public ObjectWindow(int x, int y,int sx, int sy, Object3D object) {
 		super(x, y,sx,sy, "Object");
 		setTarget(object);
-		setVisible(false);
+		setVisible(true);
 		t = new HudText(10,10,"Object:" + object.getName());
 		addChild(t);
 		addChild(new HudText(10,45,"Location:"));

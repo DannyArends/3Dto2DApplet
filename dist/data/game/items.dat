@@ -4,6 +4,7 @@
 #C - CREATE		number:amount,number:amount, etc;tool:chance
 #H - HARVEST	tool:chance_break
 #E - EATABLE	chance_bless:chance_poison:effect
+0	Gold
 1	Gold coins	1	0
 
 #CONSUMABLE
@@ -33,16 +34,6 @@
 2000	Armour
 2001	Wooden stick	1	W
 3000	Weapons
-
-#MAPRESOURCES
-5000	Map resources
-5001	Flint resource
-5002	Wood resource
-5003	Coal resource
-5004	Iron ore resource
-#PLANTS
-5500	Plants
-5501	Rose
 
 #KNOWLEDGE
 6000	Knowledge

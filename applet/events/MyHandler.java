@@ -38,8 +38,10 @@ import javax.swing.JPanel;
 import objects.Point2D;
 import objects.Vector3D;
 import objects.hud.HudObject;
+import objects.hud.windows.ObjectWindow;
 import objects.renderables.Object3D;
 import rendering.Engine;
+import rendering.Hud;
 import rendering.Intersection;
 import rendering.RayTracer;
 import rendering.Scene;
@@ -88,12 +90,9 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 		if(c == MouseEvent.BUTTON3){
 			dragging=true;
 		}else{
-			dragging=false;
-			ButtonControler.checkLocation(mx,my);
-			Object3D o = getObjectAt(mx,my);
-			if(o!=null)o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
+			dragging=!(sliderinputlistener==null);
 		}
-		Scene.updateScene(false,true);
+		Scene.updateScene(true,true);
 		e.consume();
 	}
 
@@ -107,6 +106,21 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	}
 	
 	public void mouseReleased(MouseEvent e) {
+		int c = e.getButton();
+		if(c == MouseEvent.BUTTON1 && !dragging){
+			if(!ButtonControler.checkLocation(mx,my)){
+				Utils.console("gonna raytrace");
+				Object3D o = getObjectAt(mx,my);
+				if(o!=null){
+					o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
+					ObjectWindow w = new ObjectWindow(100,100,250,200,o);
+					Hud.addWindow(w);
+				}
+				Scene.updateScene(true,true);
+			}else{
+				Scene.updateScene(true,false);
+			}
+		}
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -115,6 +129,7 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	public void mouseDragged(MouseEvent e) {
 		int new_mx = e.getX();
 		int new_my = e.getY();
+		int c = e.getButton();
 		if(dragging){
 			if(sliderinputlistener!=null){
 				if(!sliderinputlistener.handleSlide(mx,my))sliderinputlistener=null ;

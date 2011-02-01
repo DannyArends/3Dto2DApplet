@@ -1,0 +1,12 @@
+#TILE TYPES
+#Danny Arends - Jan 2011
+#T - TILE
+#MAPRESOURCES
+0	Unavailable Tile	none	255	255	255
+1	Deep water	DeepWater.bmp	0	0	255
+2	Shallow water	ShallowWater.bmp	0	0	125
+3	Ground	Ground.bmp	0	175	10
+4	Flint resource	Flint.bmp	75	25	75
+5	Wood resource	Wood.bmp	100	20	0
+6	Coal resource	Coal.bmp	15	17	20
+7	Iron ore resource	Iron.bmp	75	100	30

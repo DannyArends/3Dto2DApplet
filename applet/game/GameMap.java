@@ -53,7 +53,9 @@ public class GameMap extends GameObject{
 				double height = maptiles[x][y][0]/2550.0;
 				int objectid = maptiles[x][y][1];
 				double vertility = maptiles[x][y][2]/255.0;
-				objects.add(new Surface(x/2.0, height, y/2.0,0,0,0.25,0.25,new Color(0, 255-(int)(vertility*100), 0)));
+				Surface s = new Surface(x/2.0, height, y/2.0,0,0,0.25,0.25,new Color(0, 255-(int)(vertility*100), 0));
+				s.setName("MapTile (" + x + ","+ y + "@"+height+"): " + objectid);
+				objects.add(s);
 				if(objectid > 0){
 					objects.add(new Triangle3D(x/2.0, height, y/2.0,0,0,0.25,1.0,new Color(255, 0, 0)));
 				}
