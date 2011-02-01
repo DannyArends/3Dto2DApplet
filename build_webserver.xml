@@ -1,9 +1,10 @@
-<project name="Build" default="package" basedir=".">
+<project name="Build" default="clean" basedir=".">
     <description>
         ANT file to build a standalone DWF jar
     </description>
   <!-- set global properties for this build -->
   <property name="applet_src"   	location="applet"			/>
+  <property name="java-rt"   		location="c:/Progra~1/Java/jdk1.6.0_14/jre/lib/rt.jar" />
   <property name="webserver_src"   	location="webserver" 		/>
   <property name="build" 			location="build"     		/>
   <property name="dist"  			location="dist"      		/>
@@ -31,16 +32,28 @@
   </target>
 
   <target name="package" depends="compile" description="Package the distribution" >
-    <jar jarfile="webserver.jar" basedir="${build}">
+    <jar jarfile="dist/webserver.jar" basedir="${build}">
     	<manifest>
      	    <attribute name="Built-By" value="${myname}"/>
      	    <attribute name="Main-Class" value="DWF"/>
      	</manifest>
     </jar>
+  </target>
+	
+  <target name="strip" depends="package" description="Strip the package" >
+    <java jar="libs/proguard.jar" fork="true" failonerror="true">
+      <arg line="-injars dist/webserver.jar"/>
+      <arg line="-outjars dist/webserver_small.jar"/>
+      <arg line="-libraryjars c:/Progra~1/Java/jdk1.6.0_14/jre/lib/rt.jar"/>
+	  <arg line="-keep public class DWF{public static void main(java.lang.String[]);}"/>
+	  <arg line="-keep public class webserver.BasicAcceptor"/>
+	  <arg line="-keep public class webserver.servlets.**"/>
+	  <arg line="-dontoptimize -dontobfuscate -dontpreverify"/>
+	</java>
     <delete dir="${build}"/>
   </target>
 
-  <target name="clean" depends="package" description="clean up" >
+  <target name="clean" depends="strip" description="clean up" >
     <!-- Delete the ${build} directory tree -->
 	<delete dir="${build}"/>
   </target>

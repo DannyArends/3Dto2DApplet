@@ -26,6 +26,7 @@ import generic.Utils;
 import genetics.QTLheatmap;
 
 import java.applet.Applet;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -37,6 +38,7 @@ import javax.swing.JPanel;
 import objects.Point2D;
 import objects.Vector3D;
 import objects.hud.HudObject;
+import objects.renderables.Object3D;
 import rendering.Engine;
 import rendering.Intersection;
 import rendering.RayTracer;
@@ -47,6 +49,7 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	static int my;
 	static HudObject keyinputlistener = null;
 	static HudObject sliderinputlistener = null;
+	private boolean dragging;
 	
 	public MyHandler(){
 
@@ -79,20 +82,30 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	}
 
 	public void mousePressed(MouseEvent e) {
+		int c = e.getButton();
 		mx = e.getX();
 		my = e.getY();
-		ButtonControler.checkLocation(mx,my);
-		Utils.console("Checked: " + mx + " " + my);
-		Vector3D ray = RayTracer.constructRayThroughPixel(mx, my, 0, 0);
-		Intersection intersection = RayTracer.findIntersection(ray, null);
-		if(intersection.getPrimitive()!=null){
-			Utils.console("On map at: " + (int)intersection.getPrimitive().location[0]*2.0 + "," + (int)intersection.getPrimitive().location[2]*2.0);
-			Scene.updateScene(false,true);
+		if(c == MouseEvent.BUTTON3){
+			dragging=true;
 		}else{
-			Utils.console("No intersection");
+			dragging=false;
+			ButtonControler.checkLocation(mx,my);
+			Object3D o = getObjectAt(mx,my);
+			if(o!=null)o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
 		}
+		Scene.updateScene(false,true);
+		e.consume();
 	}
 
+	Object3D getObjectAt(int x,int y){
+		Vector3D ray = RayTracer.constructRayThroughPixel(x, y, 0, 0);
+		Intersection intersection = RayTracer.findIntersection(ray, null);
+		if(intersection.getPrimitive()!=null){
+			return intersection.getPrimitive();
+		}
+		return null;
+	}
+	
 	public void mouseReleased(MouseEvent e) {
 	}
 
@@ -100,21 +113,25 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	}
 
 	public void mouseDragged(MouseEvent e) {
-		// get the latest mouse position
 		int new_mx = e.getX();
 		int new_my = e.getY();
-		if(sliderinputlistener!=null){
-			if(!sliderinputlistener.handleSlide(mx,my))sliderinputlistener=null ;
+		if(dragging){
+			if(sliderinputlistener!=null){
+				if(!sliderinputlistener.handleSlide(mx,my))sliderinputlistener=null ;
+			}else{
+				Scene.getCamera().setHorizontalRotation((int)(Scene.getCamera().getHorizontalRotation() - (new_mx - mx)));
+				Scene.getCamera().setVerticalRotation((int)(Scene.getCamera().getVerticalRotation() +  (new_my - my)));
+			}
+			mx = new_mx;
+			my = new_my;
+			Scene.updateScene(false, true);
 		}else{
-			// since the last event
-			Scene.getCamera().setHorizontalRotation((int)(Scene.getCamera().getHorizontalRotation() - 0.3*(new_mx - mx)));
-			Scene.getCamera().setVerticalRotation((int)(Scene.getCamera().getVerticalRotation() +  0.3*(new_my - my)));
+			Object3D o = getObjectAt(new_mx,new_my);
+			if(o!=null){
+				o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
+			}
+			Scene.updateScene(false, true);
 		}
-		// update our data
-		mx = new_mx;
-		my = new_my;
-
-		Scene.updateScene(false, true);
 		e.consume();
 	}
 	
