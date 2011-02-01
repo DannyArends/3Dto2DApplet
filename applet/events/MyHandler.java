@@ -129,7 +129,6 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	public void mouseDragged(MouseEvent e) {
 		int new_mx = e.getX();
 		int new_my = e.getY();
-		int c = e.getButton();
 		if(dragging){
 			if(sliderinputlistener!=null){
 				if(!sliderinputlistener.handleSlide(mx,my))sliderinputlistener=null ;
