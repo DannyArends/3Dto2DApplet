@@ -22,6 +22,7 @@
 
 package events;
 
+import generic.RenderWindow;
 import generic.Utils;
 import genetics.QTLheatmap;
 
@@ -52,17 +53,10 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	static HudObject keyinputlistener = null;
 	static HudObject sliderinputlistener = null;
 	private boolean dragging;
+	private RenderWindow parent = null;
 	
-	public MyHandler(){
-
-	}
-	
-	public MyHandler(Applet parent){
-
-	}
-	
-	public MyHandler(JPanel parent){
-
+	public MyHandler(RenderWindow jpanel){
+		parent = (RenderWindow) jpanel;
 	}
 	
 	public void mouseEntered(MouseEvent e) {

@@ -19,7 +19,7 @@ public class DWF extends JFrame implements RenderWindow {
 	static String title = "DWF v0.1 with Perl";
 	private static final long serialVersionUID = 1L;
 	static WWWServer webserver = new WWWServer();
-	MyHandler eventListener= new MyHandler();
+	MyHandler eventListener= new MyHandler(this);
 	ServerConnection s = new ServerConnection();
 	Engine e; 
 	

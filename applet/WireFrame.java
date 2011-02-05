@@ -36,7 +36,7 @@ import generic.RenderWindow;
 public class WireFrame extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = 1L;
 	
-	MyHandler eventListener= new MyHandler();
+	MyHandler eventListener= new MyHandler(this);
 	ServerConnection server = new ServerConnection();
 	
 	public void init() {
