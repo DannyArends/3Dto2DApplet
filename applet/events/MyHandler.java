@@ -26,15 +26,12 @@ import generic.RenderWindow;
 import generic.Utils;
 import genetics.QTLheatmap;
 
-import java.applet.Applet;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
-import javax.swing.JPanel;
 
 import objects.Point2D;
 import objects.Vector3D;
@@ -55,8 +52,8 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	private boolean dragging;
 	private RenderWindow parent = null;
 	
-	public MyHandler(RenderWindow jpanel){
-		parent = (RenderWindow) jpanel;
+	public MyHandler(RenderWindow window){
+		setParent(window);
 	}
 	
 	public void mouseEntered(MouseEvent e) {
@@ -181,6 +178,14 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	@Override
 	public void keyReleased(KeyEvent e) {
 
+	}
+
+	public void setParent(RenderWindow parent) {
+		this.parent = parent;
+	}
+
+	public RenderWindow getParent() {
+		return parent;
 	}
 
 }
