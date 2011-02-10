@@ -44,7 +44,11 @@ public class Camera extends Object3D{
 		super(x,y,z,hrot,vrot);
 	}
 	
-	public void move(int x, int y, int z){
+	public void move(double[] offset){
+		move(offset[0],offset[1],offset[2]);
+	}
+	
+	public void move(double x, double y, double z){
 		location[0] += 0.5*x;
 		location[1] += 0.5*y;
 		location[2] += 0.5*z;

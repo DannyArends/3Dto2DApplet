@@ -19,10 +19,10 @@ public class RayTracer {
 	public final static double EPSILON = 0.00000001F;
 	public final int MAX_REFLECTION_RECURSION_DEPTH = 8;
 	static double[] eye= new double[3];
-	static double[] rightDirection = new double[3];	
+	public static double[] rightDirection = new double[3];	
 	static double[] viewplaneUp= new double[3];
 	double[] upDirection= new double[]{0,1,0};
-	static double[] direction= new double[3];
+	public static double[] direction= new double[3];
 	static double screenDist= 3;
 	static double pixelWidth = 2.0 / Engine.getWidth();
 	static double pixelHeight = (Engine.getWidth() / Engine.getHeight()) * pixelWidth;

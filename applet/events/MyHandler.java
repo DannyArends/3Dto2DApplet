@@ -22,6 +22,7 @@
 
 package events;
 
+import generic.MathUtils;
 import generic.RenderWindow;
 import generic.Utils;
 import genetics.QTLheatmap;
@@ -84,7 +85,6 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 			dragging=!(sliderinputlistener==null);
 		}
 		Scene.updateScene(true,true);
-		e.consume();
 	}
 
 	Object3D getObjectAt(int x,int y){
@@ -137,16 +137,15 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 			}
 			Scene.updateScene(false, true);
 		}
-		e.consume();
 	}
 	
 	public void keyPressed(KeyEvent e) {
 		int c = e.getKeyCode();
 	    switch(c){
-	    	case KeyEvent.VK_UP:Utils.console("UP");Scene.getCamera().move(1,0,0);break;
-	    	case KeyEvent.VK_DOWN:Utils.console("DOWN");Scene.getCamera().move(-1,0,0);break;
-	    	case KeyEvent.VK_LEFT:Utils.console("LEFT");Scene.getCamera().move(0,0,1);break;
-	    	case KeyEvent.VK_RIGHT:Utils.console("RIGHT");Scene.getCamera().move(0,0,-1);break;
+	    	case KeyEvent.VK_UP:Utils.console("UP");Scene.getCamera().move(RayTracer.direction);break;
+	    	case KeyEvent.VK_DOWN:Utils.console("DOWN");Scene.getCamera().move(MathUtils.oppositeVector(RayTracer.direction));break;
+	    	case KeyEvent.VK_LEFT:Utils.console("LEFT");Scene.getCamera().move(MathUtils.oppositeVector(RayTracer.rightDirection));break;
+	    	case KeyEvent.VK_RIGHT:Utils.console("RIGHT");Scene.getCamera().move(RayTracer.rightDirection);break;
 	    	case KeyEvent.VK_PAGE_UP:Utils.console("UP");Scene.getCamera().move(0,1,0);break;
 	    	case KeyEvent.VK_PAGE_DOWN:Utils.console("DOWN");Scene.getCamera().move(0,-1,0);break;
 	    	case KeyEvent.VK_ESCAPE:System.exit(0);break;
