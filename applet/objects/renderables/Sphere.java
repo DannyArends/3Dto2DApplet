@@ -31,6 +31,12 @@ import objects.Edge;
 import objects.Point3D;
 import objects.Vector3D;
 
+
+/// Sphere
+//<p>
+//Class to used to render a 3 Dimensional sphere
+//</p>
+//
 public class Sphere extends Object3D {
 	double radius;
 	double p         = 20.0;

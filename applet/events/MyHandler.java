@@ -45,6 +45,11 @@ import rendering.Intersection;
 import rendering.RayTracer;
 import rendering.Scene;
 
+/// MyHandler
+//<p>
+//Handles all events (A.t.m Mouse, Keyboard)
+//</p>
+//
 public class MyHandler implements MouseMotionListener,KeyListener, MouseListener{
 	static int mx; // the most recently recorded mouse coordinates
 	static int my;
@@ -52,6 +57,7 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 	static HudObject sliderinputlistener = null;
 	private boolean dragging;
 	private RenderWindow parent = null;
+	
 	
 	public MyHandler(RenderWindow window){
 		setParent(window);

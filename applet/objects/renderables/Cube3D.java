@@ -28,6 +28,11 @@ import objects.Edge;
 import objects.Point3D;
 import objects.Vector3D;
 
+/// Cube3D
+//<p>
+//Class to used to render a 3 Dimensional cube
+//</p>
+//
 public class Cube3D extends Object3D{
 	public Cube3D(double x,double y, double z,int hrot, int vrot,double size,Color c){
 		super(x,y,z,hrot,vrot);

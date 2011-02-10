@@ -22,6 +22,11 @@
 
 package objects;
 
+/// Edge
+//<p>
+//Class representing an edge, contains a face flag
+//</p>
+//
 public class Edge {
 	public int a, b;
 	public int faceflag;

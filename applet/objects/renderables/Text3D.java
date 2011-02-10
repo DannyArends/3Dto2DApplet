@@ -34,6 +34,11 @@ import objects.Camera;
 import objects.Vector3D;
 import rendering.Engine;
 
+/// Text3D
+//<p>
+//Class to used to provide a placeholder for text at a 3D location without having to do transforms
+//</p>
+//
 public class Text3D extends Object3D {
 	private String text;
 	private int fontId=0;

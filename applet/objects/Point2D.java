@@ -22,7 +22,11 @@
 
 package objects;
 
-
+/// Point2D
+//<p>
+//Class representing a point in 2D space (INTEGER range)
+//</p>
+//
 public class Point2D extends Object{
 	public int x;
 	public int y;

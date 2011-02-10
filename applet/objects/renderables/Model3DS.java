@@ -25,7 +25,6 @@ import rendering.Engine;
 //TODO
 //</p>
 //
-
 public class Model3DS extends Object3D{
 	private ArrayList<Object3DS> objects;
 	private ArrayList<Material> materials;

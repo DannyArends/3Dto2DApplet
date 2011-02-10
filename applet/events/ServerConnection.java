@@ -32,6 +32,11 @@ import java.net.URL;
 
 import rendering.Engine;
 
+/// ServerConnection
+//<p>
+//Handles server communication events
+//</p>
+//
 public class ServerConnection {
 	String aLine;
 	URL url; 

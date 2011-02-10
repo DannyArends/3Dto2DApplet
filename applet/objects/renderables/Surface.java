@@ -30,6 +30,11 @@ import objects.Edge;
 import objects.Point3D;
 import objects.Vector3D;
 
+/// Surface
+//<p>
+//Class to used to render a 3 Dimensional tile
+//</p>
+//
 public class Surface extends Object3D {
 	private double[] AB, AC;
 	private double ABdotAB, ACdotAC;

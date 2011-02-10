@@ -23,6 +23,11 @@ package objects;
 
 import generic.MathUtils;
 
+/// Point3D
+//<p>
+//Class representing a point in 3D space (DOUBLE range)
+//</p>
+//
 public class Point3D {
 	public double[] location = new double[3];
 

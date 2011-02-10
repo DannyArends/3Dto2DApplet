@@ -22,6 +22,11 @@
 
 package genetics;
 
+/// GeneticLocation
+//<p>
+//Stored a string name together with an integer chromosome number and double location
+//</p>
+//
 public class GeneticLocation {
 	public String name;
 	public int chromosome;

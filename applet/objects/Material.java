@@ -24,6 +24,12 @@ package objects;
 
 import java.awt.Color;
 
+/// Material class
+//<p>
+//TODO still incomplete class, we need some fallback because we can have different types of materials:
+//ATM: Basic Texturing (via RayTracer), object coloring per triangle, Mono colored objects
+//</p>
+//
 public class Material {
 	String materialname;
 	public boolean is_diffuse = false;

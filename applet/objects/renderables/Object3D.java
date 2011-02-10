@@ -41,12 +41,11 @@ import objects.Texture;
 import objects.Vector3D;
 import rendering.Engine;
 
-/// 3 Dimensional object
+/// Abstract 3 Dimensional object
 //<p>
 //TODO
 //</p>
 //
-
 public abstract class Object3D extends Point3D{
 	private String name = "Object3D";
 	private boolean wireframe = false;

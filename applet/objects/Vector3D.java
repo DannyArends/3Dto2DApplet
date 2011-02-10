@@ -24,7 +24,11 @@ package objects;
 
 import generic.MathUtils;
 
-
+/// Vector3D
+//<p>
+//Class representing an vector, contains a direction and magnitude
+//</p>
+//
 public class Vector3D extends Point3D{
 	public double[] direction = new double[3];
 	double magnitude;

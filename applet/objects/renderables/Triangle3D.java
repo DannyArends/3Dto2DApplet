@@ -28,7 +28,11 @@ import objects.Edge;
 import objects.Point3D;
 import objects.Vector3D;
 
-
+/// Triangle3D
+//<p>
+//Class to used to render a 3 Dimensional triangle
+//</p>
+//
 public class Triangle3D extends Object3D{
 	
 	public Triangle3D(double x,double y, double z,int hrot, int vrot, double hscale, double vscale, Color c){

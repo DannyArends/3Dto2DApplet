@@ -35,7 +35,7 @@ import objects.hud.HudMenuButton;
 import objects.hud.HudObject;
 import rendering.Hud;
 
-/// Monitors mouse button click to 'hud' buttons
+/// Monitors mouse button click to head up display buttons
 //<p>
 //TODO
 //</p>

@@ -17,6 +17,11 @@ import java.net.URLConnection;
 
 import rendering.Engine;
 
+/// Texture
+//<p>
+//Class to used to load and store a texture
+//</p>
+//
 public class Texture {
 	public double[][][] texturedata =  null;
 	String name;
