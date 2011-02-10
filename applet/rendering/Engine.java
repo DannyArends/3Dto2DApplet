@@ -44,7 +44,6 @@ public class Engine{
 	private static RenderWindow parent;
 	
 	static MyTimer timer;
-	Scene scene;
 	static IconLoader iconloader;
 	static TextureLoader textureloader;
 	static Object3DSLoader objectloader;

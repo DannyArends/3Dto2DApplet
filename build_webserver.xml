@@ -1,4 +1,4 @@
-<project name="Build" default="clean" basedir=".">
+<project name="Build" default="package" basedir=".">
     <description>
         ANT file to build a standalone DWF jar
     </description>

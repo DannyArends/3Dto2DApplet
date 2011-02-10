@@ -81,6 +81,7 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 		my = e.getY();
 		if(c == MouseEvent.BUTTON3){
 			dragging=true;
+			e.consume();
 		}else{
 			dragging=!(sliderinputlistener==null);
 		}
@@ -110,6 +111,7 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 				Scene.updateScene(true,true);
 			}else{
 				Scene.updateScene(true,false);
+				e.consume();
 			}
 		}
 	}
@@ -130,6 +132,7 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 			mx = new_mx;
 			my = new_my;
 			Scene.updateScene(false, true);
+			e.consume();
 		}else{
 			Object3D o = getObjectAt(new_mx,new_my);
 			if(o!=null){

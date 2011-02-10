@@ -279,4 +279,12 @@ public class Scene implements Runnable{
 		return softmyobjectslimit;
 	}
 
+	public static int getWidth() {
+		return size.width;
+	}
+
+	public static int getHeight() {
+		return size.height;
+	}
+
 }

@@ -24,8 +24,8 @@ public class RayTracer {
 	double[] upDirection= new double[]{0,1,0};
 	public static double[] direction= new double[3];
 	static double screenDist= 3;
-	static double pixelWidth = 2.0 / Engine.getWidth();
-	static double pixelHeight = (Engine.getWidth() / Engine.getHeight()) * pixelWidth;
+	static double pixelWidth = 2.0 / Scene.getWidth();
+	static double pixelHeight = (Scene.getWidth() / Scene.getHeight()) * pixelWidth;
 	static int superSampleWidth=4;
 	long l1=0;	
 	long l0=0;	
@@ -36,7 +36,7 @@ public class RayTracer {
 	
 	RayTracer(){
 		l0 = System.nanoTime();
-		raster = new boolean[Engine.getWidth()][Engine.getHeight()];
+		raster = new boolean[Scene.getWidth()][Scene.getHeight()];
 	}
 	
 	
@@ -48,6 +48,9 @@ public class RayTracer {
 	 */	
 	public void update(Camera c){
 		c.update(c);
+		raster = new boolean[Scene.getWidth()][Scene.getHeight()];
+		pixelWidth = 2.0 / Scene.getWidth();
+		pixelHeight = (Scene.getWidth() / Scene.getHeight()) * pixelWidth;
 		eye = c.location;
 		direction[0] = -c.rotation[6];
 		direction[1] = -c.rotation[3];
@@ -60,7 +63,6 @@ public class RayTracer {
 		MathUtils.multiplyVectorByScalar(rightDirection, -1);
 		viewplaneUp = MathUtils.crossProduct(rightDirection, direction);		
 		MathUtils.normalize(viewplaneUp);
-		raster = new boolean[Engine.getWidth()][Engine.getHeight()];
 	}
 	
 	/**
@@ -75,8 +77,8 @@ public class RayTracer {
 		int x,y,w,h;
 		int pixels = 0;
 		int bpixels = 0;
-		w=Engine.getWidth();
-		h=Engine.getHeight();
+		w = Scene.getWidth();
+		h = Scene.getHeight();
 		while((System.nanoTime()-l1)/1000000 < 170){
 			y = (int) (Math.random() * h);
 			x = (int) (Math.random() * w);
@@ -119,9 +121,9 @@ public class RayTracer {
 
 	void doLineairInterpolation(){
 		int py = 0;
-		for(int y=0;py+interpolation<Engine.getHeight();y+=interpolation/3){
+		for(int y=0;py+interpolation<Scene.getHeight();y+=interpolation/3){
 			int px=0;
-			for(int x=0;px+interpolation<Engine.getWidth();x+=interpolation/3){
+			for(int x=0;px+interpolation<Scene.getWidth();x+=interpolation/3){
 				//Utils.console("("+ x + "," + y +")=" + px +" "+ (px + 10) + " " + py +" "+ (py + 10));
 				if(!(px == x && py == y)){
 				raygrid[x][y]= interpretcolors(
@@ -165,8 +167,8 @@ public class RayTracer {
 		Vector3D ray = new Vector3D(eye, direction, screenDist);
 		double[] endPoint = ray.getEndPoint();		
 		
-		double upOffset = -1 * (y - (Engine.getHeight() / 2) - (sampleYOffset / superSampleWidth)) * pixelHeight;
-		double rightOffset = (x - (Engine.getWidth() / 2) + (sampleXOffset / superSampleWidth)) * pixelWidth;
+		double upOffset = -1 * (y - (Scene.getHeight() / 2) - (sampleYOffset / superSampleWidth)) * pixelHeight;
+		double rightOffset = (x - (Scene.getWidth() / 2) + (sampleXOffset / superSampleWidth)) * pixelWidth;
 		
 		MathUtils.addVectorAndMultiply(endPoint, rightDirection, rightOffset);
 		MathUtils.addVectorAndMultiply(endPoint, viewplaneUp, upOffset);

@@ -5,14 +5,14 @@ import java.awt.Color;
 import objects.hud.HudInputBox;
 import objects.hud.HudText;
 import objects.hud.HudWindow;
-import rendering.Engine;
 import rendering.IconLoader;
+import rendering.Scene;
 
 public class LoginWindow extends HudWindow {
 	
 	
 	public LoginWindow() {
-		super(Engine.getWidth()/2-200,Engine.getHeight()/2-100,325,200, "Login");
+		super(Scene.getWidth()/2-200,Scene.getHeight()/2-100,325,200, "Login");
 		setColor(Color.orange);
 		HudText t = new HudText(10,10,"Login to the system");
 		t.addLine("Username: ");
