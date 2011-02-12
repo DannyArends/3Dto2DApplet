@@ -20,28 +20,29 @@
 #
 */
 
+import events.MyHandler;
+import events.ServerConnection;
+import generic.RenderWindow;
+
 import java.applet.Applet;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import rendering.Engine;
-import rendering.Scene;
-import events.MyHandler;
-import events.ServerConnection;
-import generic.RenderWindow;
 
 public class WireFrame extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = 1L;
 	
 	MyHandler eventListener= new MyHandler(this);
 	ServerConnection server = new ServerConnection();
+	Engine engine;
 	
 	public void init() {
 		server.commandToServer("function=online");
-		new Engine(this,server);
+		engine = new Engine(this,server);
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(eventListener);
@@ -49,22 +50,7 @@ public class WireFrame extends Applet implements KeyListener, MouseListener, Ren
 
 
 	public void update(Graphics g) {
-		int p=0;
-		g.setColor(Color.black);
-		g.fillRect(0, 0, getWidth(),getHeight());
-		while(Scene.loading){
-			if(Scene.loadingPercentage!=p){
-				p = Scene.loadingPercentage;
-				g.setColor(Color.black);
-				g.fillRect(0, 0, getWidth(),getHeight());
-			}
-			g.setColor(Color.white);
-			g.drawString(Scene.loadingMsg, getWidth()/2-100, getHeight()/2);
-			g.setColor(server.getOnline() ? Color.green : Color.red);
-			g.drawString("Server " + (server.getOnline() ? "connected" : "not connected"), getWidth()/2-100, getHeight()/2+20);
-		}
-		Scene.updateScene(true,true);
-		Scene.updateGraphics(g);
+		engine.update(g);
 	}
 
 	public void paint(Graphics g) {

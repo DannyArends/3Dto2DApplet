@@ -25,6 +25,7 @@ package rendering;
 import events.ServerConnection;
 import generic.RenderWindow;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -42,6 +43,7 @@ public class Engine{
 	private static Graphics backBufferGraphics = null;
 	private static Dimension size;
 	private static RenderWindow parent;
+	ServerConnection server = new ServerConnection();
 	
 	static MyTimer timer;
 	static IconLoader iconloader;
@@ -56,12 +58,41 @@ public class Engine{
 	 * @return
 	 */	
 	public Engine(RenderWindow p, ServerConnection s){
+		timer=new MyTimer(s);
 		parent=p;
 		size = p.getSize();
 		backBuffer = p.createImage(size.width, size.height);
 		setBackBufferGraphics(backBuffer.getGraphics());
+		server = s;
 		Thread t = new Thread(new Scene(size,s));
 		t.start();
+	}
+	
+	public void update(Graphics g) {
+		int p=0;
+		g.setColor(Color.black);
+		g.fillRect(0, 0, getWidth(),getHeight());
+		while(Scene.loading){
+			if(Scene.loadingPercentage!=p){
+				p = Scene.loadingPercentage;
+				g.setColor(Color.black);
+				g.fillRect(0, 0, getWidth(),getHeight());
+			}
+			g.setColor(Color.white);
+			g.drawString(Scene.loadingMsg, getWidth()/2-100, getHeight()/2);
+			g.setColor(server.getOnline() ? Color.green : Color.red);
+			g.drawString("Server " + (server.getOnline() ? "connected" : "not connected"), getWidth()/2-100, getHeight()/2+20);
+		}
+		Scene.updateScene(true,true);
+		Scene.updateGraphics(g);
+	}
+	
+	public void setRenderWindowUpdate(boolean u) {
+		timer.setRenderWindowUpdate(u);
+	}
+
+	public boolean isRenderWindowUpdate() {
+		return timer.isRenderWindowUpdate();
 	}
 
 	public static Image getBackBuffer() {
@@ -115,7 +146,8 @@ public class Engine{
 		
 	}
 
-	public static void setTimer(MyTimer t) {
-		timer=t;
+	public static void setTimer(MyTimer myTimer) {
+		timer = myTimer;
 	}
+
 }

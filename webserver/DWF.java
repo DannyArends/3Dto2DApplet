@@ -3,6 +3,7 @@ import events.ServerConnection;
 import generic.RenderWindow;
 import generic.Utils;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,30 +16,31 @@ import webserver.WWWServer;
 
 
 
-public class DWF extends JFrame implements RenderWindow {
-	static String title = "DWF v0.1 with Perl";
+public class DWF extends JFrame implements RenderWindow,Runnable {
 	private static final long serialVersionUID = 1L;
+	static String title = "DWF v0.0.1 with CGI support";
 	static WWWServer webserver = new WWWServer();
 	MyHandler eventListener= new MyHandler(this);
-	ServerConnection s = new ServerConnection();
-	Engine e; 
+	ServerConnection server = new ServerConnection();
+	Engine engine; 
 	
 	DWF(int w, int h,String title){
 	    setSize(w,h); 
 		setTitle(title);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	    setVisible(true);
-	    e = new Engine(this, s);
+	    server.commandToServer("function=online");
+	    engine = new Engine(this, server);
+	    engine.setRenderWindowUpdate(true);
 		addKeyListener(eventListener);
 		addMouseListener(eventListener);
 		addMouseMotionListener(eventListener);
-		Scene.render_3d=true;
-		Scene.updateScene(true,false);
 	}
 	
 	public void paintComponent(Graphics g) {
-		Scene.updateScene(true,false);
-		Scene.updateGraphics(g);
+		g.setColor(Color.black);
+		g.fillRect(0, 0, getWidth(),getHeight());
+		Scene.updateScene(true,true);
 	}
 	
 	public void paint(Graphics g) {
@@ -57,7 +59,7 @@ public class DWF extends JFrame implements RenderWindow {
 		Utils.log("-- Starting webserver --",System.err);
 		new Thread(webserver).start();
 		Utils.log("-- Serving: http://localhost:8080/ --",System.err);
-		new DWF(800,600,title);
+		new Thread(new DWF(800,600,title));
 	}
 
 	@Override
@@ -73,5 +75,13 @@ public class DWF extends JFrame implements RenderWindow {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public void run() {
+		while(engine==null){
+
+		}
+		engine.update(getGraphics());
 	}
 }

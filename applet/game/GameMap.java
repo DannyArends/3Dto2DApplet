@@ -27,7 +27,10 @@ public class GameMap extends GameObject{
 	void parseMap(String map){
 		String[] dimension1 = map.split("\n");
 		int offset=0;
-		while(dimension1[offset].equals("") || dimension1[offset].startsWith("#")){offset++;}
+		if(dimension1.length==0)return;
+		while(dimension1[offset].equals("") || dimension1[offset].startsWith("#")){
+			offset++;
+		}
 		Utils.console("Offset:" + offset);
 		String[] dimension2 = dimension1[offset].split(" ");
 		dimx=dimension1.length-offset;
