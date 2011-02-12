@@ -54,14 +54,15 @@ public class GameMap extends GameObject{
 		ArrayList<Object3D> objects = new ArrayList<Object3D>();
 		for(int x=dimx-1;x>=0;x--){
 			for(int y=dimy-1;y>=0;y--){
-				double height = maptiles[x][y][0]/2550.0;
+				double height = maptiles[x][y][0]/500.0;
 				int objectid = maptiles[x][y][1];
-				double vertility = maptiles[x][y][2]/255.0;
-				Surface s = new Surface(x/2.0, height, y/2.0,0,0,0.25,0.25,new Color(0, 255-(int)(vertility*100), 0));
+				//double vertility = maptiles[x][y][2]/255.0;
+				int c = (int)((height*100)>255?255:height*100);
+				Surface s = new Surface(x, height, y,0,0,0.4,0.4,new Color(0, c, 255-(int)c));
 				s.setName("MapTile (" + x + ","+ y + "@"+height+"): " + objectid);
 				objects.add(s);
 				if(objectid > 0){
-					objects.add(new Cube3D(x/2.0, height, y/2.0,0,0,0.1,new Color(0, 0, 125)));
+					objects.add(new Cube3D(x, height, y,0,0,0.1,new Color(0, 0, 125)));
 				}
 			}
 		}

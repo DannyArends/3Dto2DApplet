@@ -27,7 +27,6 @@ import generic.RenderWindow;
 import generic.Utils;
 import genetics.QTLheatmap;
 
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -37,10 +36,8 @@ import java.awt.event.MouseMotionListener;
 import objects.Point2D;
 import objects.Vector3D;
 import objects.hud.HudObject;
-import objects.hud.windows.ObjectWindow;
 import objects.renderables.Object3D;
 import rendering.Engine;
-import rendering.Hud;
 import rendering.Intersection;
 import rendering.RayTracer;
 import rendering.Scene;
@@ -110,11 +107,11 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 				Utils.console("gonna raytrace");
 				Object3D o = getObjectAt(mx,my);
 				if(o!=null){
-					o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
-					ObjectWindow w = new ObjectWindow(100,100,250,200,o);
-					int[] t = Scene.getCurrentMap().get_tile((int)(o.location[0]*2), (int)(o.location[2]*2));
-					Scene.getCurrentMap().update_tile((int)(o.location[0]*2), (int)(o.location[2]*2), 1, (t[1]==1)?0:1);
-					if(t[1]==1)Hud.addWindow(w);
+//					o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
+//					ObjectWindow w = new ObjectWindow(100,100,250,200,o);
+//					int[] t = Scene.getCurrentMap().get_tile((int)(o.location[0]), (int)(o.location[2]));
+//					Scene.getCurrentMap().update_tile((int)(o.location[0]), (int)(o.location[2]), 1, (t[1]==1)?0:1);
+					//if(t[1]==1)Hud.addWindow(w);
 				}
 				Scene.updateScene(true,true);
 			}else{
@@ -144,8 +141,8 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 		}else{
 			Object3D o = getObjectAt(new_mx,new_my);
 			if(o!=null){
-				int[] t = Scene.getCurrentMap().get_tile((int)(o.location[0]*2), (int)(o.location[2]*2));
-				Scene.getCurrentMap().update_tile((int)(o.location[0]*2), (int)(o.location[2]*2), 2, (t[2]+10>250)?t[2]-200:t[2]+100);
+//				int[] t = Scene.getCurrentMap().get_tile((int)(o.location[0]), (int)(o.location[2]));
+//				Scene.getCurrentMap().update_tile((int)(o.location[0]), (int)(o.location[2]), 0, (t[0]+10>5000)?0:t[0]+100);
 			}
 			Scene.updateScene(false, true);
 		}
