@@ -70,7 +70,6 @@ public class Cube3D extends Object3D{
 
 	@Override
 	public double[] getTextureCoords(double[] point) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

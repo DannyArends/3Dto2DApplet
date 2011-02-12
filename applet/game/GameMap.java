@@ -3,9 +3,9 @@ package game;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import objects.renderables.Cube3D;
 import objects.renderables.Object3D;
 import objects.renderables.Surface;
+import objects.renderables.Triangle3D;
 import rendering.Scene;
 import events.ServerConnection;
 import generic.Utils;
@@ -27,12 +27,7 @@ public class GameMap extends GameObject{
 	// @param map String response from the server when called for an list_map&name=MapName
 	void parseMap(String map){
 		String[] dimension1 = map.split("\n");
-		int offset=0;
-		if(dimension1.length==0)return;
-		while(dimension1[offset].equals("") || dimension1[offset].startsWith("#")){
-			offset++;
-		}
-		Utils.console("Offset:" + offset);
+		int offset = Utils.offsetByComment(dimension1);
 		String[] dimension2 = dimension1[offset].split(" ");
 		dimx=dimension1.length-offset;
 		dimy=dimension2.length;
@@ -62,7 +57,7 @@ public class GameMap extends GameObject{
 				s.setName("MapTile (" + x + ","+ y + "@"+height+"): " + objectid);
 				objects.add(s);
 				if(objectid > 0){
-					objects.add(new Cube3D(x, height, y,0,0,0.1,new Color(0, 0, 125)));
+					objects.add(new Triangle3D(x, height, y,0,0,0.5,1, new Color(125, 35, 125)));
 				}
 			}
 		}

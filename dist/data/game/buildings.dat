@@ -1,0 +1,31 @@
+#ITEMS and DEFINITIONS
+#Danny Arends - Jan 2011
+#NATURE RESOURCES
+0	Nature
+1	Forester
+2	Harvester
+3	Flint gatherer
+4	Stone cutter
+
+#MINING
+100	Mining
+101 Coal mine
+102 Iron mine
+
+#RESOURCE BUILDINGS
+200 Resources
+201	Weapon building
+202	Armor building
+201 Iron smelter
+
+#ROADS
+300	Road
+301	Sand road
+302	Flint road
+303	Stone road
+
+#SOCIETY
+400	Society buildings
+401 Basic housing
+402 Medium housing
+403 Medium housing

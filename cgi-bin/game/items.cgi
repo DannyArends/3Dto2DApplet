@@ -34,6 +34,33 @@ sub get_inventory{
 	list_map($username."_inv","storages");
 }
 
+sub list_items{
+	my $filename = $_[0];
+	my $location = "game";
+	my $file = $data_location;
+	my $line;
+	my @item;
+	if(!defined($filename)){$filename = "items"}
+	$file .= "$location/$filename.dat";
+	open(MYFILE, "$file") or die "Missing items.dat";
+	while($line  = <MYFILE>) {
+		chomp($line);
+		@item = split(/\t/,$line);
+		if(defined($item[1]) && !($item[0] =~ m/#./)){
+			print $item[0] . "\t" . $item[1] . "\n";
+		}
+	}
+	close (MYFILE);
+}
+
+sub list_buildings{
+	list_items("buildings");
+}
+
+sub list_tiles{
+	list_items("tiles");
+}
+
 sub item_stats{
 	my $itemid = lc $_[0];
 	my $location = $_[1];

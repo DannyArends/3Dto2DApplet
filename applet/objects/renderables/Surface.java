@@ -48,10 +48,20 @@ public class Surface extends Object3D {
 	public Surface(double x, double y, double z,int hrot,int vrot, double hscale, double vscale, Color c) {
 		super(x, y, z,hrot,vrot);
 		// TODO Auto-generated constructor stub
-		Point3D[] vertices = {new Point3D(x-hscale, y, z-vscale), new Point3D(x+hscale, y, z-vscale), new Point3D(x-hscale, y, z+vscale), new Point3D(x+hscale, y, z+vscale)};
+		Point3D[] vertices = {
+				new Point3D(x-hscale, y, z-vscale), 
+				new Point3D(x+hscale, y, z-vscale), 
+				new Point3D(x-hscale, y, z+vscale), 
+				new Point3D(x+hscale, y, z+vscale)};
 		setVertices(vertices);
 	
-		Edge[] edges = {new Edge(0, 1), new Edge(1, 2), new Edge(2, 0),new Edge(0, 1), new Edge(1, 3), new Edge(3, 2)};
+		Edge[] edges = {
+				new Edge(0, 1), 
+				new Edge(1, 2), 
+				new Edge(2, 0),
+				new Edge(0, 1), 
+				new Edge(1, 3), 
+				new Edge(3, 2)};
 		setEdges(edges);
 		
 		Color[] colors = new Color[1];

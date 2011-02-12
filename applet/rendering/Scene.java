@@ -88,7 +88,7 @@ public class Scene implements Runnable{
 		Engine.setTextureLoader( new TextureLoader(server));
 		Engine.setObjectLoader(new Object3DSLoader(server));
 		UpdateLoading(10,"Loading HUD");
-		headsupdisplay = new Hud(size.width, size.height);
+		headsupdisplay = new Hud(size.width, size.height,server);
 		UpdateLoading(30,"Adding Lights");
 		lights.add(new PointLight(25.0,  10.0, 0.0, 1, 0, 0));
 		lights.add(new PointLight(0.0, 10.0, 25.0, 1, 1.0, 1.0));

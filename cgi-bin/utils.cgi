@@ -100,14 +100,14 @@ sub writeIPtoLog{
 	my $line = '';
 	my $filename = $write_location . "output.log";
 	if(defined($ENV{REMOTE_ADDR})){
-		open(MYFILE, $filename) or die print("Error: opening ip log file for reading");
+		open(MYFILE, $filename) or die print("Error: opening ip log file: ".$filename." for reading");
  		while($line  = <MYFILE>) {
  			chomp($line);
  			if($line eq $ENV{REMOTE_ADDR}){ $found = 1; }
  		}
 		if(!$found){
 			close (MYFILE);
-			open(MYFILE, ">>$filename") or die print("Error: opening ip log file for writing");
+			open(MYFILE, ">>$filename") or die print("Error: opening ip ".$filename." file for appending");
 			#print("ADD: $ENV{REMOTE_ADDR}" . "\n");
 			print MYFILE $ENV{REMOTE_ADDR} . "\n";
 		}else{

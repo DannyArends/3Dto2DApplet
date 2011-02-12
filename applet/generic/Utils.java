@@ -60,6 +60,15 @@ public class Utils{
 		return t;
 	}
 	
+	public static int offsetByComment(String[] items){
+		int offset=0;
+		if(items.length==0) return -1;
+		while(offset < items.length && (items[offset].equals("") || items[offset].startsWith("#"))){
+			offset++;
+		}
+		return offset;
+	}
+	
 	/// Returns a date string formatted in Unix ls style - if it's within
 	// six months of now, Mmm dd hh:ss, else Mmm dd yyyy.
 	static final SimpleDateFormat shortfmt = new SimpleDateFormat("MMM dd HH:mm");

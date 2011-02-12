@@ -23,6 +23,7 @@
 package rendering;
 
 import events.ButtonControler;
+import events.ServerConnection;
 import generic.Utils;
 import genetics.QTLdataset;
 
@@ -35,11 +36,14 @@ import java.util.ArrayList;
 import objects.hud.HudObject;
 import objects.hud.HudWindow;
 import objects.hud.windows.AboutWindow;
+import objects.hud.windows.BuildWindow;
 import objects.hud.windows.ControlsWindow;
 import objects.hud.windows.HelpWindow;
 import objects.hud.windows.IconBar;
 import objects.hud.windows.LoginWindow;
+import objects.hud.windows.SettingsWindow;
 import objects.hud.windows.StatsWindow;
+import objects.hud.windows.TerraformWindow;
 
 /// Head Up Display
 //<p>
@@ -64,12 +68,15 @@ public class Hud extends HudObject{
 	 * @param sy Height of the HUD
 	 * @return
 	 */	
-	public Hud(int sx, int sy){
+	public Hud(int sx, int sy, ServerConnection server){
 		super(sx,sy);
 		addChild(new AboutWindow(100, 100));
 		addChild(new HelpWindow(120, 120));
 		addChild(new ControlsWindow(140, 140));
-		addChild(new StatsWindow(160,160));
+		addChild(new StatsWindow(160,160,server));
+		addChild(new SettingsWindow(180,180));
+		addChild(new BuildWindow(server));
+		addChild(new TerraformWindow(server));
 		addChild(new IconBar());
 		addChild(new LoginWindow());
 	}

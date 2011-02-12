@@ -14,13 +14,13 @@
 
 #TOOLS
 200 Tools
-201 Flint 2	W
+201	Flint	2	W
 202 Rock mold 1
 
 #RESOURCES
 300	Resources
-301 Red flower petal 1	E	0.001:0.5:1
-302 Yellow flower petal 1	E	0.1:0.085:2
+301	Red flower petal	1	E	0.001:0.5:1
+302	Yellow flower petal	1	E	0.1:0.085:2
 303	Coal 2	H	2001:0.001
 304	Iron ore 4	H	2001:0.002
 
