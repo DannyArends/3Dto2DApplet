@@ -38,10 +38,10 @@ public class Triangle3D extends Object3D{
 	public Triangle3D(double x,double y, double z,int hrot, int vrot, double hscale, double vscale, Color c){
 		super(x,y,z,hrot,vrot);
 		Point3D[] vertices = {new Point3D(x, y, z+(0.2*hscale)), new Point3D(x, y+vscale, z), new Point3D(x, y, z+(-0.2*hscale))};
-		this.setVertices(vertices);
+		setVertices(vertices);
 	
 		Edge[] edges = {new Edge(0, 1), new Edge(1, 2), new Edge(2, 0)};
-		this.setEdges(edges);
+		setEdges(edges);
 		
 		Color[] colors = new Color[]{c};
 		setEdgeColors(colors);

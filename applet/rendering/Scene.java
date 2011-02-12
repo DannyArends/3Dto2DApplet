@@ -64,6 +64,7 @@ public class Scene implements Runnable{
 	public static String loadingMsg = "";
 	public static boolean render_2d = true;
 	public static boolean render_3d = true;
+	private static GameMap currentMap;
 	
 	private static RayTracer raytracer = new RayTracer();
 	private static ArrayList<Object3D> myobjects = new ArrayList<Object3D>();
@@ -153,8 +154,8 @@ public class Scene implements Runnable{
 	}
 	
 	static void loadBasicSceneFromServer(){	
-		GameMap start = new GameMap(server,"Danny");
-		for(Object3D x : start.getObject3D()){
+		currentMap = new GameMap(server,"Danny");
+		for(Object3D x : currentMap.getObject3D()){
 			Scene.addObject(x);
 		}
 	}
@@ -169,6 +170,13 @@ public class Scene implements Runnable{
 	
 	public static void reDraw3DScene() {
 		PreComputeLoadedObjects();
+	}
+	
+	public static void mapReload() {
+		Scene.clearObjects();
+		for(Object3D x : currentMap.getObject3D()){
+			Scene.addObject(x);
+		}
 	}
 	
 	public static ArrayList<Object3D> getObjects() {
@@ -285,6 +293,14 @@ public class Scene implements Runnable{
 
 	public static int getHeight() {
 		return size.height;
+	}
+
+	public static void setCurrentMap(GameMap currentMap) {
+		Scene.currentMap = currentMap;
+	}
+
+	public static GameMap getCurrentMap() {
+		return currentMap;
 	}
 
 }

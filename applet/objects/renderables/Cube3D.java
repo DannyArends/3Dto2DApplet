@@ -38,14 +38,14 @@ public class Cube3D extends Object3D{
 		super(x,y,z,hrot,vrot);
 		
 		Point3D[] vertices = new Point3D[8];
-		vertices[0] = new Point3D(-size, -size, -size);
-		vertices[1] = new Point3D(-size, -size, +size);
-		vertices[2] = new Point3D(-size, +size, -size);
-		vertices[3] = new Point3D(-size, +size, +size);
-		vertices[4] = new Point3D(+size, -size, -size);
-		vertices[5] = new Point3D(+size, -size, +size);
-		vertices[6] = new Point3D(+size, +size, -size);
-		vertices[7] = new Point3D(+size, +size, +size);
+		vertices[0] = new Point3D(x-size, y-size, z-size);
+		vertices[1] = new Point3D(x-size, y-size, z+size);
+		vertices[2] = new Point3D(x-size, y+size, z-size);
+		vertices[3] = new Point3D(x-size, y+size, z+size);
+		vertices[4] = new Point3D(x+size, y-size, z-size);
+		vertices[5] = new Point3D(x+size, y-size, z+size);
+		vertices[6] = new Point3D(x+size, y+size, z-size);
+		vertices[7] = new Point3D(x+size, y+size, z+size);
 		setVertices(vertices);
 		
 		Edge[] edges = new Edge[12];

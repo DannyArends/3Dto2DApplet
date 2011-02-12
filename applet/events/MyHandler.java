@@ -112,7 +112,9 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 				if(o!=null){
 					o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
 					ObjectWindow w = new ObjectWindow(100,100,250,200,o);
-					Hud.addWindow(w);
+					int[] t = Scene.getCurrentMap().get_tile((int)(o.location[0]*2), (int)(o.location[2]*2));
+					Scene.getCurrentMap().update_tile((int)(o.location[0]*2), (int)(o.location[2]*2), 1, (t[1]==1)?0:1);
+					if(t[1]==1)Hud.addWindow(w);
 				}
 				Scene.updateScene(true,true);
 			}else{
@@ -142,7 +144,8 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 		}else{
 			Object3D o = getObjectAt(new_mx,new_my);
 			if(o!=null){
-				o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
+				int[] t = Scene.getCurrentMap().get_tile((int)(o.location[0]*2), (int)(o.location[2]*2));
+				Scene.getCurrentMap().update_tile((int)(o.location[0]*2), (int)(o.location[2]*2), 2, (t[2]+10>250)?t[2]-200:t[2]+100);
 			}
 			Scene.updateScene(false, true);
 		}

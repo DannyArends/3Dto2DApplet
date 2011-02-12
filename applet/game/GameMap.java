@@ -3,9 +3,10 @@ package game;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import objects.renderables.Cube3D;
 import objects.renderables.Object3D;
 import objects.renderables.Surface;
-import objects.renderables.Triangle3D;
+import rendering.Scene;
 import events.ServerConnection;
 import generic.Utils;
 
@@ -60,10 +61,38 @@ public class GameMap extends GameObject{
 				s.setName("MapTile (" + x + ","+ y + "@"+height+"): " + objectid);
 				objects.add(s);
 				if(objectid > 0){
-					objects.add(new Triangle3D(x/2.0, height, y/2.0,0,0,0.25,1.0,new Color(255, 0, 0)));
+					objects.add(new Cube3D(x/2.0, height, y/2.0,0,0,0.1,new Color(0, 0, 125)));
 				}
 			}
 		}
 		return objects;
+	}
+	
+	void parseTileResponse(int x, int y, String response){
+		String[] dimension1 = response.split("\n");
+		int offset=0;
+		if(dimension1.length==0)return;
+		while(dimension1[offset].equals("") || dimension1[offset].startsWith("#")){
+			offset++;
+		}
+		Utils.console("Offset:" + offset);
+		String[] tile = dimension1[offset].split(";");
+		for(int t=0;t<tiledimension;t++){
+			maptiles[x][y][t] = Integer.parseInt(tile[t]);
+		}
+	}
+	
+	public void update_tile(int x,int y,int tile,int value){
+		parseTileResponse(x,y,server.commandToServer("function=update_tile&p1="+mapname+"&p2="+x+"&p3="+y+"&p4="+tile+"&p5="+value));
+		Scene.mapReload();
+	}
+	
+	public int[] get_tile(int x,int y){
+		return maptiles[x][y];
+	}
+	
+	public void update_map(){
+		server.commandToServer("function=update_map&p1="+mapname);
+		Scene.mapReload();
 	}
 }
