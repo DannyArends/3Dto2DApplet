@@ -5,15 +5,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import events.MyHandler;
 import events.ServerConnection;
 
 public class MyTimer implements ActionListener{
 	Timer timer;
 	ServerConnection server;
+	MyHandler eventHandler;
 	private boolean renderWindowUpdate = false;
 	
-	public MyTimer(ServerConnection s) {
+	public MyTimer(ServerConnection s,MyHandler handler) {
 		server=s;
+		eventHandler=handler;
 		timer = new Timer(250, this);
 		timer.start();
 	}
@@ -21,6 +24,9 @@ public class MyTimer implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(renderWindowUpdate){
 			Scene.updateScene(true, true);
+		}
+		if(eventHandler.getTimeSinceLastMouseMove() > 2500){
+			eventHandler.showMouseOver();
 		}
 	}
 

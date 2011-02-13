@@ -31,12 +31,14 @@ import java.util.ArrayList;
 
 import objects.Camera;
 import objects.Texture;
+import objects.Vector3D;
 import objects.hud.windows.ObjectWindow;
 import objects.renderables.Object3D;
 import objects.renderables.Sphere;
 import objects.renderables.Surface;
 import objects.renderables.light.Light;
 import objects.renderables.light.PointLight;
+import events.MyHandler;
 import events.ServerConnection;
 import game.GameMap;
 import generic.Utils;
@@ -58,20 +60,22 @@ public class Scene implements Runnable{
 	private static QTLheatmap heatmap;
 	private static float renderTime;
 	private static float hudTime;
-	private static  double[] backgroundColor = new double[]{0.0, 0.0, 0.0};
+	private static double[] backgroundColor = new double[]{0.0, 0.0, 0.0};
 	public static boolean loading = true;
 	public static int loadingPercentage = 0;
 	public static String loadingMsg = "";
 	public static boolean render_2d = true;
 	public static boolean render_3d = true;
 	private static GameMap currentMap;
+	private MyHandler eventHandler;
 	
 	private static RayTracer raytracer = new RayTracer();
 	private static ArrayList<Object3D> myobjects = new ArrayList<Object3D>();
 	private static ArrayList<Light> lights = new ArrayList<Light>();
 	private static Camera camera = new Camera(-10.0, 10.0, -10.0, -35, 15);
 	
-	public Scene(Dimension dim, ServerConnection s){
+	public Scene(Dimension dim, ServerConnection s,MyHandler eventListener){
+		eventHandler = eventListener;
 		size=dim;
 		server = s;
 	}
@@ -100,7 +104,7 @@ public class Scene implements Runnable{
 		UpdateLoading(80,"PreComputing Object statistics");
 		PreComputeLoadedObjects();
 		UpdateLoading(90,"Starting rendering");
-		Engine.setTimer(new MyTimer(server));
+		Engine.setTimer(new MyTimer(server,eventHandler));
 		loading=false;
 	}
 	
@@ -301,6 +305,15 @@ public class Scene implements Runnable{
 
 	public static GameMap getCurrentMap() {
 		return currentMap;
+	}
+
+	public static Object3D getObjectAt(int x,int y){
+		Vector3D ray = RayTracer.constructRayThroughPixel(x, y, 0, 0);
+		Intersection intersection = RayTracer.findIntersection(ray, null);
+		if(intersection.getPrimitive()!=null){
+			return intersection.getPrimitive();
+		}
+		return null;
 	}
 
 }

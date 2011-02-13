@@ -30,7 +30,7 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	    setVisible(true);
 	    server.commandToServer("function=online");
-	    engine = new Engine(this, server);
+	    engine = new Engine(this, server,eventListener);
 	    engine.setRenderWindowUpdate(true);
 		addKeyListener(eventListener);
 		addMouseListener(eventListener);

@@ -52,8 +52,8 @@ abstract public class HudObject extends Point2D{
 		this.setParent(p);
 	}
 
-	public void setVisible(boolean visible) {
-		this.visible = visible;
+	public void setVisible(boolean v) {
+		visible = v;
 		for(HudObject h : children){
 			h.setVisible(visible);
 		}
@@ -80,7 +80,7 @@ abstract public class HudObject extends Point2D{
 	}
 	
 	public int getAbsoluteSizeY(){
-		return (int) (getSize().y+y);
+		return (int) (minimized?(20+y):(getSize().y+y));
 	}
 	
 	public void addChild(HudObject o){
@@ -96,8 +96,8 @@ abstract public class HudObject extends Point2D{
 
 	abstract public boolean handleSlide(int mx, int my);
 
-	public void setMinimized(boolean minimized) {
-		this.minimized = minimized;
+	public void setMinimized(boolean m) {
+		minimized = m;
 	}
 
 	public boolean isMinimized() {

@@ -34,11 +34,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import objects.Point2D;
-import objects.Vector3D;
 import objects.hud.HudObject;
 import objects.renderables.Object3D;
 import rendering.Engine;
-import rendering.Intersection;
+import rendering.Hud;
 import rendering.RayTracer;
 import rendering.Scene;
 
@@ -50,10 +49,12 @@ import rendering.Scene;
 public class MyHandler implements MouseMotionListener,KeyListener, MouseListener{
 	static int mx; // the most recently recorded mouse coordinates
 	static int my;
+	static long lastmousemove;
 	static HudObject keyinputlistener = null;
 	static HudObject sliderinputlistener = null;
 	private boolean dragging;
 	private RenderWindow parent = null;
+	
 	
 	
 	public MyHandler(RenderWindow window){
@@ -91,21 +92,12 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 		Scene.updateScene(true,true);
 	}
 
-	Object3D getObjectAt(int x,int y){
-		Vector3D ray = RayTracer.constructRayThroughPixel(x, y, 0, 0);
-		Intersection intersection = RayTracer.findIntersection(ray, null);
-		if(intersection.getPrimitive()!=null){
-			return intersection.getPrimitive();
-		}
-		return null;
-	}
-	
 	public void mouseReleased(MouseEvent e) {
 		int c = e.getButton();
 		if(c == MouseEvent.BUTTON1 && !dragging){
 			if(!ButtonControler.checkLocation(mx,my)){
 				Utils.console("gonna raytrace");
-				Object3D o = getObjectAt(mx,my);
+				Object3D o = Scene.getObjectAt(mx,my);
 				if(o!=null){
 //					o.setEdgeColors(new Color[]{o.getEdgeColors()[0].darker()});
 //					ObjectWindow w = new ObjectWindow(100,100,250,200,o);
@@ -120,8 +112,19 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 			}
 		}
 	}
+	
+	public long getTimeSinceLastMouseMove(){
+		return (System.currentTimeMillis()-lastmousemove);
+	}
 
 	public void mouseMoved(MouseEvent e) {
+		mx = e.getX();
+		my = e.getY();
+		if(Hud.isMouseOver()){
+			Hud.getMouseOverWindow().setVisible(false);
+			Hud.setMouseOver(false);
+		}
+		lastmousemove = System.currentTimeMillis();
 	}
 
 	public void mouseDragged(MouseEvent e) {
@@ -139,7 +142,7 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 			Scene.updateScene(false, true);
 			e.consume();
 		}else{
-			Object3D o = getObjectAt(new_mx,new_my);
+			Object3D o = Scene.getObjectAt(new_mx,new_my);
 			if(o!=null){
 //				int[] t = Scene.getCurrentMap().get_tile((int)(o.location[0]), (int)(o.location[2]));
 //				Scene.getCurrentMap().update_tile((int)(o.location[0]), (int)(o.location[2]), 0, (t[0]+10>5000)?0:t[0]+100);
@@ -194,6 +197,10 @@ public class MyHandler implements MouseMotionListener,KeyListener, MouseListener
 
 	public RenderWindow getParent() {
 		return parent;
+	}
+
+	public void showMouseOver() {
+		Hud.showMouseOver(mx,my);
 	}
 
 }

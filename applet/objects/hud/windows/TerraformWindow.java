@@ -15,8 +15,8 @@ public class TerraformWindow extends HudWindow {
 	
 	public TerraformWindow(ServerConnection s) {
 		super(Scene.getWidth()-205, 100,200,350, "Terraform");
-		setVisible(true);
-		setMinimized(true);
+		setVisible(false);
+		setMinimized(false);
 		addChild(new HudButton(10,20,120,18,"Raise tile",true,new Color(0,125,0)){
 			public void runPayload() {
 				Utils.console(getName());

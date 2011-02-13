@@ -13,8 +13,8 @@ public class BuildWindow extends HudWindow {
 	
 	public BuildWindow(ServerConnection s) {
 		super(10, 100,200,350, "Build");
-		setVisible(true);
-		setMinimized(true);
+		setVisible(false);
+		setMinimized(false);
 		parseBuildings(s.commandToServer("function=list_buildings"));
 	}
 	

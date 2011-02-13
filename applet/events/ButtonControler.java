@@ -77,21 +77,78 @@ public class ButtonControler {
 		return false;
 	}
 	
+	public static String getLocationDescription(int x,  int y){
+		String r = getLocationDescription(Hud.getHudObjectWindows(),x,y);
+		r += getLocationDescription(monitored,x,y);	
+		return r;
+	}
+	
+	public static String getLocationDescription(ArrayList<HudObject> tocheck, int x,  int y){
+		for(HudObject b : tocheck){
+			if(b.x < x && b.y < y){
+				if(b.getAbsoluteSizeX() > x && b.getAbsoluteSizeY() > y){
+					if(b.isVisible()){
+						return ((HudButton)b).getName();
+					}
+				}	
+			}
+		}
+		return "";
+	}
+	
 	public static void addMainMenu(){
-		addButton(new HudMenuButton(0,20,70,20,"File"));
-		addButton(new HudMenuButton(70,20,70,20,"Edit"));
-		addButton(new HudMenuButton(140,20,70,20,"View"));
-		HudMenuButton mb = new HudMenuButton(210,20,70,20,"Help");
+		
+		HudMenuButton mbfile = new HudMenuButton(5,20,70,20,"File");
+		
+		tmp_button = new HudButton(0,0,70,20,"Register",false,Color.darkGray);
+		addButton(tmp_button);
+		mbfile.addChild(tmp_button);
+		
+		tmp_button = new HudButton(0,20,70,20,"Login",false,Color.darkGray);
+		addButton(tmp_button);
+		mbfile.addChild(tmp_button);
+		
+		addButton(mbfile);
+		
+		HudMenuButton mbedit = new HudMenuButton(75,20,70,20,"Edit");
+		
+		tmp_button = new HudButton(0,0,70,20,"Terraform",false,Color.darkGray);
+		addButton(tmp_button);
+		mbedit.addChild(tmp_button);
+		
+		tmp_button = new HudButton(0,20,70,20,"Build",false,Color.darkGray);
+		addButton(tmp_button);
+		mbedit.addChild(tmp_button);
+		
+		addButton(mbedit);
+		
+		HudMenuButton mbview = new HudMenuButton(145,20,70,20,"View");
+		
+		tmp_button = new HudButton(0,0,70,20,"Other maps",false,Color.darkGray);
+		addButton(tmp_button);
+		mbview.addChild(tmp_button);
+		
+		tmp_button = new HudButton(0,20,70,20,"Maps stats",false,Color.darkGray);
+		addButton(tmp_button);
+		mbview.addChild(tmp_button);
+		
+		tmp_button = new HudButton(0,40,70,20,"User stats",false,Color.darkGray);
+		addButton(tmp_button);
+		mbview.addChild(tmp_button);
+		
+		addButton(mbview);
+		
+		HudMenuButton mbhelp = new HudMenuButton(215,20,70,20,"Help");
 		tmp_button = new HudButton(0,0,70,20,"Controls",false,Color.darkGray);
 		addButton(tmp_button);
-		mb.addChild(tmp_button);
+		mbhelp.addChild(tmp_button);
 		tmp_button = new HudButton(0,20,70,20,"About",false,Color.darkGray);
 		addButton(tmp_button);
-		mb.addChild(tmp_button);
+		mbhelp.addChild(tmp_button);
 		tmp_button = new HudButton(0,40,70,20,"Help",false,Color.darkGray);
 		addButton(tmp_button);
-		mb.addChild(tmp_button);
-		addButton(mb);
+		mbhelp.addChild(tmp_button);
+		addButton(mbhelp);
 		Utils.console("MainMenu");
 	}
 	

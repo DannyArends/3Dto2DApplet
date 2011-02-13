@@ -22,6 +22,7 @@
 
 package rendering;
 
+import events.MyHandler;
 import events.ServerConnection;
 import generic.RenderWindow;
 
@@ -43,8 +44,8 @@ public class Engine{
 	private static Graphics backBufferGraphics = null;
 	private static Dimension size;
 	private static RenderWindow parent;
-	ServerConnection server = new ServerConnection();
-	
+	private ServerConnection server = new ServerConnection();
+	private MyHandler eventHandler;
 	static MyTimer timer;
 	static IconLoader iconloader;
 	static TextureLoader textureloader;
@@ -57,14 +58,15 @@ public class Engine{
 	 * @param s ServerConnection connection to a file server (used for Applets and internal transfer DWF)
 	 * @return
 	 */	
-	public Engine(RenderWindow p, ServerConnection s){
-		timer=new MyTimer(s);
+	public Engine(RenderWindow p, ServerConnection s,MyHandler eventListener){
+		eventHandler=eventListener;
+		timer= new MyTimer(s,eventHandler);
 		parent=p;
 		size = p.getSize();
 		backBuffer = p.createImage(size.width, size.height);
 		setBackBufferGraphics(backBuffer.getGraphics());
 		server = s;
-		Thread t = new Thread(new Scene(size,s));
+		Thread t = new Thread(new Scene(size,s,eventListener));
 		t.start();
 	}
 	

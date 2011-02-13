@@ -36,13 +36,13 @@ import rendering.Engine;
 public class WireFrame extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = 1L;
 	
-	MyHandler eventListener= new MyHandler(this);
 	ServerConnection server = new ServerConnection();
+	MyHandler eventListener= new MyHandler(this);
 	Engine engine;
 	
 	public void init() {
 		server.commandToServer("function=online");
-		engine = new Engine(this,server);
+		engine = new Engine(this,server,eventListener);
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(eventListener);

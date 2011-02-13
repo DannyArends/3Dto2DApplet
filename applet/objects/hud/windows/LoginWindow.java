@@ -10,18 +10,16 @@ import rendering.Scene;
 
 public class LoginWindow extends HudWindow {
 	
-	
 	public LoginWindow() {
-		super(Scene.getWidth()/2-200,Scene.getHeight()/2-100,325,200, "Login");
-		setColor(Color.orange);
-		HudText t = new HudText(10,10,"Login to the system");
+		super(Scene.getWidth()/2-200,Scene.getHeight()/2-100,325,120, "Login");
+		setColor(new Color(100,100,0));
+		HudText t = new HudText(10,-25,"Login to the system");
 		t.addLine("Username: ");
 		t.addLine("Password: ");
 		addChild(t);
-		addChild(new HudInputBox(100,32,10,"n"));
-		addChild(new HudInputBox(100,52,10,"p"));
-		addChild(IconLoader.getIcon(25,75,"arrow_right.png"));
-		addChild(IconLoader.getIcon(25,120,"user_add.png"));
+		addChild(new HudInputBox(100,0,10,"n"));
+		addChild(new HudInputBox(100,25,10,"p"));
+		addChild(IconLoader.getIcon(25,50,"arrow_right.png"));
 		setShowTopMenu(false);
 		setActive(true);
 		setVisible(false);

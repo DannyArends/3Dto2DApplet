@@ -41,9 +41,12 @@ import objects.hud.windows.ControlsWindow;
 import objects.hud.windows.HelpWindow;
 import objects.hud.windows.IconBar;
 import objects.hud.windows.LoginWindow;
+import objects.hud.windows.MouseOverWindow;
+import objects.hud.windows.RegistrationWindow;
 import objects.hud.windows.SettingsWindow;
 import objects.hud.windows.StatsWindow;
 import objects.hud.windows.TerraformWindow;
+import objects.renderables.Object3D;
 
 /// Head Up Display
 //<p>
@@ -53,6 +56,8 @@ import objects.hud.windows.TerraformWindow;
 
 public class Hud extends HudObject{
 	QTLdataset dataset;
+	static boolean mouseOver = false;
+	static MouseOverWindow mouseOverWindow = new MouseOverWindow(0,0);
 	private static ArrayList<HudWindow> hudWindows = new ArrayList<HudWindow>();
 	private ButtonControler buttonarray= new ButtonControler();
 	
@@ -79,6 +84,7 @@ public class Hud extends HudObject{
 		addChild(new TerraformWindow(server));
 		addChild(new IconBar());
 		addChild(new LoginWindow());
+		addChild(new RegistrationWindow());
 	}
 	
 	public void addDataset(QTLdataset d){
@@ -122,6 +128,8 @@ public class Hud extends HudObject{
 			o.render(g);
 		}
 		buttonarray.render(g);
+		if(mouseOverWindow.isNeedUpdate()) mouseOverWindow.update();
+		mouseOverWindow.render(g);
 	}
 	
 	public static void showChildWindowByName(String name){
@@ -201,4 +209,38 @@ public class Hud extends HudObject{
 		}
 		return t;
 	}
+
+	public static boolean isMouseOver() {
+		return mouseOver;
+	}
+
+	public static MouseOverWindow getMouseOverWindow() {
+		return mouseOverWindow;
+	}
+
+	public static void setMouseOver(boolean b) {
+		mouseOver = b;
+	}
+	
+	public static void showMouseOver(int mx,int my) {
+		if(!mouseOver){
+			mouseOver=true;
+			mouseOverWindow.setLocation(mx+15, my-10);
+			mouseOverWindow.setShowTopMenu(false);
+			String description = ButtonControler.getLocationDescription(mx,my);
+			if(description.equals("")){
+				Object3D o = Scene.getObjectAt(mx,my);
+				if(o!=null){
+					mouseOverWindow.setText(o.getName());
+				}else{
+					mouseOverWindow.setText("Nothing");
+				}
+			}else{
+				mouseOverWindow.setText(description);
+			}			
+			mouseOverWindow.setVisible(true);
+			Scene.updateScene(true,false);
+		}
+	}
 }
+

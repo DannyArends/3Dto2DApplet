@@ -39,10 +39,14 @@ public class HudText extends HudObject{
 	}
 
 	public void addLine(String line) {
-		this.text.add(line);
+		text.add(line);
 	}
 
 	public ArrayList<String> getTextVector() {
 		return text;
+	}
+
+	public void clearLines() {
+		text.clear();
 	}
 }
