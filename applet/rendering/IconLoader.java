@@ -33,14 +33,17 @@ public class IconLoader {
 			}
 		}
 	}
-	
 	public static HudImage getIcon(int x, int y,String name){
+		return getIcon( x,  y, name, name.substring(0, name.indexOf(".")));
+	}
+	public static HudImage getIcon(int x, int y,String name,String target){
 		HudImage image = null;
 		for(HudImage h : icons){
 			if(h.getName().equalsIgnoreCase(name)){
 				if(!h.isLoaded())h.TryLoadingFromName();
 				image = new HudImage(h);
 				image.setLocation(x, y);
+				image.setName(target);
 				image.setVisible(false);
 			}
 		}

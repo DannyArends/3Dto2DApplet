@@ -49,9 +49,9 @@ public class Camera extends Object3D{
 	}
 	
 	public void move(double x, double y, double z){
-		location[0] += 0.5*x;
-		location[1] += 0.5*y;
-		location[2] += 0.5*z;
+		location[0] += 1.5*x;
+		location[1] += 1.5*y;
+		location[2] += 1.5*z;
 		Scene.updateScene(false, true);
 	}
 

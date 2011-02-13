@@ -72,7 +72,7 @@ public class Scene implements Runnable{
 	private static RayTracer raytracer = new RayTracer();
 	private static ArrayList<Object3D> myobjects = new ArrayList<Object3D>();
 	private static ArrayList<Light> lights = new ArrayList<Light>();
-	private static Camera camera = new Camera(-10.0, 10.0, -10.0, -35, 15);
+	private static Camera camera = new Camera(-10.0, 10.0, -10.0, -45, 30);
 	
 	public Scene(Dimension dim, ServerConnection s,MyHandler eventListener){
 		eventHandler = eventListener;

@@ -142,9 +142,18 @@ sub create_map{
 				for (my $y = 0; $y < $dimy; $y++) {
 					if($cnt){print MYFILE " ";}
 					my $tcnt = 0;
+					my $trandom = int(rand(3))+1;
 					for (my $t = 0; $t < $dimtile; $t++) {
 						if($tcnt){print MYFILE ";";}
-						print MYFILE 0;
+						if($t==0){
+							print MYFILE ($trandom-2)*int(rand(100));
+						}else{
+							if($t==1){
+								print MYFILE $trandom;
+							}else{
+								print MYFILE 0;
+							}
+						}
 						$tcnt++;
 					}
 					$cnt++;

@@ -2,30 +2,30 @@
 #Danny Arends - Jan 2011
 #NATURE RESOURCES
 0	Nature
-1	Forester
-2	Harvester
-3	Flint gatherer
-4	Stone cutter
+1	Forester	Forester	0	200	0
+2	Harvester	Harvester	0	100	0
+3	Flint gatherer	Flint	50	100	10
+4	Stone cutter	Stone	50	100	100
 
 #MINING
 100	Mining
-101 Coal mine
-102 Iron mine
+101	Coal mine	CoalMine	255	255	255
+102	Iron mine	IronMine	100	100	100
 
 #RESOURCE BUILDINGS
 200 Resources
-201	Weapon building
-202	Armor building
-201 Iron smelter
+201	Weapon building	Weapons	255	0	0
+202	Armor building	Armor	255	255	0
+201	Iron smelter	Iron	100	255	100
 
 #ROADS
 300	Road
-301	Sand road
-302	Flint road
-303	Stone road
+301	Sand road	SRoad	100	0	0
+302	Flint road	Froad	100	0	10
+303	Stone road	Stone	100	0	20
 
 #SOCIETY
 400	Society buildings
-401 Basic housing
-402 Medium housing
-403 Medium housing
+401	Basic housing	BHouse	10	0	40
+402	Medium housing	MHouse	10	0	80
+403	Large housing	LHouse	10	0	120

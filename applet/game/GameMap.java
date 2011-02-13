@@ -1,26 +1,26 @@
 package game;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import objects.renderables.Object3D;
-import objects.renderables.Surface;
-import objects.renderables.Triangle3D;
 import rendering.Scene;
 import events.ServerConnection;
 import generic.Utils;
 
 public class GameMap extends GameObject{
 	String mapname;
-	ServerConnection server;
-	int[][][] maptiles;
+	TileTypes tiletypes;
+	BuildingTypes buildingtypes;
+	GameTile[] maptiles;
 	int dimx,dimy,tiledimension;
+	
 	
 	public GameMap(ServerConnection s,String name) {
 		super(s);
 		mapname=name;
-		server=s;
-		parseMap(server.commandToServer("function=list_map&name="+mapname));
+		tiletypes = new TileTypes(connection);
+		buildingtypes = new BuildingTypes(connection);
+		parseMap(connection.commandToServer("function=list_map&name="+mapname));
 	}
 
 	/// parseMap: Parse response from server,
@@ -32,32 +32,29 @@ public class GameMap extends GameObject{
 		dimx=dimension1.length-offset;
 		dimy=dimension2.length;
 		tiledimension = dimension2[0].split(";").length;
-		maptiles = new int[dimx][dimy][tiledimension];
+		maptiles = new GameTile[dimx*dimy];
 		Utils.console("Loading map "+ mapname +": " + dimension1.length + " "+ dimx +","+ dimy +"*"+ tiledimension);
 		for(int x=0;x<dimx;x++){
 			dimension2 = dimension1[x+offset].split(" ");
 			for(int y=0;y<dimy;y++){
 				String[] tile = dimension2[y].split(";");
-				for(int t=0;t<tiledimension;t++){
-					maptiles[x][y][t] = Integer.parseInt(tile[t]);
-				}
+				maptiles[(x*dimy)+y] = new GameTile(connection,x,y,tiledimension);
+				maptiles[(x*dimy)+y].setHeight(Integer.parseInt(tile[0]));
+				maptiles[(x*dimy)+y].setTileID(Integer.parseInt(tile[1]));
+				maptiles[(x*dimy)+y].setObjectID(Integer.parseInt(tile[2]));
 			}
 		}
 	}
 	
 	public ArrayList<Object3D> getObject3D(){
 		ArrayList<Object3D> objects = new ArrayList<Object3D>();
+		Object3D building;
 		for(int x=dimx-1;x>=0;x--){
 			for(int y=dimy-1;y>=0;y--){
-				double height = maptiles[x][y][0]/500.0;
-				int objectid = maptiles[x][y][1];
-				//double vertility = maptiles[x][y][2]/255.0;
-				int c = (int)((height*100)>255?255:height*100);
-				Surface s = new Surface(x, height, y,0,0,0.4,0.4,new Color(0, c, 255-(int)c));
-				s.setName("MapTile (" + x + ","+ y + "@"+height+"): " + objectid);
-				objects.add(s);
-				if(objectid > 0){
-					objects.add(new Triangle3D(x, height, y,0,0,0.5,1, new Color(125, 35, 125)));
+				objects.add(maptiles[(x*dimy)+y].toSurface());
+				if((building = maptiles[(x*dimy)+y].getBuilding()) != null){
+					objects.add(building);
+					objects.add(maptiles[(x*dimy)+y].getLabel());
 				}
 			}
 		}
@@ -73,22 +70,18 @@ public class GameMap extends GameObject{
 		}
 		Utils.console("Offset:" + offset);
 		String[] tile = dimension1[offset].split(";");
-		for(int t=0;t<tiledimension;t++){
-			maptiles[x][y][t] = Integer.parseInt(tile[t]);
-		}
+		maptiles[(x*dimy)+y].setHeight(Integer.parseInt(tile[0]));
+		maptiles[(x*dimy)+y].setTileID(Integer.parseInt(tile[1]));
+		maptiles[(x*dimy)+y].setObjectID(Integer.parseInt(tile[2]));
 	}
 	
 	public void update_tile(int x,int y,int tile,int value){
-		parseTileResponse(x,y,server.commandToServer("function=update_tile&p1="+mapname+"&p2="+x+"&p3="+y+"&p4="+tile+"&p5="+value));
+		parseTileResponse(x,y,connection.commandToServer("function=update_tile&p1="+mapname+"&p2="+x+"&p3="+y+"&p4="+tile+"&p5="+value));
 		Scene.mapReload();
 	}
 	
-	public int[] get_tile(int x,int y){
-		return maptiles[x][y];
-	}
-	
 	public void update_map(){
-		server.commandToServer("function=update_map&p1="+mapname);
+		connection.commandToServer("function=update_map&p1="+mapname);
 		Scene.mapReload();
 	}
 }

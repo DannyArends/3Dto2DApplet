@@ -47,7 +47,7 @@ sub list_items{
 		chomp($line);
 		@item = split(/\t/,$line);
 		if(defined($item[1]) && !($item[0] =~ m/#./)){
-			print $item[0] . "\t" . $item[1] . "\n";
+			print $line . "\n";
 		}
 	}
 	close (MYFILE);
@@ -61,32 +61,34 @@ sub list_tiles{
 	list_items("tiles");
 }
 
+sub building_stats{
+	item_stats(lc $_[0],"buildings");
+}
+
+sub tile_stats{
+	item_stats(lc $_[0],"tiles");
+}
+
 sub item_stats{
 	my $itemid = lc $_[0];
-	my $location = $_[1];
+	my $filename = $_[1];
+	my $location = "game";
 	my $file = $data_location;
 	my $line;
 	my @item;
 	my $found=0;
-	if(!defined($location)){$location = "game";}
-	$file .= "$location/items.dat";
+	if(!defined($filename)){$filename = "items";}
+	$file .= "$location/$filename.dat";
 	open(MYFILE, "$file") or die "Missing items.dat";
 	while($line  = <MYFILE>) {
 		chomp($line);
 		@item = split(/\t/,$line);
 		if($item[0] eq $itemid){
 			$found=1;
- 			print "itemID: " . $item[0] . "\n";
- 			print "Name: " . $item[1] . "\n";
- 			print "Weight: " . $item[2] . "\n";
- 			if($item[3] ne 0){
- 				print "Class: " . $item[3] . "\n";
- 				print "ClassInfo: ". $item[4] ."\n";
- 				if($item[3] eq "C"){print "Tools: ". $item[5] ."\n";}
- 			}
+ 			print $line."\n";
 		}
 	}
-	if($found eq 0){print "Unknown item";}
+	if($found eq 0){print "Unknown";}
 	close (MYFILE);
 }
 
