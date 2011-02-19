@@ -89,6 +89,14 @@ public class Point3D {
 		return r;
 	}
 	
+	public double[] getWorldLocation(double[] objectLocation){
+		double[] worldLoc = new double[3];
+		worldLoc[0] = location[0]+objectLocation[0];
+		worldLoc[1] = location[1]+objectLocation[1];
+		worldLoc[2] = location[2]+objectLocation[2];
+		return worldLoc;
+	}
+	
 	public double getLength(){
 		return (Math.sqrt(MathUtils.sqr(location[0]) + MathUtils.sqr(location[1]) + MathUtils.sqr(location[2])));
 	}

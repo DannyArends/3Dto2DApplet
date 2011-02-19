@@ -299,8 +299,8 @@ public class Scene implements Runnable{
 		return size.height;
 	}
 
-	public static void setCurrentMap(GameMap currentMap) {
-		Scene.currentMap = currentMap;
+	public static void setCurrentMap(GameMap Map) {
+		Scene.currentMap = Map;
 	}
 
 	public static GameMap getCurrentMap() {

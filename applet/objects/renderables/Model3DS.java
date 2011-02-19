@@ -27,7 +27,6 @@ import rendering.Engine;
 //
 public class Model3DS extends Object3D{
 	private ArrayList<Object3DS> objects;
-	private ArrayList<Material> materials;
 	private String name;
 	ByteArrayInputStream stream;
 	int filelength;
@@ -51,26 +50,19 @@ public class Model3DS extends Object3D{
 		setLoaded(h.isLoaded());
 	}
 
-	public void setObjects(ArrayList<Object3DS> objects) {
-		this.objects = objects;
+	public void setObjects(ArrayList<Object3DS> o) {
+		objects = o;
 	}
 
 	public ArrayList<Object3DS> getObjects() {
 		return objects;
-	}
-
-	public void setMaterials(ArrayList<Material> materials) {
-		this.materials = materials;
-	}
-
-	public ArrayList<Material> getMaterials() {
-		return materials;
 	}
 	
 	@Override
 	public void setLocation(double x, double y, double z){
 		super.setLocation(x,y,z);
 		if(isLoaded()){
+			Utils.console("SetLocation: "+x+","+y+","+z);
 			for(Object3DS o : getObjects()){
 				o.setLocation(x, y, z);
 			}
@@ -114,7 +106,6 @@ public class Model3DS extends Object3D{
 	public void TryLoadingFromName() {
 		if(Engine.verbose) Utils.console("Loading file: " + Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
 		ArrayList<Object3DS> objects = new ArrayList<Object3DS>();
-		ArrayList<Material> materials = new ArrayList<Material>();
 		Object3DS object = null;
 		Material material = null;
 		byte[] b = null;
@@ -132,7 +123,7 @@ public class Model3DS extends Object3D{
 			System.out.print("\n");
 			s.close();
 		}catch(Exception e){
-			Utils.log("Error downloading file from server",e);
+			Utils.log("Error downloading file from server",System.err);
 		}
 		if(b==null) return;
 		try{
@@ -183,8 +174,8 @@ public class Model3DS extends Object3D{
 						locy = BinaryUtils.arr2float(doubleconversion);
 						stream.read(doubleconversion, 0, 4);
 						locz = BinaryUtils.arr2float(doubleconversion);
-						if(Engine.verbose) Utils.console("Vertex: " + locx + "," + locy + "," + locz);
-						vertices[i] = new Point3D(locx, locy, locz);
+						//Utils.console("Vertex: " + locx + "," + locy + "," + locz);
+						vertices[i] = new Point3D(locx/2.0, locy/2.0, locz/2.0);
 					}
 					object.setVertices(vertices);
 					break;
@@ -211,7 +202,8 @@ public class Model3DS extends Object3D{
 					object.setEdges(edges);
 					break;
 				case 16688:
-					//Utils.console("#0x4130 - Triangle Materials");
+					if(Engine.verbose) Utils.console("#0x4130 - Triangle Materials");
+					if (material != null) getMaterials().add(material);
 					tempstring = BinaryUtils.read3dsstring(stream);
 					stream.read(shortconversion, 0, 2);
 					length = BinaryUtils.arr2int(shortconversion);
@@ -221,7 +213,9 @@ public class Model3DS extends Object3D{
 						stream.read(shortconversion, 0, 2);
 						triangleMeshData[i] = BinaryUtils.arr2int(shortconversion);
 					}
-					for(Material m : materials){
+					if(Engine.verbose) Utils.console("MSIZE: " + getMaterials().size());
+					for(Material m : getMaterials()){
+						if(Engine.verbose) Utils.console("!!!!!!->"+m.getName());	
 						if(m.getName().equals(tempstring)){
 							object.addTriangleColor(triangleMeshData,m);
 						}
@@ -232,11 +226,11 @@ public class Model3DS extends Object3D{
 					// Utils.console("#0xAFFF");
 					break;
 				case 40960:
-					// Utils.console("#0xA000 - Materials List");
+					if(Engine.verbose) Utils.console("#0xA000 - Materials List");
 					if (material != null)
-						materials.add(material);
+						getMaterials().add(material);
 					tempstring = BinaryUtils.read3dsstring(stream);
-					//Utils.console("Found new material: " + tempstring);
+					if(Engine.verbose) Utils.console("Found new material: " + tempstring);
 					material = new Material(tempstring);
 					break;
 				case 40976:
@@ -306,9 +300,7 @@ public class Model3DS extends Object3D{
 			setLoaded(false);
 		}
 		if (object != null)	objects.add(object);
-		
 		setObjects(objects);
-		setMaterials(materials);
 		if(objects.isEmpty()){
 			setLoaded(false);
 		}else{

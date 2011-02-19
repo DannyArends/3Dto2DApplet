@@ -49,10 +49,10 @@ public class Surface extends Object3D {
 		super(x, y, z,hrot,vrot);
 		// TODO Auto-generated constructor stub
 		Point3D[] vertices = {
-				new Point3D(x-hscale, y, z-vscale), 
-				new Point3D(x+hscale, y, z-vscale), 
-				new Point3D(x-hscale, y, z+vscale), 
-				new Point3D(x+hscale, y, z+vscale)};
+				new Point3D(-hscale, 0, -vscale), 
+				new Point3D(hscale, 0, -vscale), 
+				new Point3D(-hscale, 0, vscale), 
+				new Point3D(hscale, 0, vscale)};
 		setVertices(vertices);
 	
 		Edge[] edges = {
@@ -83,7 +83,10 @@ public class Surface extends Object3D {
 	public double intersect(Vector3D ray) {
 		double distance = intersectWithPlane(ray,0);
 		if(distance != Double.POSITIVE_INFINITY  &&  distance != Double.NEGATIVE_INFINITY){
-			return intersectBarycentric(ray,vertices[0].location,vertices[1].location,vertices[2].location, distance);			
+			return intersectBarycentric(ray,
+					vertices[0].getWorldLocation(location),
+					vertices[1].getWorldLocation(location),
+					vertices[2].getWorldLocation(location), distance);			
 		}
 		return Double.POSITIVE_INFINITY;
 	}

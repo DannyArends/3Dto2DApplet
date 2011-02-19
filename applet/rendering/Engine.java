@@ -152,4 +152,8 @@ public class Engine{
 		timer = myTimer;
 	}
 
+	public static Object3DSLoader getObjectLoader() {
+		return objectloader;
+	}
+
 }

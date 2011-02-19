@@ -30,7 +30,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import objects.Camera;
 import objects.Edge;
@@ -65,7 +65,7 @@ public abstract class Object3D extends Point3D{
 	double[][][] triangles;
 	double[][] normals;
 	double[] distancequotients;
-	Vector<Material> materials = new Vector<Material>();
+	private ArrayList<Material> materials = new ArrayList<Material>();
 	
 	public Object3D(double x, double y, double z){
 		super(x,y,z);
@@ -80,20 +80,32 @@ public abstract class Object3D extends Point3D{
 	}
 
 	public Object3D(Object3D o) {
-		location[0] = o.location[0];
-		location[1] = o.location[1];
-		location[2] = o.location[2];
+		super((Point3D)o);
 		setRotation(o.getHorizontalRotation(),o.getVerticalRotation());
 		vertices = o.vertices;
 		mapcoords = o.mapcoords;
 		edges = o.edges;
 		triangles = o.triangles;
 		normals = o.normals;
+		distancequotients = o.distancequotients;
 		edgeColors = o.edgeColors;
+		materials = o.materials;
 	}
 	
 	public double getTransparant() {
 		return transparant;
+	}
+	
+	public void setLocation(double X, double Y, double Z){
+		super.setLocation(X,Y,Z);
+	}
+	
+	public void setMaterials(ArrayList<Material> mlist) {
+		materials = mlist;
+	}
+
+	public ArrayList<Material> getMaterials() {
+		return materials;
 	}
 	
 	/**
@@ -108,15 +120,10 @@ public abstract class Object3D extends Point3D{
 			distancequotients = new double[edges.length/3];
 			for (int i = 0; i < (edges.length-1); i+=3) {
 				int l = (int) Math.floor(i/3.0);
-				triangles[l][0][0] = vertices[edges[i].a].location[0];
-				triangles[l][0][1] = vertices[edges[i].a].location[1];
-				triangles[l][0][2] = vertices[edges[i].a].location[2];
-				triangles[l][1][0] = vertices[edges[i].b].location[0];
-				triangles[l][1][1] = vertices[edges[i].b].location[1];
-				triangles[l][1][2] = vertices[edges[i].b].location[2];
-				triangles[l][2][0] = vertices[edges[i+1].b].location[0];
-				triangles[l][2][1] = vertices[edges[i+1].b].location[1];
-				triangles[l][2][2] = vertices[edges[i+1].b].location[2];
+				//Utils.console("x,y,z: " + vertices[edges[i].a].location[0] +","+vertices[edges[i].a].location[1] +","+vertices[edges[i].a].location[2]);
+				triangles[l][0] = vertices[edges[i].a].getWorldLocation(location);
+				triangles[l][1] = vertices[edges[i].b].getWorldLocation(location);
+				triangles[l][1] = vertices[edges[i+1].b].getWorldLocation(location);
 				double[] normal  = MathUtils.crossProduct(MathUtils.calcPointsDiff(triangles[l][0], triangles[l][1]), MathUtils.calcPointsDiff(triangles[l][0], triangles[l][2]));
 				MathUtils.normalize(normal);
 				normals[l] = normal;
@@ -127,20 +134,20 @@ public abstract class Object3D extends Point3D{
 	}
 
 
-	public void setTransparant(double transparant) {
-		this.transparant = transparant;
+	public void setTransparant(double t) {
+		transparant = t;
 	}
 	
-	public void setHorizontalRotation(int horizontalRotation) {
-		this.horizontalRotation = horizontalRotation;
+	public void setHorizontalRotation(int hRot) {
+		horizontalRotation = hRot;
 	}
 
 	public int getHorizontalRotation() {
 		return horizontalRotation;
 	}
 
-	public void setVerticalRotation(int verticalRotation) {
-		this.verticalRotation = verticalRotation;
+	public void setVerticalRotation(int vRot) {
+		verticalRotation = vRot;
 	}
 
 	public int getVerticalRotation() {
@@ -187,9 +194,12 @@ public abstract class Object3D extends Point3D{
 			int scaleFactor_w = (int) ((width / 1.90));
 			int scaleFactor_h = (int) ((height / 1.40));
 			double[] d;
-			
+			Point3D p;
 			for (int j = 0; j < vertices.length; ++j) {
-				d = computeOrtogonalProjection(vertices[j].getMultipleVector(objectScale),ownrotation);
+				p = new Point3D(vertices[j]);
+				p = p.getMultipleVector(objectScale);
+				MathUtils.addVector(p.location,location);
+				d = computeOrtogonalProjection(p,ownrotation);
 				d = computeOrtogonalProjection(MathUtils.calcPointsDiff(c.location,d),c.rotation);
 				if(!inFrontOfCamera(d[2])){
 					d=computePerspectiveProjection(d);
@@ -205,8 +215,8 @@ public abstract class Object3D extends Point3D{
 		setVerticalRotation(vrot);
 	}
 	
-	public void setVertices(Point3D[] vertices) {
-		this.vertices = vertices;
+	public void setVertices(Point3D[] v) {
+		vertices = v;
 	}
 	
 	public Point3D[] getVertices() {
@@ -227,7 +237,7 @@ public abstract class Object3D extends Point3D{
 	}
 	
 	public void addTriangleColor(int[] targets,Material m){
-		materials.add(m);
+		if(!materials.contains(m)) materials.add(m);
 		for(int x : targets){
 			edgeColors[x] = m.getAmbientColor();
 		}
@@ -247,9 +257,12 @@ public abstract class Object3D extends Point3D{
 		}
 		Graphics2D g2d = (Graphics2D)g;
 		GeneralPath path = null;
-		
+		boolean textured = false;
 		if(!materials.isEmpty()){
-			g2d.setPaint(materials.elementAt(0).getTexture().getPaint());
+			if(materials.get(0).getTexture()!=null){
+				textured=true;
+				g2d.setPaint(materials.get(0).getTexture().getPaint());
+			}
 		}else{
 			//Ugly green when we don't have a texture
 			g2d.setPaint(Color.green);
@@ -266,9 +279,7 @@ public abstract class Object3D extends Point3D{
 				path.lineTo(points[edges[j+2].a].x, points[edges[j+2].a].y);
 				path.lineTo(points[edges[j+2].b].x, points[edges[j+2].b].y);
 				path.closePath();
-				if(materials.isEmpty()){
-					g2d.setPaint(edgeColors[j/3]);	
-				}
+				if(!textured)g2d.setPaint(edgeColors[j/3]);
 				g2d.draw(path);
 				if(!wireframe) g2d.fill(path);	
 			}
@@ -300,10 +311,10 @@ public abstract class Object3D extends Point3D{
 	}
 
 	public void setObjectScale(double d) {
-		this.objectScale = d;
+		objectScale = d;
 		if(vertices!=null){
 			for(int x =0;x < vertices.length;x++){
-				MathUtils.multiplyVectorByScalar(vertices[x].location, 0.1);
+				MathUtils.multiplyVectorByScalar(vertices[x].location, objectScale);
 			}
 			bufferMyObject();
 		}
@@ -317,8 +328,8 @@ public abstract class Object3D extends Point3D{
 		return wireframe;
 	}
 
-	public void setWireframe(boolean wireframe) {
-		this.wireframe = wireframe;
+	public void setWireframe(boolean wf) {
+		wireframe = wf;
 	}
 
 	public abstract double intersect(Vector3D ray);
@@ -367,7 +378,7 @@ public abstract class Object3D extends Point3D{
 		if(materials.isEmpty()){
 			return new Material("test");
 		}else{
-			return materials.elementAt(0);
+			return materials.get(0);
 		}
 	}
 

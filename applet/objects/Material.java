@@ -45,7 +45,7 @@ public class Material {
 	private double[] emissionColor = new double[]{0.1,0.1,0.1};
 	
 	public Material(String name){
-		this.materialname=name;
+		materialname=name;
 	}
 	
 	// Returns the texture color for a given 2D point in [0, 1] coordinates

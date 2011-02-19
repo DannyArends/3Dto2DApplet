@@ -3,7 +3,7 @@ package game;
 import objects.renderables.Object3D;
 import objects.renderables.Surface;
 import objects.renderables.Text3D;
-import objects.renderables.Triangle3D;
+import rendering.Engine;
 import events.ServerConnection;
 
 public class GameTile extends GameObject{
@@ -49,16 +49,16 @@ public class GameTile extends GameObject{
 	}
 	
 	public Surface toSurface(){
-		Surface s = new Surface(getX(), getHeight()/50.0, getY(), 0, 0, 0.4, 0.4, TileTypes.getTileColor(getTileID()));
+		Surface s = new Surface(getX(), getHeight()/200.0, getY(), 0, 0, 0.4, 0.4, TileTypes.getTileColor(getTileID()));
 		s.setName("MapTile (" + getX() + ","+ getY() + "@"+getHeight()+"): " + getTileID() + "," + getObjectID());
 		return s;
 	}
 	
 	public Object3D getBuilding(){
-		if(getObjectID() > 0){
-			Object3D building;
-			building = new Triangle3D(getX(), (getHeight()+1)/50.0, getY(), 0, 0, 0.5, 1, BuildingTypes.getBuildingColor(getObjectID()));
-			return building;
+		if(getObjectID() > 0 && getObjectID() < 4){
+			return Engine.getObjectLoader().getModel(getX()+0.25, -getY()-0.25, ((getHeight())/200.0)-0.2 , "House_0"+getObjectID()+".3ds");
+		}else if(getObjectID() > 0){
+			return Engine.getObjectLoader().getModel(getX()+0.25, -getY()-0.25, ((getHeight())/200.0)-0.2 , "Tree_01.3ds");
 		}else{
 			return null;
 		}
@@ -67,7 +67,7 @@ public class GameTile extends GameObject{
 	public Text3D getLabel(){
 		if(getObjectID() > 0){
 			Text3D label;
-			label = new Text3D(getX(), ((getHeight())/50.0) + 1, getY());
+			label = new Text3D(getX()+0.25, ((getHeight())/200.0) + 0.7, getY()-0.25);
 			label.setText(BuildingTypes.getBuildingName(getObjectID()));
 			return label;
 		}else{

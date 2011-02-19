@@ -56,20 +56,18 @@ public class Object3DSLoader {
 		}
 	}
 	
-	public static Model3DS getModel(double x, double y, double z,String name){
+	public Model3DS getModel(double x, double y, double z,String name){
 		Model3DS image = null;
 		for(Model3DS h : models){
 			if(h.getName().equalsIgnoreCase(name)){
 				if(!h.isLoaded()) h.TryLoadingFromName();
 				image = new Model3DS(h);
 				image.setLocation(x, y, z);
+				return image;
 			}
 		}
-		if(image==null){
-			notfound++;
-			return new Model3DS(x, y, z, "error");
-		}
-		return image;
+		notfound++;
+		return new Model3DS(x, y, z, "error");
 	}
 
 	public static int getAvailable(){
