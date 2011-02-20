@@ -22,6 +22,8 @@
 
 package objects.renderables;
 
+import generic.MathUtils;
+
 import java.awt.Color;
 
 import objects.Edge;
@@ -34,6 +36,10 @@ import objects.Vector3D;
 //</p>
 //
 public class Triangle3D extends Object3D{
+	private double[] AB, AC;
+	private double ABdotAB, ACdotAC;
+	private double ABnorm;
+	private double ACnorm;
 	
 	public Triangle3D(double x,double y, double z,int hrot, int vrot, double hscale, double vscale, Color c){
 		super(x,y,z,hrot,vrot);
@@ -59,11 +65,33 @@ public class Triangle3D extends Object3D{
 		}
 		return Double.POSITIVE_INFINITY;
 	}
+	
+	@Override
+	public void bufferMyObject(){
+		super.bufferMyObject();
+		AB = MathUtils.calcPointsDiff(triangles[0][0], triangles[0][1]);
+		ABdotAB = MathUtils.dotProduct(AB, AB);
+		AC = MathUtils.calcPointsDiff(triangles[0][0], triangles[0][2]);
+		ACdotAC = MathUtils.dotProduct(AC, AC);
+		ABnorm = MathUtils.norm(AB);
+		ACnorm = MathUtils.norm(AC);
+	}
 
 	@Override
 	public double[] getTextureCoords(double[] point) {
-		// TODO Auto-generated method stub
-		return null;
+		double[] AP;
+		
+		// Calculate the projection of the intersection point onto the rectangle vectors
+		AP = MathUtils.calcPointsDiff(triangles[0][0], point);
+		double q = 1 / MathUtils.norm(MathUtils.calcPointsDiff(triangles[0][0], triangles[0][1]));
+				
+		double u = MathUtils.dotProduct(AB, AP) / ABdotAB;
+		double v = MathUtils.dotProduct(AC, AP) / ACdotAC;
+		
+		u /= ABnorm * q;
+		v /= ACnorm * q;
+		
+		return new double[] { u, v };
 	}
 }
 

@@ -39,6 +39,7 @@ import objects.renderables.Surface;
 import objects.renderables.light.Light;
 import objects.renderables.light.PointLight;
 import events.MyHandler;
+import events.MyTimer;
 import events.ServerConnection;
 import game.GameMap;
 import generic.Utils;

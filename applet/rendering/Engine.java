@@ -23,6 +23,7 @@
 package rendering;
 
 import events.MyHandler;
+import events.MyTimer;
 import events.ServerConnection;
 import generic.RenderWindow;
 

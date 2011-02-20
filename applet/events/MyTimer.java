@@ -1,12 +1,12 @@
-package rendering;
+package events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import events.MyHandler;
-import events.ServerConnection;
+import rendering.Scene;
+
 
 public class MyTimer implements ActionListener{
 	Timer timer;
