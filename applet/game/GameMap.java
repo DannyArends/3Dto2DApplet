@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 
 import objects.renderables.Object3D;
+import objects.renderables.Text3D;
 import rendering.Scene;
 import events.ServerConnection;
 import generic.Utils;
@@ -49,12 +50,16 @@ public class GameMap extends GameObject{
 	public ArrayList<Object3D> getObject3D(){
 		ArrayList<Object3D> objects = new ArrayList<Object3D>();
 		Object3D building;
+		Text3D label;
 		for(int x=dimx-1;x>=0;x--){
 			for(int y=dimy-1;y>=0;y--){
 				objects.add(maptiles[(x*dimy)+y].toSurface());
 				if((building = maptiles[(x*dimy)+y].getBuilding()) != null){
 					objects.add(building);
-					objects.add(maptiles[(x*dimy)+y].getLabel());
+					
+				}
+				if((label = maptiles[(x*dimy)+y].getLabel()) != null){
+					objects.add(label);
 				}
 			}
 		}

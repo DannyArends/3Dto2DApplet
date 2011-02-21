@@ -50,5 +50,12 @@ public class BuildingTypes extends Types{
 			return "Unknown";
 		}
 	}
-
+	public static boolean buildingExists(int id){
+		if(id==0) return false;
+		Utils.console("Going to check: " + id);
+		for(int x : IDs){
+			if(x==id) return true;
+		}
+		return false;
+	}
 }

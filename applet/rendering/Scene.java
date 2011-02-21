@@ -101,9 +101,9 @@ public class Scene implements Runnable{
 		UpdateLoading(50,"Loading Dataset");
 		//loadBasicDataSet();
 		UpdateLoading(70,"Loading Scene");
-		loadBasicSceneFromServer();
+		boolean b = loadBasicSceneFromServer();
 		UpdateLoading(80,"PreComputing Object statistics");
-		PreComputeLoadedObjects();
+		if(b)PreComputeLoadedObjects();
 		UpdateLoading(90,"Starting rendering");
 		Engine.setTimer(new MyTimer(server,eventHandler));
 		loading=false;
@@ -158,18 +158,21 @@ public class Scene implements Runnable{
 		Scene.addObject(sph);
 	}
 	
-	static void loadBasicSceneFromServer(){	
+	static boolean loadBasicSceneFromServer(){	
 		currentMap = new GameMap(server,"Danny");
 		for(Object3D x : currentMap.getObject3D()){
 			Scene.addObject(x);
 		}
+		return true;
 	}
 		
 	static void PreComputeLoadedObjects(){
 		raytracer.update(camera);
 		for(Object3D myobject : myobjects){
-			myobject.update(camera);
-			if(!myobject.isLoaded()) myobject.TryLoadingFromName();
+			if(myobject!=null){
+				if(!myobject.isLoaded()) myobject.TryLoadingFromName();
+				myobject.update(camera);
+			}
 		}
 	}
 	
@@ -200,6 +203,7 @@ public class Scene implements Runnable{
 		if(Engine.getBackBufferGraphics()==null){
 			Utils.log("No BackBuffer Yet ;)",System.err); return;
 		}
+		if(loading) return;
 		if(redraw3d) reDraw3DScene();
 		long l1 = System.nanoTime();
 		if(!redraw2d && !redraw3d){

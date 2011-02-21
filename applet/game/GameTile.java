@@ -55,17 +55,15 @@ public class GameTile extends GameObject{
 	}
 	
 	public Object3D getBuilding(){
-		if(getObjectID() > 0 && getObjectID() < 4){
-			return Engine.getObjectLoader().getModel(getX(), -getY()-0.25, ((getHeight())/500.0) , "House_0"+getObjectID()+".3ds");
-		}else if(getObjectID() > 0){
-			return Engine.getObjectLoader().getModel(getX(), -getY()-0.25, ((getHeight())/500.0), "Tree_01.3ds");
+		if(BuildingTypes.buildingExists(getObjectID())){
+			return Engine.getObjectLoader().getModel(getX(), -getY()-0.25, ((getHeight())/500.0) , "object_"+getObjectID()+".3ds");
 		}else{
 			return null;
 		}
 	}
 	
 	public Text3D getLabel(){
-		if(getObjectID() > 0){
+		if(BuildingTypes.buildingExists(getObjectID())){
 			Text3D label;
 			label = new Text3D(getX()+0.25, ((getHeight())/500.0) + 0.7, getY()-0.25);
 			label.setText(BuildingTypes.getBuildingName(getObjectID()));

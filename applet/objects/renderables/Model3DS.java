@@ -31,7 +31,6 @@ public class Model3DS extends Object3D{
 	ByteArrayInputStream stream;
 	int filelength;
 	
-	
 	public Model3DS(double x, double y, double z,String name) {
 		super(x, y, z);
 		setName(name);
@@ -77,16 +76,18 @@ public class Model3DS extends Object3D{
 				o.render(g, c);
 			}
 		}else{
-			Utils.log("Object not loaded",System.err);
+			if(onServer)Utils.log("Object not loaded",System.err);
 		}
 	}
 	
 	@Override
 	public double intersect(Vector3D ray) {
 		double mdistance = Double.POSITIVE_INFINITY;
-		for(Object3DS o : objects){
-			double d = o.intersect(ray);
-			if(d < mdistance) mdistance=d;
+		if(objects != null){
+			for(Object3DS o : objects){
+				double d = o.intersect(ray);
+				if(d < mdistance) mdistance=d;
+			}
 		}
 		return mdistance;
 	}
@@ -104,6 +105,7 @@ public class Model3DS extends Object3D{
 	 * 
 	 */	
 	public void TryLoadingFromName() {
+		if(!onServer) return;
 		if(Engine.verbose) Utils.console("Loading file: " + Engine.getRenderWindow().getCodeBase().toString()	+ "data/models/" + getName());
 		ArrayList<Object3DS> objects = new ArrayList<Object3DS>();
 		Object3DS object = null;
@@ -123,7 +125,8 @@ public class Model3DS extends Object3D{
 			System.out.print("\n");
 			s.close();
 		}catch(Exception e){
-			Utils.log("Error downloading file from server",System.err);
+			Utils.log("Error downloading file "+getName()+" from server",System.err);
+			onServer=false;
 		}
 		if(b==null) return;
 		try{

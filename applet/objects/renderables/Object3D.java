@@ -65,6 +65,7 @@ public abstract class Object3D extends Point3D{
 	double[][][] triangles;
 	double[][] normals;
 	double[] distancequotients;
+	boolean onServer = true;
 	private ArrayList<Material> materials = new ArrayList<Material>();
 	
 	public Object3D(double x, double y, double z){

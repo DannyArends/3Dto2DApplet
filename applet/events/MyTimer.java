@@ -9,15 +9,17 @@ import rendering.Scene;
 
 
 public class MyTimer implements ActionListener{
-	Timer timer;
-	ServerConnection server;
-	MyHandler eventHandler;
+	private Timer timer;
+	private ServerConnection server;
+	private MyHandler eventHandler;
+	private int mouseOverTime = 2000;
+	private int pollTime = 250;
 	private boolean renderWindowUpdate = false;
 	
 	public MyTimer(ServerConnection s,MyHandler handler) {
-		server=s;
-		eventHandler=handler;
-		timer = new Timer(250, this);
+		server = s;
+		eventHandler = handler;
+		timer = new Timer(pollTime, this);
 		timer.start();
 	}
 	
@@ -25,7 +27,7 @@ public class MyTimer implements ActionListener{
 		if(renderWindowUpdate){
 			Scene.updateScene(true, true);
 		}
-		if(eventHandler.getTimeSinceLastMouseMove() > 2500){
+		if(eventHandler.getTimeSinceLastMouseMove() > mouseOverTime){
 			eventHandler.showMouseOver();
 		}
 	}
@@ -36,6 +38,10 @@ public class MyTimer implements ActionListener{
 
 	public boolean isRenderWindowUpdate() {
 		return renderWindowUpdate;
+	}
+
+	public ServerConnection getServer() {
+		return server;
 	}
 
 }

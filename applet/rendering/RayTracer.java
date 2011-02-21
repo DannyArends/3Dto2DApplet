@@ -191,12 +191,14 @@ public class RayTracer {
 		Object3D minPrimitive = null;
 		
 		for(Object3D primitive : Scene.getObjects()){
-			double t = primitive.intersect(ray);
-			// If we found a closer intersecting primitive, keep a reference to and it
-			if (t < minDistance && t > EPSILON && primitive != ignorePrimitive){
-				if(primitive.getTransparant() == 0 | primitive.getTransparant() < Math.random()){
-					minPrimitive = primitive;
-					minDistance = t;
+			if(primitive !=null){
+				double t = primitive.intersect(ray);
+				// If we found a closer intersecting primitive, keep a reference to and it
+				if (t < minDistance && t > EPSILON && primitive != ignorePrimitive){
+					if(primitive.getTransparant() == 0 | primitive.getTransparant() < Math.random()){
+						minPrimitive = primitive;
+						minDistance = t;
+					}
 				}
 			}
 		}
