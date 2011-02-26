@@ -21,6 +21,7 @@ public class BuildWindow extends HudWindow {
 		clearChildren();
 		addChild(new HudText(10,10,"Buildings:"));
 		int n=1;
+		//TODO: Group the buildings and show with tabs or something
 		for(int x : b.returnAllIndices()){
 			addChild(new HudButton(10,20+20*n,120,18,b.getBuildingName(x),true,b.getBuildingColor(x)){
 				public void runPayload() {

@@ -35,6 +35,7 @@ public class TerraformWindow extends HudWindow {
 				Utils.console(getName());
 			}
 		});
+		//TODO: Group the different kind of tiles and show with tabs or something
 		addChild(new HudText(10,80,"Tiles:"));
 		int n=4;
 		for(int x : t.returnAllIndices()){

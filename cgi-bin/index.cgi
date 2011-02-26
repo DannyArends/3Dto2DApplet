@@ -38,11 +38,13 @@ require "user.cgi";
 $form{"online"} = '';
 $form{"list_files"} = '';
 
-#Main
+# Print a http header
 printHTTPHeader();
 receivePost();
 writeIPtoLog();
+
 if($form{"error"} ne ""){
+	# Print an error
 	printError();
 }else{
 	if($form{"page"} ne ""){
@@ -54,6 +56,7 @@ if($form{"error"} ne ""){
 	}else{
 		print "<p>Please Login to continue</p>"."\n";
 		create_html_login();
+		print "Please <a href='?page=register'><font color=\"black\">Register</font></a>"."\n";
 	}
 }
 printHTTPFooter("");

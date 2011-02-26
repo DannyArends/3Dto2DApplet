@@ -17,8 +17,7 @@ our $data_location;
 
 #Functions
 
-#Creates a 3D integer mapping cube
-
+## list_maps : lists available maps
 sub list_maps{
 	my $location = $_[0];
 	if(!defined($location)){$location = "maps";}
@@ -32,6 +31,7 @@ sub list_maps{
 	}
 }
 
+## get_filecontent : Get full content of a text file
 sub get_filecontent{
 	my $file = $_[0];
 	my $line;
@@ -44,6 +44,7 @@ sub get_filecontent{
  	return $content;
 }
 
+## update_map : Update a whole map and user that performs the update
 sub update_map{
 	my $map = lc $_[0];
 	my $location = $_[1];
@@ -60,17 +61,21 @@ sub update_map{
 		my $fwrd = abs($epoch_timestamp-$epoch_now);
 		if($fwrd > 10){
 			print "Updating map: $file ".$fwrd."\n";
+			#TODO: Update the map elements using some game logic
 			open(MYFILE, ">$file") or die "No such map";
 			for my $line (split(/\n/,$content)) {
 				print MYFILE $line."\n";
 			}
 			close (MYFILE);
+			#TODO: If a user is updating the map also update user
 		}else{
 			print "Stale map: $file ".$fwrd."\n";
 		}
 	}
 }
 
+## update_tile : Update a tile
+# TODO: Create a working and shorter update tile function
 sub update_tile{
 	my $map = lc $_[0];
 	my $atx = $_[1];
@@ -121,6 +126,7 @@ sub update_tile{
 	}
 }
 
+#TODO: Perhaps re-write to start with some kind of standard
 sub create_map{
 	my $map = lc $_[0];
 	my $dimx = $_[1];

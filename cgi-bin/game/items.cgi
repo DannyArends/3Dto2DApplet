@@ -15,7 +15,7 @@ our %form;
 our $write_location;
 our $data_location;
 
-#Functions
+## create_empty_storage : Create an empty storage for a user
 sub create_empty_storage{
 	my $username = lc $_[0];
 	print "#Creating storage: 500 * 1 * 2\n";
@@ -24,16 +24,19 @@ sub create_empty_storage{
 	create_map($username."_inv",5,5,1,"storages");
 }
 
+## get_storage : get the storage list for a user
 sub get_storage{
 	my $username = lc $_[0];
 	list_map($username."_store","storages");
 }
 
+## get_inventory : get the inventory list for a user
 sub get_inventory{
 	my $username = lc $_[0];
 	list_map($username."_inv","storages");
 }
 
+## list_items : List known items
 sub list_items{
 	my $filename = $_[0];
 	my $location = "game";
@@ -53,22 +56,27 @@ sub list_items{
 	close (MYFILE);
 }
 
+## list_buildings : List known buildings
 sub list_buildings{
 	list_items("buildings");
 }
 
+## list_tiles : List known tiles
 sub list_tiles{
 	list_items("tiles");
 }
 
+## building_stats : Item statistics for a certain building
 sub building_stats{
 	item_stats(lc $_[0],"buildings");
 }
 
+## tile_stats : Item statistics for a certain tile
 sub tile_stats{
 	item_stats(lc $_[0],"tiles");
 }
 
+## item_stats : Item statistics for a certain item
 sub item_stats{
 	my $itemid = lc $_[0];
 	my $filename = $_[1];

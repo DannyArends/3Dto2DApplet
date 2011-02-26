@@ -17,12 +17,14 @@ our $data_location;
 
 #Functions
 
+## create_xp : Create an empty xp list for a user
 sub create_xp{
 	my $username = lc $_[0];
 	print "#Creating xp-matrix: 4 Skills * 2 XP Dimension * 5 Levels\n";
 	create_map($username."_xp",4,2,5,"xp");
 }
 
+## get_xp : get the xp list for a user
 sub get_xp{
 	my $username = lc $_[0];
 	list_map($username."_xp","xp");
