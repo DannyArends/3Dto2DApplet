@@ -10,7 +10,7 @@ public class BuildingTypes extends Types{
 	static String[] buildingNames;
 	static Color[] buildingColors;
 	
-	BuildingTypes(ServerConnection s) {
+	public BuildingTypes(ServerConnection s) {
 		super(s);
 		parseTileTypes(connection.commandToServer("function=list_buildings"));
 	}
@@ -35,7 +35,7 @@ public class BuildingTypes extends Types{
 		Utils.console("Building Types: "+nbuildings);
 	}
 	
-	public static Color getBuildingColor(int buildingID) {
+	public Color getBuildingColor(int buildingID) {
 		if(IDExists(buildingID)){
 			return buildingColors[whichIndexIsID(buildingID)];
 		}else{
@@ -43,14 +43,15 @@ public class BuildingTypes extends Types{
 		}
 	}
 
-	public static String getBuildingName(int buildingID) {
+	public String getBuildingName(int buildingID) {
 		if(IDExists(buildingID)){
 			return buildingNames[whichIndexIsID(buildingID)];
 		}else{
 			return "Unknown";
 		}
 	}
-	public static boolean buildingExists(int id){
+	
+	public boolean buildingExists(int id){
 		if(id==0) return false;
 		Utils.console("Going to check: " + id);
 		for(int x : IDs){

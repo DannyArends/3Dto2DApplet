@@ -4,16 +4,17 @@ import objects.renderables.Object3D;
 import objects.renderables.Surface;
 import objects.renderables.Text3D;
 import rendering.Engine;
-import events.ServerConnection;
 
 public class GameTile extends GameObject{
 	int[] information;
+	GameMap map;
 	
-	GameTile(ServerConnection s,int x, int y, int tiledimension) {
-		super(s);
+	GameTile(GameMap m,int x, int y, int tiledimension) {
+		super(m.connection);
 		information = new int[tiledimension+2];
 		information[0] = x;
 		information[1] = y;
+		map=m;
 	}
 	
 	public int getX(){
@@ -49,13 +50,13 @@ public class GameTile extends GameObject{
 	}
 	
 	public Surface toSurface(){
-		Surface s = new Surface(getX(), getHeight()/500.0, getY(), 0, 0, 0.4, 0.4, TileTypes.getTileColor(getTileID()));
+		Surface s = new Surface(getX(), getHeight()/500.0, getY(), 0, 0, 0.4, 0.4, map.getTileColor(getTileID()));
 		s.setName("MapTile (" + getX() + ","+ getY() + "@"+getHeight()+"): " + getTileID() + "," + getObjectID());
 		return s;
 	}
 	
 	public Object3D getBuilding(){
-		if(BuildingTypes.buildingExists(getObjectID())){
+		if(map.buildingExists(getObjectID())){
 			return Engine.getObjectLoader().getModel(getX(), -getY()-0.25, ((getHeight())/500.0) , "object_"+getObjectID()+".3ds");
 		}else{
 			return null;
@@ -63,10 +64,10 @@ public class GameTile extends GameObject{
 	}
 	
 	public Text3D getLabel(){
-		if(BuildingTypes.buildingExists(getObjectID())){
+		if(map.buildingExists(getObjectID())){
 			Text3D label;
 			label = new Text3D(getX()+0.25, ((getHeight())/500.0) + 0.7, getY()-0.25);
-			label.setText(BuildingTypes.getBuildingName(getObjectID()));
+			label.setText(map.getBuildingName(getObjectID()));
 			return label;
 		}else{
 			return null;

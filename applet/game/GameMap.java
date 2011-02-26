@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import objects.renderables.Object3D;
@@ -39,7 +40,7 @@ public class GameMap extends GameObject{
 			dimension2 = dimension1[x+offset].split(" ");
 			for(int y=0;y<dimy;y++){
 				String[] tile = dimension2[y].split(";");
-				maptiles[(x*dimy)+y] = new GameTile(connection,x,y,tiledimension);
+				maptiles[(x*dimy)+y] = new GameTile(this,x,y,tiledimension);
 				maptiles[(x*dimy)+y].setHeight(Integer.parseInt(tile[0]));
 				maptiles[(x*dimy)+y].setTileID(Integer.parseInt(tile[1]));
 				maptiles[(x*dimy)+y].setObjectID(Integer.parseInt(tile[2]));
@@ -88,5 +89,17 @@ public class GameMap extends GameObject{
 	public void update_map(){
 		connection.commandToServer("function=update_map&p1="+mapname);
 		Scene.mapReload();
+	}
+
+	public boolean buildingExists(int id) {
+		return buildingtypes.buildingExists(id);
+	}
+
+	public Color getTileColor(int id) {
+		return tiletypes.getTileColor(id);
+	}
+
+	public String getBuildingName(int id) {
+		return buildingtypes.getBuildingName(id);
 	}
 }

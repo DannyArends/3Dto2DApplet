@@ -137,6 +137,7 @@ public class Hud extends HudObject{
 		for(HudWindow h : getHudWindows()){
 			if(Engine.verbose) Utils.console("Showing Window " + name + " " + h.getName());
 			if(h.getName().equalsIgnoreCase(name)){
+				h.onOpen();
 				h.setVisible(!h.isVisible());
 				h.setActive(true);
 				Utils.console("Showing Window" + h.getName() + " is visible, active:" + h.isVisible() +","+h.isActive());

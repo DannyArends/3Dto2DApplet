@@ -7,9 +7,10 @@ import generic.Utils;
 
 public class TileTypes extends Types{
 	static int ntiles;
-	static Color[] tilecolors;
+	static Color[] tileColors;
+	static String[] tileNames;
 	
-	TileTypes(ServerConnection s) {
+	public TileTypes(ServerConnection s) {
 		super(s);
 		parseTileTypes(connection.commandToServer("function=list_tiles"));
 	}
@@ -19,24 +20,35 @@ public class TileTypes extends Types{
 		int offset = Utils.offsetByComment(lines);
 		ntiles=lines.length-offset;
 		IDs = new int[ntiles];
-		tilecolors = new Color[ntiles];
+		tileColors = new Color[ntiles];
+		tileNames = new String[ntiles];
+		Utils.log("N tiles:" + ntiles, System.err);
 		for(int x=0;x<ntiles;x++){
 			String[] tiledescr = lines[x+offset].split("\t");
 			IDs[x] = Integer.parseInt(tiledescr[0]);
+			tileNames[x] = tiledescr[1];
 			if(tiledescr.length < 6){
-				tilecolors[x] = new Color(255,0,0);
+				tileColors[x] = new Color(255,0,0);
 			}else{
-				tilecolors[x] = new Color(Integer.parseInt(tiledescr[3]),Integer.parseInt(tiledescr[4]),Integer.parseInt(tiledescr[5]));
+				tileColors[x] = new Color(Integer.parseInt(tiledescr[3]),Integer.parseInt(tiledescr[4]),Integer.parseInt(tiledescr[5]));
 			}
 		}
 		Utils.console("Tile Types: " + ntiles);
 	}
 	
-	public static Color getTileColor(int tileID) {
-		if(tileID < ntiles){
-			return tilecolors[tileID];
+	public Color getTileColor(int tileID) {
+		if(IDExists(tileID)){
+			return tileColors[whichIndexIsID(tileID)];
 		}else{
 			return new Color(255,0,0);
+		}
+	}
+
+	public String getTileName(int tileID) {
+		if(IDExists(tileID)){
+			return tileNames[whichIndexIsID(tileID)];
+		}else{
+			return "Unknown";
 		}
 	}
 

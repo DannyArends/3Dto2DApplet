@@ -148,5 +148,11 @@ public class HudWindow extends HudButton{
 	public void update(){
 		
 	}
+	
+	///onOpen - Triggered when opening the window
+	//Triggered when opening the window
+	public void onOpen(){
+		
+	}
 
 }

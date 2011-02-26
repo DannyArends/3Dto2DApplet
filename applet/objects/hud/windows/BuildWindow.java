@@ -1,34 +1,33 @@
 package objects.hud.windows;
 
-import java.awt.Color;
-
+import events.ServerConnection;
+import game.BuildingTypes;
+import generic.Utils;
 import objects.hud.HudButton;
 import objects.hud.HudText;
 import objects.hud.HudWindow;
-import events.ServerConnection;
-import generic.Utils;
 
 public class BuildWindow extends HudWindow {
-	String[] buildings;
-	
+	BuildingTypes b;
 	public BuildWindow(ServerConnection s) {
 		super(10, 100,200,350, "Build");
 		setVisible(false);
 		setMinimized(false);
-		parseBuildings(s.commandToServer("function=list_buildings"));
+		b= new BuildingTypes(s);
 	}
 	
-	
-	void parseBuildings(String buildingList){
-		buildings = buildingList.split("\n");
-		int offset= Utils.offsetByComment(buildings);
+	@Override
+	public void onOpen(){
+		clearChildren();
 		addChild(new HudText(10,10,"Buildings:"));
-		for(int x=offset;x<buildings.length;x++){
-			addChild(new HudButton(10,20+20*(x-offset),120,18,buildings[x],true,Color.lightGray){
+		int n=1;
+		for(int x : b.returnAllIndices()){
+			addChild(new HudButton(10,20+20*n,120,18,b.getBuildingName(x),true,b.getBuildingColor(x)){
 				public void runPayload() {
 					Utils.console(getName());
 				}
 			});
+			n++;
 		}
 	}
 }

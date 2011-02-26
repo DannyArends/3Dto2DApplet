@@ -42,23 +42,33 @@ public class Item extends GameObject{
 			}
 		}
 	}
-
+	
+	/// setCommonname: Give a common name to the item.
+	// @param name String common name of the item
 	public void setCommonname(String name) {
 		commonname = name;
 	}
 
+	/// setWeight: Set the weight of an item.
+	// @param w Weight in integer units
 	public void setWeight(int w) {
 		weight = w;
 	}
 
+	/// setQuality: Set the quality of an item.
+	// @param q Quality in integer units
 	public void setQuality(int q) {
 		quality = q;
 	}
 
-	public void setItemclass(char itemclass) {
-		this.itemclass = itemclass;
+	/// setItemclass: Set the class of an item.
+	// @param ic Class in character
+	public void setItemclass(char ic) {
+		itemclass = ic;
 	}
 
+	/// getItemclass: Get the class of an item.
+	// @return Class in character
 	public char getItemclass() {
 		return itemclass;
 	}

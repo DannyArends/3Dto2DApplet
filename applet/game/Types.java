@@ -8,21 +8,25 @@ public class Types extends GameObject{
 		super(s);
 	}
 
-	static int[] IDs;
+	int[] IDs;
 	
-	static boolean IDExists(int buildingID){
-		for(int y : IDs){
-			if(y==buildingID) return true;
+	boolean IDExists(int ID){
+		for(int i : IDs){
+			if(i==ID) return true;
 		}
 		return false;
 	}
 	
-	static int whichIndexIsID(int buildingID){
+	int whichIndexIsID(int ID){
 		int index=0;
-		for(int y : IDs){
-			if(y==buildingID) return index;
+		for(int i : IDs){
+			if(i==ID) return index;
 			index++;
 		}
 		return -1;
+	}
+	
+	public int[] returnAllIndices(){
+		return IDs;
 	}
 }
