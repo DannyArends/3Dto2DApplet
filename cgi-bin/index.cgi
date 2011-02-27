@@ -24,7 +24,7 @@ our $write_location = "dist/write/";
 our $data_location = "dist/data/";
 
 our $title = "Managment console";
-our $theme = "http://localhost:8080/themes/default.css";
+our $theme = "/themes/default.css";
 our $email = "Danny.Arends\@gmail.com";
 
 #include our own files & functions

@@ -219,7 +219,7 @@ public class FileServlet extends Servlet {
 			}
 			p.println("Used: " + total + " KB of " + (freespace/1024) + " MB");
 			p.println("</pre>");
-			p.println("<hr><ul><li><a href=\"http://localhost:8080/\"><font color=\"black\">Back to index</font></a></li></ul>");
+			p.println("<hr><ul><li><a href=\"/\"><font color=\"black\">Back to index</font></a></li></ul>");
 			p.println("</body></html>");
 			p.flush();
 		}

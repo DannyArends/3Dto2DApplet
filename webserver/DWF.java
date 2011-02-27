@@ -58,7 +58,7 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 	public static void main(String[] args) throws Exception{
 		Utils.log("-- Starting webserver --",System.err);
 		new Thread(webserver).start();
-		Utils.log("-- Serving: http://localhost:8080/ --",System.err);
+		Utils.log("-- Serving: http://localhost:80/ --",System.err);
 		new Thread(new DWF(800,600,title));
 	}
 
@@ -70,7 +70,7 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 	@Override
 	public URL getCodeBase() {
 		try {
-			return new URL("http://localhost:8080/dist/");
+			return new URL("http://localhost:80/dist/");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 			return null;

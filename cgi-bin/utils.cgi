@@ -41,7 +41,7 @@ sub printHTTPHeader{
 
 sub printHTTPFooter{
 	my $additive = $_[0];
-	print("<ul><li><a href=\"http://localhost:8080/$additive\"><font color=\"black\">Back</font></a></li></ul>
+	print("<ul><li><a href=\"/$additive\"><font color=\"black\">Back</font></a></li></ul>
 			<div align=\"center\">\n
 				<a href=\"http://github.com/DannyArends/3Dto2DApplet\">Github</a><br/>\n
 			</div>\n
