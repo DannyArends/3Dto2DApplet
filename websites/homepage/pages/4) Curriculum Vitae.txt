@@ -1,0 +1,28 @@
+<h3>Curriculum Vitae</h3>
+PDF versions:
+<a href="/pdf/cv_eng.pdf">English Curriculum Vitae</a>
+<a href="/pdf/cv_nld.pdf">Dutch Curriculum Vitae</a>
+<h3>Work & work experience</h3>
+2010-now PHD Student Groningen bioinformatic Centre - University of Groningen
+2006-2009 Co-founder and lead programmer at <a href="http://www.webdez.nl">WebdeZ - Integrated</a>, Winschoten 
+2004 Administrative employee at Waste Paper Trade, Scheemda 
+2002 General employee at 'Nieuwe Weme' supermarket, Winschoten
+<h4>Volunteer work</h4>
+2003-2009 Tour guide during 'open monuments day' Tower of Scheemda
+1998-1999 DJ at local radio station Omroep Scheemda
+<h4>Commissions and participation bodies</h4>
+2001-2002 Education commission Math & Computer science R.U.G
+1998-2000 Student administration council PC/RK lyceum Ubbo Emmius
+1996-1997 Contestant European youth parliament (local and national)
+<h3>Education</h3>
+2009 Attendant Short course on systems genetics Bar Harbor, Main, USA
+2007-2009 Master Moleculaire Genetics, University of Groningen
+2007-2009 Master Thesis: <a href="/pdf/MastersthesisI.pdf">Machine learning to predict transcriptional regulation</a>
+
+2003-2007 Bachelor Life Science & Technology,  University of Groningen
+2003-2007 Bachelor Variant: Genomics Proteonomics & Bioinformatics
+2003-2007 Bachelor Thesis: <a href="/pdf/BachelorThesis.pdf">Using Genetical genomics in mouse heamopoietic development</a>
+2001-2003 Computer science,  University of Groningen
+
+1995-2001 VWO, Ubbo Emmius College, Stadskanaal
+1989-1995 Elementary school, Mons Sinai, Heiligerlee

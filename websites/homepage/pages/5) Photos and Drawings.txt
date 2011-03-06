@@ -1,0 +1,2 @@
+<h3>Ink Drawings</h3>
+<div class='slideshow'><img src="/images/vlinder_klein.jpg" alt="Theme: Butterfly / Vlinder" width="450" height="300" /><img src="/images/Tekening1.jpg" alt="Theme: Random / Random" width="300" height="410" /><img src="/images/Tekening2.jpg" alt="Theme: Impossible Face / Geen gezicht" width="450" height="410" />  <img src="/images/Tekening3.jpg" alt="Theme: Snooker / Pool" width="450" height="300" /></div>

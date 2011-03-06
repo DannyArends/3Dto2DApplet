@@ -560,6 +560,7 @@ public class Webserver implements ServletContext, Serializable {
 		Map<String, Object> acceptorProperties = new HashMap<String, Object>();
 		acceptor.init(arguments, acceptorProperties);
 		hostName = (String) acceptorProperties.get(ARG_BINDADDRESS);
+		Utils.log("Hostname:" + hostName, System.err);
 		return acceptor;
 	}
 

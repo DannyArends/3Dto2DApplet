@@ -7,7 +7,7 @@
   <property name="java-rt"   		location="c:/Progra~1/Java/jdk1.6.0_14/jre/lib/rt.jar" />
   <property name="webserver_src"   	location="webserver" 		/>
   <property name="build" 			location="build"     		/>
-  <property name="dist"  			location="dist"      		/>
+  <property name="dist"  			location="."      			/>
   <property name="libraries" 		location="libs"      		/>
   <property name="myname" 			value="Danny Arends" 		/>
   <property name="version"          value="3.3.0"        		/>
@@ -32,7 +32,7 @@
   </target>
 
   <target name="package" depends="compile" description="Package the distribution" >
-    <jar jarfile="dist/webserver.jar" basedir="${build}">
+    <jar jarfile="webserver.jar" basedir="${build}">
     	<manifest>
      	    <attribute name="Built-By" value="${myname}"/>
      	    <attribute name="Main-Class" value="DWF"/>
@@ -42,8 +42,8 @@
 	
   <target name="strip" depends="package" description="Strip the package" >
     <java jar="libs/proguard.jar" fork="true" failonerror="true">
-      <arg line="-injars dist/webserver.jar"/>
-      <arg line="-outjars dist/webserver_small.jar"/>
+      <arg line="-injars webserver.jar"/>
+      <arg line="-outjars webserver_small.jar"/>
       <arg line="-libraryjars c:/Progra~1/Java/jdk1.6.0_14/jre/lib/rt.jar"/>
 	  <arg line="-keep public class DWF{public static void main(java.lang.String[]);}"/>
 	  <arg line="-keep public class webserver.BasicAcceptor"/>

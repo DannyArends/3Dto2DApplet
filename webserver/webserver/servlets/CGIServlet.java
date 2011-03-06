@@ -30,9 +30,21 @@ public class CGIServlet extends Servlet {
 	private static final long serialVersionUID = 1L;
 	String[][] extensions = new String[][]{
 			{"pl","cgi","php","php3","py"},
-			{"perl -X","perl -X","php -c php.ini -f","php -c php.ini -f","python -u"}
+			{"perl -X ","perl -X ","php -c php.ini -f","php -c php.ini -f","python -u"}
 	};
 	String mainpage = "index.cgi";
+	String short_localPath = "";
+	
+	public CGIServlet(){
+		super();
+	}
+	
+	public CGIServlet(String path,boolean inCGI){
+		this();
+		short_localPath = getLocal_path() + File.separator + path;
+		setLocal_path(getLocal_path() + File.separator + path);
+		if(inCGI)setLocal_path(getLocal_path() + File.separator + "cgi-bin");
+	}
 	
 	String matchExtension(String ext){
 		String r = "";
@@ -56,11 +68,15 @@ public class CGIServlet extends Servlet {
 		String filename = "";
 		String extension = "";
 		String command = "";
-		Utils.console(req.getMethod());
-		filename = req.getPathTranslated() != null ? req.getPathTranslated().replace('/', File.separatorChar) : "";
-		filename = ((filename.substring(0).equals("") || filename.substring(1).equals(""))? File.separator + mainpage : filename.substring(1));
+		String path = "";
+		if(!getLocal_path().equals("")){
+			path = getLocal_path() + File.separator + path;
+		}
+		filename = req.getPathTranslated() != "." ? req.getPathTranslated().replace('/', File.separatorChar) : "./index.cgi";
 		extension = filename.substring(filename.indexOf(".", 2)+1);
-		filename = "." + File.separator + "cgi-bin" + filename;
+		Utils.log("filename:" + filename + " Extension:"+extension + " Path:" + path, System.err);
+		filename = filename.substring(filename.indexOf(".", 0)+1);
+		filename = path + filename;
 
 		for (Enumeration<?> e = req.getParameterNames() ; e.hasMoreElements() ;) {
 			if((tempstring = (String) e.nextElement()) !=  null){
@@ -70,17 +86,18 @@ public class CGIServlet extends Servlet {
 
 		File file = new File(filename);
 		if(!file.exists()){
-			Utils.console("No Such File: \n");
+			Utils.console("No Such File: "+filename+"\n");
 			arguments = "error=Page%20not%20found;page=" + filename + ";";
-			file = new File("." + File.separator + "cgi-bin"+ File.separator + mainpage);
+			file = new File(path + File.separator + "cgi-bin"+ File.separator + mainpage);
 			extension = mainpage.substring(mainpage.indexOf(".", 2)+1);
 		}
 		if(!(command = matchExtension(extension)).equals("")){
-			Utils.console("Creating command: " + command + " " + file.getCanonicalPath() + " " + arguments);
-			myCommandExe.addCommand(command + " " + file.getCanonicalPath() + " " + arguments);
+			Utils.console("Creating command: " + command + "I "+ path + " " + file.getCanonicalPath() + " " + arguments);
+			myCommandExe.addCommand("cd " + short_localPath + " && "+ command + file.getCanonicalPath() + " " + arguments);
 		}else{
 			Utils.log("No interpreter for: " + extension,System.err);
-			serveFile(req, res,false, file);
+			serveFile(req, res, false, file);
+			return;
 		}
 		myInterpreter = new Thread(myCommandExe);
 		myInterpreter.start();

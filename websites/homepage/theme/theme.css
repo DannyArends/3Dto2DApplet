@@ -1,0 +1,156 @@
+﻿body{
+  margin:0px 0px;
+  background-color: White;
+  font-family: "trebuchet MS";
+  font-size:11px;
+}
+
+h1{
+  font-size:22px;
+  color: black;
+  margin:10px 10px;
+}
+
+h2{
+  font-size:19px;
+  color: black;
+  margin:10px 10px;
+}
+
+h3{
+  font-size:15px;
+  color: black;
+  margin:10px 10px;
+}
+
+table {
+  color: black;
+  border:0px;
+  margin:0px 0px 0px 0px;		
+  text-align:left;
+}
+
+th{
+  font-size:14px;
+  color: Black;
+}
+
+td {
+  font-size:13px;
+	text-align:left;
+	width:100%;
+}
+
+.top{
+	height:10px;
+  background:white;
+  margin:0px 0px 0px 0px;
+  padding:0px 0px 0px 0px;	
+	vertical-align:top; 
+}
+
+.Lnavi{
+	width: 250px;
+	color: black;	
+  background: white;
+	text-align: left;
+  vertical-align:top; 
+}
+
+.foot{
+	height:2%;
+	width:20%;	
+	vertical-align: bottom;
+	text-align:right;
+	color: Black;
+  background: #f0f0f0;	
+}
+
+.span{
+	width:100px;
+  background: #f0f0f0;
+}
+
+.spaning{
+	width:100px;
+  background: white;
+}
+
+.main{
+	width: auto !important;
+  height: auto !important;
+  color: black;	
+  background:white;	
+	vertical-align:top;
+	text-align:left;
+  padding:5px 0px 0px 50px;
+}
+
+.SButton{
+  color:black;
+  font-size:15px;
+  background: #e0e0e0;
+  margin:1px 1px 1px 1px;		
+  padding:1px 1px 1px 1px;		
+  TEXT-DECORATION:none;		
+  font-size:11px;
+  width:170px;
+  height:20px;
+  cursor:pointer;
+}
+.SButton:hover{
+  color:black;
+  background:gray;
+  margin:1px 1px 1px 1px;		
+  padding:1px 1px 1px 1px;
+  TEXT-DECORATION:underline;
+  font-size:11px;
+  width:170px;
+  height:20px;
+  cursor:pointer;
+}
+.SButton:active{
+  color:black;
+  margin:1px 1px 1px 1px;		
+  padding:1px 1px 1px 1px;
+  TEXT-DECORATION:none;
+  font-size:11px;
+  width:170px;
+  height:20px;
+  cursor:pointer;
+}
+.SButton :visited {
+  color:black;
+  margin:1px 1px 1px 1px;		
+  padding:1px 1px 1px 1px;		
+  TEXT-DECORATION:none;
+  font-size:11px;	
+  width:170px;
+  height:20px;
+  cursor:pointer;
+}
+
+.black {
+  color:black;
+}
+
+a:link{
+  color:blue;
+	TEXT-DECORATION:none;	
+}
+a:hover{
+	color:red;
+  TEXT-DECORATION:none;	
+}
+a:active{
+  color:blue;
+	TEXT-DECORATION:none;
+}
+a:visited{
+  color:blue;
+	TEXT-DECORATION:none;
+}
+
+
+
+

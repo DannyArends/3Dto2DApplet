@@ -11,8 +11,17 @@ public class WWWServer extends Webserver implements Runnable{
 		Webserver.PathTreeDictionary aliases = new Webserver.PathTreeDictionary();
         aliases.put("/", new java.io.File("."));
         setMappingTable(aliases);
-        addServlet("/cgi-bin", new CGIServlet());
-        addServlet("/", new FileServlet());
+        
+        //Localhost (No Hostname is used)
+        addServlet("/cgi-bin", new CGIServlet("applet",true),"localhost");
+        addServlet("/", new FileServlet("applet"),"localhost");
+        
+        //My own homepage
+        addServlet("/", new CGIServlet("homepage",false),"www.dannyarends.nl");
+        
+        //Another website
+        addServlet("/", new FileServlet("qtlocator"),"www.QTLocator.nl");
+        
 	}
 	
 	public void run(){

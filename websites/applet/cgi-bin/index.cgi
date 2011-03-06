@@ -8,10 +8,6 @@
 # first written Dec, 2010
 #
 # Start by pushing the location of the includes
-BEGIN {
-  push @INC,"c:/Rtools/perl/lib";
-  push @INC,"./cgi-bin";
-}
 
 use strict;
 use Socket;
