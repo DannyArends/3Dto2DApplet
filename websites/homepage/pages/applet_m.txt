@@ -1,0 +1,1 @@
+<APPLET codebase='dist/' code='WireFrame.class' archive='applet.jar' width=800 HEIGHT=600></APPLET>

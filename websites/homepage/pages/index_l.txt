@@ -1,0 +1,15 @@
+<h3>About Danny</h3>
+Danny Arends is a PHD student BioInformatics at the Groningen Bioinformatics Centre of 
+University of Groningen. This web site is a place where you can view and download my:
+-<a href=\"/Index.cgi?p=Publications\"><font color=\"seagreen\">Publications</font></a>
+-<a href=\"/Index.cgi?p=Presentations\"><font color=\"seagreen\">Presentations</font></a>
+-<a href=\"/Index.cgi?p=Drawings\"><font color=\"seagreen\">Drawings</font></a>
+-<a href=\"/Index.cgi?p=Hobbies\"><font color=\"seagreen\">Hobbies</font></a>
+-<a href=\"/Index.cgi?p=Applet\"><font color=\"seagreen\">Applet</font></a>
+-<a href=\"/Index.cgi?p=Various\"><font color=\"seagreen\">Other stuff</font></a>
+
+So look around and enjoy, please contact me...
+<h3>Contact</h3>
+E-mail: Danny.Arends[at]Gmail.com
+E-mail: The_Smoking_Bear[at]Hotmail.com
+<a href="http://nl-nl.facebook.com/people/Danny-Arends/100001372193988" title="Danny Arends">Facebook</a>, <a href="http://twitter.com/#!/DannyArends">Twitter</a>, <a href="http://justdanny.hyves.nl/">Hyves</a>, <a href="http://github.com/DannyArends/">Github Repository</a>

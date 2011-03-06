@@ -16,6 +16,7 @@ our @paramnames;
 our $write_location;
 our $data_location;
 our $title;
+our $subtitle;
 our $theme;
 our $email;
 
@@ -32,11 +33,24 @@ sub printHTTPHeader{
 		<head>\n
 			<link rel=\"stylesheet\" type=\"text/css\" href=\"$theme\"></style>
 			<title>$title</title>\n
+	<meta name='Author' content='Danny Arends' />
+	<meta name='Robots' content='INDEX,FOLLOW' />
+  <script type='text/javascript'></script>
+  <script type='text/javascript' src='jQuery/jquery.min.js'></script>
+  <script type='text/javascript' src='jQuery/jquery.cycle.min.js'></script>
+  <script type='text/javascript'>
+  \t\$(document).ready(function() {
+  \t\t\$('.slideshow').cycle({
+  \t\tfx: 'fade'
+  \t\t});
+  \t});
+  </script>			
 		</head>\n
 		<body>\n
-			<div align=\"center\">\n
-				<h1>$title</h1>\n
-			</div>\n");
+		<div width='90%' class='whitebg'>
+			<h1>$title</h1>\n
+			<h2>$subtitle</h2>\n
+			\n");
 }
 
 sub printHTTPFooter{
@@ -44,8 +58,37 @@ sub printHTTPFooter{
 	print("<ul><li><a href=\"/$additive\"><font color=\"black\">Back</font></a></li></ul>
 			<div align=\"center\">\n
 				<a href=\"http://github.com/DannyArends/3Dto2DApplet\">Github</a><br/>\n
-			</div>\n
-		</body>\n
+			</div>\n");
+	printEmptyFooter();
+}
+
+sub showFile{
+	my $dir = shift;
+	my $name = shift;
+	my @rawdata;
+	my $line;
+	my $text;
+	open(FILE, "$dir/$name");
+	@rawdata=<FILE>; 
+	close(FILE);
+	foreach $line (@rawdata){
+		chomp($line);
+		if($line =~ /<h\C{1}>/){
+			#Headers
+			$text .= $line."\n";
+		}elsif($line eq ""){
+			#Empty lines
+			$text .= "\n";
+		}else{
+			#Normal line
+			$text .= $line."<br/>"."\n";
+		}	
+	} 
+	return $text;
+}
+
+sub printEmptyFooter{
+	print("</body>\n
 	</html>\n");
 }
 

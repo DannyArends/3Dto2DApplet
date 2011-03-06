@@ -12,13 +12,26 @@ font-family: "trebuchet MS";
 font-size:11px;
 }
 
-.whitebg{
+q{
+font-family: "Courier New";
+font-size:12px;
+}
+
+.slideshow{
+margin:20px 40px;
 background-color: white;
+overflow:left;
+}
+
+.whitebg{
+margin:20px 40px;
+background-color: white;
+overflow:left;
 }
 
 h1{
 font-size:22px;
-color: white;
+color: black;
 margin:10px 10px;
 }
 
@@ -48,12 +61,10 @@ color: black;
 
 td {
 font-size:13px;
-text-align:left;
-width:100%;
 }
 
 a:link{
-color:white;
+color:black;
 }
 
 a:hover{
@@ -62,11 +73,11 @@ text-decoration:none;
 }
 
 a:active{
-color:white;
+color:black;
 text-decoration:none;
 }
 
 a:visited{
-color:white;
+color:black;
 text-decoration:none;
 }

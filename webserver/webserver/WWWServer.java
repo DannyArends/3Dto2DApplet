@@ -12,12 +12,9 @@ public class WWWServer extends Webserver implements Runnable{
         aliases.put("/", new java.io.File("."));
         setMappingTable(aliases);
         
-        //Localhost (No Hostname is used)
-        addServlet("/cgi-bin", new CGIServlet("applet",true),"localhost");
-        addServlet("/", new FileServlet("applet"),"localhost");
-        
         //My own homepage
-        addServlet("/", new CGIServlet("homepage",false),"www.dannyarends.nl");
+        addServlet("/cgi-bin", new CGIServlet("homepage",true));
+        addServlet("/", new CGIServlet("homepage",false));
         
         //Another website
         addServlet("/", new FileServlet("qtlocator"),"www.QTLocator.nl");

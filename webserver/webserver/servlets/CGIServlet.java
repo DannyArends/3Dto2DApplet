@@ -34,6 +34,7 @@ public class CGIServlet extends Servlet {
 	};
 	String mainpage = "index.cgi";
 	String short_localPath = "";
+	boolean inCGI = false;
 	
 	public CGIServlet(){
 		super();
@@ -43,6 +44,7 @@ public class CGIServlet extends Servlet {
 		this();
 		short_localPath = getLocal_path() + File.separator + path;
 		setLocal_path(getLocal_path() + File.separator + path);
+		this.inCGI=inCGI;
 		if(inCGI)setLocal_path(getLocal_path() + File.separator + "cgi-bin");
 	}
 	
@@ -72,7 +74,11 @@ public class CGIServlet extends Servlet {
 		if(!getLocal_path().equals("")){
 			path = getLocal_path() + File.separator + path;
 		}
-		filename = req.getPathTranslated() != "." ? req.getPathTranslated().replace('/', File.separatorChar) : "./index.cgi";
+		if(req.getPathTranslated()==null){
+			filename = "./index.cgi";
+		}else{
+			filename = req.getPathTranslated() != "." ? req.getPathTranslated().replace('/', File.separatorChar) : "./index.cgi";
+		}
 		extension = filename.substring(filename.indexOf(".", 2)+1);
 		Utils.log("filename:" + filename + " Extension:"+extension + " Path:" + path, System.err);
 		filename = filename.substring(filename.indexOf(".", 0)+1);
@@ -92,8 +98,8 @@ public class CGIServlet extends Servlet {
 			extension = mainpage.substring(mainpage.indexOf(".", 2)+1);
 		}
 		if(!(command = matchExtension(extension)).equals("")){
-			Utils.console("Creating command: " + command + "I "+ path + " " + file.getCanonicalPath() + " " + arguments);
-			myCommandExe.addCommand("cd " + short_localPath + " && "+ command + file.getCanonicalPath() + " " + arguments);
+			//Utils.console("Creating command: " + command + "I "+ path + " " + file.getCanonicalPath() + " " + arguments);
+			myCommandExe.addCommand("cd " + (inCGI?short_localPath:getLocal_path()) + " && "+ command + file.getCanonicalPath() + " " + arguments);
 		}else{
 			Utils.log("No interpreter for: " + extension,System.err);
 			serveFile(req, res, false, file);
