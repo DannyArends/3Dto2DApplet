@@ -14,12 +14,14 @@ require "cgi-bin/layout.cgi";
 #Constants
 
 #Variables
+my @paramnames;
 my $time_start;
 my $time_end;
 
 #Functions
 sub loadPost{
 	foreach my $p (param()) {
+		push (@paramnames, $p);
 		$form{$p} = param($p);
 	}
 	if(!defined($form{"Page"}) or $form{"Page"} eq ""){
