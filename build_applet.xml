@@ -5,7 +5,7 @@
   <!-- set global properties for this build -->
   <property name="src" 				location="applet"    />
   <property name="build" 			location="build"     />
-  <property name="dist"  			location="websites/applet/dist"      />
+  <property name="dist"  			location="websites/homepage/dist"      />
   <property name="libraries" 		location="libs"      />
   <property name="myname" 			value="Danny Arends" />
   <property name="version"          value="3.3.0"        />

@@ -3,8 +3,8 @@
 #
 # utils.cgi
 #
-# copyright (c) 2009-2010, Danny Arends
-# last modified Dec, 2010
+# copyright (c) 2009-2011, Danny Arends
+# last modified Mrt, 2011
 # first written Dec, 2010
 #
 
@@ -32,7 +32,10 @@ sub printHTTPHeader{
 	<html>\n
 		<head>\n
 			<link rel=\"stylesheet\" type=\"text/css\" href=\"$theme\"></style>
-			<title>$title</title>\n
+			<title>$title - ".$form{"p"}."</title>\n
+	<meta name='Keywords' content='Danny Arends Bioinformatics biology Programming R Genetical Genomics QTL MQM GBIC Groningen Biology Biosources' /> 
+	<meta name='Description' content='DannyArends.nl: ".$form{"p"}." page of Danny Arends his personal home page' /> 
+	<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" />
 	<meta name='Author' content='Danny Arends' />
 	<meta name='Robots' content='INDEX,FOLLOW' />
   <script type='text/javascript'></script>

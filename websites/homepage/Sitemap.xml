@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+  <loc>http://www.dannyarends.nl/</loc>
+  <priority>1.00</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.html</loc>
+  <priority>0.85</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.cgi?p=Publications</loc>
+  <priority>0.7</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.cgi?p=Presentations</loc>
+  <priority>0.7</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.cgi?p=Drawings</loc>
+  <priority>0.7</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.cgi?p=Hobbies</loc>
+  <priority>0.7</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.cgi?p=Applet</loc>
+  <priority>0.7</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.cgi?p=Various</loc>
+  <priority>0.7</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.cgi?p=Links</loc>
+  <priority>0.7</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.dannyarends.nl/Index.cgi?p=Contact</loc>
+  <priority>0.7</priority>
+  <changefreq>daily</changefreq>
+</url>
+
+</urlset>

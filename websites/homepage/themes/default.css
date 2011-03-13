@@ -12,6 +12,18 @@ font-family: "trebuchet MS";
 font-size:11px;
 }
 
+input{
+margin:0px 0px;
+font-family: "trebuchet MS";
+font-size:11px;
+}
+
+textarea{
+margin:0px 0px;
+font-family: "trebuchet MS";
+font-size:11px;
+}
+
 q{
 font-family: "Courier New";
 font-size:12px;

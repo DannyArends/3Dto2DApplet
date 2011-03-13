@@ -66,8 +66,8 @@ public class ServerConnection {
 			//send parameters to server 
 			//FOR DEPLOY: 
 			Utils.console(Engine.getAppletURL() + "cgi-bin/server.cgi");
-			//url = new URL(Engine.getAppletURL() + "cgi-bin/server.cgi");
-			url = new URL("http://localhost/cgi-bin/server.cgi"); 
+			url = new URL(Engine.getAppletURL() + "cgi-bin/server.cgi");
+			//url = new URL("http://localhost/cgi-bin/server.cgi"); 
 			con = (HttpURLConnection) url.openConnection();
 			con.setDoOutput(true); 
 			con.setDoInput(true); 

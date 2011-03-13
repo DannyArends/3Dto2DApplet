@@ -60,7 +60,9 @@ public class Object3DSLoader {
 		Model3DS image = null;
 		for(Model3DS h : models){
 			if(h.getName().equalsIgnoreCase(name)){
-				if(!h.isLoaded()) h.TryLoadingFromName();
+				if(!h.isLoaded()){
+					h.TryLoadingFromName();
+				}
 				image = new Model3DS(h);
 				image.setLocation(x, y, z);
 				return image;

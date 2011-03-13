@@ -9,3 +9,5 @@ build/
 dist/*.html
 doxygen/generated
 *.map
+*.pdf
+*.doc

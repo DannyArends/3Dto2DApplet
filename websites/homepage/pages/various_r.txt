@@ -1,4 +1,9 @@
 <h3>Short stories</h3>
 Well short stories i produced during my life, mostly unfinished scriblings in word document format for people to read and I hope enjoy ;-)
-
+&nbsp;
 - <a href="/documents/80YearVoyage.doc">80 year voyage</a> - Essay about colonization of a planet
+
+<h3>Stock prices and Weather</h3>
+Ever wondered what stock prices and the weather have in common ? I made a small R-script to download Google finance data as well as weather data from various weather stations around the world. R is a statistical language which can be used to analyze this data, e.g. do linear modeling or association testing. Find the script here:
+&nbsp;
+<a href="http://github.com/DannyArends/Google-Financial">Google-Financial repository</a> at github 
