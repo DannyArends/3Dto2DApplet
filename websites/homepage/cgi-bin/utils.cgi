@@ -27,17 +27,17 @@ sub printTXTHeader{
 
 sub printHTTPHeader{
 	print("Content-type: text/html"."\n\n");
-	print("
+	print("<?xml version=\"1.0\" encoding=\"utf-8\"?> 
 	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n
 	<html>\n
 		<head>\n
-			<link rel=\"stylesheet\" type=\"text/css\" href=\"$theme\"></style>
+			<link rel=\"stylesheet\" type=\"text/css\" href=\"$theme\">
 			<title>$title - ".$form{"p"}."</title>\n
-	<meta name='Keywords' content='Danny Arends Bioinformatics biology Programming R Genetical Genomics QTL MQM GBIC Groningen Biology Biosources' /> 
-	<meta name='Description' content='DannyArends.nl: ".$form{"p"}." page of Danny Arends his personal home page' /> 
-	<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" />
-	<meta name='Author' content='Danny Arends' />
-	<meta name='Robots' content='INDEX,FOLLOW' />
+	<meta name='Keywords' content='Danny Arends Bioinformatics biology Programming R Genetical Genomics QTL MQM GBIC Groningen Biology Biosources' > 
+	<meta name='Description' content='DannyArends.nl: ".$form{"p"}." page of Danny Arends his personal home page' > 
+	<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" >
+	<meta name='Author' content='Danny Arends' >
+	<meta name='Robots' content='INDEX,FOLLOW' >
   <script type='text/javascript'></script>
   <script type='text/javascript' src='jQuery/jquery.min.js'></script>
   <script type='text/javascript' src='jQuery/jquery.cycle.min.js'></script>
@@ -50,7 +50,7 @@ sub printHTTPHeader{
   </script>			
 		</head>\n
 		<body>\n
-		<div width='90%' class='whitebg'>
+		<div class='whitebg'>
 			<h1>$title</h1>\n
 			<h2>$subtitle</h2>\n
 			\n");
@@ -60,7 +60,7 @@ sub printHTTPFooter{
 	my $additive = $_[0];
 	print("<ul><li><a href=\"/$additive\"><font color=\"black\">Back</font></a></li></ul>
 			<div align=\"center\">\n
-				<a href=\"http://github.com/DannyArends/3Dto2DApplet\">Github</a><br/>\n
+				<a href=\"http://github.com/DannyArends/3Dto2DApplet\">Github</a><br>\n
 			</div>\n");
 	printEmptyFooter();
 }
@@ -84,7 +84,7 @@ sub showFile{
 			$text .= "\n";
 		}else{
 			#Normal line
-			$text .= $line."<br/>"."\n";
+			$text .= $line."<br>"."\n";
 		}	
 	} 
 	return $text;
@@ -96,10 +96,10 @@ sub printEmptyFooter{
 }
 
 sub printError{
-	print("<font color='red' size='+3'>".$form{"error"}."</font>" ."<br/>". "\n");
+	print("<font color='red' size='+3'>".$form{"error"}."</font>" ."<br>". "\n");
 	if($form{"page"} ne ""){
 		print("<p>Missing page: ".$form{"page"} . "<br/><br/>". "\n");
-		print("Did you mean to <a href=''><font color='green'>Create page '".$form{"page"} . "'?</font></a><br/>". "\n");
+		print("Did you mean to <a href=''><font color='green'>Create page '".$form{"page"} . "'?</font></a><br>". "\n");
 		print("Contact the admin: ". $email ."</p>" . "\n");
 	}
 }

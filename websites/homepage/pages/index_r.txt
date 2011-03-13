@@ -1,8 +1,8 @@
 <h3>Leave a message</h3>
-<form method="post">
-<input type="text" value="Leave your name" name="name"></input>
+<form method="post" action="Index.cgi">
+<input type="text" value="Leave your name" name="name">
 <textarea name="comment" cols="100" rows="5">Enter your comment here...</textarea>
-<input type="submit" value="comment"></input>
+<input type="submit" value="comment">
 </form>
 <h3>Some photos</h3>
-<div class='slideshow'><img src="/images/danny_01.jpg" alt="Danny Arends" /><img src="/images/danny_02.jpg" alt="Danny Arends" /><img src="/images/danny_04.jpg" alt="Danny Arends" /></div>
+<div class='slideshow'><img src="/images/danny_01.jpg" alt="Danny Arends"><img src="/images/danny_02.jpg" alt="Danny Arends"><img src="/images/danny_04.jpg" alt="Danny Arends"></div>

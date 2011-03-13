@@ -32,13 +32,13 @@ font-size:12px;
 .slideshow{
 margin:20px 40px;
 background-color: white;
-overflow:left;
+overflow:auto;
 }
 
 .whitebg{
 margin:20px 40px;
 background-color: white;
-overflow:left;
+overflow:auto;
 }
 
 h1{
@@ -80,7 +80,7 @@ color:black;
 }
 
 a:hover{
-color:lightblue;
+color:teal;
 text-decoration:none;	
 }
 
