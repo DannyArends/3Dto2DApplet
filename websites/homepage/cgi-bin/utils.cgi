@@ -36,6 +36,7 @@ sub printHTTPHeader{
 	<meta name='Keywords' content='Danny Arends Bioinformatics biology Programming R Genetical Genomics QTL MQM GBIC Groningen Biology Biosources' > 
 	<meta name='Description' content='DannyArends.nl: ".$form{"p"}." page of Danny Arends his personal home page' > 
 	<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" >
+  <meta name=\"y_key\" content=\"9fbec0326696c2ee\" >
 	<meta name='Author' content='Danny Arends' >
 	<meta name='Robots' content='INDEX,FOLLOW' >
   <script type='text/javascript'></script>
@@ -47,7 +48,21 @@ sub printHTTPHeader{
   \t\tfx: 'fade'
   \t\t});
   \t});
-  </script>			
+  </script>		
+
+<script type=\"text/javascript\">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22162565-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>	
 		</head>\n
 		<body>\n
 		<div class='whitebg'>
