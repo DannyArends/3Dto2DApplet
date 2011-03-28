@@ -88,9 +88,20 @@ public class CGIServlet extends Servlet {
 			if((tempstring = (String) e.nextElement()) !=  null){
 				String param = req.getParameter(tempstring);
 				Utils.console(param);
+				//http://www.w3schools.com/TAGS/ref_urlencode.asp
+				param = param.replace("%", "%25");
+				param = param.replace("<", "%3C");
+				param = param.replace(">", "%3E");
+				param = param.replace("=", "%3D");
+				param = param.replace(":", "%3A");
+				param = param.replace(";", "%3B");
+				param = param.replace("\"", "%22");
 				param = param.replace(" ", "%20");
 				param = param.replace("\t", "%20%20");
-				param = param.replace("\n", "%0D");
+				param = param.replace("&", "%26");
+				param = param.replace("\'", "%27");
+				param = param.replace("?", "%3F");
+				
 				Utils.console(param);
 				arguments += tempstring + "=" + param + ";";
 			}
