@@ -87,9 +87,11 @@ public class CGIServlet extends Servlet {
 		for (Enumeration<?> e = req.getParameterNames() ; e.hasMoreElements() ;) {
 			if((tempstring = (String) e.nextElement()) !=  null){
 				String param = req.getParameter(tempstring);
-				param.replace(" ", "%20");
-				param.replace("\t", "%20%20");
-				param.replace("\n", "<br>");
+				Utils.console(param);
+				param = param.replace(" ", "%20");
+				param = param.replace("\t", "%20%20");
+				param = param.replace("\n", "%0D");
+				Utils.console(param);
 				arguments += tempstring + "=" + param + ";";
 			}
 	    }
