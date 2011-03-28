@@ -89,6 +89,7 @@ public class CGIServlet extends Servlet {
 				String param = req.getParameter(tempstring);
 				param.replace(" ", "%20");
 				param.replace("\t", "%20%20");
+				param.replace("\n", "<br>");
 				arguments += tempstring + "=" + param + ";";
 			}
 	    }
