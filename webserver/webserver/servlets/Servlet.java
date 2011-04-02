@@ -1,7 +1,5 @@
 package webserver.servlets;
 
-import generic.Utils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,9 +9,11 @@ import java.util.Enumeration;
 import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import events.Traceable;
+import generic.Utils;
 
 /// Abstract class to mimic a Java Servlet.
 //<p>
@@ -22,12 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 //</p>
 //@see javax.servlet.http.HttpServlet
 
-public abstract class Servlet extends HttpServlet{
+public abstract class Servlet extends Traceable{
 	private static final long serialVersionUID = 1L;
 	private boolean useCompression;
 	private String charSet;
 	static final String BYTES_UNIT = "bytes";
-	private static boolean logenabled = false;
 	private String website_root_path = "websites";
 	
 	public Servlet(){
@@ -44,30 +43,22 @@ public abstract class Servlet extends HttpServlet{
 	
 	abstract public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException;
 
-	public static boolean isLogenabled() {
-		return logenabled;
-	}
-	
-	public static void setLogenabled(boolean b) {
-		logenabled=b;
-	}
-	
 	protected void serveFile(HttpServletRequest req, HttpServletResponse res, boolean headOnly, File file)throws IOException {
-		if (isLogenabled()) {
-			Utils.console("Getting: " + file);
-			Enumeration<?> enh = req.getHeaderNames();
-			while (enh.hasMoreElements()) {
-				String hn = (String) enh.nextElement();
-				Utils.console("hdr:" + hn + ":" + req.getHeader(hn));
-			}
+		trace("Getting: " + file);
+		Enumeration<?> enh = req.getHeaderNames();
+		while (enh.hasMoreElements()) {
+			String hn = (String) enh.nextElement();
+			trace(0,"hdr:" + hn + ":" + req.getHeader(hn));
 		}
 		if (!file.canRead()) {
 			res.sendError(HttpServletResponse.SC_FORBIDDEN);
+			trace(0,"Error reading file");
 			return;
 		} else{
 			try {
 				file.getCanonicalPath();
 			} catch (Exception e) {
+				trace(0,"Forbidden file");
 				res.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden, exception:" + e);
 				return;
 			}
@@ -88,7 +79,7 @@ public abstract class Servlet extends HttpServlet{
 		long sr = 0;
 		long er = -1;
 		if (range != null) {
-			if (isLogenabled()) Utils.console("Range:" + range);
+			trace("Range:" + range);
 			if (range.regionMatches(true, 0, BYTES_UNIT, 0, BYTES_UNIT.length())) {
 				int i = range.indexOf('-');
 				if (i > 0) {
@@ -105,7 +96,7 @@ public abstract class Servlet extends HttpServlet{
 				}
 			} // else invalid range? ignore?
 			} // else other units not supported
-			if (isLogenabled()) Utils.console("range values " + sr + " to " + er);
+			trace("range values " + sr + " to " + er);
 		}
 		long clen = er < 0 ? flen : (er - sr + 1);
 		res.setDateHeader("Last-modified", lastMod);
@@ -117,7 +108,7 @@ public abstract class Servlet extends HttpServlet{
 			}
 			res.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
 			res.setHeader("Content-Range", BYTES_UNIT + " " + sr + '-' + er + '/' + flen);
-			if (isLogenabled()) Utils.console("content-range:" + BYTES_UNIT + " " + sr + '-' + er + '/' + flen);
+			trace("content-range:" + BYTES_UNIT + " " + sr + '-' + er + '/' + flen);
 		}
 		//String ifRange = req.getHeader("If-Range");
 		//res.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);

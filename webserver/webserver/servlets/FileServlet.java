@@ -124,13 +124,13 @@ public class FileServlet extends Servlet {
 	private void dispatchPathname(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path) throws IOException {
 		String filename = path != null ? path.replace('/', File.separatorChar) : "";
 		File file = new File(filename);
-		Utils.console("retrieving '" + filename + "' for path " + path);
+		trace(0,"retrieving '" + filename + "' for path " + path);
 		if (file.exists()) {
 			if (!file.isDirectory()){
 				serveFile(req, res, headOnly, file);
-				Utils.console("Served file: " + file + " " +  file.length()/1024 + " Kb");
+				trace("Served file: " + file + " " +  file.length()/1024 + " Kb");
 			} else {
-				if (isLogenabled()) Utils.console("showing dir " + file);
+				trace("Showing dir: " + file);
 				if (redirectDirectory(req, res, path, file) == false){
 					showIdexFile(req, res, headOnly, path, filename);
 				}
@@ -143,7 +143,7 @@ public class FileServlet extends Servlet {
 
 	private void showIdexFile(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path,
 			String parent) throws IOException {
-		if (isLogenabled()) Utils.console("Showing index in directory " + parent);
+		if (isLogEnabled()) Utils.console("Showing index in directory " + parent);
 		for (int i = 0; i < DEFAULTINDEXPAGES.length; i++) {
 			File indexFile = new File(parent, DEFAULTINDEXPAGES[i]);
 			if (indexFile.exists()) {
@@ -158,7 +158,7 @@ public class FileServlet extends Servlet {
 
 
 	private void serveDirectory(HttpServletRequest req, HttpServletResponse res, boolean headOnly, String path,	File file) throws IOException {
-		if (isLogenabled()) Utils.console("Indexing directory: " + file);
+		if (isLogEnabled()) Utils.console("Indexing directory: " + file);
 		if (!file.canRead()) {
 			res.sendError(HttpServletResponse.SC_FORBIDDEN);
 			return;
@@ -259,7 +259,7 @@ public class FileServlet extends Servlet {
 				path += '/';
 			else
 				path = path.substring(sp + 1) + '/';
-			if (isLogenabled()) Utils.console("Redirecting dir " + path);
+			if (isLogEnabled()) Utils.console("Redirecting dir " + path);
 			res.sendRedirect(path);
 			return true;
 		}

@@ -60,6 +60,31 @@ public class CGIServlet extends Servlet {
 		return r;
 	}
 	
+	//Basic escaping of strings into something we kind of know
+	String escapeString(String s){
+		//http://www.w3schools.com/TAGS/ref_urlencode.asp
+		String param = s;
+		param = param.replace("%", "%25");	// '%' first or we'll be screwed
+		param = param.replace("<", "%3C");
+		param = param.replace("#", "%23");
+		param = param.replace("=", "%3D");
+		param = param.replace(">", "%3E");
+		param = param.replace("=", "%3D");
+		param = param.replace("+", "%2B");
+		param = param.replace(":", "%3A");
+		param = param.replace("-", "%2D");
+		param = param.replace(";", "%3B");
+		param = param.replace("\"", "%27");
+		param = param.replace("\\", "%5C");
+		param = param.replace("/", "%2F");
+		param = param.replace(" ", "%20");
+		param = param.replace("\t", "%20%20");
+		param = param.replace("&", "%26");
+		param = param.replace("\'", "%27");
+		param = param.replace("?", "%3F");
+		return param;
+	}
+	
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		CommandExecutor myCommandExe = new CommandExecutor();
@@ -80,30 +105,13 @@ public class CGIServlet extends Servlet {
 			filename = req.getPathTranslated() != "." ? req.getPathTranslated().replace('/', File.separatorChar) : "./index.cgi";
 		}
 		extension = filename.substring(filename.indexOf(".", 2)+1);
-		Utils.log("filename:" + filename + " Extension:"+extension + " Path:" + path, System.err);
+		if(isLogEnabled()) Utils.log("filename:" + filename + " Extension:"+extension + " Path:" + path, System.err);
 		filename = filename.substring(filename.indexOf(".", 0)+1);
 		filename = path + filename;
 
 		for (Enumeration<?> e = req.getParameterNames() ; e.hasMoreElements() ;) {
 			if((tempstring = (String) e.nextElement()) !=  null){
-				String param = req.getParameter(tempstring);
-				Utils.console(param);
-				//http://www.w3schools.com/TAGS/ref_urlencode.asp
-				param = param.replace("%", "%25");
-				param = param.replace("<", "%3C");
-				param = param.replace(">", "%3E");
-				param = param.replace("=", "%3D");
-				param = param.replace(":", "%3A");
-				param = param.replace(";", "%3B");
-				param = param.replace("\"", "%22");
-				param = param.replace(" ", "%20");
-				param = param.replace("\t", "%20%20");
-				param = param.replace("&", "%26");
-				param = param.replace("\'", "%27");
-				param = param.replace("?", "%3F");
-				
-				Utils.console(param);
-				arguments += tempstring + "=" + param + ";";
+				arguments += tempstring + "=" + escapeString(req.getParameter(tempstring)) + ";";
 			}
 	    }
 
@@ -118,7 +126,7 @@ public class CGIServlet extends Servlet {
 			//Utils.console("Creating command: " + command + "I "+ path + " " + file.getCanonicalPath() + " " + arguments);
 			myCommandExe.addCommand("cd " + (inCGI?short_localPath:getLocal_path()) + " && "+ command + file.getCanonicalPath() + " " + arguments);
 		}else{
-			Utils.log("No interpreter for: " + extension,System.err);
+			if(isLogEnabled()) Utils.log("No interpreter for: " + extension,System.err);
 			serveFile(req, res, false, file);
 			return;
 		}
@@ -135,7 +143,7 @@ public class CGIServlet extends Servlet {
 		for(String s : tempstring.split("\n")){
 			if(s != null && !s.equals("")){
 				if(!contenttype && s.toLowerCase().startsWith("content-type:")){
-					if(isLogenabled())Utils.console("Possible content type: " + s.split(": ")[1]);
+					if(isLogEnabled())Utils.console("Possible content type: " + s.split(": ")[1]);
 					res.setContentType(s.split(": ")[1]);
 					contenttype=true;
 				}else{
