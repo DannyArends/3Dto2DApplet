@@ -32,7 +32,7 @@ print "
 <table width='95%'>
 <tr>
   <td colspan=3>
-  <i>Last updated: 26 March 2011</i><br>
+  <i>Last updated: 02 April 2011</i><br>
   [<a href=\"/Index.cgi\" title=\"The index page of dannyarends.nl\"><font color=\"black\">Home</font></a>
   |<a href=\"/myblog.cgi\" title=\"Blog by Danny Arends\"><font color=\"black\">My Blog</font></a>
   |<a href=\"/Index.cgi?p=Publications\" title=\"Overview of Publication by Danny Arends\"><font color=\"black\">Publications</font></a>
@@ -43,7 +43,6 @@ print "
   |<a href=\"/Index.cgi?p=Applet\" title=\"Java applet game created by Danny Arends\"><font color=\"black\">Java Applet world</font></a>
   |<a href=\"/Index.cgi?p=Various\" title=\"Other things that intrest me\"><font color=\"black\">Other stuff</font></a>
   |<a href=\"/Index.cgi?p=Links\" title=\"Links to other web pages\"><font color=\"black\">Links</font></a>
-  |<a href=\"/cgi-bin/\" title=\"Admin part of the website\"><font color=\"black\">Management Console</font></a>
   ]<br><hr>
     </td>
 <tr>
