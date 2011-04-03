@@ -37,8 +37,8 @@ our $config_currentStyleFolder = 'themes';								# Styles folder (. = in the sa
 our $config_entriesPerPage = 5;										# For pagination... How many entries will be displayed per page?
 our $config_maxPagesDisplayed = 5;									# Maximum number of pages displayed at the bottom
 our $config_metaRevisitAfter = 1;									# This is for search Engines... How often will they check for updates, in days
-our $config_metaDescription = 'My blog, about programming and other stuff';				# Also for search engines
-our $config_metaKeywords = 'blog, posts, danny arends, danny, blog, software, code, programming';					# Also for search engines...
+our $config_metaDescription = 'My blog about programming, biology, software and other stuff';				# Also for search engines
+our $config_metaKeywords = 'Bioinformatics, QTL, Computational, Line Drawings, Groningen University, Biology, Publications, R, R package, PHD Student, C, Rqtl, Genetical Genomics, QTL';					# Also for search engines...
 our $config_textAreaCols = 50;										# Cols of the textarea to add and edit entries
 our $config_textAreaRows = 10;										# Rows of the textarea to add and edit entries
 our @config_ipBan = qw/202.325.35.145 165.265.26.65/;				# 2 random IPS, sorry if it is yours... Just edit this, separate ips with spaces
@@ -77,6 +77,7 @@ our $config_useHtmlOnEntries =1;									# Allow HTML on entries when making a n
 our $config_useWYSIWYG = 1;											# You must allow HTML on entries for this to work // Note, WYSIWYG wont allow smilies
 our $config_onlyNumbersOnCAPTCHA = 0;								# Use only numbers on CAPTCHA
 our $config_CAPTCHALenght = 8;										# Just to make different codes
+our $config_baseurl='http://www.dannyarends.nl/myblog.cgi'; #for rss
 
 # Basic Functions
 sub r{
@@ -248,7 +249,7 @@ sub getComments
 if(r('do') eq 'RSS')
 {
 	my @baseUrl = split(/\?/, 'http://'.$ENV{'HTTP_HOST'}.$ENV{'REQUEST_URI'});
-	my $base = $baseUrl[0];
+	my $base = $config_baseurl;
 	my @entries = getFiles($config_postsDatabaseFolder);
 	my $limit;
 	
@@ -257,7 +258,7 @@ if(r('do') eq 'RSS')
 	<channel>
 	<title>'.$config_blogTitle.'</title>
 	<description>'.$config_metaDescription.'</description>
-	<link>http://'.$ENV{'HTTP_HOST'}.substr($ENV{'REQUEST_URI'},0,length($ENV{'REQUEST_URI'})-7).'</link>';
+	<link>'.$config_baseurl.'</link>';
 	
 	if($config_entriesOnRSS == 0)
 	{
@@ -274,6 +275,7 @@ if(r('do') eq 'RSS')
 		my $content = $finalEntries[1];
 		$content =~ s/\</&lt;/gi;
 		$content =~ s/\>/&gt;/gi;
+    $content =~ s/&nbsp;/ /gi;
 		print '<item>
 		<link>'.$base.'?viewDetailed='.$finalEntries[4].'</link>
 		<title>'.$finalEntries[0].'</title>

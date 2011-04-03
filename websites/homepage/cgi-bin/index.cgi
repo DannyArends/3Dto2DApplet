@@ -38,7 +38,7 @@ $form{"online"} = '';
 $form{"list_files"} = '';
 
 # Print a http header
-printHTTPHeader();
+printHTTPHeader('NOINDEX,FOLLOW');
 receivePost();
 writeIPtoLog();
 

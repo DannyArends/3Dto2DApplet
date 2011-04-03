@@ -26,6 +26,7 @@ sub printTXTHeader{
 }
 
 sub printHTTPHeader{
+  my $spidercommand = $_[0];
 	print("Content-type: text/html"."\n\n");
 	print("<?xml version=\"1.0\" encoding=\"utf-8\"?> 
 	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n
@@ -33,12 +34,12 @@ sub printHTTPHeader{
 		<head>\n
 			<link rel=\"stylesheet\" type=\"text/css\" href=\"$theme\">
 			<title>$title - ".$form{"p"}."</title>\n
-	<meta name='Keywords' content='Danny Arends Bioinformatics biology Programming R Genetical Genomics QTL MQM GBIC Groningen Biology Biosources' > 
-	<meta name='Description' content='DannyArends.nl: ".$form{"p"}." page of Danny Arends his personal home page' > 
+	<meta name='Keywords' content='Bioinformatics, QTL, Computational, Line Drawings, Groningen University, Biology, Publications, R, R package, PHD Student, C, Rqtl, Genetical Genomics, QTL' > 
+	<meta name='Description' content='DannyArends.nl: ".$form{"p"}."' > 
 	<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" >
   <meta name=\"y_key\" content=\"9fbec0326696c2ee\" >
 	<meta name='Author' content='Danny Arends' >
-	<meta name='Robots' content='INDEX,FOLLOW' >
+	<meta name='Robots' content='$spidercommand' >
   <script type='text/javascript'></script>
   <script type='text/javascript' src='jQuery/jquery.min.js'></script>
   <script type='text/javascript' src='jQuery/jquery.cycle.min.js'></script>

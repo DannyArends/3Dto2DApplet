@@ -1,6 +1,10 @@
 <h3>About Danny</h3>
-Welcome to my web site, first let me introduce myself. I'm Danny Arends and I'm a PHD student bioinformatics at the Groningen Bioinformatics Centre which is a part of the University of Groningen. For my work I create software for use in biology research, the focus of my PHD thesis is on computational methods in quantitative trait analysis. People interested can read more about that in the publications section. 
-This web site however is setup to be more broad than just focus on what i do for work. 
+Welcome to my web site, first let me introduce myself. I'm Danny Arends and I'm a PHD student 
+bioinformatics at the Groningen Bioinformatics Centre which is a part of the University of Groningen. 
+For my work I create software for use in biology research, the focus of my PHD thesis is on 
+computational methods in quantitative trait analysis (QTL). People interested can read more about 
+that in the publications section or on my blog. This web site however is setup to be more broad than just 
+focus on what I do for work. So i aso show my passion for software visualization, and keep a blog of my life.
 So if you want to know more about me, I welcome you to visit the other sections as well like:
 &nbsp;
 -<a href="/Index.cgi?p=Publications" title="Overview of Publication by Danny Arends">Publications</a>
@@ -10,7 +14,7 @@ So if you want to know more about me, I welcome you to visit the other sections 
 -<a href="/Index.cgi?p=Applet" title="Java applet game created by Danny Arends">Java Applet world</a>
 -<a href="/Index.cgi?p=Various" title="Other things">Other stuff</a>
 &nbsp;
-So feel free look around and enjoy, and please contact me if you find anything broken/unsuited...
+So look around and enjoy, and please contact me if you find anything broken / unsuited...
 <h3>Contact</h3>
 E-mail: Danny.Arends[at]Gmail.com
 E-mail: The_Smoking_Bear[at]Hotmail.com

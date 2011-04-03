@@ -27,7 +27,7 @@ receivePost();
 if($form{"p"} eq ""){
 	$form{"p"} = "index"; 
 }
-printHTTPHeader();
+printHTTPHeader('INDEX,FOLLOW');
 print "
 <table width='95%'>
 <tr>

@@ -31,7 +31,7 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 	    setVisible(true);
 	    server.commandToServer("function=online");
 	    engine = new Engine(this, server,eventListener);
-	    engine.setRenderWindowUpdate(true);
+	    //engine.setRenderWindowUpdate(true);
 		addKeyListener(eventListener);
 		addMouseListener(eventListener);
 		addMouseMotionListener(eventListener);
