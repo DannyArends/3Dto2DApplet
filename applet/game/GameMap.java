@@ -30,6 +30,7 @@ public class GameMap extends GameObject{
 	void parseMap(String map){
 		String[] dimension1 = map.split("\n");
 		int offset = Utils.offsetByComment(dimension1);
+		if(offset < 0) return;
 		String[] dimension2 = dimension1[offset].split(" ");
 		dimx=dimension1.length-offset;
 		dimy=dimension2.length;

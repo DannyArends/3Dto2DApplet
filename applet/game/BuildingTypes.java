@@ -18,6 +18,7 @@ public class BuildingTypes extends Types{
 	private void parseTileTypes(String buildingTypeInfo) {
 		String[] lines = buildingTypeInfo.split("\n");
 		int offset = Utils.offsetByComment(lines);
+		if(offset < 0) return;
 		nbuildings=lines.length-offset;
 		IDs = new int[nbuildings];
 		buildingColors = new Color[nbuildings];

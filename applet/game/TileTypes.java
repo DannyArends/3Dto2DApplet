@@ -18,6 +18,7 @@ public class TileTypes extends Types{
 	private void parseTileTypes(String tileTypeInfo) {
 		String[] lines = tileTypeInfo.split("\n");
 		int offset = Utils.offsetByComment(lines);
+		if(offset < 0) return;
 		ntiles=lines.length-offset;
 		IDs = new int[ntiles];
 		tileColors = new Color[ntiles];
