@@ -1,0 +1,25 @@
+#Web server settings
+web_dir = websites
+web_gui = true
+
+#Debug settings (0=Silent, 1=Info, 2=Debug, 3=Full)
+trace_enabled = true
+trace_priority = 2
+trace_to = System.out
+
+#Database back end settings
+db_driver = org.hsqldb.jdbcDriver
+db_user = sa
+db_pass =
+db_uri = jdbc:hsqldb:file:database/DJWServer;shutdown=true
+
+#Different CGI settings
+php_enabled = false
+php_bin_location = c:/php
+
+perl_enabled = true
+perl_bin_location = c:/Perl/bin
+perl_inc_location = c:/Perl/lib
+
+python_enabled = false
+python_bin_location = c:/Python26
