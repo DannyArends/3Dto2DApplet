@@ -1081,7 +1081,6 @@ elsif(r('viewDetailed') ne '')
 		my @entry = split(/"/, $tempContent);
 		my $fileName = $entry[4];
 		my $title = $entry[0];
-		my $content = $entry[1];
 		my $category = $entry[3];
 		print '<h1><a href="?viewDetailed='.$entry[4].'">'.$entry[0].'</a></h1>'.$entry[1].'<br /><br /><center><i>Posted on '.$entry[2].' - Category: <a href="?viewCat='.$entry[3].'">'.$entry[3].'</a><br /><a href="?edit='.$entry[4].'">Edit</a> - <a href="?delete='.$entry[4].'">Delete</a></i></center><br /><br />';
 		
@@ -1399,7 +1398,7 @@ elsif(r('process') eq 'deleteComment')
 		my $newContent = '';
 		
 		my $i = 0;
-		my @newComments;
+		my @newComments =();
 		foreach(@comments)
 		{
 			if($i != $part)
@@ -1419,10 +1418,9 @@ elsif(r('process') eq 'deleteComment')
 		}
 		else
 		{		
-			reverse(@newComments);
+			@newComments = reverse(@newComments);
 			
-			foreach(@newComments)
-			{
+			foreach(@newComments){
 				$newContent.=$_."'";
 			}
 			
@@ -1440,9 +1438,9 @@ elsif(r('process') eq 'deleteComment')
 		}
 		close FILE;
 		
-		my @comments = split(/'/, $newContent);
+		my @commentslist = split(/'/, $newContent);
 		my $finalCommentsToAdd;
-		foreach(@comments)
+		foreach(@commentslist)
 		{
 			unless($_ eq $commentToDelete)
 			{
@@ -1470,7 +1468,7 @@ elsif(r('do') eq 'archive')
 	my @entries = getFiles($config_postsDatabaseFolder);
 	print 'No entries created yet.' if scalar(@entries) == 0;
 	# Split the data in the post so i have them in this format "13 Dic 2008, 24:11|0001|Entry title" date|fileName|entryTitle
-	my @dates = map { split(/"/, $_); @_[2].'|'.@_[4].'|'.@_[0]; } @entries;
+	my @dates = map { my @d = split(/"/, $_); $d[2].'|'.$d[4].'|'.$d[0]; } @entries;
 	my @years;
 	foreach(@dates)
 	{
@@ -1508,7 +1506,7 @@ elsif(r('do') eq 'archive')
 				foreach(@entries)
 				{
 					my @data = split(/\|/, $_);
-					my @d = map {split(/\s/, $_); @_[0]} split(/,/, $data[0]);
+					my @d = map {my @e = split(/\s/, $_); $e[0]} split(/,/, $data[0]);
 					print '<tr>
 					<td>Day '.$d[0].':</td>
 					<td><a href="?viewDetailed='.$data[1].'">'.$data[2].'</a></td>
