@@ -56,9 +56,6 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 	}
 
 	public static void main(String[] args) throws Exception{
-		Utils.log("-- Starting webserver --",System.err);
-		new Thread(webserver).start();
-		Utils.log("-- Serving: http://localhost:80/ --",System.err);
 		new Thread(new DWF(800,600,title));
 	}
 

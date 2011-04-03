@@ -50,7 +50,8 @@ import javax.servlet.http.*;
 
 /// Class to serve java servlets using HTTP
 //<p>
-//See TJWS
+//The web server class is based on the original code by the Tiny java web server team
+//See TJWS for more documentation.
 //</p>
 //
 

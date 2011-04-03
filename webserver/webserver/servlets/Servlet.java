@@ -153,6 +153,7 @@ public abstract class Servlet extends Traceable{
 			if (out != null) {
 				out.flush();
 				out.close();
+				Utils.console("Served file: " + req.getPathTranslated() + " " +  Long.toString(clen) + " bytes to " + req.getLocalName() + ":" + req.getMethod());
 			}
 		}
 	}

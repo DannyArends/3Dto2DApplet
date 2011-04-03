@@ -30,7 +30,7 @@ public class CGIServlet extends Servlet {
 	private static final long serialVersionUID = 1L;
 	String[][] extensions = new String[][]{
 			{"pl","cgi","php","php3","py"},
-			{"perl -X ","perl -X ","php -c php.ini -f","php -c php.ini -f","python -u"}
+			{"perl -X ","perl -X ","php -c php.ini -f ","php -c php.ini -f ","python -u "}
 	};
 	String mainpage = "index.cgi";
 	String short_localPath = "";
@@ -40,7 +40,7 @@ public class CGIServlet extends Servlet {
 		super();
 	}
 	
-	public CGIServlet(String path,boolean inCGI){
+	public CGIServlet(String path, boolean inCGI){
 		this();
 		short_localPath = getLocal_path() + File.separator + path;
 		setLocal_path(getLocal_path() + File.separator + path);
@@ -159,7 +159,7 @@ public class CGIServlet extends Servlet {
 		if(!contenttype){
 			Utils.log("Unexpected output when serving file: " + file + ", no page", System.err);
 		}else{
-			Utils.console("Served file: " + file + " " +  length + " bytes");
+			Utils.console("Served file: " + req.getPathTranslated() + " " +  length + " bytes to " + req.getLocalName());
 		}
 	}
 

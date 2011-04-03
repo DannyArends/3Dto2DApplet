@@ -1,7 +1,8 @@
 package webserver;
 
-import webserver.servlets.FileServlet;
+import webserver.servlets.AdminServlet;
 import webserver.servlets.CGIServlet;
+import webserver.servlets.FileServlet;
 
 
 public class WWWServer extends Webserver implements Runnable{
@@ -12,13 +13,17 @@ public class WWWServer extends Webserver implements Runnable{
         aliases.put("/", new java.io.File("."));
         setMappingTable(aliases);
         
+        //Admin
+        addServlet("/admin/tests", new CGIServlet("admin/tests",false));
+        addServlet("/admin", new AdminServlet());
+        
+        
         //My own homepage
         addServlet("/cgi-bin", new CGIServlet("homepage",true));
         addServlet("/", new CGIServlet("homepage",false));
-        
+       
         //Another website
-        addServlet("/", new FileServlet("qtlocator"),"www.QTLocator.nl");
-        
+        addServlet("/", new CGIServlet("qtlocator",false),"www.QTLocator.nl");
 	}
 	
 	public void run(){
