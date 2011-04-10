@@ -1,12 +1,8 @@
 package generic.options;
 
 import generic.Utils;
-import generic.options.Option;
-import generic.options.Option.Param;
-import generic.options.Option.Type;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;

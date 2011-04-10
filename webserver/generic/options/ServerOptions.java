@@ -1,9 +1,6 @@
 package generic.options;
 
 import generic.Utils;
-import generic.options.Option;
-import generic.options.Option.Param;
-import generic.options.Option.Type;
 
 import java.io.FileInputStream;
 import java.util.Properties;

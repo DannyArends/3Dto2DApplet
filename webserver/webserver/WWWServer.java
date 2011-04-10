@@ -2,7 +2,6 @@ package webserver;
 
 import webserver.servlets.AdminServlet;
 import webserver.servlets.CGIServlet;
-import webserver.servlets.FileServlet;
 
 
 public class WWWServer extends Webserver implements Runnable{
