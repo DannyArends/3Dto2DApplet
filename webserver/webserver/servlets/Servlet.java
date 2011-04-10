@@ -12,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import events.Traceable;
 import generic.Utils;
 
 /// Abstract class to mimic a Java Servlet.
@@ -22,12 +21,14 @@ import generic.Utils;
 //</p>
 //@see javax.servlet.http.HttpServlet
 
-public abstract class Servlet extends Traceable{
+public abstract class Servlet extends javax.servlet.http.HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private boolean useCompression;
 	private String charSet;
 	static final String BYTES_UNIT = "bytes";
 	private String website_root_path = "websites";
+	private boolean logEnabled;
+	private int priority = 0;
 	
 	public Servlet(){
 		setCharSet("UTF8");
@@ -39,6 +40,36 @@ public abstract class Servlet extends Traceable{
 
 	public String getCharSet() {
 		return charSet;
+	}
+	
+	public boolean isLogEnabled() {
+		return logEnabled;
+	}
+
+	public void setLogEnabled(boolean logEnabled) {
+		this.logEnabled = logEnabled;
+	}
+	
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
+	public void trace(String m){
+		trace(1,m);
+	}
+	
+	public void trace(int p, String m){
+		if(logEnabled){
+			if(p==-1){
+				Utils.log(m, System.err);
+			}else{
+				if(priority <= p) Utils.log(m, System.out);	
+			}
+		}
 	}
 	
 	abstract public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException;

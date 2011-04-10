@@ -1,17 +1,21 @@
-package options;
+package generic.options;
 
 import generic.Utils;
+import generic.options.Option;
+import generic.options.Option.Param;
+import generic.options.Option.Type;
+
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class ServerOptions {
+public class ServerOptions implements OptionsPackage{
 	public Properties properties;
 	
 	@Option(name = "web_dir", param = Option.Param.DIRPATH, type = Option.Type.REQUIRED_ARGUMENT, usage = "Location of the websites")
 	public static String web_dir = "websites";
 	
-	@Option(name = "web_gui", param = Option.Param.BOOLEAN, type = Option.Type.REQUIRED_ARGUMENT, usage = "Start the applet GUI")
-	public boolean web_gui = false;
+	@Option(name = "GUI_File", param = Option.Param.BOOLEAN, type = Option.Type.REQUIRED_ARGUMENT, usage = "Start the applet GUI")
+	public boolean GUI_File = false;
 	
 	@Option(name = "trace_enabled", param = Option.Param.BOOLEAN, type = Option.Type.REQUIRED_ARGUMENT, usage = "Trace the running application")
 	public static boolean trace_enabled = false;
@@ -57,12 +61,14 @@ public class ServerOptions {
 		
 	}
 	
-	public ServerOptions(String propertiesFile){
+	public boolean load(String propertiesFile){
 		properties = new Properties();
 		try	{
 			properties.load(new FileInputStream(propertiesFile));
+			return true;
 		}catch (Exception e){
 			Utils.log("Properties file not found", System.err);
+			return false;
 		}
 	}
 }

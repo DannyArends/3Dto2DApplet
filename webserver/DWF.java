@@ -1,7 +1,6 @@
 import events.MyHandler;
 import events.ServerConnection;
 import generic.RenderWindow;
-import generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -21,7 +20,7 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 	static String title = "DWF v0.0.1 with CGI support";
 	static WWWServer webserver = new WWWServer();
 	MyHandler eventListener= new MyHandler(this);
-	ServerConnection server = new ServerConnection();
+	ServerConnection server = new ServerConnection("Standalone");
 	Engine engine; 
 	
 	DWF(int w, int h,String title){

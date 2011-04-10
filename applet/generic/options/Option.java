@@ -1,4 +1,4 @@
-package options;
+package generic.options;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

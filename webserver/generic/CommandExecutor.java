@@ -5,8 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import events.Traceable;
-
 
 /// CommandExecutor - command executor class
 //<p>
@@ -14,7 +12,7 @@ import events.Traceable;
 //</p>
 //
 
-public class CommandExecutor extends Traceable implements Runnable{
+public class CommandExecutor implements Runnable{
 	private static final long serialVersionUID = -2921281960160790513L;
 	private ArrayList<String> commands = new ArrayList<String>();
 	public String res = "";
@@ -59,11 +57,11 @@ public class CommandExecutor extends Traceable implements Runnable{
 				while ((line = br_in.readLine()) != null) {
 					res += line + "\n";
 				}
-				trace("Output of command received");
+				Utils.console("Output of command received");
 				if (p.waitFor() != 0) {
 					Utils.log("Command: "+ command + " exit=" + p.exitValue(),System.err);
 				}else{
-					trace("Command: "+ command +" succesfull");
+					Utils.console("Command: "+ command +" succesfull");
 				}
 			} catch (Exception e) {
 				Utils.log("Interupted: ",e);

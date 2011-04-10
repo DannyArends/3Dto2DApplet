@@ -47,10 +47,18 @@ public class ServerConnection {
 	public static long up;
 	public static long down;
 	public static boolean online = false;
+	String connectionstring = "http://localhost/cgi-bin/server.cgi";
 	
-	public ServerConnection(){
+	public ServerConnection(String type){
 		up=0;
 		down=0;
+		if(type=="Applet"){
+			try{
+			connectionstring = Engine.getAppletURL() + "cgi-bin/server.cgi";
+			}catch(Exception e){
+			connectionstring = "http://localhost/cgi-bin/server.cgi";	
+			}
+		}
 	}
 	
 	/**
@@ -67,7 +75,7 @@ public class ServerConnection {
 			//FOR DEPLOY: 
 			//Utils.console(Engine.getAppletURL() + "cgi-bin/server.cgi");
 			//url = new URL(Engine.getAppletURL() + "cgi-bin/server.cgi");
-			url = new URL("http://localhost/cgi-bin/server.cgi"); 
+			url = new URL(connectionstring); 
 			con = (HttpURLConnection) url.openConnection();
 			con.setDoOutput(true); 
 			con.setDoInput(true); 

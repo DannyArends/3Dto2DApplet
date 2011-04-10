@@ -1,4 +1,5 @@
-package options;
+package generic.options;
+
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -7,10 +8,10 @@ import java.util.Map;
 import java.util.Properties;
 
 public class OptionsParser {
-	ServerOptions options;
+	OptionsPackage options;
 	HashMap<String, Field> field_map = new HashMap<String, Field>();
 	
-	public OptionsParser(ServerOptions options){
+	public OptionsParser(OptionsPackage options){
 		this.options=options;
 		Field[] fields = options.getClass().getDeclaredFields();
 		for (int i = 0; i < fields.length; i++){

@@ -45,7 +45,7 @@ public class Engine{
 	private static Graphics backBufferGraphics = null;
 	private static Dimension size;
 	private static RenderWindow parent;
-	private ServerConnection server = new ServerConnection();
+	private ServerConnection server = null;
 	private MyHandler eventHandler;
 	static MyTimer timer;
 	static IconLoader iconloader;
@@ -60,13 +60,13 @@ public class Engine{
 	 * @return
 	 */	
 	public Engine(RenderWindow p, ServerConnection s,MyHandler eventListener){
+		server = s;
 		eventHandler=eventListener;
 		timer= new MyTimer(s,eventHandler);
 		parent=p;
 		size = p.getSize();
 		backBuffer = p.createImage(size.width, size.height);
 		setBackBufferGraphics(backBuffer.getGraphics());
-		server = s;
 		Thread t = new Thread(new Scene(size,s,eventListener));
 		t.start();
 	}

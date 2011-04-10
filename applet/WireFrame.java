@@ -23,6 +23,9 @@
 import events.MyHandler;
 import events.ServerConnection;
 import generic.RenderWindow;
+import generic.options.OptionsPackage;
+import generic.options.OptionsParser;
+import generic.options.ServerOptions;
 
 import java.applet.Applet;
 import java.awt.Graphics;
@@ -36,12 +39,22 @@ import rendering.Engine;
 public class WireFrame extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = 1L;
 	
-	ServerConnection server = new ServerConnection();
+	ServerConnection server = new ServerConnection("Applet");
 	MyHandler eventListener= new MyHandler(this);
+	static ServerOptions clientOptions;
+	static OptionsParser optionsParser;
 	Engine engine;
 	
 	public void init() {
 		server.commandToServer("function=online");
+		clientOptions = new ServerOptions();
+		clientOptions.load("http://localhost/dist/data/client.properties");
+		optionsParser = new OptionsParser((OptionsPackage) clientOptions);
+		try {
+			optionsParser.parse(clientOptions.properties);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		engine = new Engine(this,server,eventListener);
 		addKeyListener(this);
 		addMouseListener(this);
