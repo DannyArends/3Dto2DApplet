@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?>
+
+<cproject>
+<storageModule moduleId="org.eclipse.cdt.core.settings">
+<cconfiguration id="org.eclipse.cdt.core.default.config.1">
+<storageModule buildSystemId="org.eclipse.cdt.core.defaultConfigDataProvider" id="org.eclipse.cdt.core.default.config.1" moduleId="org.eclipse.cdt.core.settings" name="Configuration">
+<externalSettings/>
+<extensions>
+<extension id="org.eclipse.cdt.core.PE" point="org.eclipse.cdt.core.BinaryParser"/>
+</extensions>
+</storageModule>
+<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
+<project-mappings/>
+</storageModule>
+<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+<storageModule moduleId="org.eclipse.cdt.core.pathentry">
+<pathentry excluding="**/CMakeFiles/" kind="out" path=""/>
+<pathentry include="D:/eclipse/JAVA/3Dto2DApplet/src/cpp" kind="inc" path="" system="true"/>
+<pathentry include="C:/Program Files/Java/jdk1.6.0_14/include/win32" kind="inc" path="" system="true"/>
+<pathentry include="C:/Program Files/Java/jdk1.6.0_14/include" kind="inc" path="" system="true"/>
+<pathentry include="C:/MinGW/include" kind="inc" path="" system="true"/>
+<pathentry include="c:/mingw/lib/gcc/mingw32/4.4.0/include" kind="inc" path="" system="true"/>
+<pathentry include="C:/MinGW/lib/gcc/mingw32/4.4.0/include-fixed" kind="inc" path="" system="true"/>
+<pathentry include="C:/MinGW/mingw32/include" kind="inc" path="" system="true"/>
+<pathentry include="c:/mingw/lib/gcc/mingw32/4.4.0/include/c++" kind="inc" path="" system="true"/>
+<pathentry include="c:/mingw/lib/gcc/mingw32/4.4.0/include/c++/mingw32" kind="inc" path="" system="true"/>
+<pathentry include="c:/mingw/lib/gcc/mingw32/4.4.0/include/c++/backward" kind="inc" path="" system="true"/>
+</storageModule>
+<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+<buildTargets>
+<target name=": edit_cache" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>edit_cache</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[exe] prog" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>prog</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[exe] prog/fast" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>prog/fast</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name=": rebuild_cache" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>rebuild_cache</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name=": all" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>all</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name=": clean" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>clean</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/CommandExecutor.cpp.obj" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/CommandExecutor.cpp.obj</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/CommandExecutor.cpp.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/CommandExecutor.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/CommandExecutor.cpp.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/CommandExecutor.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/Database.cpp.obj" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/Database.cpp.obj</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/Database.cpp.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/Database.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/Database.cpp.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/Database.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/WebServer.cpp.obj" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/WebServer.cpp.obj</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/WebServer.cpp.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/WebServer.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/WebServer.cpp.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/JNI/WebServer.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/includes.cpp.obj" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/includes.cpp.obj</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/includes.cpp.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/includes.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/includes.cpp.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/includes.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/main.cpp.obj" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/main.cpp.obj</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/main.cpp.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/main.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] D_/eclipse/JAVA/3Dto2DApplet/src/cpp/main.cpp.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>C:/MinGW/bin/mingw32-make.exe</buildCommand>
+<buildArguments/>
+<buildTarget>D_/eclipse/JAVA/3Dto2DApplet/src/cpp/main.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+</buildTargets>
+</storageModule>
+<storageModule moduleId="scannerConfiguration">
+<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
+<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="specsFile">
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="C:/MinGW/bin/gcc.exe" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="makefileGenerator">
+<runAction arguments="-f ${project_name}_scd.mk" command="C:/MinGW/bin/mingw32-make.exe" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+</storageModule>
+</cconfiguration>
+</storageModule>
+<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+<project id="Project.null.1" name="Project"/>
+</storageModule>
+</cproject>

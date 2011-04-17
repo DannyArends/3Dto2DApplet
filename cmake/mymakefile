@@ -1,0 +1,6 @@
+all:
+	set PATH=%PATH%C:\Program Files\CMake 2.8\bin;
+	echo Makefile generator CMake 2.8 at c:\program files\cmake 2.8
+	set PATH=%PATH%C:\MinGW\bin;
+	echo MinGW at C:\MinGW\bin
+	cmake -G "Eclipse CDT4 - MinGW Makefiles"
