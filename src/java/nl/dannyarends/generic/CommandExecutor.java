@@ -79,6 +79,10 @@ public class CommandExecutor implements Runnable{
 			}
 		}
 	}
+	
+	public String getResult(){
+		return res;
+	}
 
 	public void setCommands(ArrayList<String> commands) {
 		this.commands = commands;

@@ -21,14 +21,6 @@
 */
 package nl.dannyarends.applet;
 
-import nl.dannyarends.applet.events.MyHandler;
-import nl.dannyarends.applet.events.ServerConnection;
-import nl.dannyarends.generic.RenderWindow;
-import nl.dannyarends.options.ClientOptions;
-import nl.dannyarends.options.OptionsPackage;
-import nl.dannyarends.options.OptionsParser;
-import nl.dannyarends.options.ServerOptions;
-
 import java.applet.Applet;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -36,6 +28,12 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import nl.dannyarends.applet.events.MyHandler;
+import nl.dannyarends.applet.events.ServerConnection;
+import nl.dannyarends.generic.RenderWindow;
+import nl.dannyarends.options.ClientOptions;
+import nl.dannyarends.options.OptionsPackage;
+import nl.dannyarends.options.OptionsParser;
 import nl.dannyarends.rendering.Engine;
 
 public class WireFrame extends Applet implements KeyListener, MouseListener, RenderWindow{

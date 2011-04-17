@@ -16,7 +16,7 @@ JNIEnv* create_vm(JavaVM** jvm) {
   JNIEnv* env;
   JavaVMInitArgs vm_args;
   JavaVMOption options;
-  options.optionString = (char*) "-Djava.class.path=./bin/;./lib/hsqldb.jar;./lib/freemarker.jar;./lib/servlet-2-3.jar"; //Path to the java source code
+  options.optionString = (char*) "-Djava.class.path=./bin/;./libs/hsqldb.jar;./libs/freemarker.jar;./libs/servlet-2-3.jar"; //Path to the java source code
   vm_args.version = JNI_VERSION_1_6; //JDK version. This indicates version 1.6
   vm_args.nOptions = 1;
   vm_args.options = &options;

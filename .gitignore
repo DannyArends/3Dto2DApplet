@@ -1,5 +1,6 @@
 .classpath
 .project
+.cproject
 .settings/
 bin/
 build/
@@ -11,3 +12,10 @@ doxygen/generated
 *.map
 *.pdf
 *.doc
+*.exe
+database/
+websites/homepage/dist/write/*
+cmake/CMakeFiles/
+cmake/Makefile
+cmake/CMakeCache.txt
+cmake/cmake_install.cmake
