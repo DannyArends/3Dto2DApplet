@@ -1,8 +1,13 @@
 package nl.dannyarends.www;
 
 import java.io.File;
+
+import nl.dannyarends.generator.Generator;
+import nl.dannyarends.generic.JavaCompiler;
+import nl.dannyarends.generic.JavaCompiler.CompileUnit;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.options.DatabaseOptions;
+import nl.dannyarends.options.GeneratorOptions;
 import nl.dannyarends.options.OptionsPackage;
 import nl.dannyarends.options.OptionsParser;
 import nl.dannyarends.options.ServerOptions;
@@ -18,16 +23,38 @@ import nl.dannyarends.www.http.WWWServer;
 public class WebServer {
 	static ServerOptions webserverOptions;
 	static DatabaseOptions databaseOptions;
+	static GeneratorOptions generatorOptions;
 	static OptionsParser optionsParser;
 	static String localPath;
 	
 	public static void main(String[] args) throws Exception{
-		Utils.log("-- Starting webserver " + setLocalPath() + "--",System.err);
+		Utils.log("-- Parsing properties --",System.err);
 		webserverOptions = new ServerOptions("settings/www.properties");
 		databaseOptions = new DatabaseOptions("settings/db.properties");
+		generatorOptions = new GeneratorOptions("settings/generator.properties");
 		optionsParser = new OptionsParser();
 		optionsParser.parse((OptionsPackage) webserverOptions);
 		optionsParser.parse((OptionsPackage) databaseOptions);
+		optionsParser.parse((OptionsPackage) generatorOptions);
+		
+		Utils.log("-- Starting Generation " + setLocalPath() + "--",System.err);
+		Generator g = new Generator();
+		g.generate();
+		Utils.log("-- Starting compiler " + setLocalPath() + "--",System.err);
+		JavaCompiler j = new JavaCompiler();
+
+		CompileUnit source = j.newCompileUnit("src\\java\\nl\\dannyarends\\www","build");
+		source.addDependencies(new String[]{"libs","src\\java"});
+		source.setMainClass("nl.dannyarends.www.WebServer");
+		source.setCustomJarName("WebServer");
+		
+		j.CompileTarget(source);
+		
+//		generated.addDependency("libs");
+//		generated.addDependency("src\\java");
+//		j.CompileTarget(generated);
+		
+		Utils.log("-- Starting WebServer " + setLocalPath() + "--",System.err);
 		WWWServer webserver = new WWWServer();
 		new Thread(webserver).start();
 	}
