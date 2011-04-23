@@ -1,6 +1,6 @@
 package nl.dannyarends.generic;
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -13,86 +13,119 @@ import java.util.ArrayList;
 //
 
 public class CommandExecutor implements Runnable{
-	private static final long serialVersionUID = -2921281960160790513L;
-	private ArrayList<String> commands = new ArrayList<String>();
-	public String res = "";
-	
-	public CommandExecutor(){
-	
-	}
-	
-	public CommandExecutor(String cmd){
-		addCommand(cmd);
-	}
-	
-	public CommandExecutor(ArrayList<String> cmd){
-		setCommands(cmd);
-	}
+  private static final long serialVersionUID = -2921281960160790513L;
+  private ArrayList<String> commands = new ArrayList<String>();
+  private String res = "";
+  private String err = "";
+  int failed_commands=0;
+  int succes_commands=0;
+  Boolean verbose = false;
+  
+  public CommandExecutor(){
+  }
 
-	@Override
-	public void run() {
-		for(String command : commands){
-			//Utils.console(command);
-			Process p = null;
-			String os = System.getProperty("os.name").toLowerCase();
-			
-			try{
-			if (os.indexOf("windows 9") > -1){
-				p = Runtime.getRuntime().exec(new String[] { "command.com", "/c", command });
-			}else if (os.indexOf("windows") > -1){
-				p = Runtime.getRuntime().exec(new String[] { "cmd.exe", "/c", command });
-			}else{
-				p = Runtime.getRuntime().exec(new String[] { "/bin/sh", "-c", command });
-			}
+  public CommandExecutor(String cmd){
+    addCommand(cmd);
+  }
 	
-			InputStream in_err = p.getErrorStream();
-			InputStream in = p.getInputStream();
-			BufferedInputStream inbuf = new BufferedInputStream(in);
-			BufferedInputStream inbuferr = new BufferedInputStream(in_err);
-			BufferedReader br_in = new BufferedReader(new InputStreamReader(inbuf));
-			BufferedReader br_in_err = new BufferedReader(new InputStreamReader(inbuferr));
-	
-			try {
-				String line;
-				while ((line = br_in.readLine()) != null) {
-					res += line + "\n";
-				}
-				Utils.console("Output of command received");
-				if (p.waitFor() != 0) {
-					Utils.log("Command: "+ command + " exit=" + p.exitValue(),System.err);
-				}else{
-					Utils.console("Command: "+ command +" succesfull");
-				}
-			} catch (Exception e) {
-				Utils.log("Interupted: ",e);
-			} finally {
-				// Close the InputStreams to the application
-				br_in.close();
-				br_in_err.close();
-				inbuferr.close();
-				inbuf.close();
-				in.close();
-				in_err.close();
-			}
-			}catch(Exception e){
-				Utils.log("General execution exception: ",e);
-			}
-		}
-	}
-	
-	public String getResult(){
-		return res;
-	}
+  public CommandExecutor(ArrayList<String> cmd){
+    setCommands(cmd);
+  }
 
-	public void setCommands(ArrayList<String> commands) {
-		this.commands = commands;
+  //Internal Reader class to attach to the inputstreams rom the process
+  class StreamGobbler extends Thread{
+    InputStream is;
+    String type;
+    CommandExecutor reporter;
+	    
+    StreamGobbler(InputStream i, String t, CommandExecutor c){
+      is = i;
+      type = t;
+      reporter=c;
+    }
+	    
+    public void run(){
+      try{
+	    InputStreamReader isr = new InputStreamReader(is);
+	    BufferedReader br = new BufferedReader(isr);
+	    String line=null;
+	    while ( (line = br.readLine()) != null){
+	      if(verbose) System.out.println(type + ">" + line);
+	      if(type.equals("OUTPUT")) reporter.addResultLine(line);
+	      if(type.equals("ERROR")) reporter.addErrorLine(line);
+	    }
+	  } catch (IOException ioe){
+	      ioe.printStackTrace();  
+	  }
 	}
+  }
 	
-	public void addCommand(String command) {
-		this.commands.add(command);
-	}
+  public void addResultLine(String line){
+    res += line;
+  }
+	
+  public void addErrorLine(String line){
+    err += line;
+  }
 
-	public ArrayList<String> getCommands() {
-		return commands;
-	}
+  @Override
+  public void run() {
+    for(String command : commands){
+      if(verbose)Utils.console(command);
+      Process p = null;
+	  String os = System.getProperty("os.name").toLowerCase();
+      try{
+        if (os.indexOf("windows 9") > -1){
+          p = Runtime.getRuntime().exec(new String[] { "command.com", "/C", command });
+        }else if (os.indexOf("windows") > -1){
+          p = Runtime.getRuntime().exec(new String[] { "cmd.exe", "/C", command });
+        }else{
+          p = Runtime.getRuntime().exec(new String[] { "/bin/sh", "-c", command });
+        }
+		try {
+		  StreamGobbler errorGobbler = new StreamGobbler(p.getErrorStream(), "ERROR", this);            
+	      StreamGobbler outputGobbler = new StreamGobbler(p.getInputStream(), "OUTPUT",this);
+          errorGobbler.start();
+	      outputGobbler.start();
+	      if (p.waitFor() != 0) {
+	    	if(verbose) System.err.println("Command: "+ command + " exit=" + p.exitValue());
+		    failed_commands++;
+		  }else{
+			if(verbose) System.out.println("Command: "+ command +" succesfull");
+			succes_commands++;
+		  }
+		}catch(Exception e){
+		  System.err.println("Interupted: ");
+		  e.printStackTrace();
+	    }
+	  }catch(Exception e){
+		System.err.println("General execution exception: ");
+		e.printStackTrace();
+	  }
+    }
+    System.out.println("INFO CommandExecutor: Finished after executing " + succes_commands + " commands");
+    if(failed_commands > 0){
+    	System.err.println("WARNING CommandExecutor: failed " + failed_commands + " commands");
+    }
+  }
+	
+  public String getResult(){
+    return res;
+  }
+	
+  public String getError(){
+    return err;
+  }
+
+  public void setCommands(ArrayList<String> cmds) {
+    commands = cmds;
+  }
+	
+  public void addCommand(String cmd) {
+    commands.add(cmd);
+  }
+
+  public ArrayList<String> getCommands() {
+    return commands;
+  }
 }
