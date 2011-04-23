@@ -10,12 +10,12 @@ public class Database {
 	Connection connection;
 	DatabaseOptions options;
 	
-	Database(){
+	public Database(){
 		options = new DatabaseOptions("db.properties");
 		new OptionsParser(options);
 	}
 	
-	Connection getDatabase(){
+	public Connection getDatabase(){
 	    if(connection==null){
 	    	try {
 	    		Class.forName(DatabaseOptions.db_driver);
