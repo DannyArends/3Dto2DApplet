@@ -3,6 +3,8 @@ package nl.dannyarends.options;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import nl.dannyarends.generator.model.Value;
+
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Option {
 	public enum Type{
@@ -10,19 +12,9 @@ public @interface Option {
 		REQUIRED_ARGUMENT,
 		OPTIONAL_ARGUMENT
 	};
-	
-	public enum Param{
-		BOOLEAN,
-		INTEGER,
-		DOUBLE,
-		STRING,
-		COLLECTION,
-		FILEPATH,
-		DIRPATH
-	};
 		
 	String name();
-	Param param();
+	Value.Type param();
 	Type type();
 	String usage();
 }
