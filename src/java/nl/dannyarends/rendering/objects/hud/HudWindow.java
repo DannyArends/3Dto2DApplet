@@ -22,8 +22,8 @@
 
 package nl.dannyarends.rendering.objects.hud;
 
-import nl.dannyarends.applet.events.ButtonControler;
-import nl.dannyarends.applet.events.MyHandler;
+import nl.dannyarends.applets.gameApplet.events.ButtonControler;
+import nl.dannyarends.applets.gameApplet.events.MyHandler;
 import nl.dannyarends.generic.Utils;
 
 import java.awt.Color;

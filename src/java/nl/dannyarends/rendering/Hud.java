@@ -22,8 +22,8 @@
 
 package nl.dannyarends.rendering;
 
-import nl.dannyarends.applet.events.ButtonControler;
-import nl.dannyarends.applet.events.ServerConnection;
+import nl.dannyarends.applets.gameApplet.events.ButtonControler;
+import nl.dannyarends.applets.gameApplet.events.ServerConnection;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.genetics.QTLdataset;
 import nl.dannyarends.rendering.objects.hud.*;

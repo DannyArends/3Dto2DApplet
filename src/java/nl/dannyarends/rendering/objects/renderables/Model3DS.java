@@ -1,6 +1,6 @@
 package nl.dannyarends.rendering.objects.renderables;
 
-import nl.dannyarends.applet.events.ServerConnection;
+import nl.dannyarends.applets.gameApplet.events.ServerConnection;
 import nl.dannyarends.generic.BinaryUtils;
 import nl.dannyarends.generic.Utils;
 

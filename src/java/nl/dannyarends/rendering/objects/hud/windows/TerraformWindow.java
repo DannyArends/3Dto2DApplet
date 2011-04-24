@@ -1,6 +1,6 @@
 package nl.dannyarends.rendering.objects.hud.windows;
 
-import nl.dannyarends.applet.events.ServerConnection;
+import nl.dannyarends.applets.gameApplet.events.ServerConnection;
 import nl.dannyarends.gameserver.game.TileTypes;
 import nl.dannyarends.generic.Utils;
 

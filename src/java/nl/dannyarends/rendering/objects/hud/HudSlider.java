@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 
 import nl.dannyarends.rendering.Hud;
 import nl.dannyarends.rendering.Scene;
-import nl.dannyarends.applet.events.MyHandler;
+import nl.dannyarends.applets.gameApplet.events.MyHandler;
 
 public class HudSlider extends HudButton  {
 	int cur = 0;

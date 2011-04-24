@@ -1,6 +1,6 @@
 package nl.dannyarends.gameserver.game;
 
-import nl.dannyarends.applet.events.ServerConnection;
+import nl.dannyarends.applets.gameApplet.events.ServerConnection;
 
 public class Inventory extends GameObject{
 	private int id;

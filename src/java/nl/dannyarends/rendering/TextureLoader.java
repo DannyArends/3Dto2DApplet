@@ -2,7 +2,8 @@ package nl.dannyarends.rendering;
 
 import java.net.URL;
 import java.util.ArrayList;
-import nl.dannyarends.applet.events.ServerConnection;
+
+import nl.dannyarends.applets.gameApplet.events.ServerConnection;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.objects.Texture;
 

@@ -22,9 +22,9 @@
 
 package nl.dannyarends.rendering;
 
-import nl.dannyarends.applet.events.MyHandler;
-import nl.dannyarends.applet.events.MyTimer;
-import nl.dannyarends.applet.events.ServerConnection;
+import nl.dannyarends.applets.gameApplet.events.MyHandler;
+import nl.dannyarends.applets.gameApplet.events.MyTimer;
+import nl.dannyarends.applets.gameApplet.events.ServerConnection;
 import nl.dannyarends.generic.RenderWindow;
 
 import java.awt.Color;

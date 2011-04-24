@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.rendering.objects.renderables.Object3D;
 import nl.dannyarends.rendering.objects.renderables.Text3D;
-import nl.dannyarends.applet.events.ServerConnection;
+import nl.dannyarends.applets.gameApplet.events.ServerConnection;
 import nl.dannyarends.generic.Utils;
 
 public class GameMap extends GameObject{

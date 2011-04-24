@@ -43,10 +43,10 @@ public class WebServer {
 		Utils.log("-- Starting compiler " + setLocalPath() + "--",System.err);
 		JavaCompiler j = new JavaCompiler();
 
-		CompileUnit source = j.newCompileUnit("src\\java\\nl\\dannyarends\\www","build");
-		source.addDependencies(new String[]{"libs","src\\java"});
-		source.setMainClass("nl.dannyarends.www.WebServer");
-		source.setCustomJarName("WebServer");
+		CompileUnit source = j.newCompileUnit("src\\java\\nl\\dannyarends\\applets\\gameApplet","build");
+		source.addDependencies(new String[]{"src\\java"});
+		source.setMainClass("nl.dannyarends.applets.gameApplet");
+		source.setCustomJarName("GameApplet");
 		
 		j.CompileTarget(source);
 		

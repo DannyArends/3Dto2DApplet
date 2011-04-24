@@ -19,7 +19,7 @@
 #     at http://www.r-project.org/Licenses/GPL-3
 #
 */
-package nl.dannyarends.applet;
+package nl.dannyarends.applets.gameApplet;
 
 import java.applet.Applet;
 import java.awt.Graphics;
@@ -28,8 +28,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import nl.dannyarends.applet.events.MyHandler;
-import nl.dannyarends.applet.events.ServerConnection;
+import nl.dannyarends.applets.gameApplet.events.MyHandler;
+import nl.dannyarends.applets.gameApplet.events.ServerConnection;
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.options.ClientOptions;
 import nl.dannyarends.options.OptionsPackage;

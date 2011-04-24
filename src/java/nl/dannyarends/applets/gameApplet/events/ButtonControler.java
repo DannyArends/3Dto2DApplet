@@ -21,7 +21,7 @@
 */
 
 
-package nl.dannyarends.applet.events;
+package nl.dannyarends.applets.gameApplet.events;
 
 
 import nl.dannyarends.generic.Utils;
