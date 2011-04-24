@@ -15,6 +15,7 @@ doxygen/generated
 *.exe
 database/
 generated/
+libs/
 websites/homepage/dist/write/*
 cmake/CMakeFiles/
 cmake/Makefile
