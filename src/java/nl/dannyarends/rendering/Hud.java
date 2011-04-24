@@ -25,7 +25,10 @@ package nl.dannyarends.rendering;
 import nl.dannyarends.applet.events.ButtonControler;
 import nl.dannyarends.applet.events.ServerConnection;
 import nl.dannyarends.generic.Utils;
-import nl.dannyarends.applet.genetics.QTLdataset;
+import nl.dannyarends.genetics.QTLdataset;
+import nl.dannyarends.rendering.objects.hud.*;
+import nl.dannyarends.rendering.objects.hud.windows.*;
+import nl.dannyarends.rendering.objects.renderables.Object3D;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -33,9 +36,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import nl.dannyarends.applet.objects.hud.*;
-import nl.dannyarends.applet.objects.hud.windows.*;
-import nl.dannyarends.applet.objects.renderables.Object3D;
 
 
 /// Head Up Display

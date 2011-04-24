@@ -2,9 +2,9 @@ package nl.dannyarends.rendering;
 
 import java.util.ArrayList;
 
-import nl.dannyarends.applet.objects.hud.HudImage;
 import nl.dannyarends.applet.events.ServerConnection;
 import nl.dannyarends.generic.Utils;
+import nl.dannyarends.rendering.objects.hud.HudImage;
 
 /// Lazy loader to load icons via HTTP 
 //<p>

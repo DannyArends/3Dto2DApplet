@@ -2,9 +2,9 @@ package nl.dannyarends.rendering;
 
 import java.net.URL;
 import java.util.ArrayList;
-import nl.dannyarends.applet.objects.Texture;
 import nl.dannyarends.applet.events.ServerConnection;
 import nl.dannyarends.generic.Utils;
+import nl.dannyarends.rendering.objects.Texture;
 
 /// Lazy loader to load textures via HTTP 
 //<p>

@@ -3,11 +3,11 @@ package nl.dannyarends.rendering;
 import nl.dannyarends.generic.ColorUtils;
 import nl.dannyarends.generic.MathUtils;
 import nl.dannyarends.generic.Utils;
-import nl.dannyarends.applet.objects.Camera;
-import nl.dannyarends.applet.objects.Material;
-import nl.dannyarends.applet.objects.Vector3D;
-import nl.dannyarends.applet.objects.renderables.Object3D;
-import nl.dannyarends.applet.objects.renderables.light.Light;
+import nl.dannyarends.rendering.objects.Camera;
+import nl.dannyarends.rendering.objects.Material;
+import nl.dannyarends.rendering.objects.Vector3D;
+import nl.dannyarends.rendering.objects.renderables.Object3D;
+import nl.dannyarends.rendering.objects.renderables.light.Light;
 
 /// Basic implementation of a ray tracer 
 //<p>

@@ -29,22 +29,22 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 
-import nl.dannyarends.applet.objects.Camera;
-import nl.dannyarends.applet.objects.Texture;
-import nl.dannyarends.applet.objects.Vector3D;
-import nl.dannyarends.applet.objects.hud.windows.ObjectWindow;
-import nl.dannyarends.applet.objects.renderables.Object3D;
-import nl.dannyarends.applet.objects.renderables.Sphere;
-import nl.dannyarends.applet.objects.renderables.Surface;
-import nl.dannyarends.applet.objects.renderables.light.Light;
-import nl.dannyarends.applet.objects.renderables.light.PointLight;
 import nl.dannyarends.applet.events.MyHandler;
 import nl.dannyarends.applet.events.MyTimer;
 import nl.dannyarends.applet.events.ServerConnection;
-import nl.dannyarends.applet.game.GameMap;
+import nl.dannyarends.gameserver.game.GameMap;
 import nl.dannyarends.generic.Utils;
-import nl.dannyarends.applet.genetics.QTLdataset;
-import nl.dannyarends.applet.genetics.QTLheatmap;
+import nl.dannyarends.genetics.QTLdataset;
+import nl.dannyarends.genetics.QTLheatmap;
+import nl.dannyarends.rendering.objects.Camera;
+import nl.dannyarends.rendering.objects.Texture;
+import nl.dannyarends.rendering.objects.Vector3D;
+import nl.dannyarends.rendering.objects.hud.windows.ObjectWindow;
+import nl.dannyarends.rendering.objects.renderables.Object3D;
+import nl.dannyarends.rendering.objects.renderables.Sphere;
+import nl.dannyarends.rendering.objects.renderables.Surface;
+import nl.dannyarends.rendering.objects.renderables.light.Light;
+import nl.dannyarends.rendering.objects.renderables.light.PointLight;
 
 /// A 'renderable' moment/state of the engine
 //<p>

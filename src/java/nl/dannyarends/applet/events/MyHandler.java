@@ -25,7 +25,7 @@ package nl.dannyarends.applet.events;
 import nl.dannyarends.generic.MathUtils;
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
-import nl.dannyarends.applet.genetics.QTLheatmap;
+import nl.dannyarends.genetics.QTLheatmap;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -33,13 +33,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import nl.dannyarends.applet.objects.Point2D;
-import nl.dannyarends.applet.objects.hud.HudObject;
-import nl.dannyarends.applet.objects.renderables.Object3D;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.Hud;
 import nl.dannyarends.rendering.RayTracer;
 import nl.dannyarends.rendering.Scene;
+import nl.dannyarends.rendering.objects.Point2D;
+import nl.dannyarends.rendering.objects.hud.HudObject;
+import nl.dannyarends.rendering.objects.renderables.Object3D;
 
 /// MyHandler
 //<p>

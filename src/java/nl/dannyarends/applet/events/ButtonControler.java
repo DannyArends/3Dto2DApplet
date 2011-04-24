@@ -30,10 +30,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import nl.dannyarends.applet.objects.hud.HudButton;
-import nl.dannyarends.applet.objects.hud.HudMenuButton;
-import nl.dannyarends.applet.objects.hud.HudObject;
 import nl.dannyarends.rendering.Hud;
+import nl.dannyarends.rendering.objects.hud.HudButton;
+import nl.dannyarends.rendering.objects.hud.HudMenuButton;
+import nl.dannyarends.rendering.objects.hud.HudObject;
 
 /// Monitors mouse button click to head up display buttons
 //<p>

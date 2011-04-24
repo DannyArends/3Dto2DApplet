@@ -1,6 +1,6 @@
 package nl.dannyarends.rendering;
 
-import nl.dannyarends.applet.objects.renderables.Object3D;
+import nl.dannyarends.rendering.objects.renderables.Object3D;
 
 public class Intersection {
 	private Object3D primitive;
