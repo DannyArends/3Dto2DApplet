@@ -10,8 +10,9 @@
   #include "includes.h"
 
   /**
-   * \brief Database<br>
-   * This class contains the implementation of Database
+   * \brief Database CPP JNI wrapper<br>
+   *
+   * This class contains the CPP wrapper for the Database JAVA class
    * bugs: none found<br>
    */
   class Database{

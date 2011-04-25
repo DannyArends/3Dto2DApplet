@@ -1,4 +1,4 @@
-/* \file Database.h
+/* \file WebServer.h
  * \brief Header file for CPP JNI interface
  * Copyright:   GBIC 2010-2011, all rights reserved
  * Date:        April 5, 2011
@@ -10,8 +10,9 @@
   #include "includes.h"
 
   /**
-   * \brief Database<br>
-   * This class contains the implementation of Database
+   * \brief WebServer CPP JNI wrapper<br>
+   *
+   * This class contains the CPP wrapper for the WebServer JAVA class
    * bugs: none found<br>
    */
   class WebServer{

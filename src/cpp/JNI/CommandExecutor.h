@@ -1,5 +1,6 @@
 /* \file CommandExecutor.h
  * \brief Header file for CPP JNI interface
+ *
  * Copyright:   GBIC 2010-2011, all rights reserved
  * Date:        April 5, 2011
  */
@@ -10,8 +11,9 @@
   #include "includes.h"
 
   /**
-   * \brief CommandExecutor<br>
-   * This class contains the implementation of CommandExecutor
+   * \brief CommandExecutor CPP JNI wrapper<br>
+   *
+   * This class contains the CPP wrapper for the CommandExecutor JAVA class
    * bugs: none found<br>
    */
   class CommandExecutor{
