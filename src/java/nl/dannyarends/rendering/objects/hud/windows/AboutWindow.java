@@ -9,7 +9,7 @@ public class AboutWindow extends HudWindow {
 	
 	public AboutWindow(int x, int y) {
 		super(x, y,400,125, "About");
-		setVisible(false);
+		
 		t = new HudText(10,10,"QTL viewing applet");
 		t.addLine("Part of the iqtl package");
 		t.addLine("(c) 2010 Danny Arends - GBIC");

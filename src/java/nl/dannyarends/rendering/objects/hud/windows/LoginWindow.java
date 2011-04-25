@@ -24,7 +24,6 @@ public class LoginWindow extends HudWindow {
 		addChild(IconLoader.getIcon(25,50,"arrow_right.png"));
 		setShowTopMenu(false);
 		setActive(true);
-		setVisible(false);
 		setNeedUpdate(true);
 	}
 }

@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import nl.dannyarends.eventHandling.ButtonControler;
 import nl.dannyarends.eventHandling.MyHandler;
+import nl.dannyarends.eventHandling.ServerConnection;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.Hud;
@@ -42,16 +43,39 @@ public class HudWindow extends HudButton{
 	private boolean active = false;
 	private boolean needUpdate = false;
 	private Point2D fromSlide,originalsize;
+	ServerConnection server;
 	
 	ArrayList<HudObject> topMenu = new ArrayList<HudObject>();
 
+	public HudWindow(ServerConnection s, int x, int y, int sx, int sy, String name) {
+		this(x, y, sx, sy, name);
+		server=s;
+	}
+	
 	public HudWindow(int x, int y, int sx, int sy, String name) {
 		super(x, y, name);
+		setVisible(false);
 		setSize(sx,sy);
 		originalsize = new Point2D(sx,sy);
 		initTopMenu();
 	}
 	
+	///update - Triggered when updating the window
+	//Function we can overwrite to get a custom handler at each window update event
+	//Useful for displaying real time time server information
+	public void update(){
+		
+	}
+	
+	///onOpen - Triggered when opening the window
+	//Triggered when opening the window
+	//Function we can overwrite to get a custom handler at each window open event
+	//Useful for displaying one time server information
+	public void onOpen(){
+		
+	}
+	
+	///initTopMenu - basic top menu for windows (minimize/ maximize and close)
 	void initTopMenu(){
 		topMenu.add(new HudButton(0,0,22,16,"X",true,Color.lightGray,this){
 			public void runPayload() {
@@ -146,15 +170,4 @@ public class HudWindow extends HudButton{
 	public void clearChildren(){
 		if(this.children != null) this.children.clear();
 	}
-	
-	public void update(){
-		
-	}
-	
-	///onOpen - Triggered when opening the window
-	//Triggered when opening the window
-	public void onOpen(){
-		
-	}
-
 }

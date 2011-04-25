@@ -9,7 +9,6 @@ public class HelpWindow extends HudWindow {
 	
 	public HelpWindow(int x, int y) {
 		super(x, y,400, 125, "Help");
-		setVisible(false);
 		t = new HudText(10,10,"Open Triangle: QTL at marker");
 		t.addLine("Filled triangles: Selected Cofactor at marker");
 		t.addLine("Triangle size: QTL effect/likelihood");

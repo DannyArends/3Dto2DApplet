@@ -8,9 +8,13 @@ import java.util.ArrayList;
 import nl.dannyarends.rendering.Hud;
 
 
-
 public class HudText extends HudObject{
 	private ArrayList<String> text = new ArrayList<String>();
+	
+	public HudText(int x, int y){
+		super(x,y);
+		setName("text");
+	}
 	
 	public HudText(int x, int y, String t){
 		super(x,y);
