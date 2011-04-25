@@ -8,10 +8,16 @@ package ${window.javanamespace};
 </#if>
 
 import nl.dannyarends.rendering.objects.hud.HudWindow;
-import nl.dannyarends.eventHandling.ServerConnection;
-<#if window.hasTexts>import nl.dannyarends.rendering.objects.hud.HudText;</#if>
-<#if window.hasIcons>import nl.dannyarends.rendering.IconLoader;</#if>
+import nl.dannyarends.eventHandling.ServerConnection;<#if window.hasTexts()>
+import nl.dannyarends.rendering.objects.hud.HudText;</#if><#if window.hasIcons()>
+import nl.dannyarends.rendering.IconLoader;</#if>
 
+/**
+ * \brief Generated class: ${window.name}<br>
+ *
+ * This class contains the implementation of ${window.name} in java.
+ * bugs: none found<br>
+ */
 class ${window.name} extends HudWindow{
 	
 	public ${window.name}(ServerConnection s){

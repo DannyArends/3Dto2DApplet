@@ -9,8 +9,11 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 
+import nl.dannyarends.generator.model.WindowModel.TextType;
+
 public class Model extends ModelObject{
 	ArrayList<Relation> relations = new ArrayList<Relation>();
+	ArrayList<WindowModel> windows = new ArrayList<WindowModel>();
 	
 	Model(){
 		Entity danny = new Entity("Danny",null,"Whatever");
@@ -19,6 +22,9 @@ public class Model extends ModelObject{
 		danny.addAttribute(new Attribute("my_string",new Value("string","Hello World")));
 		danny.addAttribute(new Attribute("my_array",new Value("collection",new ArrayList<Attribute>())));
 		relations.add(new Relation(danny, new Entity("love","eternal"), new Entity("Anna")));
+		WindowModel test = new WindowModel("About","nl.dannyarends.rendering.objects.hud.window.");
+		test.addText(new WindowModel().getText(10,10,"QTL viewing applet",test.getTextType(0)));
+		windows.add(test);
 	}
 	
 	public boolean loadModel(String file) throws IOException{
@@ -45,6 +51,10 @@ public class Model extends ModelObject{
 	
 	ArrayList<Relation> getRelations() {
 		return relations;
+	}
+	
+	public ArrayList<WindowModel> getWindowModels(){
+		return windows;
 	}
 	
 	public void addRelation(Relation r){

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import nl.dannyarends.generator.model.AbstractGenerator;
 import nl.dannyarends.generator.model.Entity;
+import nl.dannyarends.generator.model.WindowModel;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.options.GeneratorOptions;
 
@@ -77,23 +78,40 @@ public class Generator extends AbstractGenerator {
 					targetOut.mkdirs();
 					targetOut = new File(outputDir + entity.getNamespace().replace(".", "/") + entity.getName() + getExtension(t.getPath()));
 					
-					arguments.put("file", targetOut.toString());
+					arguments.put("file", targetOut.toString().replace("\\","/"));
 					arguments.put("template", toRelativePath(t.getPath()));
 					arguments.put("model", model);
 					arguments.put("entity", entity);
 					
 					OutputStreamWriter OutStream =  new OutputStreamWriter(new FileOutputStream(targetOut));
 					template.process(arguments,OutStream);
+					OutStream.close();
 				}
 			}
 			if(t.getName().contains("model")){
 				String name = t.getName();
 				targetOut = new File(outputDir + name.substring(name.indexOf("model")+5,name.lastIndexOf(".")));
-				arguments.put("file", targetOut.toString());
+				arguments.put("file", targetOut.toString().replace("\\","/"));
 				arguments.put("template", toRelativePath(t.getPath()));
 				arguments.put("model", model);
 				OutputStreamWriter OutStream =  new OutputStreamWriter(new FileOutputStream(targetOut));
 				template.process(arguments,OutStream);
+				OutStream.close();
+			}
+			if(t.getName().contains("window")){
+				for (WindowModel window : model.getWindowModels()){
+					targetOut = new File(outputDir + window.getNamespace().replace(".", "/"));
+					targetOut.mkdirs();
+					targetOut = new File(outputDir + window.getNamespace().replace(".", "/") + window.getName() + "Window" + getExtension(t.getPath()));
+
+					Utils.log(targetOut.getAbsolutePath(),System.err);
+					arguments.put("file", targetOut.toString().replace("\\","/"));
+					arguments.put("template", toRelativePath(t.getPath()));
+					arguments.put("window", window);
+					OutputStreamWriter OutStream =  new OutputStreamWriter(new FileOutputStream(targetOut));
+					template.process(arguments,OutStream);
+					OutStream.close();
+				}
 			}
 		}
 		Utils.console("Done with generating");

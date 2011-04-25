@@ -58,10 +58,6 @@ public class Entity extends ModelObject{
 		attributes.add(a);
 	}
 
-	public String getName() {
-		return name;
-	}
-	
 	public void setParent(Entity p) {
 		parent = p;
 	}

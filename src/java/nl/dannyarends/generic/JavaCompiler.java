@@ -17,6 +17,7 @@ import java.util.jar.Manifest;
 public class JavaCompiler extends CommandExecutor{
 	public class CompileUnit {
 		public boolean active           = true;
+		public boolean packToJar        = true;
 		public String loc_input         = "src";
 		public String loc_base_input    = "";
 		public String loc_output        = "build";
@@ -193,11 +194,13 @@ public class JavaCompiler extends CommandExecutor{
 			FileUtils.unJar(location, tocompile.loc_output, false);	
 		}
 		super.run();
-		if(tocompile.isRunnableJar()){
-			FileUtils.createManifestFile(tocompile.loc_output, tocompile.mainClass,"Danny Arends");
+		if(tocompile.packToJar){
+			if(tocompile.isRunnableJar()){
+				FileUtils.createManifestFile(tocompile.loc_output, tocompile.mainClass,"Danny Arends");
+			}
+			toJarFile(tocompile.getJarName());
+			FileUtils.deleteDirectory(f);
 		}
-		toJarFile(tocompile.getJarName());
-		FileUtils.deleteDirectory(f);
 	}
 	
 	public void addtask(Thread task) {
