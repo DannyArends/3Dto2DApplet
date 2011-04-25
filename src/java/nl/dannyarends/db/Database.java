@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import nl.dannyarends.options.DatabaseOptions;
 import nl.dannyarends.options.OptionsParser;
 
+
+
 public class Database {
 	Connection connection;
 	DatabaseOptions options;

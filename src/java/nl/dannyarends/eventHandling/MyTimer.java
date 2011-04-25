@@ -1,4 +1,4 @@
-package nl.dannyarends.applets.gameApplet.events;
+package nl.dannyarends.eventHandling;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import nl.dannyarends.rendering.Scene;
+
+
 
 
 public class MyTimer implements ActionListener{

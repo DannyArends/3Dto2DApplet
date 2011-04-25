@@ -3,13 +3,17 @@ package nl.dannyarends.gameserver.game;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import nl.dannyarends.eventHandling.ServerConnection;
+import nl.dannyarends.gameserver.movement.Mover;
+import nl.dannyarends.gameserver.movement.TileBasedMap;
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.rendering.objects.renderables.Object3D;
 import nl.dannyarends.rendering.objects.renderables.Text3D;
-import nl.dannyarends.applets.gameApplet.events.ServerConnection;
-import nl.dannyarends.generic.Utils;
 
-public class GameMap extends GameObject{
+
+
+public class GameMap extends GameObject implements TileBasedMap{
 	String mapname;
 	TileTypes tiletypes;
 	BuildingTypes buildingtypes;
@@ -102,5 +106,45 @@ public class GameMap extends GameObject{
 
 	public String getBuildingName(int id) {
 		return buildingtypes.getBuildingName(id);
+	}
+
+	@Override
+	public int getX() {
+		return dimx;
+	}
+
+	@Override
+	public int getY() {
+		return dimy;
+	}
+
+	@Override
+	public float getMovementCost(Mover mover, int x, int y, int xp, int yp) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isValidLocation(Mover mover, int x, int y, int xp, int yp) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public TileType getTileType(int x, int y) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void pathFinderVisited(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean blocked(Mover mover, int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

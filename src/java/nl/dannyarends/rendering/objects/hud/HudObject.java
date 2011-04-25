@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import nl.dannyarends.rendering.objects.Point2D;
 import nl.dannyarends.rendering.objects.renderables.Object3D;
 
+
+
 abstract public class HudObject extends Point2D{
 	private Point2D size = new Point2D();
 	private boolean visible = true;

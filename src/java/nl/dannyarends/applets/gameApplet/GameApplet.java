@@ -28,13 +28,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import nl.dannyarends.applets.gameApplet.events.MyHandler;
-import nl.dannyarends.applets.gameApplet.events.ServerConnection;
+import nl.dannyarends.eventHandling.MyHandler;
+import nl.dannyarends.eventHandling.ServerConnection;
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.options.ClientOptions;
 import nl.dannyarends.options.OptionsPackage;
 import nl.dannyarends.options.OptionsParser;
 import nl.dannyarends.rendering.Engine;
+
+
 
 public class GameApplet extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = 1L;

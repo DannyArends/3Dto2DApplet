@@ -8,6 +8,8 @@ import nl.dannyarends.rendering.objects.hud.HudInputBox;
 import nl.dannyarends.rendering.objects.hud.HudText;
 import nl.dannyarends.rendering.objects.hud.HudWindow;
 
+
+
 public class RegistrationWindow extends HudWindow {
 	
 	public RegistrationWindow() {

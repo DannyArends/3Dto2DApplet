@@ -28,6 +28,8 @@ import java.util.ArrayList;
 
 import nl.dannyarends.gameserver.movement.heuristics.EuclideanEstimator;
 
+
+
 public class AStarSearch implements Runnable{
 	private ArrayList<Node> closed = new ArrayList<Node>();
 	private ArrayList<Node> open = new ArrayList<Node>();

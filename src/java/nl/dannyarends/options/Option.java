@@ -5,6 +5,8 @@ import java.lang.annotation.RetentionPolicy;
 
 import nl.dannyarends.generator.model.Value;
 
+
+
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Option {
 	public enum Type{

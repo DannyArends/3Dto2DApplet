@@ -27,12 +27,14 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-
+import nl.dannyarends.eventHandling.MyHandler;
 import nl.dannyarends.rendering.Hud;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.rendering.objects.renderables.Object3D;
 
-import nl.dannyarends.applets.gameApplet.events.MyHandler;
+
+
+
 
 public class HudInputBox extends HudButton {
 	String input="";

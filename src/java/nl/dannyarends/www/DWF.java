@@ -1,8 +1,5 @@
 package nl.dannyarends.www;
 
-import nl.dannyarends.applets.gameApplet.events.MyHandler;
-import nl.dannyarends.applets.gameApplet.events.ServerConnection;
-import nl.dannyarends.generic.RenderWindow;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,9 +8,14 @@ import java.net.URL;
 
 import javax.swing.JFrame;
 
+import nl.dannyarends.eventHandling.MyHandler;
+import nl.dannyarends.eventHandling.ServerConnection;
+import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.www.http.WWWServer;
+
+
 
 
 

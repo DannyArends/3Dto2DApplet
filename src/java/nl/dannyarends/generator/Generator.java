@@ -11,6 +11,8 @@ import nl.dannyarends.generator.model.AbstractGenerator;
 import nl.dannyarends.generator.model.Entity;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.options.GeneratorOptions;
+
+
 import freemarker.template.Template;
 
 public class Generator extends AbstractGenerator {

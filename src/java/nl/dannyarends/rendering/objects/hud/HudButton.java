@@ -22,14 +22,16 @@
 
 package nl.dannyarends.rendering.objects.hud;
 
-import nl.dannyarends.generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Hud;
 import nl.dannyarends.rendering.Scene;
+
+
 
 public class HudButton extends HudObject{
 

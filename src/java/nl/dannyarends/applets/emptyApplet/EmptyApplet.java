@@ -19,6 +19,7 @@
 #     at http://www.r-project.org/Licenses/GPL-3
 #
 */
+
 package nl.dannyarends.applets.emptyApplet;
 
 import java.applet.Applet;
@@ -27,18 +28,28 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import nl.dannyarends.generic.RenderWindow;
+import nl.dannyarends.generic.Utils;
 
 public class EmptyApplet extends Applet implements KeyListener, MouseListener, RenderWindow{
-	private static final long serialVersionUID = 1L;
 	
-	public void init() {
+	
+	public static void main(String[] args) throws Exception{
+		System.err.println("--  --");
+	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2934477801450325416L;
 
+	public void init() {
+		System.out.println("Applet started");
 	}
 
 
 	public void update(Graphics g) {
-
+		Utils.idle(100);
 	}
 
 	public void paint(Graphics g) {

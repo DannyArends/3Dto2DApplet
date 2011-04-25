@@ -22,18 +22,20 @@
 
 package nl.dannyarends.rendering.objects.hud;
 
-import nl.dannyarends.applets.gameApplet.events.ButtonControler;
-import nl.dannyarends.applets.gameApplet.events.MyHandler;
-import nl.dannyarends.generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import nl.dannyarends.eventHandling.ButtonControler;
+import nl.dannyarends.eventHandling.MyHandler;
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.Hud;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.rendering.objects.Point2D;
+
+
 
 public class HudWindow extends HudButton{
 	boolean showTopMenu = true;

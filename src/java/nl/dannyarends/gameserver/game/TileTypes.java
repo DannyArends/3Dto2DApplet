@@ -2,8 +2,10 @@ package nl.dannyarends.gameserver.game;
 
 import java.awt.Color;
 
-import nl.dannyarends.applets.gameApplet.events.ServerConnection;
+import nl.dannyarends.eventHandling.ServerConnection;
 import nl.dannyarends.generic.Utils;
+
+
 
 public class TileTypes extends Types{
 	static int ntiles;

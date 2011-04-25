@@ -1,15 +1,17 @@
 package nl.dannyarends.rendering.objects.hud.windows;
 
-import nl.dannyarends.applets.gameApplet.events.ServerConnection;
-import nl.dannyarends.gameserver.game.TileTypes;
-import nl.dannyarends.generic.Utils;
 
 import java.awt.Color;
 
+import nl.dannyarends.eventHandling.ServerConnection;
+import nl.dannyarends.gameserver.game.TileTypes;
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.rendering.objects.hud.HudButton;
 import nl.dannyarends.rendering.objects.hud.HudText;
 import nl.dannyarends.rendering.objects.hud.HudWindow;
+
+
 
 public class TerraformWindow extends HudWindow {
 	TileTypes t;

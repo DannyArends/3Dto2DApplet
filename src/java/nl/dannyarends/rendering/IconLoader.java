@@ -2,7 +2,7 @@ package nl.dannyarends.rendering;
 
 import java.util.ArrayList;
 
-import nl.dannyarends.applets.gameApplet.events.ServerConnection;
+import nl.dannyarends.eventHandling.ServerConnection;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.objects.hud.HudImage;
 

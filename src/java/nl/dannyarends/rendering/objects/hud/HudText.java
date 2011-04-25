@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import nl.dannyarends.rendering.Hud;
 
+
+
 public class HudText extends HudObject{
 	private ArrayList<String> text = new ArrayList<String>();
 	

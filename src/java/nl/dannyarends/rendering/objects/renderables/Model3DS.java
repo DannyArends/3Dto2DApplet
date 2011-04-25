@@ -1,8 +1,5 @@
 package nl.dannyarends.rendering.objects.renderables;
 
-import nl.dannyarends.applets.gameApplet.events.ServerConnection;
-import nl.dannyarends.generic.BinaryUtils;
-import nl.dannyarends.generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,6 +9,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import nl.dannyarends.eventHandling.ServerConnection;
+import nl.dannyarends.generic.BinaryUtils;
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.objects.Camera;
 import nl.dannyarends.rendering.objects.Edge;
@@ -19,6 +19,8 @@ import nl.dannyarends.rendering.objects.Material;
 import nl.dannyarends.rendering.objects.Point2D;
 import nl.dannyarends.rendering.objects.Point3D;
 import nl.dannyarends.rendering.objects.Vector3D;
+
+
 
 /// 3DS model (single file) can contain multiple Object3DS
 //<p>

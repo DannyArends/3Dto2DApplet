@@ -23,8 +23,6 @@
 package nl.dannyarends.rendering.objects.renderables;
 
 
-import nl.dannyarends.generic.MathUtils;
-import nl.dannyarends.generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -32,6 +30,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
 
+import nl.dannyarends.generic.MathUtils;
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.objects.Camera;
 import nl.dannyarends.rendering.objects.Edge;
@@ -40,6 +40,8 @@ import nl.dannyarends.rendering.objects.Point2D;
 import nl.dannyarends.rendering.objects.Point3D;
 import nl.dannyarends.rendering.objects.Texture;
 import nl.dannyarends.rendering.objects.Vector3D;
+
+
 
 /// Abstract 3 Dimensional object
 //<p>

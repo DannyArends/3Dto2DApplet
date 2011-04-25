@@ -23,16 +23,18 @@
 package nl.dannyarends.rendering.objects.renderables;
 
 
-import nl.dannyarends.generic.MathUtils;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import nl.dannyarends.generic.MathUtils;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.objects.Camera;
 import nl.dannyarends.rendering.objects.Vector3D;
+
+
 
 /// Text3D
 //<p>

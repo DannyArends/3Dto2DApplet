@@ -32,6 +32,8 @@ import nl.dannyarends.rendering.objects.Point3D;
 import nl.dannyarends.rendering.objects.Vector3D;
 
 
+
+
 /// Sphere
 //<p>
 //Class to used to render a 3 Dimensional sphere

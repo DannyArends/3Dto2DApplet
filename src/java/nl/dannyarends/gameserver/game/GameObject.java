@@ -1,6 +1,6 @@
 package nl.dannyarends.gameserver.game;
 
-import nl.dannyarends.applets.gameApplet.events.ServerConnection;
+import nl.dannyarends.eventHandling.ServerConnection;
 
 public class GameObject {
 	ServerConnection connection;

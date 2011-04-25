@@ -28,6 +28,8 @@ import java.util.ArrayList;
 
 import nl.dannyarends.gameserver.movement.TileBasedMap.TileType;
 
+
+
 public class Mover {
 	private Type movertype;
 	private double speedMod;

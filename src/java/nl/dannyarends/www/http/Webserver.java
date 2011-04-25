@@ -1,6 +1,5 @@
 package nl.dannyarends.www.http;
 
-import nl.dannyarends.generic.Utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -47,6 +46,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.*;
+
+import nl.dannyarends.generic.Utils;
+
 
 /// Class to serve java servlets using HTTP
 //<p>

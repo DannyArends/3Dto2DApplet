@@ -46,6 +46,7 @@ public interface TileBasedMap {
 	int getY();
 	float getMovementCost(Mover mover, int x, int y, int xp, int yp);
 	boolean isValidLocation(Mover mover, int x,int y, int xp,int yp);
+	TileType getTileType(int x, int y);
 	void pathFinderVisited(int x, int y);
 	boolean blocked(Mover mover, int x, int y);
 }

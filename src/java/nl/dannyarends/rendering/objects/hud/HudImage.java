@@ -1,6 +1,5 @@
 package nl.dannyarends.rendering.objects.hud;
 
-import nl.dannyarends.generic.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -9,8 +8,11 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.Hud;
+
+
 
 
 public class HudImage extends HudButton{

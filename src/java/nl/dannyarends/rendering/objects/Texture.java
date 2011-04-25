@@ -1,7 +1,5 @@
 package nl.dannyarends.rendering.objects;
 
-import nl.dannyarends.generic.MathUtils;
-import nl.dannyarends.generic.Utils;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -15,7 +13,11 @@ import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import nl.dannyarends.generic.MathUtils;
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
+
+
 
 /// Texture
 //<p>

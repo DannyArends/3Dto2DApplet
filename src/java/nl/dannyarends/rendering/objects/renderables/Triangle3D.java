@@ -22,12 +22,14 @@
 
 package nl.dannyarends.rendering.objects.renderables;
 
+
+import java.awt.Color;
+
 import nl.dannyarends.generic.MathUtils;
 import nl.dannyarends.rendering.objects.Edge;
 import nl.dannyarends.rendering.objects.Point3D;
 import nl.dannyarends.rendering.objects.Vector3D;
 
-import java.awt.Color;
 
 
 /// Triangle3D

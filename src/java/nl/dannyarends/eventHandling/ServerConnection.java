@@ -20,9 +20,8 @@
 #
 */
 
-package nl.dannyarends.applets.gameApplet.events;
+package nl.dannyarends.eventHandling;
 
-import nl.dannyarends.generic.Utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -30,7 +29,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
+
+
 
 /// ServerConnection
 //<p>

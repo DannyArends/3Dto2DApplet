@@ -31,7 +31,6 @@
 
 package nl.dannyarends.www.http.servlets;
 
-import nl.dannyarends.generic.Utils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -48,6 +47,9 @@ import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import nl.dannyarends.generic.Utils;
+
 
 
 /// Servlet similar to a standard httpd.

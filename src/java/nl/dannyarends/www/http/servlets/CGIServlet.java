@@ -1,8 +1,5 @@
 package nl.dannyarends.www.http.servlets;
 
-import nl.dannyarends.generic.CommandExecutor;
-import nl.dannyarends.generic.Utils;
-import nl.dannyarends.options.WebOptions;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +9,11 @@ import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import nl.dannyarends.generic.CommandExecutor;
+import nl.dannyarends.generic.Utils;
+import nl.dannyarends.options.WebOptions;
+
 
 /// Servlet to serve CGI script from the cgi-bin directory
 //<p>
