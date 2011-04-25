@@ -2609,7 +2609,7 @@ public class Webserver implements ServletContext, Serializable {
 		 *    in a different web application by RequestDispatcher, the object set by 
 		 *    this method may not be correctly retrieved in the caller servlet.
 		 *     
-		 *    @param name - a String specifying the name of the attribute
+		 *    @param key - a String specifying the name of the attribute
 		 *    @param o - the Object to be stored
 		 */
 		public void setAttribute(String key, Object o) {
@@ -2808,8 +2808,7 @@ public class Webserver implements ServletContext, Serializable {
 		 * Sets the locale of the response, setting the headers (including the Content-Type's charset) as appropriate. This method should be called before a
 		 * call to getWriter(). By default, the response locale is the default locale for the server.
 		 * 
-		 * @param loc -
-		 *            the locale of the response
+		 * @param locale - the locale of the response
 		 * @see getLocale()
 		 */
 		public void setLocale(java.util.Locale locale) {
@@ -2883,10 +2882,8 @@ public class Webserver implements ServletContext, Serializable {
 		 * Overrides the name of the character encoding used in the body of this request. This method must be called prior to reading request parameters or
 		 * reading input using getReader().
 		 * 
-		 * @param a -
-		 *            String containing the name of the chararacter encoding.
-		 * @throws java.io.UnsupportedEncodingException -
-		 *             if this is not a valid encoding
+		 * @param _enc - String containing the name of the chararacter encoding.
+		 * @throws java.io.UnsupportedEncodingException - if this is not a valid encoding
 		 * @since JSDK 2.3
 		 */
 		public void setCharacterEncoding(String _enc) {
@@ -4287,7 +4284,7 @@ public class Webserver implements ServletContext, Serializable {
 		 * Returns the ServletContext to which this session belongs.
 		 * 
 		 * @return The ServletContext object for the web application
-		 * @ince 2.3
+		 * @since 2.3
 		 */
 		public ServletContext getServletContext() {
 			// System.err.println("ctx from:"+servletContext); //!!!

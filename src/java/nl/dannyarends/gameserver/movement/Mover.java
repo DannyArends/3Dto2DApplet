@@ -31,9 +31,8 @@ import nl.dannyarends.gameserver.movement.TileBasedMap.TileType;
 
 
 public class Mover {
-	private Type movertype;
 	private double speedMod;
-	
+	ArrayList<TileType> allowed = new ArrayList<TileType>();
 	
 	
    /* Mover class to specify:
@@ -42,31 +41,17 @@ public class Mover {
 	* TODO: Get a Basic scheme for types
 	* IDEA: Perhaps use a the real 'internal object' classes, and make this an interface ?
 	*/	
-	Mover(Type t, double s){
-		movertype = t;
+	Mover(double s){
 		speedMod = s;
 	}
 	
-	public enum Type{
-		NONMOVER(TileType.NONE),
-		LANDMOVER(TileType.GRASS,TileType.SAND,TileType.HILL,TileType.SWATER),
-		WATERMOVER(TileType.SWATER,TileType.DWATER),
-		AIRMOVER(TileType.ALL);
-		
-		ArrayList<TileType> allowed = new ArrayList<TileType>();
-		
-		Type(Enum<? extends TileType>... a){
-			if (a.length > 0) {
-				for (Enum<? extends TileType> t : a) {
-					allowed.add((TileType) t);
-				}
-			}
-		}
+	Mover(ArrayList<TileType> a,double s){
+		allowed.addAll(a);
+		speedMod = s;
 	}
-
 	
 	public boolean canMoveTo(TileType t){
-		for(TileType a : movertype.allowed){
+		for(TileType a : allowed){
 			if(a==t) return true;
 		}
 		return false;

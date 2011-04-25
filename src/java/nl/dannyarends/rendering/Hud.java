@@ -61,6 +61,7 @@ public class Hud extends HudObject{
 	 * 
 	 * @param sx Width of the HUD
 	 * @param sy Height of the HUD
+	 * @param server Which server to read the files from
 	 * @return
 	 */	
 	public Hud(int sx, int sy, ServerConnection server){

@@ -24,7 +24,8 @@
 	
   
   /**
-   * \brief ${entity.name}<br>
+   * \brief Generated class: ${entity.name}<br>
+   *
    * This class contains the implementation of ${entity.name}
    * It provides 2 constructors both call init to have the java class mapped in the JVM environment
    * For each field getters and setters are provided, setting the CPP state of the object
@@ -60,6 +61,7 @@
   	</#foreach>
   private:
   	void 		init(JNIEnv* env,jobject obj);
+  	jobject     getJava();
   	bool 		verbose;
   };
 #endif

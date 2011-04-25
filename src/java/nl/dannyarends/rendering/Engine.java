@@ -55,8 +55,9 @@ public class Engine{
 	/**
 	 * Start the Rendering engine on the specified rendering window with the given server connection
 	 * 
-	 * @param p RenderWindow parent (use extend Applet or JFrame and implements RenderWindow)
-	 * @param s ServerConnection connection to a file server (used for Applets and internal transfer DWF)
+	 * @param p - RenderWindow parent (use extend Applet or JFrame and implements RenderWindow)
+	 * @param s - ServerConnection connection to a file server (used for Applets and internal transfer DWF)
+	 * @param eventListener - Which event listener do we need to interrupt ?
 	 * @return
 	 */	
 	public Engine(RenderWindow p, ServerConnection s,MyHandler eventListener){

@@ -54,11 +54,11 @@ void ${entity.name}::init(JNIEnv* env,jobject obj){
   	}
 }
 
-jobject${entity.name}::getJava(){
+jobject ${entity.name}::getJava(){
   return this->obj;
 }
 
-${entity.name}::~${entity.name}}(){
+${entity.name}::~${entity.name}(){
 	//Compiler TODO: Figure out if I need manually to call the entity.hasAncestor
 }
 

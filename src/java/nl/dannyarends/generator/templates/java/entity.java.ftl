@@ -15,6 +15,14 @@ import nl.dannyarends.generator.model.Attribute;
 import java.util.ArrayList;
 </#if>
 
+/**
+ * \brief Generated class: ${entity.name}<br>
+ *
+ * This class contains the implementation of ${entity.name} in java. it provides an id, name 
+ * and description to the object to the object. It contains generated functions to CRUD (create
+ * ,retrieve, update and delete) it to the database specified by: DatabaseOptions
+ * bugs: none found<br>
+ */
 class ${entity.name}{
   int 	  id;
   String  name = "${entity.name}";
