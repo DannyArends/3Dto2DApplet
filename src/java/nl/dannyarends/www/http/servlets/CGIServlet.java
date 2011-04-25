@@ -2,6 +2,7 @@ package nl.dannyarends.www.http.servlets;
 
 import nl.dannyarends.generic.CommandExecutor;
 import nl.dannyarends.generic.Utils;
+import nl.dannyarends.options.WebOptions;
 
 import java.io.File;
 import java.io.IOException;
@@ -123,8 +124,17 @@ public class CGIServlet extends Servlet {
 			extension = mainpage.substring(mainpage.indexOf(".", 2)+1);
 		}
 		if(!(command = matchExtension(extension)).equals("")){
-			//Utils.console("Creating command: " + command + "I "+ path + " " + file.getCanonicalPath() + " " + arguments);
-			myCommandExe.addCommand("cd " + (inCGI?short_localPath:getLocal_path()) + " && "+ command + file.getCanonicalPath() + " " + arguments);
+			boolean docommand = false;
+			if(command.startsWith("perl") && WebOptions.perl_enabled) docommand=true;
+			if(command.startsWith("php") && WebOptions.php_enabled) docommand=true;
+			if(command.startsWith("python") && WebOptions.python_enabled) docommand=true;
+			if(docommand){
+				myCommandExe.addCommand("cd " + (inCGI?short_localPath:getLocal_path()) + " && "+ command + file.getCanonicalPath() + " " + arguments);
+			}else{
+				Utils.log("Interpretation of " + file.getAbsolutePath() + " refused due to WebOptions",System.err);
+				return;
+			}
+
 		}else{
 			if(isLogEnabled()) Utils.log("No interpreter for: " + extension,System.err);
 			serveFile(req, res, false, file);

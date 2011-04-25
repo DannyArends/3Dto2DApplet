@@ -10,8 +10,9 @@ import nl.dannyarends.options.DatabaseOptions;
 import nl.dannyarends.options.GeneratorOptions;
 import nl.dannyarends.options.OptionsPackage;
 import nl.dannyarends.options.OptionsParser;
-import nl.dannyarends.options.ServerOptions;
+import nl.dannyarends.options.WebOptions;
 import nl.dannyarends.www.http.WWWServer;
+import nl.dannyarends.www.http.servlets.CGIServlet;
 
 /// basic web server GUI version of the web server
 //<p>
@@ -21,7 +22,7 @@ import nl.dannyarends.www.http.WWWServer;
 //
 
 public class WebServer {
-	static ServerOptions webserverOptions;
+	static WebOptions webserverOptions;
 	static DatabaseOptions databaseOptions;
 	static GeneratorOptions generatorOptions;
 	static OptionsParser optionsParser;
@@ -29,7 +30,7 @@ public class WebServer {
 	
 	public static void main(String[] args) throws Exception{
 		Utils.log("-- Parsing properties --",System.err);
-		webserverOptions = new ServerOptions("settings/www.properties");
+		webserverOptions = new WebOptions("settings/www.properties");
 		databaseOptions = new DatabaseOptions("settings/db.properties");
 		generatorOptions = new GeneratorOptions("settings/generator.properties");
 		optionsParser = new OptionsParser();
@@ -56,14 +57,16 @@ public class WebServer {
 		
 		Utils.log("-- Starting WebServer " + setLocalPath() + "--",System.err);
 		WWWServer webserver = new WWWServer();
+		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true));
+		webserver.addServlet("/", new CGIServlet("homepage",false));
 		new Thread(webserver).start();
 	}
 	
 	static void PrintOutOptions(){
-		Utils.console("Websites located in " + ServerOptions.web_dir);
-		Utils.console("PHP " + (ServerOptions.php_enabled?"en":"dis") + "abled " + ServerOptions.php_bin_location);
-		Utils.console("PERL " + (ServerOptions.php_enabled?"en":"dis") + "abled " + ServerOptions.perl_bin_location);
-		Utils.console("PYTHON " + (ServerOptions.php_enabled?"en":"dis") + "abled " + ServerOptions.python_bin_location);
+		Utils.console("Websites located in " + WebOptions.web_dir);
+		Utils.console("PHP " + (WebOptions.php_enabled?"en":"dis") + "abled " + WebOptions.php_bin_location);
+		Utils.console("PERL " + (WebOptions.php_enabled?"en":"dis") + "abled " + WebOptions.perl_bin_location);
+		Utils.console("PYTHON " + (WebOptions.php_enabled?"en":"dis") + "abled " + WebOptions.python_bin_location);
 	}
 	
 	static String setLocalPath(){

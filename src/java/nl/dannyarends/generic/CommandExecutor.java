@@ -61,11 +61,11 @@ public class CommandExecutor implements Runnable{
   }
 	
   public void addResultLine(String line){
-    res += line;
+    res += line + "\n";
   }
 	
   public void addErrorLine(String line){
-    err += line;
+    err += line + "\n";
   }
 
   @Override
