@@ -153,18 +153,26 @@ public class JavaCompiler extends CommandExecutor{
 	  File tofp = new File(jarfilepath);
 	  File fromfp = new File(tocompile.loc_output);
 	  if (tofp.exists()) {
-	    System.err.println("Overwriting old jar:" + jarfilepath);
+	    System.err.println("Overwriting old jar: " + jarfilepath);
 		tofp.delete();
       }
-      File f = new File(tocompile.loc_output + File.separator + "MANIFEST.MF");
-      FileInputStream i = new FileInputStream(f);
-      Manifest manifest = new Manifest(i);
-	  FileOutputStream fos = new FileOutputStream(tofp);
-      JarOutputStream zos = new JarOutputStream(fos,manifest);
+      File f = new File(tocompile.loc_output + File.separator + "/MANIFEST.MF");
+      JarOutputStream zos;
+      FileOutputStream fos;
+      if(f.exists()){
+    	  FileInputStream i = new FileInputStream(f);
+    	  Manifest manifest = new Manifest(i);
+    	  fos = new FileOutputStream(tofp);
+    	  zos = new JarOutputStream(fos,manifest);
+      }else{
+    	  fos = new FileOutputStream(tofp);
+          zos = new JarOutputStream(fos);
+      }
+	  
       File[] files = fromfp.listFiles();
       FileUtils.writeInJar(zos,files,"",true);
       zos.close();
-      System.out.println("Build a JAR:" + jarfilepath);
+      System.out.println("Build a JAR: " + jarfilepath);
 	}catch(Exception e){
 	  Utils.log("Something wrong: ", e);
 	}

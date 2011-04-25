@@ -60,6 +60,22 @@ public class Utils{
 		return t;
 	}
 	
+	public static void idle(long time){
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static String firstLetterUpperCase(String someString){
+		return someString.substring(0,1).toUpperCase() + someString.substring(1);
+	}
+	
+	public static String firstLetterLowerCase(String someString){
+		return someString.substring(0,1).toLowerCase() + someString.substring(1);
+	}
+	
 	public static int offsetByComment(String[] items){
 		int offset=0;
 		if(items.length==0) return -1;

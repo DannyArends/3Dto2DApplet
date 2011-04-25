@@ -88,13 +88,16 @@ public class FileUtils {
 			File file = files[i];
 			
 			if(file.isDirectory()){
-				JarEntry entry = new JarEntry(files[i].getName());
+				String tname = files[i].getName();
+				tname = tname.replaceAll("\\"+System.getProperty("file.separator"), "/");
+				JarEntry entry = new JarEntry(tname);
 	            entry.setMethod(JarEntry.STORED);
 	            entry.setCrc(crc.getValue());
 	            writeInJar(zos,file.listFiles(),path + ((!path.equals("")) ? File.separator : "") + file.getName(),verbose);
 			}else{
 				String entryname = path + ((!path.equals("")) ? File.separator : "") + files[i].getName();
-				if(!("META-INF"+File.separator+"MANIFEST.MF").equals(entryname)){
+				entryname = entryname.replaceAll("\\"+System.getProperty("file.separator"), "/");
+				if(!(entryname.contains("MANIFEST.MF"))){
 		            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
 		            crc.reset();
 		            while ((bytesRead = bis.read(buffer)) != -1) {
@@ -104,7 +107,7 @@ public class FileUtils {
 		            // Reset to beginning of input stream
 		            bis = new BufferedInputStream(new FileInputStream(file));
 		            
-			            JarEntry entry = new JarEntry(path + ((!path.equals("")) ? File.separator : "") + files[i].getName());
+			            JarEntry entry = new JarEntry(entryname);
 			            entry.setMethod(ZipEntry.STORED);
 			            entry.setCompressedSize(file.length());
 			            entry.setSize(file.length());
@@ -150,11 +153,10 @@ public class FileUtils {
         dest.close();
 	}
 	
-	static void createManifestFile(String loc_output, String mainclass,String creator){
+	static void createManifestFile(String loc_output, String mainclass, String creator){
 		try {
 			FileWriter fos = new FileWriter(loc_output + File.separator + "MANIFEST.MF");
 			fos.write("Manifest-Version: 1.0" + "\n");
-			fos.write("Class-Path: . \n");
 			fos.write("Main-Class: " + mainclass + "\n");
 			fos.write("Created-By: " + creator + "\n");
 			fos.close();
