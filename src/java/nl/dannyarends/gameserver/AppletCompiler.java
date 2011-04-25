@@ -8,7 +8,12 @@ import nl.dannyarends.generic.Utils;
 import nl.dannyarends.generic.JavaCompiler.CompileUnit;
 
 
-
+/**
+ * \brief Uses the JavaCompiler to compile applets<br>
+ *
+ * This class contains the compileAll function to compile all directories as Java Applets 
+ * bugs: none found<br>
+ */
 public class AppletCompiler {
 	JavaCompiler j = new JavaCompiler();
 	CompileUnit source;

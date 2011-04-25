@@ -18,6 +18,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 
+/**
+ * \brief Generic file utilities class<br>
+ *
+ * This class contains generic function related to Files
+ * bugs: none found<br>
+ */
 public class FileUtils {
 
   static public boolean deleteDirectory(File path) {

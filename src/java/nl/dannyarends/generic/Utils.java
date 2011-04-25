@@ -50,6 +50,12 @@ import java.util.StringTokenizer;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
+/**
+ * \brief Utils Generic utilities class<br>
+ *
+ * This class contains generic function
+ * bugs: none found<br>
+ */
 public class Utils{
 	
 	static public String printDoubleArray(double[] d){

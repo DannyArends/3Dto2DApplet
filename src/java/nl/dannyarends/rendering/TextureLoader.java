@@ -7,12 +7,12 @@ import nl.dannyarends.eventHandling.ServerConnection;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.objects.Texture;
 
-/// Lazy loader to load textures via HTTP 
-//<p>
-//TODO
-//</p>
-//
-
+/**
+ * \brief Lazy loader to load textures via HTTP <br>
+ *
+ * Lazy loader to load textures via HTTP 
+ * bugs: none found<br>
+ */
 public class TextureLoader {
 	static ArrayList<Texture> models = new ArrayList<Texture>();
 	public static int notfound = 0;

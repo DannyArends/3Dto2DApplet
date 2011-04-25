@@ -15,6 +15,12 @@ import nl.dannyarends.options.GeneratorOptions;
 
 import freemarker.template.Template;
 
+/**
+ * \brief Basic implementation of a code generator using Freemarker<br>
+ *
+ * Basic implementation of a code generator using Freemarker, this class implements the AbstractGenerator class
+ * bugs: none found<br>
+ */
 public class Generator extends AbstractGenerator {
 
 	public ArrayList<File> getTemplates(File path) {

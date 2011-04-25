@@ -50,20 +50,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import nl.dannyarends.generic.Utils;
 
-
-
-/// Servlet similar to a standard httpd.
-// <p>
-// Implements the "GET" and "HEAD" methods for files and directories.
-// Handles index.html, index.htm, default.htm, default.html.
-// Redirects directory URLs that lack a trailing /.
-// Handles If-Modified-Since.
-// </p><p>
-// <A HREF="/resources/classes/Acme/Serve/FileServlet.java">Fetch the software.</A><BR>
-// <A HREF="/resources/classes/Acme.tar.Z">Fetch the entire Acme package.</A>
-// </p>
-// @see Acme.Serve.Serve
-
+/**
+ * \brief Servlet similar to a standard httpd.<br>
+ *
+ * Implements the "GET" and "HEAD" methods for files and directories.Handles index.html, 
+ * index.htm, default.htm, default.html. Redirects directory URLs that lack a trailing /.
+ * Handles If-Modified-Since. Modified from: Acme.Serve.Serve
+ * 
+ * bugs: none found<br>
+ */
 public class FileServlet extends Servlet {
 	private static final long serialVersionUID = 1L;
 	public static final String DEF_USE_COMPRESSION = "tjws.fileservlet.usecompression";

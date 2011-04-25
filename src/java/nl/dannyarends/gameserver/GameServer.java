@@ -13,7 +13,13 @@ import nl.dannyarends.www.http.servlets.FileServlet;
 
 
 
-
+/**
+ * \brief Main game server class, doing (1) Connections (2) World management<br>
+ *
+ * Main game server class, doing (1) Connections (2) World management
+ * TODO: World management
+ * bugs: none found<br>
+ */
 public class GameServer implements Runnable{
 	private static String[] arguments;
 	private static GameServer server;

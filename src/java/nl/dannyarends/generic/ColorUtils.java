@@ -2,6 +2,12 @@ package nl.dannyarends.generic;
 
 import java.awt.Color;
 
+/**
+ * \brief Utilities class for Colors<br>
+ *
+ * This class contains function for Colors
+ * bugs: none found<br>
+ */
 public class ColorUtils {
 	public static Color doubleToColor(double x,double maxx){
 	    float cR = (float) (0.5 + (x / (2 * maxx)));

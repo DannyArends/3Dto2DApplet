@@ -41,13 +41,12 @@ import nl.dannyarends.rendering.objects.Point2D;
 import nl.dannyarends.rendering.objects.hud.HudObject;
 import nl.dannyarends.rendering.objects.renderables.Object3D;
 
-
-
-/// MyHandler
-//<p>
-//Handles all events (A.t.m Mouse, Keyboard)
-//</p>
-//
+/**
+ * \brief Class to handle user input events to the client<br>
+ *
+ * Class to handle user input events to the client (mouse and keyboard)
+ * bugs: none found<br>
+ */
 public class MyHandler implements MouseMotionListener,KeyListener, MouseListener{
 	static int mx; // the most recently recorded mouse coordinates
 	static int my;

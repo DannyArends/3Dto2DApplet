@@ -1,6 +1,6 @@
-/*
+/**
 #
-# ButtonControler.java
+# \file ButtonControler.java
 #
 # copyright (c) 2009-2010, Danny Arends
 # last modified Dec, 2010
@@ -35,14 +35,12 @@ import nl.dannyarends.rendering.objects.hud.HudButton;
 import nl.dannyarends.rendering.objects.hud.HudMenuButton;
 import nl.dannyarends.rendering.objects.hud.HudObject;
 
-
-
-/// Monitors mouse button click to head up display buttons
-//<p>
-//TODO
-//</p>
-//
-
+/**
+ * \brief Monitors on screen buttons, menu's<br>
+ *
+ * Monitors on screen buttons and menu's
+ * bugs: none found<br>
+ */
 public class ButtonControler {
 	static HudButton tmp_button;
 	static ArrayList<HudObject> monitored = new ArrayList<HudObject>();

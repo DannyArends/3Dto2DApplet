@@ -7,7 +7,12 @@ import nl.dannyarends.options.DatabaseOptions;
 import nl.dannyarends.options.OptionsParser;
 
 
-
+/**
+ * \brief Class to connect to the database specified in the DatabaseOptions class<br>
+ *
+ * Class to connect to the database specified in the DatabaseOptions class
+ * bugs: none found<br>
+ */
 public class Database {
 	Connection connection;
 	DatabaseOptions options;

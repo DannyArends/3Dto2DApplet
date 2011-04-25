@@ -7,12 +7,12 @@ import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 import java.net.URL;
 
-/// Abstract class to render to Applet graphics and/or JFrame
-//<p>
-//TODO
-//</p>
-//
-
+/**
+ * \brief RenderWindow Generic interface to render to Applets and/or JFrame<br>
+ *
+ * Abstract class to render to Applet graphics and/or JFrame
+ * bugs: none found<br>
+ */
 public abstract interface RenderWindow extends ImageObserver {
 	public abstract void paint(Graphics g);
 	public abstract Image createImage(int width, int height);

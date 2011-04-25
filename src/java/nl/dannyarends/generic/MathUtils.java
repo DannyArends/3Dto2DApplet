@@ -1,5 +1,11 @@
 package nl.dannyarends.generic;
 
+/**
+ * \brief Generic math utilities class<br>
+ *
+ * This class contains generic function related to math
+ * bugs: none found<br>
+ */
 public class MathUtils {
 		
 		// Returns the square of a

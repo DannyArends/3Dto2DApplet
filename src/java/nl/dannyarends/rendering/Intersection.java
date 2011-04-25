@@ -2,6 +2,12 @@ package nl.dannyarends.rendering;
 
 import nl.dannyarends.rendering.objects.renderables.Object3D;
 
+/**
+ * \brief Class representing an intersection between a ray and an object<br>
+ *
+ * Class representing an intersection between a ray and an object
+ * bugs: none found<br>
+ */
 public class Intersection {
 	private Object3D primitive;
 	private double distance;

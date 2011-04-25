@@ -14,21 +14,23 @@ import nl.dannyarends.generic.CommandExecutor;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.options.WebOptions;
 
-
-/// Servlet to serve CGI script from the cgi-bin directory
-//<p>
-//The languages tested are:
-//<ul>
-//<li>Perl</li>
-//<li>PHP</li>
-//<li>Python</li>
-//</ul>
-//Python and PHP receive the input as a single string in the ARGV[1],
-//parameters separated by ; then p=v for an example to parse these out see cgi-bin/test<br/>
-//Perl users can 'use CGI' and then parse the param(), also an example in cgi-bin/test.<br/>
-//Files not matching the known extensions are served via the common serveFile function using the mime.properties
-//</p>
-
+/**
+ * \brief Servlet to serve CGI script from the cgi-bin directory<br>
+ *
+ * The languages tested are:
+ * <ul>
+ * <li>Perl</li>
+ * <li>PHP</li>
+ * <li>Python</li>
+ * </ul>
+ * Python and PHP receive the input as a single string in the ARGV[1],parameters 
+ * separated by ; then p=v for an example to parse these out see cgi-bin/test<br/>
+ * Perl users can 'use CGI' and then parse the param(), also an example in cgi-bin/test.
+ * <br/>Files not matching the known extensions are served via the common serveFile 
+ * function using the mime.properties
+ * 
+ * bugs: none found<br>
+ */
 public class CGIServlet extends Servlet {
 	private static final long serialVersionUID = 1L;
 	String[][] extensions = new String[][]{

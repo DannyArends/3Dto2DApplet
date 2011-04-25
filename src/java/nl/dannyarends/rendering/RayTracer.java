@@ -9,12 +9,12 @@ import nl.dannyarends.rendering.objects.Vector3D;
 import nl.dannyarends.rendering.objects.renderables.Object3D;
 import nl.dannyarends.rendering.objects.renderables.light.Light;
 
-/// Basic implementation of a ray tracer 
-//<p>
-//Basic implementation of a ray tracer
-//</p>
-//
-
+/**
+ * \brief Basic implementation of a ray tracer<br>
+ *
+ * Basic implementation of a ray tracer
+ * bugs: none found<br>
+ */
 public class RayTracer {
 	public final static double EPSILON = 0.00000001F;
 	public final int MAX_REFLECTION_RECURSION_DEPTH = 8;

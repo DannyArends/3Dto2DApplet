@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
+/**
+ * \brief Parses the options into the OptionsPackage classes.<br>
+ *
+ * Parses the options into the OptionsPackage classes.
+ * bugs: none found<br>
+ */
 public class OptionsParser {
 	HashMap<String, Field> field_map = new HashMap<String, Field>();
 	

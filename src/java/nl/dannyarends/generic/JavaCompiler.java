@@ -8,6 +8,12 @@ import java.util.Vector;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
+/**
+ * \brief Uses the CommandExecutor to compile java files and build .jar files<br>
+ *
+ * This class add support for compiling .java files and manipulating .jar files.
+ * bugs: none found<br>
+ */
 public class JavaCompiler extends CommandExecutor{
 	public class CompileUnit {
 		public boolean active           = true;

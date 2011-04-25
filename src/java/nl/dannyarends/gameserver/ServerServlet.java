@@ -11,7 +11,11 @@ import nl.dannyarends.generic.JavaCompiler.CompileUnit;
 import nl.dannyarends.www.http.servlets.Servlet;
 
 
-
+/**
+ * \brief Class used to test the compiled Applets<br>
+ *
+ * bugs: none found<br>
+ */
 public class ServerServlet extends Servlet{
 	private static final long serialVersionUID = 3365213563240648229L;
 	GameServer server;

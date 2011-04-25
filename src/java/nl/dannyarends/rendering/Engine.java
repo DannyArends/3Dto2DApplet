@@ -32,12 +32,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
-/// Main rendering engine class
-//<p>
-//TODO
-//</p>
-//
-
+/**
+ * \brief Engine main class to provide a rendering engine<br>
+ *
+ * This class contains the main class to provide a rendering engine
+ * bugs: none found<br>
+ */
 public class Engine{
 	public static boolean verbose=false;
 	

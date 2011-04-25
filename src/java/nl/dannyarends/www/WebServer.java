@@ -14,15 +14,13 @@ import nl.dannyarends.options.WebOptions;
 import nl.dannyarends.www.http.WWWServer;
 import nl.dannyarends.www.http.servlets.CGIServlet;
 
-
-
-/// basic web server GUI version of the web server
-//<p>
-//We used a custom version of the Molgenis options reader to load the basic options provided for the web server
-//For all of them we have default setting
-//</p>
-//
-
+/**
+ * \brief Main webserver method<br>
+ *
+ * We used a custom version of the Molgenis options reader to load the basic options 
+ * provided for the web server, for all of them we have default setting.
+ * bugs: none found<br>
+ */
 public class WebServer {
 	static WebOptions webserverOptions;
 	static DatabaseOptions databaseOptions;

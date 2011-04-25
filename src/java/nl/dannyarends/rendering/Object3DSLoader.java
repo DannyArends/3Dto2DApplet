@@ -29,12 +29,12 @@ import nl.dannyarends.eventHandling.ServerConnection;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.objects.renderables.Model3DS;
 
-/// Lazy loader to load 3DS objects via HTTP 
-//<p>
-//TODO
-//</p>
-//
-
+/**
+ * \brief Lazy loader to load 3DS objects via HTTP<br>
+ *
+ * Lazy loader to load 3DS objects via HTTP 
+ * bugs: none found<br>
+ */
 public class Object3DSLoader {
 	static ArrayList<Model3DS> models = new ArrayList<Model3DS>();
 	public static int notfound = 0;

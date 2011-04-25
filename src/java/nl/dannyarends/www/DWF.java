@@ -15,10 +15,13 @@ import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.www.http.WWWServer;
 
-
-
-
-
+/**
+ * \brief Main webserver method with the Applet GUI for testing<br>
+ *
+ * We used a custom version of the Molgenis options reader to load the basic options 
+ * provided for the web server, for all of them we have default setting.
+ * bugs: none found<br>
+ */
 public class DWF extends JFrame implements RenderWindow,Runnable {
 	private static final long serialVersionUID = 1L;
 	static String title = "DWF v0.0.1 with CGI support";

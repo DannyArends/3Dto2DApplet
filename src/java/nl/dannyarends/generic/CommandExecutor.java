@@ -5,13 +5,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-
-/// CommandExecutor - command executor class
-//<p>
-//Add the ability to any project to execute a-sync threaded system commands on local host
-//</p>
-//
-
+/**
+ * \brief Execute command on the underlying OS<br>
+ *
+ * Add the ability to execute command on the underlying OS
+ * bugs: none found<br>
+ */
 public class CommandExecutor implements Runnable{
   private static final long serialVersionUID = -2921281960160790513L;
   private ArrayList<String> commands = new ArrayList<String>();

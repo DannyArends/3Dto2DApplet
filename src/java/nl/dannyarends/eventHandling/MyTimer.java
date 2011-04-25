@@ -7,9 +7,12 @@ import javax.swing.Timer;
 
 import nl.dannyarends.rendering.Scene;
 
-
-
-
+/**
+ * \brief MyTimer class<br>
+ *
+ * This class implements the ActionListener class to monitor time
+ * bugs: none found<br>
+ */
 public class MyTimer implements ActionListener{
 	private Timer timer;
 	private ServerConnection server;

@@ -6,12 +6,12 @@ import nl.dannyarends.eventHandling.ServerConnection;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.objects.hud.HudImage;
 
-/// Lazy loader to load icons via HTTP 
-//<p>
-//TODO
-//</p>
-//
-
+/**
+ * \brief Lazy loader to load icons via HTTP<br>
+ *
+ * Lazy loader to load icons via HTTP
+ * bugs: none found<br>
+ */
 public class IconLoader {
 	String iconlist;
 	public static int notfound = 0;

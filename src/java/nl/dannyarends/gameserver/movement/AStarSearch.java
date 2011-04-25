@@ -1,5 +1,4 @@
-/*
-#
+/**
 # \file AStarSearch.java
 #
 # Based on: http://www.cokeandcode.com/pathfinding
@@ -29,7 +28,12 @@ import java.util.ArrayList;
 import nl.dannyarends.gameserver.movement.heuristics.EuclideanEstimator;
 
 
-
+/**
+ * \brief Implementation of AStar 2D search.<br>
+ *
+ * Based on: http://www.cokeandcode.com/pathfinding
+ * bugs: none found<br>
+ */
 public class AStarSearch implements Runnable{
 	private ArrayList<Node> closed = new ArrayList<Node>();
 	private ArrayList<Node> open = new ArrayList<Node>();

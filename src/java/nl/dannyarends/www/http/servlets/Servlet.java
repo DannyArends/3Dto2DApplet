@@ -14,15 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import nl.dannyarends.generic.Utils;
 
-
-
-/// Abstract class to mimic a Java Servlet.
-//<p>
-// Abstract class to remove deprecation warning in WebServer class.
-// Holds the serveFile function
-//</p>
-//@see javax.servlet.http.HttpServlet
-
+/**
+ * \brief Abstract class to mimic a Java Servlet.<br>
+ *
+ * Abstract class to remove deprecation warning in WebServer class.
+ * Holds the serveFile function. @see javax.servlet.http.HttpServlet
+ * bugs: none found<br>
+ */
 public abstract class Servlet extends javax.servlet.http.HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private boolean useCompression;

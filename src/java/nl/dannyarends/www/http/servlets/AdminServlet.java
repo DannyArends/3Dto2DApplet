@@ -12,7 +12,12 @@ import nl.dannyarends.options.DatabaseOptions;
 import nl.dannyarends.options.WebOptions;
 
 
-
+/**
+ * \brief Small administrator servlet to see the options and test the CGIServlet<br>
+ *
+ * Small administrator servlet to see the options and test the CGIServlet
+ * bugs: none found<br>
+ */
 public class AdminServlet extends Servlet {
 	private static final long serialVersionUID = 9001493560790657038L;
 
