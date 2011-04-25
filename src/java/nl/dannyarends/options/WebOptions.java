@@ -2,9 +2,9 @@ package nl.dannyarends.options;
 
 import nl.dannyarends.generator.model.Value;
 
-public class ServerOptions extends OptionsPackage{
+public class WebOptions extends OptionsPackage{
 
-	public ServerOptions(String propertiesFile) {
+	public WebOptions(String propertiesFile) {
 		super(propertiesFile);
 	}
 
