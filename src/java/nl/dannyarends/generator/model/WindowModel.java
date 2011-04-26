@@ -5,9 +5,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import nl.dannyarends.generator.model.WindowModel.Text;
-import nl.dannyarends.generator.model.WindowModel.TextType;
-
 public class WindowModel extends ModelObject{
 	private boolean update;
 	private boolean onopen;
@@ -15,7 +12,7 @@ public class WindowModel extends ModelObject{
 	private int w;
 	private int h;
 	
-	ArrayList<Text> texts = new ArrayList<Text>();
+	ArrayList<HUDText> texts = new ArrayList<HUDText>();
 	ArrayList<Icon> icons = new ArrayList<Icon>();
 	
 	WindowModel(){
@@ -38,10 +35,10 @@ public class WindowModel extends ModelObject{
 		LIVE;
 	}
 	
-	public class Text extends ModelObject{
+	public class HUDText extends ModelObject{
 		public TextType type;
 		
-		Text(int x, int y, String text,TextType t){
+		HUDText(int x, int y, String text,TextType t){
 			super(x,y,text);
 			type=t;
 		}
@@ -87,13 +84,13 @@ public class WindowModel extends ModelObject{
 		return !(icons.isEmpty());
 	}
 	
-	public void addText(Text t){
+	public void addText(HUDText t){
 	  texts.add(t);
 	}
 	
-	public ArrayList<Text> getTexts(TextType type){
-		ArrayList<Text> n = new ArrayList<Text>();
-		for(Text t : texts){
+	public ArrayList<HUDText> getTexts(TextType type){
+		ArrayList<HUDText> n = new ArrayList<HUDText>();
+		for(HUDText t : texts){
 			if(t.type==type){
 				n.add(t);
 			}
@@ -101,15 +98,15 @@ public class WindowModel extends ModelObject{
 		return n;		
 	}
 	
-	public ArrayList<Text> getTexts(){
+	public ArrayList<HUDText> getTexts(){
 		return getTexts(TextType.STATIC);
 	}
 	
-	public ArrayList<Text> getServerTexts(){
+	public ArrayList<HUDText> getServerTexts(){
 		return getTexts(TextType.SERVER);
 	}
 	
-	public ArrayList<Text> getLiveTexts(){
+	public ArrayList<HUDText> getLiveTexts(){
 		return getTexts(TextType.LIVE);
 	}
 	
@@ -178,8 +175,8 @@ public class WindowModel extends ModelObject{
   }
   }
 
-  public Text getText(int i, int j, String string, TextType t) {
-    return new Text(i,j,string,t);
+  public HUDText getText(int i, int j, String string, TextType t) {
+    return new HUDText(i,j,string,t);
   }
 
 }

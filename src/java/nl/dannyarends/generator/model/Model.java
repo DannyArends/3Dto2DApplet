@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-import nl.dannyarends.generator.model.WindowModel.TextType;
-
 public class Model extends ModelObject{
 	ArrayList<Relation> relations = new ArrayList<Relation>();
 	ArrayList<WindowModel> windows = new ArrayList<WindowModel>();
