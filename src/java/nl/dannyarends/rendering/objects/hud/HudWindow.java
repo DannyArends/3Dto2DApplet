@@ -36,10 +36,8 @@ import nl.dannyarends.rendering.Hud;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.rendering.objects.Point2D;
 
-
-
 public class HudWindow extends HudButton{
-	boolean showTopMenu = true;
+	private boolean showTopMenu = true;
 	private boolean active = false;
 	private boolean needUpdate = false;
 	private Point2D fromSlide,originalsize;

@@ -13,15 +13,25 @@ import nl.dannyarends.rendering.objects.hud.HudText;</#if><#if window.hasIcons()
 import nl.dannyarends.rendering.IconLoader;</#if>
 
 /**
- * \brief Generated class: ${window.name}<br>
+ * \brief Generated class: ${window.name}Window<br>
  *
- * This class contains the implementation of ${window.name} in java.
+ * This class contains the implementation of ${window.name}Window in java.
  * bugs: none found<br>
  */
-class ${window.name} extends HudWindow{
+public class ${window.name}Window extends HudWindow{
 	
-	public ${window.name}(ServerConnection s){
+	public ${window.name}Window(ServerConnection s){
 		super(s, ${window.x}, ${window.y}, ${window.w}, ${window.h}, "${window.name}");
+		addStaticHudObjects();
+	}
+	
+	public ${window.name}Window(int x, int y, ServerConnection s){
+		super(s, x, y, ${window.w}, ${window.h}, "${window.name}");
+		addStaticHudObjects();
+	}
+	
+	public ${window.name}Window(int x, int y, int w, int h, ServerConnection s){
+		super(s, x, y, w, h, "${window.name}");
 		addStaticHudObjects();
 	}
 	

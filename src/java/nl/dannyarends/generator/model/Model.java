@@ -20,8 +20,10 @@ public class Model extends ModelObject{
 		danny.addAttribute(new Attribute("my_string",new Value("string","Hello World")));
 		danny.addAttribute(new Attribute("my_array",new Value("collection",new ArrayList<Attribute>())));
 		relations.add(new Relation(danny, new Entity("love","eternal"), new Entity("Anna")));
-		WindowModel test = new WindowModel("About","nl.dannyarends.rendering.objects.hud.window.");
+		WindowModel test = new WindowModel("About","nl.dannyarends.rendering.objects.hud.windows.");
 		test.addText(new WindowModel().getText(10,10,"QTL viewing applet",test.getTextType(0)));
+		test.addText(new WindowModel().getText(10,30,"Part of the iqtl package",test.getTextType(0)));
+		test.addText(new WindowModel().getText(10,50,"(c) 2010 Danny Arends - GBIC",test.getTextType(0)));
 		windows.add(test);
 	}
 	
