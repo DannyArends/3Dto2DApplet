@@ -2,10 +2,7 @@ package nl.dannyarends.www;
 
 import java.io.File;
 
-import nl.dannyarends.generator.Generator;
-import nl.dannyarends.generic.JavaCompiler;
 import nl.dannyarends.generic.Utils;
-import nl.dannyarends.generic.JavaCompiler.CompileUnit;
 import nl.dannyarends.options.DatabaseOptions;
 import nl.dannyarends.options.GeneratorOptions;
 import nl.dannyarends.options.OptionsPackage;
@@ -38,18 +35,18 @@ public class WebServer {
 		optionsParser.parse((OptionsPackage) databaseOptions);
 		optionsParser.parse((OptionsPackage) generatorOptions);
 		
-		Utils.log("-- Starting Generation " + setLocalPath() + "--",System.err);
-		Generator g = new Generator();
-		g.generate();
-		Utils.log("-- Starting compiler " + setLocalPath() + "--",System.err);
-		JavaCompiler j = new JavaCompiler();
+//		Utils.log("-- Starting Generation " + setLocalPath() + "--",System.err);
+//		Generator g = new Generator();
+//		g.generate();
+//		Utils.log("-- Starting compiler " + setLocalPath() + "--",System.err);
+//		JavaCompiler j = new JavaCompiler();
 
-		CompileUnit source = j.newCompileUnit("src\\java\\nl\\dannyarends\\applets\\gameApplet","build");
-		source.addDependencies(new String[]{"src\\java"});
-		source.setMainClass("nl.dannyarends.applets.gameApplet");
-		source.setCustomJarName("GameApplet");
+//		CompileUnit source = j.newCompileUnit("src\\java\\nl\\dannyarends\\applets\\gameApplet","build");
+//		source.addDependencies(new String[]{"src\\java"});
+//		source.setMainClass("nl.dannyarends.applets.gameApplet");
+//		source.setCustomJarName("GameApplet");
 		
-		j.CompileTarget(source);
+//		j.CompileTarget(source);
 		
 //		generated.addDependency("libs");
 //		generated.addDependency("src\\java");

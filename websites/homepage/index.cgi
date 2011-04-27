@@ -32,7 +32,7 @@ print "
 <table width='95%'>
 <tr>
   <td colspan=3>
-  <i>Last updated: 02 April 2011</i><br>
+  <i>Last updated: 27 April 2011</i><br>
   [<a href=\"/Index.cgi\" title=\"The index page of dannyarends.nl\"><font color=\"black\">Home</font></a>
   |<a href=\"/myblog.cgi\" title=\"Blog by Danny Arends\"><font color=\"black\">My Blog</font></a>
   |<a href=\"/Index.cgi?p=Publications\" title=\"Overview of Publication by Danny Arends\"><font color=\"black\">Publications</font></a>
@@ -61,8 +61,8 @@ print "
 </tr>
 <tr>
   <td colspan=3>
-  <div align=\"center\">";
-print "<font color=\"white\">Page requested via rest: " . $form{"p"} . "</font>\n";
+  <div align=\"center\" id=footer>";
+print "Copyright 'Danny Arends' 2011 - All Rights Reserved, Page requested via rest: " . $form{"p"} . "</font>\n";
 print "
   </div>
   </td>

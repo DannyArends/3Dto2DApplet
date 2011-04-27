@@ -53,7 +53,7 @@ our $config_searchMinLength = 4;									# Minimum lenght of the keyword to sear
 our $config_redditAllowed = 0;										# Allow the reddit option, to share your posts					(0 = No, 1 = Yes)
 our $config_menuEntriesLimit = 10;									# Limits of entries to show in the menu
 our @config_menuLinks = ('http://www.dannyarends.nl,My Homepage','http://google.com,google');										# Links to be displayed at the menu
-our $config_menuShowLinks = 1;										# Show links at the menu?										(0 = No, 1 = Yes)
+our $config_menuShowLinks = 0;										# Show links at the menu?										(0 = No, 1 = Yes)
 our $config_menuLinksHeader = 'Links';								# This is the header before the links appear, you can change it as you wish, normal is Links or Blogroll
 our $config_allowCustomHTML = 0;									# Want to add some code? Edit here								(0 = No, 1 = Yes)
 our $config_customHTML = '<h1>Hello</h1> This is custom HTML';		# HTML here
@@ -343,7 +343,7 @@ function surroundText(text1, text2, textarea)
 	}
 }
 </script>
-<link href='.$config_currentStyleFolder.'/style.css rel=stylesheet type=text/css>
+<link href='.$config_currentStyleFolder.'/default.css rel=stylesheet type=text/css>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -358,27 +358,48 @@ function surroundText(text1, text2, textarea)
 
 </script>	
 </head>
-<body><div id=all><div id=menu>
-<h1>Main Menu</h1>
-<a href=?page=1>Home</a>
-<a href=?do=newEntry>New Entry</a>
-<a href=?do=archive>Archive</a>
-<a href="?do=RSS">RSS Feeds</a>
-<h1>Categories</h1>';			# Show Categories on Menu	THIS IS THE MENU SECTION
+<body>
+<div class="whitebg">
+<h1>DannyArends.nl</h1>
+<h2>My Blog</h2>
+<table width="95%">
+<tr>
+  <td colspan=3>
+  <i>Last updated: 27 April 2011</i><br>
+  [<a href="/Index.cgi" title="The index page of dannyarends.nl"><font color="black">Home</font></a>
+  |<a href="/myblog.cgi" title="Blog by Danny Arends"><font color="black">My Blog</font></a>
+  |<a href="/Index.cgi?p=Publications" title="Overview of Publication by Danny Arends"><font color="black">Publications</font></a>
+  |<a href="/Index.cgi?p=Presentations" title="Overview of Presentations by Danny Arends"><font color="black">Presentations</font></a>
+  |<a href="/Index.cgi?p=Drawings" title="Overview of Drawings made by Danny Arends"><font color="black">Drawings</font></a>
+  |<a href="/Index.cgi?p=Hobbies" title="Summary of my hobbies"><font color="black">Hobbies</font></a>
+  |<a href="/Index.cgi?p=Contact" title="Contact information"><font color="black">Contact</font></a>
+  |<a href="/Index.cgi?p=Applet" title="Java applet game created by Danny Arends"><font color="black">Java Applet world</font></a>
+  |<a href="/Index.cgi?p=Various" title="Other things that intrest me"><font color="black">Other stuff</font></a>
+  |<a href="/Index.cgi?p=Links" title="Links to other web pages"><font color="black">Links</font></a>
+  ]<br><hr>
+    </td>
+</tr>
+<tr>
+<td valign="top" width="20%" id=menu>
+<h3>Blog Menu</h3>
+<a href=?do=newEntry>New Entry</a><br>
+<a href=?do=archive>Archive</a><br>
+<a href="?do=RSS">RSS Feed</a><br>
+<h3>Categories</h3>';			# Show Categories on Menu	THIS IS THE MENU SECTION
 my @categories = sort(getCategories());
 foreach(@categories)
 {
-	print '<a href="?viewCat='.$_.'">'.$_.'</a>';
+	print '<a href="?viewCat='.$_.'">'.$_.'</a><br>';
 }
 print 'No categories yet.' if scalar(@categories) == 0;
-print '<h1>Search</h1>
+print '<h3>Search</h3>
 <form name="form1" method="post" action="myblog.cgi">
 <input type="text" name="keyword">
 <input type="hidden" name="do" value="search">
-<input type="submit" name="Submit" value="Search"><br />
+<input type="submit" name="Submit" value="Search"><br>
 By Title <input name="by" type="radio" value="0" checked> By Content <input name="by" type="radio" value="1">
 </form>
-<h1>Latest Entries</h1>';
+<h3>Latest Entries</h3>';
 
 my @entriesOnMenu = getFiles($config_postsDatabaseFolder);
 my $i = 0;
@@ -402,7 +423,7 @@ foreach(@entriesOnMenu)
 		
 		if($do == 1)
 		{
-			print '<a href="?viewDetailed='.$fileName.'">'.$title.'</a>';
+			print '<a href="?viewDetailed='.$fileName.'">'.$title.'</a><br>';
 		}
 		
 		$i++;
@@ -429,7 +450,7 @@ foreach(@pages)
 	close FILE;
 	my @data = split(/"/, $content);
 	my $title = $data[0];
-	print '<a href="?viewDetailed='.$fileName.'">'.$title.'</a>';
+	print '<a href="?viewDetailed='.$fileName.'">'.$title.'</a><br>';
 }
 
 if($config_redditAllowed == 1)
@@ -451,7 +472,7 @@ if($config_menuShowLinks == 1)
 		foreach(@config_menuLinks)
 		{
 			my @link = split(/,/, $_);
-			print '<a href="'.$link[0].'">'.$link[1].'</a>';
+			print '<a href="'.$link[0].'">'.$link[1].'</a><br>';
 		}
 	}
 }
@@ -557,7 +578,7 @@ if($config_showHits == 1)
 	print 'Hits: '.$content;
 }
 
-print '</div><div id=content>';
+print '</td><td valign="top" width="49%"><div id=content class="white">';
 
 foreach(@config_ipBan)
 {
@@ -1717,5 +1738,5 @@ else
 		print 'No entries created. Why dont you <a href="?do=newEntry">make one</a>?';
 	}
 }
-print '</div><div id="footer">Copyright '.$config_blogTitle.' 2011 - All Rights Reserved'; print '<br>All posts are using GMT '.$config_gmt if $config_showGmtOnFooter == 1; print '</div></div></body></html>';
+print '</td><td valign="top"></td></tr><tr><td colspan=3><div align="center" id=footer>Copyright '.$config_blogTitle.' 2011 - All Rights Reserved'; print ', all posts are using GMT '.$config_gmt if $config_showGmtOnFooter == 1; print '</div></td></tr></table></div></body></html>';
 }

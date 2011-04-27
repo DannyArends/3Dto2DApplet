@@ -7,7 +7,7 @@ font-size:11px;
 
 div{
 margin:0px 0px;
-background-color: black;
+background-color: white;
 font-family: "trebuchet MS";
 font-size:11px;
 }
@@ -36,6 +36,10 @@ background-color: white;
 
 .whitebg{
 margin:20px 40px;
+background-color: white;
+}
+
+.white{
 background-color: white;
 }
 
@@ -90,4 +94,71 @@ text-decoration:none;
 a:visited{
 color:black;
 text-decoration:none;
+}
+
+div#menu {
+	float: left;
+	width: 200px;
+}
+
+#menu a {
+	color: black;
+	text-transform: capitalize;
+	padding-left: 5px;
+	text-decoration: none;
+}
+
+#menu a:hover {
+	padding-left: 7px;
+	text-decoration: none;
+}
+
+#content h1 {
+	font-size: 15px;
+	border-bottom: 1px solid silver;
+	margin-bottom: 5px;
+	padding: 0px;
+	letter-spacing: 2px;
+}
+
+#content a {
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+div#footer {
+	clear: both;
+	text-align: center;
+	font-size: 10px;
+	color: #666666;
+	padding-top: 15px;
+	letter-spacing: 2px;
+}
+
+#footer a {
+	color: black;
+	text-decoration: none;
+	letter-spacing: -1px;
+}
+
+.code {
+	border: 1px solid silver;
+	background-color: #F1F1F1;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #333333;
+	font-size: 11px;
+	padding: 2px;
+	margin: 2px;
+	line-height: 5px;
+	height: 200px;
+	overflow: scroll;
+	background-color: white;
+}
+
+.quote {
+	border: 1px solid silver;
+	padding: 2px;
+	margin: 2px;
+	background-color: white;
 }
