@@ -495,7 +495,7 @@ if($config_showLatestComments == 1)
 		if($i <= $config_showLatestCommentsLimit)
 		{
 			my @entry = split(/"/, $_);
-			print '<a href="?viewDetailed='.$entry[4].'" title="Posted by '.$entry[1].'">'.$entry[0].'</a>';
+			print '<a href="?viewDetailed='.$entry[4].'" title="Posted by '.$entry[1].'">'.$entry[0].'</a><br>';
 			$i++;
 		}
 	}
