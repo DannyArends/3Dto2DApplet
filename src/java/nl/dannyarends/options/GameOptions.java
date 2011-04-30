@@ -9,7 +9,7 @@ public class GameOptions extends OptionsPackage{
 	}
 
 	@Option(name = "host", param = Value.Type.STRING, type = Option.Type.REQUIRED_ARGUMENT, usage = "hostname")
-	public static String host = "game.dannyarends.nl";
+	public static String host = "localhost";
 	
 	@Option(name = "port", param = Value.Type.INTEGER, type = Option.Type.REQUIRED_ARGUMENT, usage = "port to be used")
 	public static int port = 2000;

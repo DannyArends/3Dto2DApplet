@@ -20,7 +20,7 @@
 #
 */
 
-package nl.dannyarends.applets.emptyApplet;
+package nl.dannyarends.applets.geneticsApplet;
 
 import java.applet.Applet;
 import java.awt.Graphics;
@@ -32,18 +32,17 @@ import java.awt.event.MouseListener;
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
 
-public class EmptyApplet extends Applet implements KeyListener, MouseListener, RenderWindow{
-	private static final long serialVersionUID = -2934477801450325416L;
+public class GeneticsApplet extends Applet implements KeyListener, MouseListener, RenderWindow{
+  private static final long serialVersionUID = -4248178339200047824L;
 
-	public void init() {
-		System.out.println("Applet started");
+  public void init() {
+		System.out.println("GeneticsApplet started");
     addKeyListener(this);
     addMouseListener(this);
 	}
 
 
 	public void update(Graphics g) {
-	  g.drawString("Started", 10, 10);
 		Utils.idle(100);
 	}
 

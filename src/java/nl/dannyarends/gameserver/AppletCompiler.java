@@ -28,27 +28,35 @@ public class AppletCompiler {
 		}
 		if(f.isDirectory()){
 			for(String applet : f.list()){
-				File a = new File(location + File.separator + applet);
-				if(a.isDirectory()){
-					j = new JavaCompiler();
-					source = j.newCompileUnit(a.getPath(),"build");
-					source.addDependencies(new String[]{"src\\java"});
-					String mainClass = a.getPath().substring(a.getPath().indexOf("src\\java")+9);
-					mainClass = mainClass.replace("\\", ".") +"."+ Utils.firstLetterUpperCase(applet);
-					source.setMainClass(mainClass);
-					source.setCustomJarName(output + a.getName());
-					j.CompileTarget(source);
-					applets.add(source);
-					Utils.console("Mapped applet: " + a.getName() + " at " + a.getPath() + ", main: " + mainClass);
-				}else{
-					System.err.println("Warning found a file '"+a.getName()+"' in the applet directory");
-				}
+				compileOne(location,applet,output);
 			}
 		}else{
 			System.err.println("Please supply a directory");
 		}
 	}
 	
+	 public void compileOne(String location,String applet,String output){
+	   File a = new File(location + File.separator + applet);
+	   if(a.isDirectory()){
+	     j = new JavaCompiler();
+	     source = j.newCompileUnit(a.getPath(),"build");
+	     source.addDependencies(new String[]{"src\\java"});
+	     String mainClass = a.getPath().substring(a.getPath().indexOf("src\\java")+9);
+	     mainClass = mainClass.replace("\\", ".") +"."+ Utils.firstLetterUpperCase(applet);
+	     source.setMainClass(mainClass);
+	     source.setCustomJarName(output + a.getName());
+	     j.CompileTarget(source);
+	     applets.add(source);
+	     Utils.console("Mapped applet: " + a.getName() + " at " + a.getPath() + ", main: " + mainClass);
+	   }else{
+	     System.err.println("Warning found a file '"+a.getName()+"' in the applet directory");
+	   }
+	}
+	
+	public void dropApplets(){
+	  applets.clear();
+	}
+	 
 	public ArrayList<CompileUnit> getApplets(){
 		return applets;
 	}

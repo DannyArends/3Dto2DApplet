@@ -41,7 +41,7 @@ import nl.dannyarends.rendering.Engine;
 public class GameApplet extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = 1L;
 	
-	ServerConnection server = new ServerConnection("Applet");
+	ServerConnection server = new ServerConnection();
 	MyHandler eventListener= new MyHandler(this);
 	static ClientOptions clientOptions;
 	static OptionsParser optionsParser;

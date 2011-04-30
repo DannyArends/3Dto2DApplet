@@ -27,7 +27,7 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 	static String title = "DWF v0.0.1 with CGI support";
 	static WWWServer webserver = new WWWServer();
 	MyHandler eventListener= new MyHandler(this);
-	ServerConnection server = new ServerConnection("Standalone");
+	ServerConnection server = new ServerConnection();
 	Engine engine; 
 	
 	DWF(int w, int h,String title){

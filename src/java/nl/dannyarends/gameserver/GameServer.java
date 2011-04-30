@@ -3,6 +3,8 @@ package nl.dannyarends.gameserver;
 import java.io.File;
 import java.util.ArrayList;
 
+import nl.dannyarends.gameserver.game.Time;
+import nl.dannyarends.gameserver.protocol.ServerCommands;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.options.DatabaseOptions;
 import nl.dannyarends.options.GameOptions;
@@ -23,6 +25,9 @@ import nl.dannyarends.www.http.servlets.FileServlet;
 public class GameServer implements Runnable{
 	private static String[] arguments;
 	private static GameServer server;
+	static SocketConnector connections;
+	ServerCommands commandStack;
+  public Time serverTime = new Time();
 	private static String localPath;
 	
 	public boolean running = true;
@@ -38,7 +43,6 @@ public class GameServer implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		initServer((arguments.length > 1)?arguments[0]:"settings/game.properties");
 		while(server.running){
 			mainLoop();
@@ -47,16 +51,19 @@ public class GameServer implements Runnable{
 
 	private void mainLoop() {
 		// mainLoop of the server, purely for updating the game world
-		Utils.idle(100);
+	  Utils.idle(100);
 	}
 
 	private void initServer(String gameoptions) {
 		Utils.log("-- Parsing properties --",System.err);
 		options.add(new GameOptions(gameoptions));
 		options.add(new DatabaseOptions("settings/db.properties"));
-		Utils.log("-- Compiling Applets --",System.err);
-		appletCompiler.compileAll(GameOptions.applets_source_folder, GameOptions.game_data);
-		
+		Utils.log("-- Going to monitor for incomming connections --",System.err);
+    connections = new SocketConnector(server);
+    commandStack = new ServerCommands(server);
+		new Thread(connections).start();
+    Utils.log("-- Compiling Applets --",System.err);
+    server.appletCompiler.compileOne(GameOptions.applets_source_folder,"clientApplet", GameOptions.game_data);
 		if(GameOptions.webserver){
 			options.add(new WebOptions("settings/www.properties"));
 			Utils.log("-- Starting WebServer " + setLocalPath() + "--",System.err);

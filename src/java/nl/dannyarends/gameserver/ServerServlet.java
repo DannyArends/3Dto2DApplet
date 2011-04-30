@@ -7,7 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.generic.JavaCompiler.CompileUnit;
+import nl.dannyarends.options.GameOptions;
 import nl.dannyarends.www.http.servlets.Servlet;
 
 

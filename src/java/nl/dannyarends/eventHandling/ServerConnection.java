@@ -34,11 +34,12 @@ import nl.dannyarends.rendering.Engine;
 
 
 
-/// ServerConnection
-//<p>
-//Handles server communication events
-//</p>
-//
+/* ServerConnection
+ *
+ *<p>
+ *Handles server communication events
+ *</p>
+ */
 public class ServerConnection {
 	String aLine;
 	URL url; 
@@ -51,15 +52,13 @@ public class ServerConnection {
 	public static boolean online = false;
 	String connectionstring = "http://localhost/cgi-bin/server.cgi";
 	
-	public ServerConnection(String type){
+	public ServerConnection(){
 		up=0;
 		down=0;
-		if(type=="Applet"){
-			try{
-			connectionstring = Engine.getAppletURL() + "cgi-bin/server.cgi";
-			}catch(Exception e){
-			connectionstring = "http://localhost/cgi-bin/server.cgi";	
-			}
+		try{
+		connectionstring = Engine.getAppletURL() + "cgi-bin/server.cgi";
+		}catch(Exception e){
+		connectionstring = "http://localhost/cgi-bin/server.cgi";	
 		}
 	}
 	

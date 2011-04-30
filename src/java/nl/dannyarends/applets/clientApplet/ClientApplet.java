@@ -20,7 +20,7 @@
 #
 */
 
-package nl.dannyarends.applets.emptyApplet;
+package nl.dannyarends.applets.clientApplet;
 
 import java.applet.Applet;
 import java.awt.Graphics;
@@ -29,22 +29,27 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import nl.dannyarends.eventHandling.BasicClient;
 import nl.dannyarends.generic.RenderWindow;
-import nl.dannyarends.generic.Utils;
 
-public class EmptyApplet extends Applet implements KeyListener, MouseListener, RenderWindow{
+
+public class ClientApplet extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = -2934477801450325416L;
-
+	BasicClient b;
+	
 	public void init() {
 		System.out.println("Applet started");
     addKeyListener(this);
     addMouseListener(this);
+    b  = new BasicClient();
+    new Thread(b).start();
 	}
 
+	
 
 	public void update(Graphics g) {
-	  g.drawString("Started", 10, 10);
-		Utils.idle(100);
+	  g.drawString(b.serverTime.getTime(), 10, 10);
+	  g.drawString(b.serverTime.getDate(), 10, 30);
 	}
 
 	public void paint(Graphics g) {

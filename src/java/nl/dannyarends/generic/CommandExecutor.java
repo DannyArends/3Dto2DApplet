@@ -18,7 +18,7 @@ public class CommandExecutor implements Runnable{
   private String err = "";
   int failed_commands=0;
   int succes_commands=0;
-  public Boolean verbose = false;
+  public Boolean verbose = true;
   
   public CommandExecutor(){
   }
