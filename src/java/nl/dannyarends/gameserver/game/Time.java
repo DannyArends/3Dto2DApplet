@@ -1,6 +1,5 @@
 package nl.dannyarends.gameserver.game;
 
-import nl.dannyarends.generic.Utils;
 
 public class Time {
   int day;
