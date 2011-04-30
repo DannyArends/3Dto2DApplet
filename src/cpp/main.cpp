@@ -6,6 +6,9 @@
  */
 
 #include "includes.h"
+
+#include "C/Sort.h"
+#include "C/Search.h"
 #include "JNI/Database.h"
 #include "JNI/CommandExecutor.h"
 #include "JNI/WebServer.h"

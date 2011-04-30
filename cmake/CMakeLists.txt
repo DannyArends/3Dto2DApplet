@@ -7,6 +7,9 @@ ADD_DEFINITIONS(-Wall)
 
 add_executable(${EXECNAME} 
   ../src/cpp/main.cpp
+  ../src/cpp/C/basic.c
+  ../src/cpp/C/search.c
+  ../src/cpp/C/sort.c
   ../src/cpp/includes.cpp
   ../src/cpp/JNI/Database.cpp
   ../src/cpp/JNI/CommandExecutor.cpp
