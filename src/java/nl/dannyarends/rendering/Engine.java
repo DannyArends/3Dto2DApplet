@@ -57,7 +57,7 @@ public class Engine implements Renderable,Runnable{
 	 */	
 	public Engine(RenderWindow w){
 	  setWindow(w);
-	  
+	  eventhandler = new EventHandler(w,this);
 	  setScene(new Scene(window,this));
 	  setHud(new Hud(window,this,scene));
 	  

@@ -17,62 +17,64 @@ public class EventHandler implements KeyListener, MouseListener,MouseMotionListe
   private MouseHandler mouse;
   private KeyBoardHandler keyboard;
   
-  EventHandler(Engine e,RenderWindow w){
-    engine = e;
+  public EventHandler(RenderWindow w,Engine e){
     window = w;
-    
+    engine = e;
+   
     client = new NetworkHandler("localhost",2000);
+    mouse = new MouseHandler();
+    keyboard = new KeyBoardHandler();
     new Thread(client).start();
   }
   
   @Override
   public void mouseDragged(MouseEvent arg0) {
-
+    mouse.mouseDragged(arg0);
   }
 
   @Override
   public void mouseMoved(MouseEvent arg0) {
-
+    mouse.mouseMoved(arg0);
   }
 
   @Override
   public void mouseClicked(MouseEvent arg0) {
-
+    mouse.mouseClicked(arg0);
   }
 
   @Override
   public void mouseEntered(MouseEvent arg0) {
-
+    mouse.mouseEntered(arg0);
   }
 
   @Override
   public void mouseExited(MouseEvent arg0) {
-
+    mouse.mouseExited(arg0);
   }
 
   @Override
   public void mousePressed(MouseEvent arg0) {
-
+    mouse.mousePressed(arg0);
   }
 
   @Override
   public void mouseReleased(MouseEvent arg0) {
-
+    mouse.mouseReleased(arg0);
   }
 
   @Override
   public void keyPressed(KeyEvent arg0) {
-
+    keyboard.keyTyped(arg0);
   }
 
   @Override
   public void keyReleased(KeyEvent arg0) {
-
+    keyboard.keyTyped(arg0);
   }
 
   @Override
   public void keyTyped(KeyEvent arg0) {
-
+    keyboard.keyTyped(arg0);
   }
 
   public NetworkHandler getClient() {
