@@ -14,8 +14,6 @@ public abstract class HudObject implements Renderable {
   Hud display = null;
   public int x = 0;
   public int y = 0;
-  public Color bgcolor = Color.white;
-  public Color txtcolor = Color.green;
 
   HudObject(int x,int y, Hud p){
     this.x=x;

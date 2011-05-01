@@ -38,4 +38,12 @@ public class ColorUtils {
 	public static Color getRandomColor(){
 		return new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)Math.random()*255);
 	}
+
+  public static double[] ColorToDouble(Color color) {
+    double[] r = new double[3];
+    r[0] = ((double)color.getRed())/255.0;
+    r[1] = ((double)color.getGreen())/255.0;
+    r[2] = ((double)color.getBlue())/255.0;
+    return r;
+  }
 }

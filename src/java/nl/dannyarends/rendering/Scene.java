@@ -25,10 +25,14 @@ package nl.dannyarends.rendering;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
+import nl.dannyarends.rendering.hud.HudWindow;
 import nl.dannyarends.rendering.interfaces.Renderable;
+import nl.dannyarends.rendering.objects.lighting.Light;
+import nl.dannyarends.rendering.scene.Object3D;
 
 
 /// A 'renderable' moment/state of the engine
@@ -38,6 +42,8 @@ import nl.dannyarends.rendering.interfaces.Renderable;
 //
 
 public class Scene implements Renderable, Runnable{
+  private ArrayList<Object3D> objects = new ArrayList<Object3D>();
+  private ArrayList<Light> lights = new ArrayList<Light>();
   private RenderWindow window;
   private Engine engine;
   
@@ -56,5 +62,27 @@ public class Scene implements Renderable, Runnable{
     g.setColor(Color.black);
     g.fillRect(0, 0, (int)window.getSize().getWidth(),(int)window.getSize().getHeight());
     Utils.idle(20);
+  }
+
+  public int getWidth() {
+    // TODO Auto-generated method stub
+    return (int) window.getSize().getWidth();
+  }
+  
+  public int getHeight() {
+    // TODO Auto-generated method stub
+    return (int) window.getSize().getHeight();
+  }
+
+  public ArrayList<Object3D> getObjects() {
+    return objects;
+  }
+  
+  public ArrayList<Light> getLights() {
+    return lights;
+  }
+
+  public double[] getAmbientLight() {
+    return null;
   }
 }

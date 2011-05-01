@@ -10,7 +10,9 @@ import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.interfaces.Renderable;
 import nl.dannyarends.rendering.objects.Edge;
 import nl.dannyarends.rendering.objects.Location;
+import nl.dannyarends.rendering.objects.Material;
 import nl.dannyarends.rendering.objects.Rotation;
+import nl.dannyarends.rendering.objects.Vector;
 
 public class Object3D implements Renderable{
   Engine engine;
@@ -71,5 +73,30 @@ public class Object3D implements Renderable{
       }
     }
   }
+
+  public double[] getLocation() {
+    return location.l;
+  }
+
+  public double[] getRotation() {
+    return rotation.getRotation();
+  }
+
+  public double intersect(Vector ray) {
+    return 0;
+  }
+
+  public Material getMaterialAt(double[] pointOfIntersection) {
+    return null;
+  }
+  
+  public double[] getNormalAt(double[] pointOfIntersection) {
+    return null;
+  }
+
+  public double[] getColorAt(double[] pointOfIntersection) {
+    return null;
+  }
+
 
 }

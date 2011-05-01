@@ -5,6 +5,14 @@ public class Location {
   private static double nearToObj = 0.1f;
   public double[] l = new double[3];
 
+  public Location(double[] loc) {
+   l=loc;
+  }
+
+  public Location() {
+    
+  }
+
   public void multiply(double scale) {
     l[0] *= scale;
     l[1] *= scale;
