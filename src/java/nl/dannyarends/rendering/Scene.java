@@ -46,10 +46,12 @@ public class Scene implements Renderable, Runnable{
   private ArrayList<Light> lights = new ArrayList<Light>();
   private RenderWindow window;
   private Engine engine;
+  private Object3D camera;
   
 	public Scene(RenderWindow w, Engine e){
 	  window=w;
 	  engine=e;
+	  camera = new Object3D(this);
 	}
 	
 	@Override
@@ -65,12 +67,10 @@ public class Scene implements Renderable, Runnable{
   }
 
   public int getWidth() {
-    // TODO Auto-generated method stub
     return (int) window.getSize().getWidth();
   }
   
   public int getHeight() {
-    // TODO Auto-generated method stub
     return (int) window.getSize().getHeight();
   }
 
@@ -84,5 +84,19 @@ public class Scene implements Renderable, Runnable{
 
   public double[] getAmbientLight() {
     return null;
+  }
+
+  public void update() {
+   for(Object3D o : objects){
+     o.update(camera);
+   }
+  }
+
+  public Object3D rayTrace(int mx, int my) {
+    return null;
+  }
+
+  public Object3D getCamera() {
+    return camera;
   }
 }

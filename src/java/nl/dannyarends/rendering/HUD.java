@@ -41,4 +41,23 @@ public class Hud implements Runnable,Renderable {
     }
     Utils.idle(20);
   }
+
+  public boolean checkForClick(int x, int y) {
+    for(HudWindow w : windows){
+      if(w.x < x && w.y < y){
+        if(w.sx() > x && w.sy() > y){
+          w.onClick();
+          return true;
+        } 
+      }
+    }
+    return false;
+  }
+
+  public void update() {
+    for(HudWindow w : windows){
+      w.onUpdate();
+    }
+  }
+
 }

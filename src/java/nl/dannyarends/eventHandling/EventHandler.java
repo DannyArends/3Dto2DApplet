@@ -7,7 +7,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import nl.dannyarends.generic.RenderWindow;
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
+import nl.dannyarends.rendering.Scene;
+import nl.dannyarends.rendering.hud.HudObject;
 
 public class EventHandler implements KeyListener, MouseListener,MouseMotionListener{
   private RenderWindow window;
@@ -17,15 +20,33 @@ public class EventHandler implements KeyListener, MouseListener,MouseMotionListe
   private MouseHandler mouse;
   private KeyBoardHandler keyboard;
   
+  private HudObject keyinputlistener = null;
+  private HudObject sliderinputlistener = null;
+  
   public EventHandler(RenderWindow w,Engine e){
     window = w;
     engine = e;
    
     client = new NetworkHandler("localhost",2000);
-    mouse = new MouseHandler();
-    keyboard = new KeyBoardHandler();
+    mouse = new MouseHandler(this);
+    keyboard = new KeyBoardHandler(this);
     new Thread(client).start();
   }
+  
+  public void registerForKeystrokes(HudObject b) {
+    Utils.console("Object registering for keystrokes");
+    setKeyinputlistener(b);
+  }
+
+  public void registerForSlide(HudObject b) {
+    Utils.console("Object registering for mouse slides");
+    setSliderinputlistener(b);
+  }
+  
+  public long getTimeSinceLastMouseMove(){
+    return mouse.getTimeSinceLastMouseMove();
+  }
+  
   
   @Override
   public void mouseDragged(MouseEvent arg0) {
@@ -83,5 +104,25 @@ public class EventHandler implements KeyListener, MouseListener,MouseMotionListe
 
   public void setClient(NetworkHandler c) {
    client=c;
+  }
+
+  public void setSliderinputlistener(HudObject sliderinputlistener) {
+    this.sliderinputlistener = sliderinputlistener;
+  }
+
+  public HudObject getSliderinputlistener() {
+    return sliderinputlistener;
+  }
+
+  public Scene getScene() {
+    return engine.getScene();
+  }
+
+  public void setKeyinputlistener(HudObject keyinputlistener) {
+    this.keyinputlistener = keyinputlistener;
+  }
+
+  public HudObject getKeyinputlistener() {
+    return keyinputlistener;
   }
 }

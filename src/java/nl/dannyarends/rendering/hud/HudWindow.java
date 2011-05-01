@@ -66,4 +66,10 @@ public class HudWindow extends HudObject {
     }
   }
 
+  @Override
+  public boolean onUpdate() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 }

@@ -50,7 +50,8 @@ public abstract class HudObject implements Renderable {
   abstract public boolean onKey(char c);
   abstract public boolean onSlide(int mx, int my);
   abstract public boolean onClick();
-  
+  abstract public boolean onUpdate();
+
   @Override
   abstract public void render(Graphics2D g);
 

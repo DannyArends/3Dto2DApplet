@@ -7,6 +7,7 @@ import java.awt.geom.GeneralPath;
 
 import nl.dannyarends.generic.MathUtils;
 import nl.dannyarends.rendering.Engine;
+import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.rendering.interfaces.Renderable;
 import nl.dannyarends.rendering.objects.Edge;
 import nl.dannyarends.rendering.objects.Location;
@@ -15,7 +16,7 @@ import nl.dannyarends.rendering.objects.Rotation;
 import nl.dannyarends.rendering.objects.Vector;
 
 public class Object3D implements Renderable{
-  Engine engine;
+  private Scene scene;
   private Location location = new Location();
   private Rotation rotation = new Rotation();
   
@@ -27,14 +28,14 @@ public class Object3D implements Renderable{
   private double scale;
   
   
-  Object3D(Engine e){
-    engine=e;
+  public Object3D(Scene s){
+    scene = s;
   }
   
   public void update(Object3D camera){
     rotation.update();
-    int width = (int) engine.getWindow().getSize().getWidth();
-    int height = (int) engine.getWindow().getSize().getHeight();
+    int width = scene.getWidth();
+    int height = scene.getHeight();
     int scaleFactor_w = (int) ((width / 1.90));
     int scaleFactor_h = (int) ((height / 1.40));
     if(vertices != null){
@@ -81,6 +82,15 @@ public class Object3D implements Renderable{
   public double[] getRotation() {
     return rotation.getRotation();
   }
+  
+  public void setHorRotation(int rot) {
+    rotation.setHorizontal(rot);
+  }
+  
+  public void setVertRotation(int rot) {
+    rotation.setVertical(rot);
+  }
+
 
   public double intersect(Vector ray) {
     return 0;

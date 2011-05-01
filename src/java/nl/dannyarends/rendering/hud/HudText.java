@@ -53,4 +53,10 @@ public class HudText extends HudObject {
     return false;
   }
 
+  @Override
+  public boolean onUpdate() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 }
