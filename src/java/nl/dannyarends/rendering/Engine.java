@@ -22,13 +22,10 @@
 
 package nl.dannyarends.rendering;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
 import nl.dannyarends.eventHandling.EventHandler;
-import nl.dannyarends.eventHandling.KeyBoardHandler;
-import nl.dannyarends.eventHandling.MouseHandler;
 import nl.dannyarends.eventHandling.NetworkHandler;
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
@@ -42,7 +39,7 @@ import nl.dannyarends.rendering.interfaces.Renderable;
  */
 public class Engine implements Renderable,Runnable{
 	private RenderWindow window;
-	private HUD hud;
+	private Hud hud;
 	private Scene scene;
 	private EventHandler eventhandler;
 	private boolean rendering = true;
@@ -62,7 +59,7 @@ public class Engine implements Renderable,Runnable{
 	  setWindow(w);
 	  
 	  setScene(new Scene(window,this));
-	  setHud(new HUD(window,this,scene));
+	  setHud(new Hud(window,this,scene));
 	  
 	  backBuffer = w.createImage((int)w.getSize().getWidth(), (int)w.getSize().getHeight());
 	  setBackBufferGraphics(backBuffer.getGraphics());
@@ -99,7 +96,7 @@ public class Engine implements Renderable,Runnable{
     }
   }
 
-  public void setHud(HUD h) {
+  public void setHud(Hud h) {
     hud = h;
   }
 
@@ -131,7 +128,7 @@ public class Engine implements Renderable,Runnable{
     scene = s;
   }
 
-  public HUD getHud() {
+  public Hud getHud() {
     return hud;
   }
 

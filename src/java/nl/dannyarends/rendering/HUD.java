@@ -7,12 +7,12 @@ import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.interfaces.Renderable;
 
-public class HUD implements Runnable,Renderable {
+public class Hud implements Runnable,Renderable {
   private RenderWindow window;
   private Engine engine;
   private Scene scene;
   
-  public HUD(RenderWindow w, Engine e, Scene s) {
+  public Hud(RenderWindow w, Engine e, Scene s) {
     window=w;
     engine=e;
     scene=s;
