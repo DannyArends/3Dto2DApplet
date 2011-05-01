@@ -24,6 +24,7 @@ package nl.dannyarends.applets.clientApplet;
 
 import java.applet.Applet;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -31,7 +32,6 @@ import java.awt.event.MouseListener;
 
 import nl.dannyarends.eventHandling.EventHandler;
 import nl.dannyarends.generic.RenderWindow;
-import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
 
 
@@ -52,7 +52,7 @@ public class ClientApplet extends Applet implements KeyListener, MouseListener, 
 	
 
 	public void update(Graphics g) {
-	  engine.render(g);
+	  engine.render((Graphics2D)g);
 	}
 
 	public void paint(Graphics g) {

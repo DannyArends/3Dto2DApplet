@@ -24,6 +24,7 @@ package nl.dannyarends.rendering;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
@@ -51,7 +52,7 @@ public class Scene implements Renderable, Runnable{
 	}
 	
   @Override
-  public void render(Graphics g) {
+  public void render(Graphics2D g) {
     g.setColor(Color.black);
     g.fillRect(0, 0, (int)window.getSize().getWidth(),(int)window.getSize().getHeight());
     Utils.idle(20);

@@ -23,6 +23,7 @@
 package nl.dannyarends.rendering;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import nl.dannyarends.eventHandling.EventHandler;
@@ -72,9 +73,9 @@ public class Engine implements Renderable,Runnable{
   public void run() {
     while(rendering){
       long l1 = System.nanoTime();
-      scene.render(getBackBufferGraphics());
+      scene.render((Graphics2D)getBackBufferGraphics());
       long l2 = System.nanoTime();
-      hud.render(getBackBufferGraphics());
+      hud.render((Graphics2D)getBackBufferGraphics());
       long l3 = System.nanoTime();
       stats_scene_time = (int) ((l2 - l1)/1000000);
       stats_hud_time = (int) ((l3 - l2)/1000000);
@@ -83,7 +84,7 @@ public class Engine implements Renderable,Runnable{
   }
 	
   @Override
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
     updateGraphics(g);
   }
   

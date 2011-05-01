@@ -3,6 +3,7 @@ package nl.dannyarends.www;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -39,7 +40,7 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(),getHeight());
-		engine.render(g);
+		engine.render((Graphics2D)g);
 	}
 	
 	public void paint(Graphics g) {
@@ -78,6 +79,6 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 		while(engine==null){
 
 		}
-		engine.render(getGraphics());
+		engine.render((Graphics2D)getGraphics());
 	}
 }

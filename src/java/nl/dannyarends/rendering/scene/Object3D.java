@@ -50,11 +50,9 @@ public class Object3D implements Renderable{
   }
   
   @Override
-  public void render(Graphics g) {
-    Graphics2D g2d = (Graphics2D)g;
-    
+  public void render(Graphics2D g) {
     GeneralPath path = null;
-    g2d.setPaint(Color.green);
+    g.setPaint(Color.green);
     for(int j=0; j < (edges.length-1);j+=3){
       if(points[edges[j].a] != null && points[edges[j+1].a] != null && points[edges[j+2].a] != null){
       if(points[edges[j].b] != null && points[edges[j+1].b] != null && points[edges[j+2].b] != null){
@@ -67,8 +65,8 @@ public class Object3D implements Renderable{
         path.lineTo(points[edges[j+2].a][0], points[edges[j+2].a][1]);
         path.lineTo(points[edges[j+2].b][0], points[edges[j+2].b][1]);
         path.closePath();
-        g2d.draw(path);
-        g2d.fill(path);  
+        g.draw(path);
+        g.fill(path);  
       }
       }
     }

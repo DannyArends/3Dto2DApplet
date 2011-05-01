@@ -1,13 +1,17 @@
 package nl.dannyarends.rendering;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
+import nl.dannyarends.rendering.hud.HudText;
+import nl.dannyarends.rendering.hud.HudWindow;
 import nl.dannyarends.rendering.interfaces.Renderable;
 
 public class Hud implements Runnable,Renderable {
+  private ArrayList<HudWindow> windows = new ArrayList<HudWindow>();
   private RenderWindow window;
   private Engine engine;
   private Scene scene;
@@ -16,6 +20,11 @@ public class Hud implements Runnable,Renderable {
     window=w;
     engine=e;
     scene=s;
+    HudWindow wi = new HudWindow(30,30,this);
+    HudText t = new HudText(0,0,this);
+    t.addText("Halo");
+    wi.addChild(t);
+    windows.add(wi);
   }
   
   @Override
@@ -25,11 +34,11 @@ public class Hud implements Runnable,Renderable {
   }
 
   @Override
-  public void render(Graphics g) {
+  public void render(Graphics2D g) {
     g.setColor(Color.white);
-    g.drawString(engine.getClient().serverTime.getTime(),10,10);
-    g.drawString(engine.getClient().serverTime.getDate(),10,30);
-    g.drawString(engine.stats_scene_time + "/" + engine.stats_hud_time,10,50);
+    for(HudWindow w : windows){
+      w.render(g);
+    }
     Utils.idle(20);
   }
 }
