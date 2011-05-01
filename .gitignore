@@ -21,3 +21,6 @@ cmake/CMakeFiles/
 cmake/Makefile
 cmake/CMakeCache.txt
 cmake/cmake_install.cmake
+nbbuild/
+nbproject/
+build.xml

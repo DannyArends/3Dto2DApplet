@@ -5,48 +5,32 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import nl.dannyarends.gameserver.game.Time;
 import nl.dannyarends.gameserver.protocol.ClientCommands;
 import nl.dannyarends.gameserver.protocol.CommandList;
 import nl.dannyarends.gameserver.protocol.CommandList.fromServer;
 import nl.dannyarends.generic.Utils;
-import nl.dannyarends.rendering.Engine;
 
-public class BasicClient implements Runnable{
+public class NetworkHandler implements Runnable{
   private DataInputStream is;
   private DataOutputStream os;
   private Socket s;
   private ArrayList<String> commandsToServer = new ArrayList<String>();
-  private String connectionstring = "localhost";
   private boolean connected = true;
   private int runtime = 0;
-  public Time serverTime = new Time();
+  public TimeHandler serverTime = new TimeHandler();
   private ClientCommands commandStack;
-  
-  public BasicClient() {
-    this(2000);
-    
-  }
 
-  public BasicClient(int port) {
+  public NetworkHandler(String host,int port) {
     commandStack=new ClientCommands(this);
     try{
-      connectionstring = Engine.getAppletURL().replaceAll("http://", "");
-      Utils.console("PHAIL"+connectionstring);
-      s = new Socket(connectionstring, port);
+
+      s = new Socket(host, port);
       is = new DataInputStream(s.getInputStream());
       os = new DataOutputStream(s.getOutputStream());
     }catch (Exception e){
-      connectionstring = "localhost"; 
-      try{
-        s = new Socket(connectionstring, port);
-        is = new DataInputStream(s.getInputStream());
-        os = new DataOutputStream(s.getOutputStream());
-      }catch(Exception ex){
         System.err.println("No connection");
-        ex.printStackTrace();
+        e.printStackTrace();
         connected=false;
-      }
     }
   }
   

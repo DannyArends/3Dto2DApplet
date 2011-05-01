@@ -8,12 +8,9 @@ import java.net.URL;
 
 import javax.swing.JFrame;
 
-import nl.dannyarends.eventHandling.MyHandler;
-import nl.dannyarends.eventHandling.ServerConnection;
+import nl.dannyarends.eventHandling.EventHandler;
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.rendering.Engine;
-import nl.dannyarends.rendering.Scene;
-import nl.dannyarends.www.http.WWWServer;
 
 /**
  * \brief Main webserver method with the Applet GUI for testing<br>
@@ -25,28 +22,24 @@ import nl.dannyarends.www.http.WWWServer;
 public class DWF extends JFrame implements RenderWindow,Runnable {
 	private static final long serialVersionUID = 1L;
 	static String title = "DWF v0.0.1 with CGI support";
-	static WWWServer webserver = new WWWServer();
-	MyHandler eventListener= new MyHandler(this);
-	ServerConnection server = new ServerConnection();
 	Engine engine; 
 	
 	DWF(int w, int h,String title){
-	    setSize(w,h); 
+	  setSize(w,h); 
 		setTitle(title);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-	    setVisible(true);
-	    server.commandToServer("function=online");
-	    engine = new Engine(this, server,eventListener);
-	    //engine.setRenderWindowUpdate(true);
-		addKeyListener(eventListener);
-		addMouseListener(eventListener);
-		addMouseMotionListener(eventListener);
+	  setVisible(true);
+	  engine = new Engine(this);
+	  EventHandler e = engine.getEventHandler();
+		addKeyListener(e);
+		addMouseListener(e);
+		addMouseMotionListener(e);
 	}
 	
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(),getHeight());
-		Scene.updateScene(true,true);
+		engine.render(g);
 	}
 	
 	public void paint(Graphics g) {
@@ -85,6 +78,6 @@ public class DWF extends JFrame implements RenderWindow,Runnable {
 		while(engine==null){
 
 		}
-		engine.update(getGraphics());
+		engine.render(getGraphics());
 	}
 }

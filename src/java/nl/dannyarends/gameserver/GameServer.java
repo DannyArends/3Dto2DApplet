@@ -3,7 +3,7 @@ package nl.dannyarends.gameserver;
 import java.io.File;
 import java.util.ArrayList;
 
-import nl.dannyarends.gameserver.game.Time;
+import nl.dannyarends.eventHandling.TimeHandler;
 import nl.dannyarends.gameserver.protocol.ServerCommands;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.options.DatabaseOptions;
@@ -27,7 +27,7 @@ public class GameServer implements Runnable{
 	private static GameServer server;
 	static SocketConnector connections;
 	ServerCommands commandStack;
-  public Time serverTime = new Time();
+  public TimeHandler serverTime = new TimeHandler();
 	private static String localPath;
 	
 	public boolean running = true;

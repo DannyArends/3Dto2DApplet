@@ -29,27 +29,26 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import nl.dannyarends.eventHandling.BasicClient;
 import nl.dannyarends.generic.RenderWindow;
+import nl.dannyarends.rendering.Engine;
 
 
 public class ClientApplet extends Applet implements KeyListener, MouseListener, RenderWindow{
 	private static final long serialVersionUID = -2934477801450325416L;
-	BasicClient b;
+	Engine engine;
 	
 	public void init() {
 		System.out.println("Applet started");
     addKeyListener(this);
     addMouseListener(this);
-    b  = new BasicClient();
-    new Thread(b).start();
+    engine = new Engine(this);
+    new Thread(engine).start();
 	}
 
 	
 
 	public void update(Graphics g) {
-	  g.drawString(b.serverTime.getTime(), 10, 10);
-	  g.drawString(b.serverTime.getDate(), 10, 30);
+	  engine.render(g);
 	}
 
 	public void paint(Graphics g) {

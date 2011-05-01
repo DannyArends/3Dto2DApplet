@@ -1,7 +1,7 @@
-package nl.dannyarends.gameserver.game;
+package nl.dannyarends.eventHandling;
 
 
-public class Time {
+public class TimeHandler {
   int day;
   int month;
   int year;
@@ -9,7 +9,7 @@ public class Time {
   int min;
   int secs;
   
-  public Time(){
+  public TimeHandler(){
     hours=0;
     min=0;
     secs=0;
@@ -18,7 +18,7 @@ public class Time {
     year=1;
   }
   
-  Time(String[] t) {
+  TimeHandler(String[] t) {
     hours=Integer.parseInt(t[0]);
     min=Integer.parseInt(t[1]);
     secs=Integer.parseInt(t[2]);
