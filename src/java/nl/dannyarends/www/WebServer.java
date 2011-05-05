@@ -2,6 +2,8 @@ package nl.dannyarends.www;
 
 import java.io.File;
 
+import nl.dannyarends.generic.JavaCompiler;
+import nl.dannyarends.generic.JavaCompiler.CompileUnit;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.ircclient.IRCHandler;
 import nl.dannyarends.options.DatabaseOptions;
@@ -42,14 +44,14 @@ public class WebServer {
 //		Generator g = new Generator();
 //		g.generate();
 //		Utils.log("-- Starting compiler " + setLocalPath() + "--",System.err);
-//		JavaCompiler j = new JavaCompiler();
+		JavaCompiler j = new JavaCompiler();
 
-//		CompileUnit source = j.newCompileUnit("src\\java\\nl\\dannyarends\\applets\\gameApplet","build");
-//		source.addDependencies(new String[]{"src\\java"});
-//		source.setMainClass("nl.dannyarends.applets.gameApplet");
-//		source.setCustomJarName("GameApplet");
+		CompileUnit source = j.newCompileUnit("src\\java\\nl\\dannyarends\\ircclient\\","build");
+		source.addDependencies(new String[]{"src\\java","libs\\pircbot.jar"});
+		source.setMainClass("nl.dannyarends.ircclient.IRCHandler");
+		source.setCustomJarName("websites/homepage/dist/Bot");
 		
-//		j.CompileTarget(source);
+		j.CompileTarget(source);
 		
 //		generated.addDependency("libs");
 //		generated.addDependency("src\\java");

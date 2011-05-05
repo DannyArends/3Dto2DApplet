@@ -55,6 +55,7 @@ public class BotServlet extends Servlet{
       o.write(("<html><head><title>BOT Network</title></head><body>" +
            "<h2>Bot Network Overview</h2>" +
            "Nr of bots:" + getBotEntryPoint().getAllConnectedHosts().size() + "<br>").getBytes());
+      o.write(("<a href='dist/Bot.jar'><font color='green'>Download BOT Jar</font></a><br>").getBytes());
       o.write(("<table>").getBytes());
       o.write(("<tr><td width=150><b>Host</b></td><td width=150><b>Started</b></td><td width=500><b>Jobs</b></td></tr>").getBytes());
       for(IRCClientData d : getBotEntryPoint().getAllConnectedHosts()){
