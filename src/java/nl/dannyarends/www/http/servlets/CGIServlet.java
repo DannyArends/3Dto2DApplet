@@ -169,6 +169,7 @@ public class CGIServlet extends Servlet {
 				}
 			}
 		}
+		o.flush();
 		o.close();
 		if(!contenttype){
 			Utils.log("Unexpected output when serving file: " + file + ", no page", System.err);

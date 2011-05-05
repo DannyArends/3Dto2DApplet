@@ -3,12 +3,14 @@ package nl.dannyarends.www;
 import java.io.File;
 
 import nl.dannyarends.generic.Utils;
+import nl.dannyarends.ircclient.IRCHandler;
 import nl.dannyarends.options.DatabaseOptions;
 import nl.dannyarends.options.GeneratorOptions;
 import nl.dannyarends.options.OptionsPackage;
 import nl.dannyarends.options.OptionsParser;
 import nl.dannyarends.options.WebOptions;
 import nl.dannyarends.www.http.WWWServer;
+import nl.dannyarends.www.http.servlets.BotServlet;
 import nl.dannyarends.www.http.servlets.CGIServlet;
 
 /**
@@ -23,6 +25,7 @@ public class WebServer {
 	static DatabaseOptions databaseOptions;
 	static GeneratorOptions generatorOptions;
 	static OptionsParser optionsParser;
+	static IRCHandler botentry = new IRCHandler();
 	static String localPath;
 	
 	public static void main(String[] args) throws Exception{
@@ -52,11 +55,16 @@ public class WebServer {
 //		generated.addDependency("src\\java");
 //		j.CompileTarget(generated);
 		
+		
+		
 		Utils.log("-- Starting WebServer " + setLocalPath() + "--",System.err);
 		WWWServer webserver = new WWWServer();
+		webserver.addServlet("/bot", new BotServlet());
 		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true));
 		webserver.addServlet("/", new CGIServlet("homepage",false));
+		webserver.setAttribute("bot", botentry);
 		new Thread(webserver).start();
+		new Thread(botentry).start();
 	}
 	
 	static void PrintOutOptions(){
