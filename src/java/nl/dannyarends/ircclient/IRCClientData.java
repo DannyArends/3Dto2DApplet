@@ -48,6 +48,7 @@ public class IRCClientData implements Runnable{
 	CommandExecutor cmd = new CommandExecutor();
 	boolean verbose = false;
 	PircBot server;
+	private String date_format = "dd/MM/yyyy k:mm:ss:S";
 	
 	IRCClientData(PircBot s,String name,int id,Date time){
 	  server = s;
@@ -144,7 +145,8 @@ public class IRCClientData implements Runnable{
    }
 
 	public String getStart_time() {
-		return start_time.toString();
+		DateFormat formatter = new SimpleDateFormat(date_format);
+		return formatter.format(start_time);
 	}
 
   public void setOther_clients(ArrayList<IRCClientData> other_clients) {
@@ -216,12 +218,13 @@ public class IRCClientData implements Runnable{
     try{
       String[] t = message.split(";");
       if(!client_know(Integer.parseInt(t[1]))){
-        DateFormat formatter = new SimpleDateFormat("E MMM d H:m:s z y");
+        DateFormat formatter = new SimpleDateFormat(date_format);
         getOther_clients().add(new IRCClientData(server,t[2],sender.split("_")[0],Integer.parseInt(t[1]),formatter.parse(t[3])));
         if(verbose) System.out.println("New client: "+sender+ " from "+t[2]+" since " + t[3]);
       }
     }catch(Exception e){
-      System.err.println(message + " Unknown Bot command");
+      System.err.println(" Unknown Bot command" + message);
+      e.printStackTrace();
     }
   }
   
