@@ -52,7 +52,7 @@ public class BotServlet extends Servlet{
       o.flush();
       o.close();
     }else{
-      o.write(("<html><head><title>BOT Network</title></head><body>" +
+      o.write(("<html><head><meta http-equiv='refresh' content='5;'><title>BOT Network</title></head><body>" +
            "<h2>Bot Network Overview</h2>" +
            "Nr of bots:" + getBotEntryPoint().getAllConnectedHosts().size() + "<br>").getBytes());
       o.write(("<a href='dist/Bot.jar'><font color='green'>Download BOT Jar</font></a><br>").getBytes());
