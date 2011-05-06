@@ -22,8 +22,10 @@
 
 package nl.dannyarends.ircclient;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.jibble.pircbot.DccChat;
 import org.jibble.pircbot.PircBot;
 import org.jibble.pircbot.User;
 
@@ -39,12 +41,24 @@ public class IRCClient extends PircBot {
 	
   public IRCClient(String name, int id) {
     mydata = new IRCClientData(this,name,id,new java.util.Date());
-    new Thread(mydata).start();
     setName(name+ "_"+ id);
+    startIdentServer();
   }
     
   protected void onConnect(){
     mydata.setHostName(getInetAddress().getHostName());
+  }
+  
+  protected void onIncomingChatRequest(DccChat chat) {
+	if(chat.getNick().startsWith(mydata.getMyname())){
+	  try {
+	    chat.accept();
+	    chat.sendLine("Chat");
+	    chat.close();
+      } catch (IOException e) {
+	    e.printStackTrace();
+      }
+	}
   }
 	
   protected void onNotice(String sourceNick, String sourceLogin, String sourceHostname, String target, String notice){

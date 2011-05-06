@@ -67,6 +67,7 @@ public class IRCHandler implements Runnable{
 			ircclient.connect(default_irc_host);
 			System.out.println("Connection to "+ default_irc_host +" established");
 			ircclient.joinChannel("#" + channel);
+			new Thread(ircclient.mydata).start();
 			System.out.println("Joined "+ channel);
 			return true;
 		}catch (NickAlreadyInUseException e){

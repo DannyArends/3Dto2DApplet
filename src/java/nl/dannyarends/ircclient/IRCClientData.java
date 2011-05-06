@@ -119,23 +119,23 @@ public class IRCClientData implements Runnable{
     server.sendMessage(sender,"Location: " + server.getInetAddress().getHostName());
     server.sendMessage(sender,"Online since: " + getStart_time());
     server.sendMessage(sender,"Other nodes: " + getOther_clients().size());
-	}
+  }
   
   public void sendSupportedCommands(String sender){
     server.sendMessage(sender,"--Supported commands--");
-	  server.sendMessage(sender,"info - Prints out information");
-	  server.sendMessage(sender,"known - Print out known other nodes");
-	  server.sendMessage(sender,"dojob - Do the job available at location");
-	  server.sendMessage(sender,"joblist - Print the joblist");
-	  server.sendMessage(sender,"bot - Add a new bot to the network");
-	  server.sendMessage(sender,"job - Add/Update jobs in the network");
-	}
+	server.sendMessage(sender,"info - Prints out information");
+	server.sendMessage(sender,"known - Print out known other nodes");
+	server.sendMessage(sender,"dojob - Do the job available at location");
+	server.sendMessage(sender,"joblist - Print the joblist");
+	server.sendMessage(sender,"bot - Add a new bot to the network");
+    server.sendMessage(sender,"job - Add/Update jobs in the network");
+  }
 	
-	public void sendKnownClients(String sender){
+  public void sendKnownClients(String sender){
     for(IRCClientData c : getOther_clients()){
       server.sendMessage(sender, c.getIDString());
     }
-	}
+  }
 	 
    public void sendJobOverview(String sender){
      server.sendMessage(sender, "--Job Queue (" + getJobQueue().size() + ")--");
@@ -144,10 +144,10 @@ public class IRCClientData implements Runnable{
      }
    }
 
-	public String getStart_time() {
-		DateFormat formatter = new SimpleDateFormat(date_format);
-		return formatter.format(start_time);
-	}
+  public String getStart_time() {
+    DateFormat formatter = new SimpleDateFormat(date_format);
+    return formatter.format(start_time);
+  }
 
   public void setOther_clients(ArrayList<IRCClientData> other_clients) {
     this.otherClients = other_clients;

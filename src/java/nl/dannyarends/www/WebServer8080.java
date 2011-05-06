@@ -14,6 +14,7 @@ import nl.dannyarends.options.OptionsPackage;
 import nl.dannyarends.options.OptionsParser;
 import nl.dannyarends.options.WebOptions;
 import nl.dannyarends.www.http.WWWServer;
+import nl.dannyarends.www.http.Webserver;
 import nl.dannyarends.www.http.servlets.BotServlet;
 import nl.dannyarends.www.http.servlets.CGIServlet;
 
@@ -29,7 +30,6 @@ public class WebServer8080 {
 	static DatabaseOptions databaseOptions;
 	static GeneratorOptions generatorOptions;
 	static OptionsParser optionsParser;
-	static IRCHandler botentry = new IRCHandler();
 	static String localPath;
 	
 	public static void main(String[] args) throws Exception{
@@ -41,7 +41,6 @@ public class WebServer8080 {
 		optionsParser.parse((OptionsPackage) webserverOptions);
 		optionsParser.parse((OptionsPackage) databaseOptions);
 		optionsParser.parse((OptionsPackage) generatorOptions);
-
 //		Utils.log("-- Starting Generation " + setLocalPath() + "--",System.err);
 //		Generator g = new Generator();
 //		g.generate();
@@ -53,9 +52,12 @@ public class WebServer8080 {
 		source.setMainClass("nl.dannyarends.ircclient.IRCHandler");
 		source.setCustomJarName("websites/homepage/dist/Bot");
 		
+		IRCHandler botentry = new IRCHandler();
+		
 		Utils.log("-- Starting WebServer " + setLocalPath() + "--",System.err);
 		Map<String,Object> properties = new HashMap<String,Object>();
-		properties.put("port", 8080);
+		properties.put(Webserver.ARG_PORT, 80);
+		properties.put(Webserver.ARG_BINDADDRESS, "127.0.0.1");
 		WWWServer webserver = new WWWServer(properties);
 		webserver.addServlet("/bot", new BotServlet());
 		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true));

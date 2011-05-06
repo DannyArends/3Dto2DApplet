@@ -1695,7 +1695,6 @@ public class Webserver implements ServletContext, Serializable {
 			}
 
 			if (reqProtocol == null) {
-				problem("Status-Code 400: Malformed request line:" + line, SC_BAD_REQUEST);
 				return;
 			}
 			// Check Host: header in HTTP/1.1 requests.
@@ -1707,6 +1706,10 @@ public class Webserver implements ServletContext, Serializable {
 				}
 			}
 
+			
+			if(!reqUriPathUn.startsWith("/")){
+				return;
+			}
 			// Split off query string, if any.
 			int qmark = reqUriPathUn.indexOf('?');
 			if (qmark > -1) {
@@ -1755,8 +1758,7 @@ public class Webserver implements ServletContext, Serializable {
 					uriLen = ((Integer) os[1]).intValue();
 					runServlet((HttpServlet) os[0]);
 				} else {
-					Utils.console("tetsing:" + registry.get(reqUriPath).length + "->" + os[1]);
-					problem("No any servlet found for serving " + reqUriPath, SC_BAD_REQUEST);
+					//problem("No any servlet found for serving " + reqUriPath, SC_BAD_REQUEST);
 				}
 			} finally {
 				currentRegistry.set(null); // remove
@@ -3268,11 +3270,12 @@ public class Webserver implements ServletContext, Serializable {
 			if (reqMime) {
 				boolean chunked_out = false;
 				boolean wasContentLen = false;
-				if (resMessage.length() < 256)
+				if(resMessage == null) return;
+				if (resMessage.length() < 256){
 					out.println(reqProtocol + " " + resCode + " " + resMessage.replace('\r', '/').replace('\n', '/'));
-				else
-					out.println(reqProtocol + " " + resCode + " "
-							+ resMessage.substring(0, 255).replace('\r', '/').replace('\n', '/'));
+				}else{
+					out.println(reqProtocol + " " + resCode + " " + resMessage.substring(0, 255).replace('\r', '/').replace('\n', '/'));
+				}
 				Enumeration<String> he = resHeaderNames.keys();
 				while (he.hasMoreElements()) {
 					String name = (String) he.nextElement();
