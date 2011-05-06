@@ -122,7 +122,7 @@ public class CGIServlet extends Servlet {
 
 		File file = new File(filename);
 		if(!file.exists()){
-			Utils.console("No Such File: "+filename+"\n");
+			if(isVerbose()) System.out.println("No Such File: "+filename);
 			arguments = "error=Page%20not%20found;page=" + filename + ";";
 			file = new File(path + File.separator + "cgi-bin"+ File.separator + mainpage);
 			extension = mainpage.substring(mainpage.indexOf(".", 2)+1);
@@ -174,7 +174,7 @@ public class CGIServlet extends Servlet {
 		if(!contenttype){
 			Utils.log("Unexpected output when serving file: " + file + ", no page", System.err);
 		}else{
-			Utils.console("Served file: " + req.getPathTranslated() + " " +  length + " bytes to " + req.getLocalName());
+			Utils.console("Handled: " + req.getRequestURI() + (req.getParameter("p")!=null?" "+req.getParameter("p")+" ":" ") +  length + " bytes to " + req.getRemoteHost());
 		}
 	}
 

@@ -103,7 +103,7 @@ public class CommandExecutor implements Runnable{
 		e.printStackTrace();
 	  }
     }
-    System.out.println("INFO CommandExecutor: Finished after executing " + succes_commands + " commands");
+    if(verbose) System.out.println("INFO CommandExecutor: Finished after executing " + succes_commands + " commands");
     if(failed_commands > 0){
     	System.err.println("WARNING CommandExecutor: failed " + failed_commands + " commands");
     }
