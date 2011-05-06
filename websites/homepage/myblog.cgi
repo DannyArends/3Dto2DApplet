@@ -578,7 +578,7 @@ if($config_showHits == 1)
 	print 'Hits: '.$content;
 }
 
-print '</td><td valign="top" width="49%"><div id=content class="white">';
+print '</td><td valign="top" width="40%"><div id=content class="white">';
 
 foreach(@config_ipBan)
 {

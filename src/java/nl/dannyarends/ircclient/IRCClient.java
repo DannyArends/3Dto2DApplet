@@ -34,18 +34,18 @@ import org.jibble.pircbot.User;
  * bugs: none found<br>
  */
 public class IRCClient extends PircBot {
-	IRCClientData mydata;
-	boolean verbose = false;
+  IRCClientData mydata;
+  boolean verbose = false;
 	
-	public IRCClient(String name, int id) {
-		mydata = new IRCClientData(this,name,id,new java.util.Date());
-		new Thread(mydata).start();
+  public IRCClient(String name, int id) {
+    mydata = new IRCClientData(this,name,id,new java.util.Date());
+    new Thread(mydata).start();
     setName(name+ "_"+ id);
   }
     
-	protected void onConnect(){
-		mydata.setHostName(getInetAddress().getHostName());
-	}
+  protected void onConnect(){
+    mydata.setHostName(getInetAddress().getHostName());
+  }
 	
   protected void onNotice(String sourceNick, String sourceLogin, String sourceHostname, String target, String notice){
     if(verbose) System.out.println(sourceNick + " gave us a notice: " + notice);
@@ -55,20 +55,20 @@ public class IRCClient extends PircBot {
     mydata.removeClient(sourceNick,sourceHostname);
   }
 
-  protected  void	onPart(String channel, String sender, String login, String hostname){
+  protected  void onPart(String channel, String sender, String login, String hostname){
   	mydata.removeClient(sender,hostname);
   }
     
   public void onPrivateMessage(String sender, String login, String hostname, String message){
   	if(verbose) System.out.println("Private msg: " + message + " " + sender);
-		if(message.equalsIgnoreCase("known")) {
-		  mydata.sendKnownClients(sender);
-  		return;
-  	}
-		if(message.equalsIgnoreCase("info")) {
-		  mydata.sendInformation(sender);
-  		return;
-		}
+    if(message.equalsIgnoreCase("known")) {
+	  mydata.sendKnownClients(sender);
+	  return;
+    }
+    if(message.equalsIgnoreCase("info")) {
+      mydata.sendInformation(sender);
+  	  return;
+    }
     if(message.startsWith("dojob")) {
       mydata.getJob(sender,message);
       return;
@@ -95,13 +95,9 @@ public class IRCClient extends PircBot {
   	if(sender.startsWith(mydata.getMyname())){
   		sendMessage(sender, mydata.getIDString());
   		if(verbose) System.out.println("Sending old joblist: " + mydata.getJobQueue().size());
-  		for(int x = 0; x < mydata.getJobQueue().size();x++){
+  		for(int x = 0; x < 5;x++){
   		  IRCJobStruct j = mydata.getJobQueue().get(x);
-        String updatecmd = "job;old;"+j.id + ";" + mydata.getMyid() + ";" + j.host + ";"+j.command + ";" + j.queued;
-        updatecmd += ";" + j.running + ";" + j.finished;
-        updatecmd += ((!j.suc6)?";fail":";suc6");
-        if(verbose) System.out.println("Sending old job: " + updatecmd);
-        sendMessage(sender,updatecmd);  
+          sendMessage(sender,j.printOld(mydata.getMyid()));  
       }
   	}
   }

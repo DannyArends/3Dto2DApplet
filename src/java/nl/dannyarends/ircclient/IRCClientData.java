@@ -156,7 +156,13 @@ public class IRCClientData implements Runnable{
   public ArrayList<IRCClientData> getOther_clients() {
     return otherClients;
   }
-
+  
+ /**
+  * Gets / parses a Job when someone issues one to this client
+  *
+  * @param sender The nickname that is sending the Job
+  * @param message The requested job and id
+  */
   public void getJob(String sender, String message) {
     if(verbose) System.out.println(sender + " has a job");
     try{
@@ -164,7 +170,7 @@ public class IRCClientData implements Runnable{
       String command = t[1];
       int jobid = Integer.parseInt(t[2]);
       for(int x = 0; x < getJobQueue().size();x++){
-        if(getJobQueue().get(x).id == jobid && getJobQueue().get(x).host.equalsIgnoreCase(sender)){
+        if(getJobQueue().get(x).getId() == jobid && getJobQueue().get(x).host.equalsIgnoreCase(sender)){
           server.sendMessage(sender, "Job " + jobid + " already in queue at " + x + "");
           return;
         }
@@ -234,40 +240,18 @@ public class IRCClientData implements Runnable{
     int jobid = Integer.parseInt(t[2]);
     int clientid = Integer.parseInt(t[3]);
     if(t[1].equals("update")){
-      int jobindex=0;
-      ArrayList<IRCJobStruct>  queue = getOther_clients().get(client_index(clientid)).getJobQueue();
-      for(IRCJobStruct j : queue){
-        if(j.id == jobid){
-          if(t[4].equals("running")){
-            queue.get(jobindex).queued=false;
-            queue.get(jobindex).running=true;
-            if(verbose) System.out.println("Client: "+sender+ " updated a job "+ jobid);
-            getOther_clients().get(client_index(clientid)).setJobQueue(queue);
-          }
-          if(t[4].equals("finished")){
-            queue.get(jobindex).running=false;
-            queue.get(jobindex).finished=true;
-            if(t[5].equals("suc6")){
-              queue.get(jobindex).suc6=true;
-            }
-            if(verbose) System.out.println("Client: "+sender+ " updated a job "+ jobid);
-            getOther_clients().get(client_index(clientid)).setJobQueue(queue);
-          }
-        }
-        jobindex++;
+      for(IRCJobStruct j : getOther_clients().get(client_index(clientid)).getJobQueue()){
+    	j.update(sender, jobid, t);  
       }
     }
-    if(t[1].equals("old")){
-      IRCJobStruct s = new IRCJobStruct(t[4],t[5],jobid);
-      s.queued = Boolean.parseBoolean(t[6]);
-      s.running = Boolean.parseBoolean(t[7]);
-      s.finished = Boolean.parseBoolean(t[8]);
-      s.suc6 = t[9].equals("suc6");
-      getOther_clients().get(client_index(clientid)).getJobQueue().add(s);
-      if(verbose)  System.out.println("Client: "+sender+ " reports an old job " + jobid+ t[4]);
-    }
-    if(t[1].equals("new")){
+    if(t[1].equals("new") || t[1].equals("old")){
         IRCJobStruct s = new IRCJobStruct(t[4],t[5],jobid);
+        if(t[1].equals("old")){
+          s.queued = Boolean.parseBoolean(t[6]);
+          s.running = Boolean.parseBoolean(t[7]);
+          s.finished = Boolean.parseBoolean(t[8]);
+          s.suc6 = t[9].equals("suc6");
+        }
         getOther_clients().get(client_index(clientid)).getJobQueue().add(s);
         if(verbose) System.out.println("Client: "+sender+ " reports a new job " + jobid+ t[4]);
     }
@@ -292,7 +276,7 @@ public class IRCClientData implements Runnable{
         jobQueue.get(jobindex).finished=false;
         jobQueue.get(jobindex).start_time = new Date();
         for(IRCClientData c : otherClients){
-          server.sendMessage(c.getFullName(), "job;update;"+ job.id + ";" + myid + ";running");
+          server.sendMessage(c.getFullName(), "job;update;"+ job.getId() + ";" + myid + ";running");
         }
         try{
           while(t.isAlive()){
@@ -308,7 +292,7 @@ public class IRCClientData implements Runnable{
         jobQueue.get(jobindex).suc6=!(cmd.failed_commands>0);
         jobQueue.get(jobindex).end_time = new Date();
         for(IRCClientData c : otherClients){
-          String updatecmd = "job;update;"+ job.id + ";" + myid + ";finished";
+          String updatecmd = "job;update;"+ job.getId() + ";" + myid + ";finished";
           updatecmd+= ((cmd.failed_commands>0)?";fail":";suc6");
           server.sendMessage(c.getFullName(),updatecmd);
         }
