@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.speech.synthesis.Synthesizer;
-
 import nl.dannyarends.generic.JavaCompiler;
 import nl.dannyarends.generic.JavaCompiler.CompileUnit;
 import nl.dannyarends.generic.Utils;
@@ -33,7 +31,6 @@ public class WebServer8080 {
 	static OptionsParser optionsParser;
 	static IRCHandler botentry = new IRCHandler();
 	static String localPath;
-	static Synthesizer synthesizer;
 	
 	public static void main(String[] args) throws Exception{
 		Utils.log("-- Parsing properties --",System.err);

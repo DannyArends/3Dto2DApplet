@@ -2,10 +2,6 @@ package nl.dannyarends.www;
 
 import java.io.File;
 
-import javax.speech.synthesis.Synthesizer;
-
-import nl.dannyarends.generic.JavaCompiler;
-import nl.dannyarends.generic.JavaCompiler.CompileUnit;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.ircclient.IRCHandler;
 import nl.dannyarends.options.DatabaseOptions;
@@ -14,7 +10,6 @@ import nl.dannyarends.options.OptionsPackage;
 import nl.dannyarends.options.OptionsParser;
 import nl.dannyarends.options.WebOptions;
 import nl.dannyarends.www.http.WWWServer;
-import nl.dannyarends.www.http.servlets.BotServlet;
 import nl.dannyarends.www.http.servlets.CGIServlet;
 
 /**
@@ -31,8 +26,7 @@ public class WebServer {
 	static OptionsParser optionsParser;
 	static IRCHandler botentry = new IRCHandler();
 	static String localPath;
-	static Synthesizer synthesizer;
-	
+		
 	public static void main(String[] args) throws Exception{
 		Utils.log("-- Parsing properties --",System.err);
 		webserverOptions = new WebOptions("settings/www.properties");
@@ -42,26 +36,11 @@ public class WebServer {
 		optionsParser.parse((OptionsPackage) webserverOptions);
 		optionsParser.parse((OptionsPackage) databaseOptions);
 		optionsParser.parse((OptionsPackage) generatorOptions);
-
-//		Utils.log("-- Starting Generation " + setLocalPath() + "--",System.err);
-//		Generator g = new Generator();
-//		g.generate();
-//		Utils.log("-- Starting compiler " + setLocalPath() + "--",System.err);
-//		JavaCompiler j = new JavaCompiler();
-//
-//		CompileUnit source = j.newCompileUnit("src\\java\\nl\\dannyarends\\ircclient\\","build");
-//		source.addDependencies(new String[]{"src\\java","libs\\pircbot.jar"});
-//		source.setMainClass("nl.dannyarends.ircclient.IRCHandler");
-//		source.setCustomJarName("websites/homepage/dist/Bot");
-		
 		Utils.log("-- Starting WebServer " + setLocalPath() + "--",System.err);
 		WWWServer webserver = new WWWServer();
-//		webserver.addServlet("/bot", new BotServlet());
 		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true));
 		webserver.addServlet("/", new CGIServlet("homepage",false));
-//		webserver.setAttribute("bot", botentry);
 		new Thread(webserver).start();
-//		new Thread(botentry).start();
 	}
 	
 	static void PrintOutOptions(){
