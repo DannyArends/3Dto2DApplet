@@ -2,31 +2,31 @@ body{
 margin:0px 0px;
 background-color: white;
 font-family: "trebuchet MS";
-font-size:11px;
+font-size:13px;
 }
 
 div{
 margin:0px 0px;
 background-color: white;
 font-family: "trebuchet MS";
-font-size:11px;
+font-size:13px;
 }
 
 input{
 margin:0px 0px;
 font-family: "trebuchet MS";
-font-size:11px;
+font-size:13px;
 }
 
 textarea{
 margin:0px 0px;
 font-family: "trebuchet MS";
-font-size:11px;
+font-size:13px;
 }
 
 q{
 font-family: "Courier New";
-font-size:12px;
+font-size:13px;
 }
 
 .slideshow{
@@ -83,17 +83,14 @@ color:black;
 
 a:hover{
 color:teal;
-text-decoration:none;	
 }
 
 a:active{
 color:black;
-text-decoration:none;
 }
 
 a:visited{
 color:black;
-text-decoration:none;
 }
 
 div#menu {
@@ -105,7 +102,6 @@ div#menu {
 	color: black;
 	text-transform: capitalize;
 	padding-left: 5px;
-	text-decoration: none;
 }
 
 #menu a:hover {
@@ -123,7 +119,6 @@ div#menu {
 
 #content a {
 	color: black;
-	text-decoration: none;
 	font-weight: bold;
 }
 
@@ -147,7 +142,7 @@ div#footer {
 	background-color: #F1F1F1;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #333333;
-	font-size: 11px;
+	font-size: 13px;
 	padding: 2px;
 	margin: 2px;
 	line-height: 5px;

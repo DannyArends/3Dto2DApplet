@@ -14,6 +14,7 @@ import nl.dannyarends.options.WebOptions;
 import nl.dannyarends.www.http.WWWServer;
 import nl.dannyarends.www.http.Webserver;
 import nl.dannyarends.www.http.servlets.CGIServlet;
+import nl.dannyarends.www.http.servlets.MovedServlet;
 
 /**
  * \brief Main webserver method<br>
@@ -42,10 +43,10 @@ public class WebServer {
 		Utils.log("-- Starting WebServer " + setLocalPath() + "--",System.err);
 		Map<String,Object> properties = new HashMap<String,Object>();
 		properties.put(Webserver.ARG_PORT, 80);
-		properties.put(Webserver.ARG_BINDADDRESS, "www.dannyarends.nl");
 		WWWServer webserver = new WWWServer(properties);
 		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true),"www.dannyarends.nl");
 		webserver.addServlet("/", new CGIServlet("homepage",false),"www.dannyarends.nl");
+		webserver.addServlet("/", new MovedServlet(),"dannyarends.nl");
 		new Thread(webserver).start();
 	}
 	

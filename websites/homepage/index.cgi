@@ -43,9 +43,7 @@ print "
   |<a href=\"/Index.cgi?p=Applet\" title=\"Java applet game created by Danny Arends\"><font color=\"black\">Java Applet world</font></a>
   |<a href=\"/Index.cgi?p=Various\" title=\"Other things that intrest me\"><font color=\"black\">Other stuff</font></a>
   |<a href=\"/Index.cgi?p=Links\" title=\"Links to other web pages\"><font color=\"black\">Links</font></a>
-  ]<br><hr>
-    </td>
-<tr>
+  ]<br><hr></td></tr><tr>
   <td valign='top' width='49%'>
 ";
 print(showFile("pages",$form{"p"}."_l.txt")."\n");
@@ -62,15 +60,11 @@ print "
 <tr>
   <td colspan=3>
   <div align=\"center\" id=footer>";
-print "Copyright 'Danny Arends' 2011 - All Rights Reserved, Page requested via rest: " . $form{"p"} . "</font>\n";
+print "Copyright 'Danny Arends' 2011 - All Rights Reserved, Page requested via rest: " . $form{"p"} . "\n";
 print "
   </div>
   </td>
 </tr>
 </table>
 <a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-html401-blue\" alt=\"Valid HTML 4.0.1 Loose\" style=\"border:0;width:88px;height:31px\"></a><a href=\"http://jigsaw.w3.org/css-validator/check/referer\"><img style=\"border:0;width:88px;height:31px\" src=\"http://www.w3.org/Icons/valid-css2-blue.png\" alt=\"Valide CSS!\"></a>
-</div>
-";
-
-
-printEmptyFooter("");
+</div></body></html>";

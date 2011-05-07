@@ -28,18 +28,22 @@ sub printTXTHeader{
 sub printHTTPHeader{
   my $spidercommand = $_[0];
 	print("Content-type: text/html"."\n\n");
-	print("<?xml version=\"1.0\" encoding=\"utf-8\"?> 
+	print("<?xml version=\"1.0\" encoding=\"utf-8\" xml:lang=\"en\"?> 
 	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n
 	<html>\n
 		<head>\n
 			<link rel=\"stylesheet\" type=\"text/css\" href=\"$theme\">
+			<link rel=\"alternate\" type=\"application/xml\" title=\"Sitemap\" href=\"/Sitemap.xml\">
+			<link rel=\"alternate\" type=\"application/rss+xml\" title=\"Blog RSS feed\" href=\"/myblog.cgi?do=RSS\">
 			<title>$title - ".$form{"p"}."</title>\n
 	<meta name='Keywords' content='Bioinformatics, QTL, Computational, Line Drawings, Groningen University, Biology, Publications, R, R package, PHD Student, C, Rqtl, Genetical Genomics, QTL' > 
 	<meta name='Description' content='DannyArends.nl: ".$form{"p"}."' > 
 	<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" >
+	<meta name=\"alexaVerifyID\" content=\"lT8ju1qrjgO2ak7jEZvOEQWcqpo\" >
   <meta name=\"y_key\" content=\"9fbec0326696c2ee\" >
 	<meta name='Author' content='Danny Arends' >
 	<meta name='Robots' content='$spidercommand' >
+	
   <script type='text/javascript'></script>
   <script type='text/javascript' src='jQuery/jquery.min.js'></script>
   <script type='text/javascript' src='jQuery/jquery.cycle.min.js'></script>
@@ -107,15 +111,16 @@ sub showFile{
 }
 
 sub printEmptyFooter{
-	print("</body>\n
-	</html>\n");
+	print("<div align=\"center\" id=footer>");
+	print("Copyright 'Danny Arends' 2011 - All Rights Reserved\n");
+	print("</div>\n");
+	print("</body>\n</html>\n");
 }
 
 sub printError{
-	print("<font color='red' size='+3'>".$form{"error"}."</font>" ."<br>". "\n");
+	print("<font color='red' size='+3'> 404 - ".$form{"error"}."</font>" ."<br>". "\n");
 	if($form{"page"} ne ""){
 		print("<p>Missing page: ".$form{"page"} . "<br/><br/>". "\n");
-		print("Did you mean to <a href=''><font color='green'>Create page '".$form{"page"} . "'?</font></a><br>". "\n");
 		print("Contact the admin: ". $email ."</p>" . "\n");
 	}
 }

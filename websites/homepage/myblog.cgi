@@ -291,15 +291,15 @@ if(r('do') eq 'RSS')
 }
 else
 {
-print header(), '<!DOCTYPE HTML PUBLIC -//W3C//DTD HTML 4.01 Transitional//EN
-http://www.w3.org/TR/html4/loose.dtd>
+print header(), '<?xml version="1.0" encoding="utf-8" xml:lang="en"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv=Content-Type content=text/html; charset=iso-8859-1>
-<meta name="Name" content="'.$config_blogTitle.'" />
-<meta name="Revisit-After" content="'.$config_metaRevisitAfter.'" />
-<meta name="Keywords" content="'.$config_metaKeywords.'" />
-<meta name="Description" content="'.$config_metaDescription.'" />
+<link rel="alternate" type="application/rss+xml" title="Blog RSS feed" href="/myblog.cgi?do=RSS">
+<meta name="Name" content="'.$config_blogTitle.'">
+<meta name="Revisit-After" content="'.$config_metaRevisitAfter.'">
+<meta name="Keywords" content="'.$config_metaKeywords.'">
+<meta name="Description" content="'.$config_metaDescription.'">
 <title>'.$config_blogTitle.'</title>
 <script language="javascript" type="text/javascript">
 // FUNCTION BY SMF FORUMS http://www.simplemachines.org
@@ -345,7 +345,7 @@ function surroundText(text1, text2, textarea)
 	}
 }
 </script>
-<link href='.$config_currentStyleFolder.'/default.css rel=stylesheet type=text/css>
+<link href="'.$config_currentStyleFolder.'/default.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -384,8 +384,8 @@ function surroundText(text1, text2, textarea)
 <tr>
 <td valign="top" width="20%" id=menu>
 <h3>Blog Menu</h3>
-<a href=?do=newEntry>New Entry</a><br>
-<a href=?do=archive>Archive</a><br>
+<a href="?do=newEntry">New Entry</a><br>
+<a href="?do=archive">Archive</a><br>
 <a href="?do=RSS">RSS Feed</a><br>
 <h3>Categories</h3>';			# Show Categories on Menu	THIS IS THE MENU SECTION
 my @categories = sort(getCategories());
@@ -556,7 +556,7 @@ if($config_showUsersOnline == 1)
 		}
 	}
 	@online_array = array_unique(@online_array);
-	print 'Users Online: '.scalar(@online_array).'<br />';
+	print 'Users Online: '.scalar(@online_array).'<br>';
 }
 
 if($config_showHits == 1)
@@ -638,10 +638,10 @@ if(r('do') eq 'newEntry')
 		{
 			print '<script src="http://js.nicedit.com/nicEdit.js" type="text/javascript"></script><script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>' if($config_useWYSIWYG == 1);
 		}
-		print '<tr><td>Content<br />(You can use BBCODE)<br /><a href="?do=showSmilies" target="_blank">Show Smilies</a></td>
+		print '<tr><td>Content<br>(You can use BBCODE)<br><a href="?do=showSmilies" target="_blank">Show Smilies</a></td>
 		<td><textarea name="content" cols='.$config_textAreaCols.'" rows="'.$config_textAreaRows.'" ';
 		print ' style="height: 400px; width: 400px;" ' if( ($config_useWYSIWYG == 1) && ($config_useHtmlOnEntries == 1) );
-		print ' id="content"></textarea></td></tr><tr><td>Category<br />(Available: ';
+		print ' id="content"></textarea></td></tr><tr><td>Category<br>(Available: ';
 		my $i = 1;
 		foreach(@categories)
 		{
@@ -701,7 +701,7 @@ elsif(r('process') eq 'newEntry')
 		
 		unless(-d "$config_postsDatabaseFolder")
 		{
-			print 'The folder '.$config_postsDatabaseFolder.' does not exists...Creating it...<br />';
+			print 'The folder '.$config_postsDatabaseFolder.' does not exists...Creating it...<br>';
 			mkdir($config_postsDatabaseFolder, 0755);
 		}
 		
@@ -788,7 +788,7 @@ elsif(r('viewCat') ne '')
 			
 			if($do == 1)
 			{
-				print '<h1><a href="?viewDetailed='.$finalEntries[4].'">'.$finalEntries[0].'</a></h1>'.$finalEntries[1].'<br /><br /><center><i>Posted on '.$finalEntries[2].' - Category: <a href="?viewCat='.$finalEntries[3].'">'.$finalEntries[3].'</a><br /><a href="?viewDetailed='.$finalEntries[4].'">Comments</a> - <a href="?edit='.$finalEntries[4].'">Edit</a> - <a href="?delete='.$finalEntries[4].'">Delete</a></i></center><br /><br />';
+				print '<h1><a href="?viewDetailed='.$finalEntries[4].'">'.$finalEntries[0].'</a></h1>'.$finalEntries[1].'<br><br><center><i>Posted on '.$finalEntries[2].' - Category: <a href="?viewCat='.$finalEntries[3].'">'.$finalEntries[3].'</a><br><a href="?viewDetailed='.$finalEntries[4].'">Comments</a> - <a href="?edit='.$finalEntries[4].'">Edit</a> - <a href="?delete='.$finalEntries[4].'">Delete</a></i></center><br><br>';
 			}
 		}
 		$i++;
@@ -896,7 +896,7 @@ elsif(r('process') eq 'editSecured')
 		{
 			print '<script src="http://js.nicedit.com/nicEdit.js" type="text/javascript"></script><script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>' if($config_useWYSIWYG == 1);
 		}		
-		print '<tr><td>Content<br /><a href="?do=showSmilies" target="_blank">Show Smilies</a></td><td><textarea name=content cols='.$config_textAreaCols.'"';
+		print '<tr><td>Content<br><a href="?do=showSmilies" target="_blank">Show Smilies</a></td><td><textarea name=content cols='.$config_textAreaCols.'"';
 		print ' style="height: 400px; width: 400px;" ' if( ($config_useWYSIWYG == 1) && ($config_useHtmlOnEntries == 1) );
 		print ' rows="'.$config_textAreaRows.'" id="content">';
 		if($config_useHtmlOnEntries == 0)
@@ -907,7 +907,7 @@ elsif(r('process') eq 'editSecured')
 		{
 			print $content;
 		}
-		print '</textarea></td></tr><tr><td>Category<br />(Available: ';
+		print '</textarea></td></tr><tr><td>Category<br>(Available: ';
 		my @categories = getCategories();
 		my $i = 1;
 		foreach(@categories)
@@ -1063,7 +1063,7 @@ elsif(r('do') eq 'search')
 	
 	if($do == 1)
 	{
-		print 'Searching for '.$keyword.' by '.$sBy.'...<br /><br />';
+		print 'Searching for '.$keyword.' by '.$sBy.'...<br><br>';
 		my @entries = getFiles($config_postsDatabaseFolder);
 		my $matches = 0;
 		foreach(@entries)
@@ -1071,11 +1071,11 @@ elsif(r('do') eq 'search')
 			my @currEntry = split(/"/, $_);
 			if(($currEntry[$by] =~ m/$keyword/i))
 			{
-				print '<a href="?viewDetailed='.$currEntry[4].'">'.$currEntry[0].'</a><br />';
+				print '<a href="?viewDetailed='.$currEntry[4].'">'.$currEntry[0].'</a><br>';
 				$matches++;
 			}
 		}
-		print '<br /><center>'.$matches.' Matches Found.</center>';
+		print '<br><center>'.$matches.' Matches Found.</center>';
 	}
 }
 elsif(r('viewDetailed') ne '')
@@ -1105,7 +1105,7 @@ elsif(r('viewDetailed') ne '')
 		my $fileName = $entry[4];
 		my $title = $entry[0];
 		my $category = $entry[3];
-		print '<h1><a href="?viewDetailed='.$entry[4].'">'.$entry[0].'</a></h1>'.$entry[1].'<br /><br /><center><i>Posted on '.$entry[2].' - Category: <a href="?viewCat='.$entry[3].'">'.$entry[3].'</a><br /><a href="?edit='.$entry[4].'">Edit</a> - <a href="?delete='.$entry[4].'">Delete</a></i></center><br /><br />';
+		print '<h1><a href="?viewDetailed='.$entry[4].'">'.$entry[0].'</a></h1>'.$entry[1].'<br><br><center><i>Posted on '.$entry[2].' - Category: <a href="?viewCat='.$entry[3].'">'.$entry[3].'</a><br><a href="?edit='.$entry[4].'">Edit</a> - <a href="?delete='.$entry[4].'">Delete</a></i></center><br><br>';
 		
 		# Now Display Comments
 		unless(-d $config_commentsDatabaseFolder)		# Does the comments folder exists? We will save comments there...
@@ -1144,7 +1144,7 @@ elsif(r('viewDetailed') ne '')
 				my $author = $comment[1];
 				my $content = $comment[2];
 				my $date = $comment[3];
-				print 'Posted on <b>'.$date.'</b> by <b>'.$author.'</b><br /><i>'.$title.'</i><br />';
+				print 'Posted on <b>'.$date.'</b> by <b>'.$author.'</b><br><i>'.$title.'</i><br>';
 				if($config_bbCodeOnCommentaries == 0)
 				{
 					print txt2html($content);
@@ -1153,14 +1153,14 @@ elsif(r('viewDetailed') ne '')
 				{
 					print bbcode($content);
 				}
-				print '<br /><a href="?deleteComment='.$fileName.'.'.$i.'">Delete</a><br /><br />';
+				print '<br><a href="?deleteComment='.$fileName.'.'.$i.'">Delete</a><br><br>';
 				$i++;	# This is used for deletting comments, to i know what comment number is it :]
 			}
 		}
 		# Add comment form
 		if($config_allowComments == 1)
 		{
-			print '<br /><br /><h1>Add Comment</h1>
+			print '<br><br><h1>Add Comment</h1>
 			<form name="submitform" method="post" action="myblog.cgi">
 			<table>
 			<tr>
@@ -1182,7 +1182,7 @@ elsif(r('viewDetailed') ne '')
 			</tr>' if $config_allowBBcodeButtonsOnComments == 1 && $config_bbCodeOnCommentaries == 1;
 			
 			print '<tr>
-			<td>Content<br /><a href="?do=showSmilies" target="_blank">Show Smilies</a></td>
+			<td>Content<br><a href="?do=showSmilies" target="_blank">Show Smilies</a></td>
 			<td><textarea name="content" id="content" cols="'.$config_textAreaCols.'" rows="'.$config_textAreaRows.'"></textarea></td>
 			</tr>
 			<tr>';
@@ -1352,7 +1352,7 @@ elsif(r('sendComment') ne '')
 				print FILE $content;
 				close FILE;
 				
-				print 'Comment added. Thanks '.$author.'!<br /><center><a href="?viewDetailed='.$fileName.'">Go Back</a></center>';
+				print 'Comment added. Thanks '.$author.'!<br><center><a href="?viewDetailed='.$fileName.'">Go Back</a></center>';
 				
 				# If Comment Send Mail is active
 				if($config_sendMailWithNewComment == 1)
@@ -1506,7 +1506,7 @@ elsif(r('do') eq 'archive')
 	@years = reverse(sort(array_unique(@years)));
 	for my $actualYear(@years)
 	{
-		print '<b>Year '.$actualYear.'</b><br />';
+		print '<b>Year '.$actualYear.'</b><br>';
 		# Now i make my hash with the empty months, why define them? because this is the order they will be executed
 		my %months = ('Jan'=>'', 'Feb'=>'', 'Mar'=>'', 'Apr'=>'', 'May'=>'','Jun'=>'','Jul'=>'','Aug'=>'','Sep'=>'','Oct'=>'','Nov'=>'','Dic'=>'');
 		# Array with all entries from that year
@@ -1523,7 +1523,7 @@ elsif(r('do') eq 'archive')
 		{
 			unless($k =~ /^\d/)
 			{
-				print '<br /><b>'.$k.':</b><br /><table>' unless $v eq '';
+				print '<br><b>'.$k.':</b><br><table>' unless $v eq '';
 				# Here are all entries from this month, sort them in ascending order, oldest first
 				my @entries = sort{$a <=> $b}reverse((split(/&-;/, $months{$k})));	# Why reverse if then im sorting, well so days are in ascending order
 				foreach(@entries)
@@ -1701,7 +1701,7 @@ else
 						$commentsLink = scalar(@comments).' Comments';
 					}
 					
-					print '<h1><a href="?viewDetailed='.$finalEntries[4].'">'.$finalEntries[0].'</a></h1>'.$finalEntries[1].'<br /><br /><center><i>Posted on '.$finalEntries[2].' - Category: <a href="?viewCat='.$finalEntries[3].'">'.$finalEntries[3].'</a><br /><a href="?viewDetailed='.$finalEntries[4].'">'.$commentsLink.'</a> - <a href="?edit='.$finalEntries[4].'">Edit</a> - <a href="?delete='.$finalEntries[4].'">Delete</a></i></center><br /><br />';
+					print '<h1><a href="?viewDetailed='.$finalEntries[4].'">'.$finalEntries[0].'</a></h1>'.$finalEntries[1].'<br><br><center><i>Posted on '.$finalEntries[2].' - Category: <a href="?viewCat='.$finalEntries[3].'">'.$finalEntries[3].'</a><br><a href="?viewDetailed='.$finalEntries[4].'">'.$commentsLink.'</a> - <a href="?edit='.$finalEntries[4].'">Edit</a> - <a href="?delete='.$finalEntries[4].'">Delete</a></i></center><br><br>';
 				}
 			}
 			$i++;
@@ -1740,5 +1740,5 @@ else
 		print 'No entries created. Why dont you <a href="?do=newEntry">make one</a>?';
 	}
 }
-print '</td><td valign="top"></td></tr><tr><td colspan=3><div align="center" id=footer>Copyright '.$config_blogTitle.' 2011 - All Rights Reserved'; print ', all posts are using GMT '.$config_gmt if $config_showGmtOnFooter == 1; print '</div></td></tr></table></div></body></html>';
+print '</div></td><td valign="top"></td></tr><tr><td colspan=3><div align="center" id=footer>Copyright '.$config_blogTitle.' 2011 - All Rights Reserved'; print ', all posts are using GMT '.$config_gmt if $config_showGmtOnFooter == 1; print '</div></td></tr></table></div></body></html>';
 }
