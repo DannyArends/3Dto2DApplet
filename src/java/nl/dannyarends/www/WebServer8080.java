@@ -56,8 +56,8 @@ public class WebServer8080 {
 		
 		Utils.log("-- Starting WebServer " + setLocalPath() + "--",System.err);
 		Map<String,Object> properties = new HashMap<String,Object>();
-		properties.put(Webserver.ARG_PORT, 80);
-		properties.put(Webserver.ARG_BINDADDRESS, "127.0.0.1");
+		properties.put(Webserver.ARG_PORT, 8080);
+		//properties.put(Webserver.ARG_BINDADDRESS, "127.0.0.1");
 		WWWServer webserver = new WWWServer(properties);
 		webserver.addServlet("/bot", new BotServlet());
 		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true));

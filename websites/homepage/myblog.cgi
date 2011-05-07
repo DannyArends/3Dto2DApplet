@@ -254,8 +254,9 @@ if(r('do') eq 'RSS')
 	my $limit;
 	
 	print header('text/xml'),'<?xml version="1.0" encoding="ISO-8859-1"?>
-	<rss version="2.0">
+	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
+	<atom:link href="http://www.dannyarends.nl/myblog.cgi?do=RSS" rel="self" type="application/rss+xml" />
 	<title>'.$config_blogTitle.'</title>
 	<description>'.$config_metaDescription.'</description>
 	<link>'.$config_baseurl.'</link>';
@@ -277,6 +278,7 @@ if(r('do') eq 'RSS')
 		$content =~ s/\>/&gt;/gi;
     $content =~ s/&nbsp;/ /gi;
 		print '<item>
+		<guid>'.$base.'?viewDetailed='.$finalEntries[4].'</guid>
 		<link>'.$base.'?viewDetailed='.$finalEntries[4].'</link>
 		<title>'.$finalEntries[0].'</title>
 		<category>'.$finalEntries[3].'</category>

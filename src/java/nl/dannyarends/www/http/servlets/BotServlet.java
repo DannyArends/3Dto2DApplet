@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.dannyarends.generic.Utils;
 import nl.dannyarends.ircclient.IRCClientData;
 import nl.dannyarends.ircclient.IRCHandler;
 import nl.dannyarends.ircclient.IRCJobStruct;
@@ -15,6 +16,7 @@ public class BotServlet extends Servlet{
   private static final long serialVersionUID = 943772779565141864L;
   private int limit = 2;
   private int refresh =10;
+  private int jobid =0;
   IRCHandler getBotEntryPoint(){
       return (IRCHandler)getServletContext().getAttribute("bot");
   }
@@ -34,24 +36,58 @@ public class BotServlet extends Servlet{
     }
   }
   
+  private void sendJobToCloud(IRCHandler entry, String command) throws IOException{
+	  int shortestqueue = 100;
+	  int shortestqueue_index = 0;
+	  int cnt=0;
+	  for(IRCClientData c : entry.getAllConnectedHosts()){
+		  int j = c.getNumberOfQueuedJobs();
+		  if(j < shortestqueue){
+			  shortestqueue_index=cnt;
+			  shortestqueue=j;
+		  }
+		  cnt++;
+	  }
+	  String target = entry.getAllConnectedHosts().get(shortestqueue_index).getFullName();
+	  entry.getIrcclient().sendMessage(target, "dojob;"+command+";"+jobid);
+	  jobid++;
+  }
+  
   @Override
   public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     OutputStream o = res.getOutputStream();
-    boolean botinfo = true;
+    boolean botinfo = false;
     boolean jobinfo = true;
+    boolean cmdpage = true;
+    String cmd;
     int botid = -1;
     int jobid = -1;
+    if((cmd = req.getParameter("cmdstring"))!=null){
+       Utils.console("Command for cloud: " + cmd);
+       try{
+    	   sendJobToCloud(getBotEntryPoint(),cmd);
+       }catch(Exception e){ e.printStackTrace(); }
+    }
     String stream ="";
-    try{
+    if(req.getParameter("l") != null){
         limit = Integer.parseInt(req.getParameter("l"));
-    }catch(Exception e){ }
-    try{
+        Utils.console("limit changed: " + limit);
+    }
+    if(req.getParameter("r") != null){
         refresh = Integer.parseInt(req.getParameter("r"));
-    }catch(Exception e){ }
-    try{
+        Utils.console("refresh changed: " + limit);
+    }
+    if(req.getParameter("bot") != null){
       botid = Integer.parseInt(req.getParameter("bot"));
-    }catch(Exception e){
+      botinfo=true;
+    }else{
       botinfo=false;
+    }
+    if(req.getParameter("cmd") != null){
+        Integer.parseInt(req.getParameter("cmd"));
+        cmdpage=true;
+    }else{
+        cmdpage=false;
     }
     try{
       jobid = Integer.parseInt(req.getParameter("id"));
@@ -61,6 +97,18 @@ public class BotServlet extends Servlet{
       jobinfo=false;
     }
     res.setContentType("text/html");
+    if(getBotEntryPoint()==null){
+    	o.write(("<html><head><title>BOT Network</title></head><body><h2>No BOTs</h2></body></html>").getBytes());
+        o.flush();
+        o.close();
+        return;
+    }
+    if(cmdpage){
+    	o.write(("<html><head><title>BOT Network</title></head><body><form action='bot'><input type='text' name='cmdstring'></input><input type='submit' value='send'></form></body></html>").getBytes());
+        o.flush();
+        o.close();
+        return;
+    }
     if(botinfo){
       o.write(("<html><head><title>BOT Network</title></head><body><h2>Bot: "+botid+"</h2>").getBytes());
       for(IRCClientData d : getBotEntryPoint().getAllConnectedHosts()){
@@ -95,7 +143,9 @@ public class BotServlet extends Servlet{
         o.write(("</td></tr>").getBytes());
       }
       o.write(("</table>").getBytes());
-      o.write(("<font size='-1'>Refresh = <a href='?r=5'>5 secs</a> | <a href='?r=10'>10 secs</a> | <a href='?r=60'>1 min</a><br>").getBytes());
+      o.write(("<hr>").getBytes());
+      o.write(("<font size='-1'><b><a href='?cmd=1'>Send command</a></b><br>").getBytes());
+      o.write(("Refresh = <a href='?r=5'>5 secs</a> | <a href='?r=10'>10 secs</a> | <a href='?r=60'>1 min</a><br>").getBytes());
       o.write(("Job limit = <a href='?l=2'>2</a> | <a href='?l=5'>5</a> | <a href='?l=10'>10</a></font><br>").getBytes());
       o.write(("</body>").getBytes());
       o.flush();

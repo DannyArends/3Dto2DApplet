@@ -46,15 +46,15 @@ public class IRCClientData implements Runnable{
 	private ArrayList<IRCClientData> otherClients = new ArrayList<IRCClientData>();
 	private ArrayList<IRCJobStruct> jobQueue = new ArrayList<IRCJobStruct>();
 	CommandExecutor cmd = new CommandExecutor();
-	boolean verbose = false;
+	boolean verbose = true;
 	PircBot server;
 	private String date_format = "dd/MM/yyyy k:mm:ss:S";
 	
 	IRCClientData(PircBot s,String name,int id,Date time){
 	  server = s;
 	  myname = name;
-		myid = id;
-		start_time = time;
+	  myid = id;
+	  start_time = time;
 	}
 	
 	IRCClientData(PircBot s,String host,String name,int id,Date time){
@@ -99,7 +99,7 @@ public class IRCClientData implements Runnable{
     if(found) removeJobsFromHost(hostname);
   }
 	
-	private void removeJobsFromHost(String sender) {
+  private void removeJobsFromHost(String sender) {
 	  int cnt = 0;
 	  for(int x = 0; x < getJobQueue().size();x++){
 	    if(getJobQueue().get(x).host.equalsIgnoreCase(sender)){
@@ -108,6 +108,14 @@ public class IRCClientData implements Runnable{
 	    }
 	  }
 	  if(verbose) System.out.println("Removed " + cnt + " jobs from " + sender);
+  }
+  
+  public int getNumberOfQueuedJobs(){
+	int queuecnt =0;
+	for(int x = 0; x < getJobQueue().size();x++){
+	  if(getJobQueue().get(x).queued || getJobQueue().get(x).running)queuecnt++;
+	}
+    return queuecnt;
   }
 
   public void sendInformation(String sender){
@@ -164,7 +172,7 @@ public class IRCClientData implements Runnable{
   * @param message The requested job and id
   */
   public void getJob(String sender, String message) {
-    if(verbose) System.out.println(sender + " has a job");
+    if(verbose) System.out.println(sender + " has a job:" + message);
     try{
       String[] t = message.split(";");
       String command = t[1];
@@ -175,12 +183,12 @@ public class IRCClientData implements Runnable{
           return;
         }
       }
-      getJobQueue().add(new IRCJobStruct(sender,command,jobid));
+      jobQueue.add(new IRCJobStruct(sender,command,jobid));
       server.sendMessage(sender, "Job " + jobid + " in queue (" + getJobQueue().size() + ")");
       for(IRCClientData c : otherClients){
         server.sendMessage(c.getFullName(), "job;new;"+jobid + ";" + myid + ";" + sender + ";"+command);
       }
-      if(verbose) System.out.println(sender + " job accepted");
+      if(verbose) System.out.println(sender + " job accepted: " + getJobQueue().size());
     }catch(Exception e){
       sendSupportedCommands(sender);
       System.err.println("Unknown job: " + message);
@@ -297,6 +305,7 @@ public class IRCClientData implements Runnable{
           server.sendMessage(c.getFullName(),updatecmd);
         }
       }else{
+    	//System.out.println("Queue size:" + jobQueue.size());
         Utils.idle(2000);
       }
     }

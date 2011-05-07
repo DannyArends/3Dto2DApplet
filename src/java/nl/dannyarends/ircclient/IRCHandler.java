@@ -98,4 +98,12 @@ public class IRCHandler implements Runnable{
 	public void run(){
 		connect(name,id,channel,verbose);
 	}
+	
+	public IRCClient getIrcclient() {
+		return ircclient;
+	}
+
+	public void setIrcclient(IRCClient ircclient) {
+		this.ircclient = ircclient;
+	}
 }
