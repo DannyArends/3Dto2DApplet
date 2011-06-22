@@ -1,0 +1,30 @@
+<h1>Presentations</h1>
+<p>
+As part of my work I produce presentations and lectures. A short overview of various presentation 
+that I produced during the course of my bachelors, masters and PHD period. I love giving 
+lectures and think education is one of the most important things in science, so feel free 
+to contact me if your curious.
+</p>
+- <a href="/pdf/2011QTLintroduction" title="Powerpoint presentation about: Introduction QTL mapping for first year students">Introduction into QTL mapping</a> - Bioinformatics I (University of Groningen, June 1, 2011)<br>
+- <a href="/pdf/28SeptCBSGGeneticalGenomics.pdf" title="Powerpoint presentation about: Multiple QTL mapping in the context of high-performance computing">MQM and HPC for R/qtl</a> - CSBG meeting (Wageningen University, Sept 28, 2010)<br>
+- <a href="/pdf/Aug2010DynamischPresenteren.pdf" title="Powerpoint presentation about: QTL mapping">Introduction into QTL analysis</a> - Dynamic Presentation (University of Groningen, Aug, 2010)<br>
+- <a href="/pdf/Jan2010Networks.pdf" title="Powerpoint presentation about: Introduction into genetic networks">(Gene) Networks</a> - Work meeting (University Medical Center Groningen, Feb, 2010)<br>
+- <a href="/pdf/Rxqtl.pdf" title="Powerpoint presentation about: Multiple QTL mapping in the context of Big Data">R/xqtl: High throughput modeling, mapping and exploration of Big Data</a> - SYSGENET meeting (Braunschweig, April 8, 2010)
+</p>
+<h3>Master and Bachelor</h3>
+<p>
+- <a href="/pdf/Dec2009GBICMQM.pdf" title="Powerpoint presentation about: Multiple QTL mapping in R/qtl (Msc Thesis)">Presentation Master Thesis II</a><br>
+- <a href="/pdf/2008-03 MasterPresentatie.pdf" title="Powerpoint presentation about: Sequence analysis in prokaryotes by using random forest in R (Msc Thesis)">Presentation Master Thesis I</a><br>
+- <a href="/pdf/2007-06 BachelorPresentatie.pdf" title="Powerpoint presentation about: QTL analysis in B6/BDA recombinant mice (Bsc Thesis)">Presentatiom Bachelor Thesis</a>
+</p>
+<h3>Student</h3>
+<p>
+- <a href="/pdf/2008-06 Presentatie Nanotubes Molecular Dynamics.pdf" title="Powerpoint presentation about: Carbon nano tubes in medical context">Carbon Nanotubes - Molecular dynamics group</a> - University of Groningen, NLD<br>
+- <a href="/pdf/2007-10 UMCG Presentatie.pdf" title="Powerpoint presentation about: QTL analysis in B6/BDA recombinant mice">Presentatie Bachelor - Bachelor Thesis</a> - University Medical Centre Groningen (UMCG), NLD<br>
+- <a href="/pdf/2007-05 Bioinformatica II.pdf" title="Powerpoint presentation about: Website design for experimental design - DesignGG">Presentatie Bioinformatica - Design-GG initial website</a> - Groningen Bioinformatics Centre (GBIC), Haren NLD
+</p>
+<h3>Posters</h3>
+<p>
+- <a href="/pdf/posterMQMsept2010.pdf" title="Poster about: Multiple QTL Mapping - Danny Arends et al. 2010">Multiple QTL Mapping</a> - Danny Arends, Pjotr Prins ISMB, (Groningen, September, NLD, 2010)<br>
+- <a href="/pdf/posterISMB2010.pdf" title="Poster about: QTL and cluster computing - Danny Arends et al. 2010">User friendly cluster computing for QTL analysis</a> - Danny Arends, Joeri v/d velde ISMB, (Boston, July 13-16, USA, 2010)
+</p>

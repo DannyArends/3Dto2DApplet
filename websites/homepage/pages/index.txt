@@ -1,0 +1,5 @@
+<h1>Danny Arends</h1>
+<p>I'm Danny Arends and I'm a PHD student bioinformatics at the Groningen Bioinformatics Centre which is a part of the University of Groningen.</p>
+<p>For my work I create software for use in biology research, the focus of my PHD thesis is on computational methods in quantitative trait analysis (QTL). People interested can read more about that in the publications section or on my blog. </p>
+<p>This web site however is setup to be more broad than just  focus on what I do for work. So I also show my passion for software visualization, I have setup a few screen shots of my C++ rendering engine and I have an Applet on here showing a three dimensional world, which people can navigate through. Currently It's only one map but I might update it in the future.</p>
+<p>So if you want to know more about me, I welcome you to visit the other sections, read my blog and learn about my research and my personal life.</p>

@@ -29,10 +29,12 @@ sub printHTTPHeader{
   my $spidercommand = $_[0];
 	print("Content-type: text/html"."\n\n");
 	print("<?xml version=\"1.0\" encoding=\"utf-8\" xml:lang=\"en\"?> 
-	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n
-	<html>\n
+	<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n
+	<html dir='ltr' lang='en-EN'>\n
 		<head>\n
-			<link rel=\"stylesheet\" type=\"text/css\" href=\"$theme\">
+    	<meta name='robots' content='all'> 
+      <meta http-equiv='Content-Type' content='text/html;charset=utf-8' >
+      <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"etc/favicon.ico\">
 			<link rel=\"alternate\" type=\"application/xml\" title=\"Sitemap\" href=\"/Sitemap.xml\">
 			<link rel=\"alternate\" type=\"application/rss+xml\" title=\"Blog RSS feed\" href=\"/myblog.cgi?do=RSS\">
 			<title>$title - ".$form{"p"}."</title>\n
@@ -45,16 +47,78 @@ sub printHTTPHeader{
 	<meta name='Robots' content='$spidercommand' >
 	
   <script type='text/javascript'></script>
-  <script type='text/javascript' src='jQuery/jquery.min.js'></script>
-  <script type='text/javascript' src='jQuery/jquery.cycle.min.js'></script>
+  <style type=\"text/css\" media=\"screen\"> \@import \"http://www.dannyarends.nl/etc/css/style.css\";</style>
+		<style type=\"text/css\" media=\"print\"> \@import \"http://www.dannyarends.nl/etc/css/print.css\";</style> 
+		<script type=\"text/javascript\" src=\"etc/js/jquery.min.js\"></script>
+		<script language=\"javascript\" type=\"text/javascript\">
+			function surroundText(text1, text2, textarea){
+			// Can a text range be created?
+			if (typeof(textarea.caretPos) != \"undefined\" && textarea.createTextRange){
+				var caretPos = textarea.caretPos, temp_length = caretPos.text.length;
+			caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == \' \' ? text1 + caretPos.text + text2 + \' \' : text1 + caretPos.text + text2;
+
+		if (temp_length == 0)
+		{
+			caretPos.moveStart(\"character\", -text2.length);
+			caretPos.moveEnd(\"character\", -text2.length);
+			caretPos.select();
+		}
+		else
+			textarea.focus(caretPos);
+	}
+	// Mozilla text range wrap.
+	else if (typeof(textarea.selectionStart) != \"undefined\"){
+		var begin = textarea.value.substr(0, textarea.selectionStart);
+		var selection = textarea.value.substr(textarea.selectionStart, textarea.selectionEnd - textarea.selectionStart);
+		var end = textarea.value.substr(textarea.selectionEnd);
+		var newCursorPos = textarea.selectionStart;
+		var scrollPos = textarea.scrollTop;
+
+		textarea.value = begin + text1 + selection + text2 + end;
+
+		if (textarea.setSelectionRange){
+			if (selection.length == 0)
+				textarea.setSelectionRange(newCursorPos + text1.length, newCursorPos + text1.length);
+			else
+				textarea.setSelectionRange(newCursorPos, newCursorPos + text1.length + selection.length + text2.length);
+			textarea.focus();
+		}
+		textarea.scrollTop = scrollPos;
+	}else{
+		textarea.value += text1 + text2;
+		textarea.focus(textarea.value.length - 1);
+	}
+}
+</script> 
+    <script type='text/javascript' src='jQuery/jquery.cycle.min.js'></script>
+		<script type=\"text/javascript\">
+			\$(window).load(function() {    
+				var theWindow        = \$(window),
+					\$bg              = \$(\"#bg\"),
+					aspectRatio      = \$bg.width() / \$bg.height();
+				function resizeBg() {
+					if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
+						\$bg
+							.removeClass()
+							.addClass('bgheight');
+					} else {
+						\$bg
+							.removeClass()
+							.addClass('bgwidth');
+					}
+				}
+				theWindow.resize(function() {
+					resizeBg();
+				}).trigger(\"resize\");
+			});
+		</script>		
   <script type='text/javascript'>
   \t\$(document).ready(function() {
   \t\t\$('.slideshow').cycle({
   \t\tfx: 'fade'
   \t\t});
   \t});
-  </script>		
-
+  </script>
 <script type=\"text/javascript\">
 
   var _gaq = _gaq || [];
@@ -69,10 +133,11 @@ sub printHTTPHeader{
 
 </script>	
 		</head>\n
-		<body>\n
-		<div class='whitebg'>
-			<h1>$title</h1>\n
-			<h2>$subtitle</h2>\n
+    <body>\n
+		<!-- Door: Maarten Hunink, Zinnebeeld ** IE6 WARS **--> \n
+		<!--[if lte IE 6]><div id=\"ie6_banner\"><div id=\"ie6_wrap\"><div id=\"ie6_links\"><a href=\"http://www.mozilla.com/nl\"><img src=\"http://www.wijstoppenook.nl/site/gfx/firefox_small.png\" alt=\"\" />Firefox</a><a href=\"http://www.google.com/chrome\"><img src=\"http://www.wijstoppenook.nl/site/gfx/chrome_small.png\" alt=\"\" />Chrome</a><a href=\"http://www.apple.com/safari\"><img src=\"http://www.wijstoppenook.nl/site/gfx/safari_small.png\" alt=\"\" />Safari</a><a href=\"http://www.opera.com\"><img src=\"http://www.wijstoppenook.nl/site/gfx/opera_small.png\" alt=\"\" />Opera</a> </div><h1>U gebruikt een oude versie van Internet Explorer</h1><p>Helaas worden Internet Explorer 6 en oudere versies niet meer ondersteund op deze website. Wij raden u aan over te schakelen naar een modernere internetbrowser. <a href=\"http://www.microsoft.com/ie\">Download hier</a> de nieuwste versie van Internet explorer, of kies een browser uit het overzicht hiernaast. Deze browsers zijn veelal sneller en veiliger en voldoen beter aan de webstandaarden. U kunt ze gratis downloaden en installeren kost slechts enkele minuten.</p></div></div><![endif]-->
+		<!--[if gt IE 6]><div><img src=\"http://www.dannyarends.nl/etc/img/bg".(int(rand(5))+1).".jpg\" id=\"bg\" alt=\"dannyarends.nl\"></div><![endif]-->
+		<!--[if !IE]><!--><div><img src=\"http://www.dannyarends.nl/etc/img/bg".(int(rand(5))+1).".jpg\" id=\"bg\" alt=\"dannyarends.nl\"></div><!--<![endif]-->
 			\n");
 }
 
@@ -92,7 +157,13 @@ sub showFile{
 	my $line;
 	my $text;
 	open(FILE, "$dir/$name");
-	@rawdata=<FILE>; 
+	unless (-e "$dir/$name") {
+		$form{"error"} = "Page not found";
+		$form{"p"} = "Index";
+		printError();
+		return;
+	}
+	@rawdata=<FILE>;
 	close(FILE);
 	foreach $line (@rawdata){
 		chomp($line);
@@ -104,7 +175,7 @@ sub showFile{
 			$text .= "\n";
 		}else{
 			#Normal line
-			$text .= $line."<br>"."\n";
+			$text .= $line."\n";
 		}	
 	} 
 	return $text;
@@ -118,11 +189,9 @@ sub printEmptyFooter{
 }
 
 sub printError{
-	print("<font color='red' size='+3'> 404 - ".$form{"error"}."</font>" ."<br>". "\n");
-	if($form{"page"} ne ""){
-		print("<p>Missing page: ".$form{"page"} . "<br/><br/>". "\n");
-		print("Contact the admin: ". $email ."</p>" . "\n");
-	}
+	print("<h1> 404 - ".$form{"error"}."</h1>" ."<br>". "\n");
+	print("<p>The page you were looking for was not found<br/>". "\n");
+	print("Contact the admin: ". $email ."</p>" . "\n");
 }
 
 sub receivePost{

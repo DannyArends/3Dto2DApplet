@@ -1649,7 +1649,7 @@ public class Webserver implements ServletContext, Serializable {
 					}
 					if (ust.hasMoreTokens()) {
 						reqProtocol = ust.nextToken();
-						oneOne = !reqProtocol.toUpperCase().equals("HTTP/1.0");
+						oneOne = reqProtocol.toUpperCase().equals("HTTP/1.1");
 						reqMime = true;
 						// Read the rest of the lines.
 						String s;
@@ -1682,6 +1682,10 @@ public class Webserver implements ServletContext, Serializable {
 						
 						//hack for R, which has bad request headers! if the problem persists for other clients, use "pragma, no-cache" to check this
 						if(getHeader("User-Agent") != null && getHeader("User-Agent").startsWith("R (")){
+							Utils.log("Faulty connection request for keep-alive",System.err);
+							keepAlive = false;
+						}
+						if(getHeader("User-Agent") == null){
 							Utils.log("Faulty connection request for keep-alive",System.err);
 							keepAlive = false;
 						}
@@ -1745,20 +1749,20 @@ public class Webserver implements ServletContext, Serializable {
 			}
 			if (assureHeaders() && socket.getKeepAlive() == false)
 				socket.setKeepAlive(true);
-			socket.setSoTimeout(0);
-			serve.setHost(getHeader(HOST));
-			PathTreeDictionary registry = (PathTreeDictionary) currentRegistry.get();
-			try {
-				// TODO new SimpleRequestDispatcher(reqUriPathUn).forward((ServletRequest) this, (ServletResponse) this);
-				Object[] os = registry.get(reqUriPath);
-				if (os[0] != null) { // note, os always not null
-					// / TODO put time mark here to monitor actual servicing
-					lastRun = System.currentTimeMillis();
-					// System.err.println("Servlet "+os[0]+" for path "+reqUriPath);
-					uriLen = ((Integer) os[1]).intValue();
-					runServlet((HttpServlet) os[0]);
-				} else {
-					//problem("No any servlet found for serving " + reqUriPath, SC_BAD_REQUEST);
+				socket.setSoTimeout(0);
+				serve.setHost(getHeader(HOST));
+				PathTreeDictionary registry = (PathTreeDictionary) currentRegistry.get();
+				try {
+					// TODO new SimpleRequestDispatcher(reqUriPathUn).forward((ServletRequest) this, (ServletResponse) this);
+					Object[] os = registry.get(reqUriPath);
+					if (os[0] != null) { // note, os always not null
+						// / TODO put time mark here to monitor actual servicing
+						lastRun = System.currentTimeMillis();
+					// 	System.err.println("Servlet "+os[0]+" for path "+reqUriPath);
+						uriLen = ((Integer) os[1]).intValue();
+						runServlet((HttpServlet) os[0]);
+					} else {
+						//problem("No any servlet found for serving " + reqUriPath, SC_BAD_REQUEST);
 				}
 			} finally {
 				currentRegistry.set(null); // remove
@@ -3400,7 +3404,8 @@ public class Webserver implements ServletContext, Serializable {
 					out.println(sb2.toString());
 					//System.err.println("We sent cookies 2: " + sb2);
 				}
-				if (wasContentLen == false && chunked_out == false && serve.isKeepAlive()) {
+				//Utils.console(""+oneOne);
+				if (wasContentLen == false && chunked_out == false && serve.isKeepAlive() && oneOne) {
 					out.println(TRANSFERENCODING + ": " + CHUNKED);
 					chunked_out = true;
 				}

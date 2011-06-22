@@ -1,0 +1,28 @@
+<h1>Research</h1>
+<p>
+Have you ever wondered why some people have blue eyes and others green?
+Why some of us get flu every year and other almost never?</p>
+<p>
+These are the questions that got me interested in biology around 2003.
+We currently know that the answer to these question can be found in our DNA. Traits 
+(e.g. flu susceptibility, hair color and length) are encoded on your personal DNA molecules, stored in every nucleus of every living cell.
+In our DNA all our traits are encoded by using only a four letter alphabet. A word in this 
+code is called a gene, and humans have an estimated 50.000 genes. This alphabet is on demand 
+transcribed into RNA, which in its turn is turned into proteins.
+</p>
+<p>
+These proteins (and the products they produce) are causing traits we observe, unraveling the relation between 
+genetic variation (having different genes) and the traits we observe is called 'Quantitative Genetics'.
+</p>
+<p>
+For my PHD I'm researching methods to 'frame' the DNA, linking the code to the traits we see. Because I am a 
+biologist I work on questions involving plant traits. Increasing their yield, resistance and other useful 
+properties. For this I collaborate with Wageningen University where they have a biology department which grows 
+Arabidopsis (Model) plants. The data coming from these plants is huge Hard drives full of numbers, representing 
+the activity of all genes. This data is then analyzed by GBIC our lab. This is because in Groningen the 
+infrastructure needed to analyze these big amounts of data is available.
+</p>
+<ul>
+  <li><a href="/Index.cgi?p=Publications">Publications</a></li>
+  <li><a href="/Index.cgi?p=Presentations">Presentations</a></li>
+</ul>

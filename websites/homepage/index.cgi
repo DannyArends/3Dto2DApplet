@@ -8,6 +8,7 @@ our %form;
 
 #include our own files & functions
 require "cgi-bin/utils.cgi";
+require "cgi-bin/myblog.cgi";
 
 #Constants
 
@@ -25,46 +26,168 @@ our $email = "Danny.Arends\@gmail.com";
 # Print a http header
 receivePost();
 if($form{"p"} eq ""){
-	$form{"p"} = "index"; 
+	$form{"p"} = "Index"; 
 }
+if($form{"do"} ne "" || $form{"viewDetailed"} ne "" || $form{"viewCat"} ne "" || $form{"process"} || $form{"sendComment"}){
+	$form{"p"} = "Blog"; 
+}
+if($form{"do"} ne "RSS"){
 printHTTPHeader('INDEX,FOLLOW');
 print "
-<table width='95%'>
-<tr>
-  <td colspan=3>
-  <i>Last updated: 27 April 2011</i><br>
-  [<a href=\"/Index.cgi\" title=\"The index page of dannyarends.nl\"><font color=\"black\">Home</font></a>
-  |<a href=\"/myblog.cgi\" title=\"Blog by Danny Arends\"><font color=\"black\">My Blog</font></a>
-  |<a href=\"/Index.cgi?p=Publications\" title=\"Overview of Publication by Danny Arends\"><font color=\"black\">Publications</font></a>
-  |<a href=\"/Index.cgi?p=Presentations\" title=\"Overview of Presentations by Danny Arends\"><font color=\"black\">Presentations</font></a>
-  |<a href=\"/Index.cgi?p=Drawings\" title=\"Overview of Drawings made by Danny Arends\"><font color=\"black\">Drawings</font></a>
-  |<a href=\"/Index.cgi?p=Hobbies\" title=\"Summary of my hobbies\"><font color=\"black\">Hobbies</font></a>
-  |<a href=\"/Index.cgi?p=Contact\" title=\"Contact information\"><font color=\"black\">Contact</font></a>
-  |<a href=\"/Index.cgi?p=Applet\" title=\"Java applet game created by Danny Arends\"><font color=\"black\">Java Applet world</font></a>
-  |<a href=\"/Index.cgi?p=Various\" title=\"Other things that intrest me\"><font color=\"black\">Other stuff</font></a>
-  |<a href=\"/Index.cgi?p=Links\" title=\"Links to other web pages\"><font color=\"black\">Links</font></a>
-  ]<br><hr></td></tr><tr>
-  <td valign='top' width='49%'>
+<div id=\"container\" class=\"centre maxwidth\">
+			<div id=\"head\" class=\"maxwidth\">
+				<a href=\"/Index.cgi?p=Index\" class=\"logo\"><span class=\"noview\">Danny Arends</span></a>
+				<div id=\"menu\">
+					<ul>
+						<li class=\"home\"><a href=\"/Index.cgi\"><span class=\"noview\">home</span></a></li>
+						<li class=\"blog\"><a href=\"/Index.cgi?p=Blog\"><span class=\"noview\">blog</span></a></li>
+						<li class=\"research\"><a href=\"/Index.cgi?p=Research\"><span class=\"noview\">research</span></a></li>
+						<li class=\"personal\"><a href=\"/Index.cgi?p=Personal\"><span class=\"noview\">personal</span></a></li>
+						<li class=\"contact\"><a href=\"/Index.cgi?p=Contact\"><span class=\"noview\">contact</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class=\"printlogo\"><img src=\"etc/img/logo.png\" alt=\"Dannyarends.nl\"	width=\"200\" height=\"32\"></div>
+			<div id=\"content\" class=\"maxwidth\">
+				<div class=\"top maxwidth\"></div>
+				<div class=\"mid\">
+					<div class=\"left\">
 ";
-print(showFile("pages",$form{"p"}."_l.txt")."\n");
-print "</td>
-  <td valign='top'>";
-print(showFile("pages",$form{"p"}."_m.txt")."\n");
-  print "</td>
-  <td valign='top' width='49%'>
-  ";
-print(showFile("pages",$form{"p"}."_r.txt")."\n");
-print "
-  </td>
-</tr>
-<tr>
-  <td colspan=3>
-  <div align=\"center\" id=footer>";
-print "Copyright 'Danny Arends' 2011 - All Rights Reserved, Page requested via rest: " . $form{"p"} . "\n";
-print "
-  </div>
-  </td>
-</tr>
-</table>
-<a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-html401-blue\" alt=\"Valid HTML 4.0.1 Loose\" style=\"border:0;width:88px;height:31px\"></a><a href=\"http://jigsaw.w3.org/css-validator/check/referer\"><img style=\"border:0;width:88px;height:31px\" src=\"http://www.w3.org/Icons/valid-css2-blue.png\" alt=\"Valide CSS!\"></a>
-</div></body></html>";
+if($form{"p"} ne "Blog"){
+	print(showFile("pages",$form{"p"}.".txt")."\n");
+}elsif($form{"viewDetailed"} ne ""){
+	DisplaySinglePost();
+}elsif ($form{"do"} eq "archive"){
+	DisplayArchive()
+}else{
+	DisplayBlogOverview();
+}
+print "</div>
+					<div class=\"right\">";
+						
+if($form{"p"} eq "Blog"){
+	print "<div class=\"submenu\">";
+	print("<h3>Latest entries / Content</h3>");
+	DisplayEntries();
+	print "	</div>";
+}else{
+	if($form{"p"} eq "Research" || $form{"p"} eq "Presentations" || $form{"p"} eq "Publications" || $form{"p"} eq "Links"){
+		print "<div class=\"submenu\">";
+		print "<h3>Research / Content</h3>
+							<ul>
+								<li><a href=\"/Index.cgi?p=Publications\">Publications</a></li>
+								<li><a href=\"/Index.cgi?p=Presentations\">Presentations</a></li>
+								<li><a href=\"/Index.cgi?p=Links\">Links</a></li>
+							</ul>
+						";
+		print "	</div>";
+	}
+	if($form{"p"} eq "Personal"){
+		print "<div class=\"submenu\">";
+		print "<h3>Personal / Content</h3>
+							<ul>
+                  				<li><a href=\"/Index.cgi?p=Hobbies\">Hobbies</a></li>
+                  				<li><a href=\"/Index.cgi?p=Oscar\">Oscar</a></li>
+                  				<li><a href=\"/Index.cgi?p=Drawings\">Drawings</a></li>
+                  				<li><a href=\"/Index.cgi?p=GameDesign\">Game Design</a></li>
+							</ul>
+						";
+		print "	</div>";
+	}
+
+}
+
+if($form{"p"} eq "Index"){
+print "					<div class=\"bio\">
+							<h3>Short bio</h3>
+							<p>
+							<strong>Spoken languages:</strong> Dutch, English, German, French<br>
+							<strong>Location:</strong> Groningen, The Netherlands<br>
+							<strong>Programming languages:</strong> R, C++, C, Java, PHP, Perl and some more<br>
+							<strong>Likes:</strong> My Cat, Biology, Genetics, Computers, Drawing, Film and Movies, Discussions<br>
+							</p>
+						</div>";
+}
+					
+print "					<div class=\"contact\">
+							<h3>Contact</h3>
+							<p>
+							Faculty of Mathematics and Natural Sciences<br>
+							Bioinformatics (GBIC) - Groningen Bioinformatics Centre<br> 
+							Gron Inst for Biomolecular Sciences & Biotechnology<br>
+							<br>
+							Nijenborgh 7<br>
+							9747 AG Groningen<br>
+							The Netherlands<br>
+							<br>
+							+31 50 363 8082<br>
+							<a href=\"mailto:danny.arends\@gmail.com\">danny.arends\@gmail.com</a>
+							</p>
+						</div>";
+
+				
+print "					<div id=\"social\">
+							<ul>
+								<li class=\"social hyves\"><a href=\"http://justdanny.hyves.nl/\" target=\"_blank\"><span class=\"noview\">Hyves</span></a></li>
+								<li class=\"social twitter\"><a href=\"http://twitter.com/#!/DannyArends\" target=\"_blank\"><span class=\"noview\">Twitter</span></a></li>
+								<li class=\"social facebook\"><a href=\"http://www.facebook.com/Arends.Danny\" target=\"_blank\"><span class=\"noview\">Facebook</span></a></li>
+								<li class=\"social linkedin\"><a href=\"http://nl.linkedin.com/in/dannyarends\" target=\"_blank\"><span class=\"noview\">LinkedIn</span></a></li>
+								<li class=\"social github\"><a href=\"https://github.com/DannyArends\" target=\"_blank\"><span class=\"noview\">GitHub</span></a></li>
+							</ul>
+						</div>
+					</div>
+					<br class=\"clear\">
+				</div>
+				<div class=\"bottom maxwidth\"></div>
+			</div>
+			<div id=\"footer\" class=\"maxwidth\">
+				<div class=\"top maxwidth\"></div>
+				<div class=\"mid\">
+					<div class=\"sitemap\">
+						<h3>dannyarends.nl / Contents</h3>
+						<ul class=\"hoofd\">
+							<li>";
+								print '<a href="/Index.cgi?p=Blog">Blog</a>';
+								DisplayEntries();
+print " 					</li>
+							<li>
+								<a href=\"/Index.cgi?p=Research\">Research</a>
+								<ul class=\"sub\">
+									<li><a href=\"/Index.cgi?p=Publications\">Publications</a></li>
+									<li><a href=\"/Index.cgi?p=Presentations\">Presentations</a></li>
+									<li><a href=\"/Index.cgi?p=Links\">Links</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href=\"/Index.cgi?p=Personal\">Personal</a>
+								<ul class=\"sub\">
+                  					<li><a href=\"/Index.cgi?p=Hobbies\">Hobbies</a></li>
+                  					<li><a href=\"/Index.cgi?p=Oscar\">Oscar</a></li>
+                  					<li><a href=\"/Index.cgi?p=Drawings\">Drawings</a></li>
+                  					<li><a href=\"/Index.cgi?p=GameDesign\">Game Design</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href=\"/Index.cgi?p=Contact\">Contact</a>
+								<ul class=\"sub\">
+									<li><a href=\"http://justdanny.hyves.nl/\" target=\"_blank\">Hyves</a></li>
+									<li><a href=\"http://twitter.com/#!/DannyArends\" target=\"_blank\">Twitter</a></li>
+									<li><a href=\"http://www.facebook.com/Arends.Danny\" target=\"_blank\">Facebook</a></li>
+									<li><a href=\"http://nl.linkedin.com/in/dannyarends\" target=\"_blank\">LinkedIn</a></li>
+									<li><a href=\"https://github.com/DannyArends\" target=\"_blank\">GitHub</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<br class=\"clear\">
+				</div>
+				<div class=\"bottom maxwidth\"></div>
+			</div>
+			<div id=\"disclaimer\" class=\"centre\">Copyright Danny Arends 2011 - All Rights Reserved</div>
+		</div>
+	</body>
+</html>
+";
+}else{
+DisplayRSS();
+}

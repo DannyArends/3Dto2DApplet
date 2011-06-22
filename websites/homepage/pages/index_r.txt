@@ -1,10 +1,11 @@
 <h3>Leave a message</h3>
-Please visit my <a href='myblog.cgi' title='Blog of Danny Arends'>Blog</a> to leave me a message, or just send me an e-mail
+Please visit my <a href='myblog.cgi' title='Blog of Danny Arends'>Blog</a> to leave me a message, or just send me an e-mail. I'm posting on there 
+regularly and I love comments, so don't be shy and leave some.
 <h3>Short Bio</h3>
 Spoken languages: Dutch, English, German, French
 Living in: Groningen, The Netherlands
 Programming languages: <a href='http://www.r-project.org/' title='The R Project for Statistical Computing'>R</a>, C++, C, Java, PHP, Perl and some more
-Likes: My Cat, Genetics, Computers, Drawing, Discussions
-Find me on: Github / MSN / Facebook
+Likes: My Cat, Biology, Genetics, Computers, Drawing, Film and Movies, Discussions
+Find me on: Github / MSN / Facebook / Hyves
 <h3>Some photos</h3>
 <div class='slideshow'><img src="/images/danny_01.jpg" alt="Danny Arends"><img src="/images/danny_02.jpg" alt="Danny Arends"><img src="/images/danny_04.jpg" alt="Danny Arends"></div>

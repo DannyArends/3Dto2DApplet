@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html dir="ltr" lang="nl-NL"> 
+	<head> 
+		<meta name="robots" content="all"> 
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+		<link rel="shortcut icon" type="image/x-icon" href="etc/favicon.ico"> 
+		<title>Danny Arends | Nerd 4 Life</title> 
+		<style type="text/css" media="screen"> @import "etc/css/style.css";</style>
+		<style type="text/css" media="print"> @import "etc/css/print.css";</style> 
+		<script type="text/javascript" src="etc/js/jquery.min.js"></script> 
+		<script type="text/javascript">
+			$(window).load(function() {    
+				var theWindow        = $(window),
+					$bg              = $("#bg"),
+					aspectRatio      = $bg.width() / $bg.height();
+				function resizeBg() {
+					if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
+						$bg
+							.removeClass()
+							.addClass('bgheight');
+					} else {
+						$bg
+							.removeClass()
+							.addClass('bgwidth');
+					}
+				}
+				theWindow.resize(function() {
+					resizeBg();
+				}).trigger("resize");
+			});
+		</script>	
+	</head> 
+	<body> 
+		<!-- Door: Maarten Hunink, Zinnebeeld ** IE6 WARS **--> 
+		<!--[if lte IE 6]><div id="ie6_banner"><div id="ie6_wrap"><div id="ie6_links"><a href="http://www.mozilla.com/nl"><img src="http://www.wijstoppenook.nl/site/gfx/firefox_small.png" alt="" />Firefox</a><a href="http://www.google.com/chrome"><img src="http://www.wijstoppenook.nl/site/gfx/chrome_small.png" alt="" />Chrome</a><a href="http://www.apple.com/safari"><img src="http://www.wijstoppenook.nl/site/gfx/safari_small.png" alt="" />Safari</a><a href="http://www.opera.com"><img src="http://www.wijstoppenook.nl/site/gfx/opera_small.png" alt="" />Opera</a> </div><h1>U gebruikt een oude versie van Internet Explorer</h1><p>Helaas worden Internet Explorer 6 en oudere versies niet meer ondersteund op deze website. Wij raden u aan over te schakelen naar een modernere internetbrowser. <a href="http://www.microsoft.com/ie">Download hier</a> de nieuwste versie van Internet explorer, of kies een browser uit het overzicht hiernaast. Deze browsers zijn veelal sneller en veiliger en voldoen beter aan de webstandaarden. U kunt ze gratis downloaden en installeren kost slechts enkele minuten.</p></div></div><![endif]-->
+		<!--[if gt IE 6]><div><img src="etc/img/bg3.jpg" id="bg" alt="dannyarends.nl"></div><![endif]-->
+		<!--[if !IE]><!--><div><img src="etc/img/bg3.jpg" id="bg" alt="dannyarends.nl"></div><!--<![endif]-->
+		<div id="container" class="centre maxwidth">
+			<div id="head" class="maxwidth">
+				<a href="#" class="logo"><span class="noview">Danny Arends</span></a>
+				<div id="menu">
+					<ul>
+						<li class="home"><a href="#"><span class="noview">home</span></a></li>
+						<li class="blog"><a href="#"><span class="noview">blog</span></a></li>
+						<li class="research"><a href="#"><span class="noview">research</span></a></li>
+						<li class="personal"><a href="#"><span class="noview">personal</span></a></li>
+						<li class="contact"><a href="#"><span class="noview">contact</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="printlogo"><img src="etc/img/logo.png" alt="Dannyarends.nl"	width="200" height="32"></div>
+			<div id="content" class="maxwidth">
+				<div class="top maxwidth"></div>
+				<div class="mid">
+					<div class="left">
+						<h1>Danny Arends</h1>
+
+						<p>I'm Danny Arends and I'm a PHD student bioinformatics at the Groningen Bioinformatics Centre 
+						which is a part of the University of Groningen.</p>
+
+						<p>For my work I create software for use in biology research, the focus of my PHD thesis is on 
+						computational methods in quantitative trait analysis (QTL). People interested can read more about 
+						that in the publications section or on my blog. </p>
+
+						<p>This web site however is setup to be more broad than just  focus on what I do for work. So I 
+						also show my passion for software visualization, I have setup a few screen shots of my C++ 
+						rendering engine and I have an Applet on here showing a three dimensional world, which people 
+						can navigate through. Currently It's only one map but I might update it in the future.</p>
+
+						<p>So if you want to know more about me, I welcome you to visit the other sections, read my blog 
+						and learn about my research and my personal life.</p>
+					</div>
+					<div class="right">
+						<div class="submenu">
+							<h3>Research / Contents</h3>
+							<ul>
+								<li><a href="#">Submenu item</a></li>
+								<li><a href="#">Submenu item</a></li>
+								<li><a href="#">Submenu item</a></li>
+							</ul>
+						</div>
+						<div class="bio">
+							<h3>Short bio</h3>
+							<p>
+							<strong>Spoken languages:</strong> Dutch, English, German, French<br>
+							<strong>Location:</strong> Groningen, The Netherlands<br>
+							<strong>Programming languages:</strong> R, C++, C, Java, PHP, Perl and some more<br>
+							<strong>Likes:</strong> My Cat, Biology, Genetics, Computers, Drawing, Film and Movies, Discussions<br>
+							</p>
+						</div>
+						<div class="contact">
+							<h3>Contact</h3>
+							<p>
+							Faculty of Mathematics and Natural Sciences<br>
+							Bioinformatics - Gron Inst Biomolecular Sciences & Biotechnology<br>
+							<br>
+							Nijenborgh 7<br>
+							9747 AG Groningen<br>
+							The Netherlands<br>
+							<br>
+							+31 50 363 8079<br>
+							<a href="mailto:danny.arends@gmail.com">danny.arends@gmail.com</a>
+							</p>
+						</div>
+						<div id="social">
+							<ul>
+								<li class="social hyves"><a href="http://justdanny.hyves.nl/" target="_blank"><span class="noview">Hyves</span></a></li>
+								<li class="social twitter"><a href="http://twitter.com/#!/DannyArends" target="_blank"><span class="noview">Twitter</span></a></li>
+								<li class="social facebook"><a href="http://www.facebook.com/Arends.Danny" target="_blank"><span class="noview">Facebook</span></a></li>
+								<li class="social linkedin"><a href="http://nl.linkedin.com/in/dannyarends" target="_blank"><span class="noview">LinkedIn</span></a></li>
+								<li class="social github"><a href="https://github.com/DannyArends" target="_blank"><span class="noview">GitHub</span></a></li>
+							</ul>
+						</div>
+					</div>
+					<br class="clear">
+				</div>
+				<div class="bottom maxwidth"></div>
+			</div>
+			<div id="footer" class="maxwidth">
+				<div class="top maxwidth"></div>
+				<div class="mid">
+					<div class="sitemap">
+						<h3>dannyarends.nl / Contents</h3>
+						<ul class="hoofd">
+							<li>
+								<a href="#">Blog</a>
+								<ul class="sub">
+									<li><a href="#">Preparing For The USA</a></li>
+									<li><a href="#">Mayor Update</a></li>
+									<li><a href="#">Online Again</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Research</a>
+								<ul class="sub">
+									<li><a href="#">Publications</a></li>
+									<li><a href="#">Presentations</a></li>
+									<li><a href="#">Java Applet World</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Personal</a>
+								<ul class="sub">
+									<li><a href="#">Drawings</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Contact</a>
+								<ul class="sub">
+									<li><a href="http://justdanny.hyves.nl/" target="_blank">Hyves</a></li>
+									<li><a href="http://twitter.com/#!/DannyArends" target="_blank">Twitter</a></li>
+									<li><a href="http://www.facebook.com/Arends.Danny" target="_blank">Facebook</a></li>
+									<li><a href="http://nl.linkedin.com/in/dannyarends" target="_blank">LinkedIn</a></li>
+									<li><a href="https://github.com/DannyArends" target="_blank">GitHub</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<br class="clear">
+				</div>
+				<div class="bottom maxwidth"></div>
+			</div>
+			<div id="disclaimer" class="centre">Copyright Danny Arends 2011 - All Rights Reserved</div>
+		</div>
+	</body>
+</html>	

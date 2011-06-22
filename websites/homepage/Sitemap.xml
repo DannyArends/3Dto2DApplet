@@ -27,7 +27,7 @@
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi</loc>
+    <loc>http://www.dannyarends.nl/index.cgi</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
@@ -90,84 +90,77 @@
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?do=newentry</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?do=archive</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?do=archive</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?do=rss</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?do=rss</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=blog</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?viewcat=blog</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=metanetwork</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?viewcat=metanetwork</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=molgenis</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?viewcat=molgenis</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=random</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?viewcat=random</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=webserver</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?viewcat=webserver</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=website</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?viewcat=website</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=weekend</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?viewcat=weekend</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?do=listcomments</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?do=listcomments</loc>
-    <lastmod>2011-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-
-    <priority>0.8</priority>
-</url>  
-<url>
-    <loc>http://www.dannyarends.nl/myblog.cgi?page=2</loc>
+    <loc>http://www.dannyarends.nl/index.cgi?page=2</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
@@ -244,35 +237,35 @@
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/pdf/2008-03</loc>
+    <loc>http://www.dannyarends.nl/pdf/2008-03%20MasterPresentatie.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/pdf/2007-06</loc>
+    <loc>http://www.dannyarends.nl/pdf/2007-06%20BachelorPresentatie.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/pdf/2008-06</loc>
+    <loc>http://www.dannyarends.nl/pdf/2008-06%20Presentatie%20Nanotubes%20Molecular%20Dynamics.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/pdf/2007-10</loc>
+    <loc>http://www.dannyarends.nl/pdf/2007-10%20UMCG%20Presentatie.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/pdf/2007-05</loc>
+    <loc>http://www.dannyarends.nl/pdf/2007-05%20Bioinformatica%20II.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
 

@@ -185,7 +185,7 @@ public abstract class Servlet extends javax.servlet.http.HttpServlet{
 			if (out != null) {
 				out.flush();
 				out.close();
-				Utils.console("Served file: " + req.getPathTranslated() + " " +  Long.toString(clen) + " bytes to " + req.getLocalName() + ":" + req.getMethod());
+				Utils.console("Served file: " + req.getPathTranslated() + " " +  Long.toString(clen) + " bytes to " + req.getRemoteAddr() + ":" + req.getMethod());
 			}
 		}
 	}
