@@ -26,24 +26,24 @@ our $email = "Danny.Arends\@gmail.com";
 # Print a http header
 receivePost();
 if($form{"p"} eq ""){
-	$form{"p"} = "Index"; 
+	$form{"p"} = "index"; 
 }
 if($form{"do"} ne "" || $form{"viewDetailed"} ne "" || $form{"viewCat"} ne "" || $form{"process"} || $form{"sendComment"}){
-	$form{"p"} = "Blog"; 
+	$form{"p"} = "blog"; 
 }
 if($form{"do"} ne "RSS"){
 printHTTPHeader('INDEX,FOLLOW');
 print "
 <div id=\"container\" class=\"centre maxwidth\">
 			<div id=\"head\" class=\"maxwidth\">
-				<a href=\"/Index.cgi?p=Index\" class=\"logo\"><span class=\"noview\">Danny Arends</span></a>
+				<a href=\"/index.cgi?p=index\" class=\"logo\"><span class=\"noview\">Danny Arends</span></a>
 				<div id=\"menu\">
 					<ul>
-						<li class=\"home\"><a href=\"/Index.cgi\"><span class=\"noview\">home</span></a></li>
-						<li class=\"blog\"><a href=\"/Index.cgi?p=Blog\"><span class=\"noview\">blog</span></a></li>
-						<li class=\"research\"><a href=\"/Index.cgi?p=Research\"><span class=\"noview\">research</span></a></li>
-						<li class=\"personal\"><a href=\"/Index.cgi?p=Personal\"><span class=\"noview\">personal</span></a></li>
-						<li class=\"contact\"><a href=\"/Index.cgi?p=Contact\"><span class=\"noview\">contact</span></a></li>
+						<li class=\"home\"><a href=\"/index.cgi\"><span class=\"noview\">home</span></a></li>
+						<li class=\"blog\"><a href=\"/index.cgi?p=blog\"><span class=\"noview\">blog</span></a></li>
+						<li class=\"research\"><a href=\"/index.cgi?p=research\"><span class=\"noview\">research</span></a></li>
+						<li class=\"personal\"><a href=\"/index.cgi?p=personal\"><span class=\"noview\">personal</span></a></li>
+						<li class=\"contact\"><a href=\"/index.cgi?p=contact\"><span class=\"noview\">contact</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -53,7 +53,7 @@ print "
 				<div class=\"mid\">
 					<div class=\"left\">
 ";
-if($form{"p"} ne "Blog"){
+if($form{"p"} ne "blog"){
 	print(showFile("pages",$form{"p"}.".txt")."\n");
 }elsif($form{"viewDetailed"} ne ""){
 	DisplaySinglePost();
@@ -71,25 +71,25 @@ if($form{"p"} eq "Blog"){
 	DisplayEntries();
 	print "	</div>";
 }else{
-	if($form{"p"} eq "Research" || $form{"p"} eq "Presentations" || $form{"p"} eq "Publications" || $form{"p"} eq "Links"){
+	if($form{"p"} eq "research" || $form{"p"} eq "presentations" || $form{"p"} eq "publications" || $form{"p"} eq "links"){
 		print "<div class=\"submenu\">";
 		print "<h3>Research / Content</h3>
 							<ul>
-								<li><a href=\"/Index.cgi?p=Publications\">Publications</a></li>
-								<li><a href=\"/Index.cgi?p=Presentations\">Presentations</a></li>
-								<li><a href=\"/Index.cgi?p=Links\">Links</a></li>
+								<li><a href=\"/index.cgi?p=publications\">Publications</a></li>
+								<li><a href=\"/index.cgi?p=presentations\">Presentations</a></li>
+								<li><a href=\"/index.cgi?p=links\">Links</a></li>
 							</ul>
 						";
 		print "	</div>";
 	}
-	if($form{"p"} eq "Personal"){
+	if($form{"p"} eq "personal"){
 		print "<div class=\"submenu\">";
 		print "<h3>Personal / Content</h3>
 							<ul>
-                  				<li><a href=\"/Index.cgi?p=Hobbies\">Hobbies</a></li>
-                  				<li><a href=\"/Index.cgi?p=Oscar\">Oscar</a></li>
-                  				<li><a href=\"/Index.cgi?p=Drawings\">Drawings</a></li>
-                  				<li><a href=\"/Index.cgi?p=GameDesign\">Game Design</a></li>
+                  				<li><a href=\"/index.cgi?p=hobbies\">Hobbies</a></li>
+                  				<li><a href=\"/index.cgi?p=oscar\">Oscar</a></li>
+                  				<li><a href=\"/index.cgi?p=drawings\">Drawings</a></li>
+                  				<li><a href=\"/index.cgi?p=gameDesign\">Game Design</a></li>
 							</ul>
 						";
 		print "	</div>";
@@ -97,7 +97,7 @@ if($form{"p"} eq "Blog"){
 
 }
 
-if($form{"p"} eq "Index"){
+if($form{"p"} eq "index"){
 print "					<div class=\"bio\">
 							<h3>Short bio</h3>
 							<p>
@@ -147,28 +147,28 @@ print "					<div id=\"social\">
 						<h3>dannyarends.nl / Contents</h3>
 						<ul class=\"hoofd\">
 							<li>";
-								print '<a href="/Index.cgi?p=Blog">Blog</a>';
+								print '<a href="/index.cgi?p=blog">Blog</a>';
 								DisplayEntries();
 print " 					</li>
 							<li>
-								<a href=\"/Index.cgi?p=Research\">Research</a>
+								<a href=\"/index.cgi?p=research\">Research</a>
 								<ul class=\"sub\">
-									<li><a href=\"/Index.cgi?p=Publications\">Publications</a></li>
-									<li><a href=\"/Index.cgi?p=Presentations\">Presentations</a></li>
-									<li><a href=\"/Index.cgi?p=Links\">Links</a></li>
+									<li><a href=\"/index.cgi?p=publications\">Publications</a></li>
+									<li><a href=\"/index.cgi?p=presentations\">Presentations</a></li>
+									<li><a href=\"/index.cgi?p=links\">Links</a></li>
 								</ul>
 							</li>
 							<li>
-								<a href=\"/Index.cgi?p=Personal\">Personal</a>
+								<a href=\"/index.cgi?p=personal\">Personal</a>
 								<ul class=\"sub\">
-                  					<li><a href=\"/Index.cgi?p=Hobbies\">Hobbies</a></li>
-                  					<li><a href=\"/Index.cgi?p=Oscar\">Oscar</a></li>
-                  					<li><a href=\"/Index.cgi?p=Drawings\">Drawings</a></li>
-                  					<li><a href=\"/Index.cgi?p=GameDesign\">Game Design</a></li>
+                  					<li><a href=\"/index.cgi?p=hobbies\">Hobbies</a></li>
+                  					<li><a href=\"/index.cgi?p=oscar\">Oscar</a></li>
+                  					<li><a href=\"/index.cgi?p=drawings\">Drawings</a></li>
+                  					<li><a href=\"/index.cgi?p=gamedesign\">Game Design</a></li>
 								</ul>
 							</li>
 							<li>
-								<a href=\"/Index.cgi?p=Contact\">Contact</a>
+								<a href=\"/index.cgi?p=contact\">Contact</a>
 								<ul class=\"sub\">
 									<li><a href=\"http://justdanny.hyves.nl/\" target=\"_blank\">Hyves</a></li>
 									<li><a href=\"http://twitter.com/#!/DannyArends\" target=\"_blank\">Twitter</a></li>
