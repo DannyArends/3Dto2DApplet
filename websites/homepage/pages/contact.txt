@@ -9,7 +9,7 @@
 	The Netherlands<br>
 	<br>
 	+31 50 363 8082<br>
-	<a href=\"mailto:danny.arends\@gmail.com\">danny.arends\@gmail.com</a>
+	<a href="mailto:danny.arends@gmail.com">danny.arends@gmail.com</a>
 </p>
 <div id="social">
 <ul>
