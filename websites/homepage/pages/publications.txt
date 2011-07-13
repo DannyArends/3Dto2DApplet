@@ -7,7 +7,7 @@
 </p>
 <h3>Conference Proceedings and Meeting Reports</h3>
 <p>
-- <a href="http://edepot.wur.nl/149860" title="Bioinformatics tools and database resources for systems genetics analysis in mice – a short review and an evaluation of future needs ">Bioinformatics tools and database resources for systems genetics analysis in mice - a short review and an evaluation of future needs</a>: Caroline Durrant, Morris A. Swertz, Rudi Alberts, Danny Arends, ... , Ritsert C. Jansen, Klaus Schughart - <i>Briefings in Bioinformatic</i> In press (2011)<br>
+- <a href="http://bib.oxfordjournals.org/cgi/reprint/bbr026?ijkey=1ceGH2uRwDfGXUQ&keytype=ref" title="Bioinformatics tools and database resources for systems genetics analysis in mice – a short review and an evaluation of future needs ">Bioinformatics tools and database resources for systems genetics analysis in mice - a short review and an evaluation of future needs</a>: Caroline Durrant, Morris A. Swertz, Rudi Alberts, Danny Arends, ... , Ritsert C. Jansen, Klaus Schughart - <i>Briefings in Bioinformatic</i> In press (2011)<br>
 - <a href="http://edepot.wur.nl/149860" title="Sysgenet meeting report - 2010">SYSGENET: a meeting report from a new European network for systems genetics</a>: Klaus Schughart, Danny Arends, P. Andreux, R. Balling, Pjotr Prins - <i>Mammalian Genome</i> 21 (7-8). - p. 331 - 336. (2010)
 </p>
 <h3>Thesis</h3>
