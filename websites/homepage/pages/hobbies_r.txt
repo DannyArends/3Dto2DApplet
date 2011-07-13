@@ -1,4 +1,0 @@
-<h3>My cat</h3>
-<div class='slideshow' height=400><img src="/images/oscar1.jpg" alt="Oscar Arends" /><img src="/images/oscar.jpg" alt="Oscar Arends" /><img src="/images/oscar2.jpg" alt="Oscar Arends" /></div>
-
-

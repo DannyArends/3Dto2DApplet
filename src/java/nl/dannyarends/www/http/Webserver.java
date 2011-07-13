@@ -1649,7 +1649,7 @@ public class Webserver implements ServletContext, Serializable {
 					}
 					if (ust.hasMoreTokens()) {
 						reqProtocol = ust.nextToken();
-						oneOne = !reqProtocol.toUpperCase().equals("HTTP/1.0");
+						oneOne = reqProtocol.toUpperCase().equals("HTTP/1.1");
 						reqMime = true;
 						// Read the rest of the lines.
 						String s;
@@ -1685,6 +1685,10 @@ public class Webserver implements ServletContext, Serializable {
 							Utils.log("Faulty connection request for keep-alive",System.err);
 							keepAlive = false;
 						}
+						if(getHeader("User-Agent") == null){
+							Utils.log("Faulty connection request for keep-alive",System.err);
+							keepAlive = false;
+						}
 					
 					} else {
 						reqProtocol = "HTTP/0.9";
@@ -1695,7 +1699,6 @@ public class Webserver implements ServletContext, Serializable {
 			}
 
 			if (reqProtocol == null) {
-				problem("Status-Code 400: Malformed request line:" + line, SC_BAD_REQUEST);
 				return;
 			}
 			// Check Host: header in HTTP/1.1 requests.
@@ -1707,6 +1710,10 @@ public class Webserver implements ServletContext, Serializable {
 				}
 			}
 
+			
+			if(!reqUriPathUn.startsWith("/")){
+				return;
+			}
 			// Split off query string, if any.
 			int qmark = reqUriPathUn.indexOf('?');
 			if (qmark > -1) {
@@ -1742,21 +1749,20 @@ public class Webserver implements ServletContext, Serializable {
 			}
 			if (assureHeaders() && socket.getKeepAlive() == false)
 				socket.setKeepAlive(true);
-			socket.setSoTimeout(0);
-			serve.setHost(getHeader(HOST));
-			PathTreeDictionary registry = (PathTreeDictionary) currentRegistry.get();
-			try {
-				// TODO new SimpleRequestDispatcher(reqUriPathUn).forward((ServletRequest) this, (ServletResponse) this);
-				Object[] os = registry.get(reqUriPath);
-				if (os[0] != null) { // note, os always not null
-					// / TODO put time mark here to monitor actual servicing
-					lastRun = System.currentTimeMillis();
-					// System.err.println("Servlet "+os[0]+" for path "+reqUriPath);
-					uriLen = ((Integer) os[1]).intValue();
-					runServlet((HttpServlet) os[0]);
-				} else {
-					Utils.console("tetsing:" + registry.get(reqUriPath).length + "->" + os[1]);
-					problem("No any servlet found for serving " + reqUriPath, SC_BAD_REQUEST);
+				socket.setSoTimeout(0);
+				serve.setHost(getHeader(HOST));
+				PathTreeDictionary registry = (PathTreeDictionary) currentRegistry.get();
+				try {
+					// TODO new SimpleRequestDispatcher(reqUriPathUn).forward((ServletRequest) this, (ServletResponse) this);
+					Object[] os = registry.get(reqUriPath);
+					if (os[0] != null) { // note, os always not null
+						// / TODO put time mark here to monitor actual servicing
+						lastRun = System.currentTimeMillis();
+					// 	System.err.println("Servlet "+os[0]+" for path "+reqUriPath);
+						uriLen = ((Integer) os[1]).intValue();
+						runServlet((HttpServlet) os[0]);
+					} else {
+						//problem("No any servlet found for serving " + reqUriPath, SC_BAD_REQUEST);
 				}
 			} finally {
 				currentRegistry.set(null); // remove
@@ -3268,11 +3274,12 @@ public class Webserver implements ServletContext, Serializable {
 			if (reqMime) {
 				boolean chunked_out = false;
 				boolean wasContentLen = false;
-				if (resMessage.length() < 256)
+				if(resMessage == null) return;
+				if (resMessage.length() < 256){
 					out.println(reqProtocol + " " + resCode + " " + resMessage.replace('\r', '/').replace('\n', '/'));
-				else
-					out.println(reqProtocol + " " + resCode + " "
-							+ resMessage.substring(0, 255).replace('\r', '/').replace('\n', '/'));
+				}else{
+					out.println(reqProtocol + " " + resCode + " " + resMessage.substring(0, 255).replace('\r', '/').replace('\n', '/'));
+				}
 				Enumeration<String> he = resHeaderNames.keys();
 				while (he.hasMoreElements()) {
 					String name = (String) he.nextElement();
@@ -3397,7 +3404,8 @@ public class Webserver implements ServletContext, Serializable {
 					out.println(sb2.toString());
 					//System.err.println("We sent cookies 2: " + sb2);
 				}
-				if (wasContentLen == false && chunked_out == false && serve.isKeepAlive()) {
+				//Utils.console(""+oneOne);
+				if (wasContentLen == false && chunked_out == false && serve.isKeepAlive() && oneOne) {
 					out.println(TRANSFERENCODING + ": " + CHUNKED);
 					chunked_out = true;
 				}

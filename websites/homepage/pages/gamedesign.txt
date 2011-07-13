@@ -1,0 +1,42 @@
+<h1>Game design</h1>
+<p>
+One of my longest hobbies, computer games and how 2D / 3D rendering engines work inspired 
+me to create my own <a href="http://www.github.com/DannyArends/BuildSystem">C++ 2D/3D engine</a> for games and simulations.
+
+<div class='slideshow'><img src="/images/Screenie.JPG" alt="Screenshot" width="450" height="300" /><img src="/images/Screenie3.JPG" alt="Screenshot" width="450" height="300" /><img src="/images/Screenie1.JPG" alt="Screenshot" width="450" height="300" /><img src="/images/Screenie2.JPG" alt="Screenshot" width="450" height="300" /></div>
+</p>
+<h3>Why</h3>
+<p>
+The idea was to create an MMORPG with a life-science background, first it started out as 
+a training exercise in programming. But along the way the project grew and grew and 
+soon i ended up with a basic client and server model supporting ~200 users online. Later 
+on it occurred to me that it would perhaps be possible to have client-code open-source 
+to see how many people are interested in developing it further.
+</p>
+<h3>Implementation</h3>
+<p>
+This idea led to the development of a server (storing information about clients) in charge of managing 
+and monitoring the game. The server is at the moment composed of the following parts:<br>
+<b>Server status</b><br>
+- Basic file I/O<br>
+- Monitor & accept incoming connections<br>
+- Creating new users<br>
+- Managing user movement<br>
+- Managing user chat<br>
+- Object collision<br>
+- First 'AI'<br>
+
+<b>Client status</b><br>
+- Basic file I/O<br>
+- Create accounts on server<br>
+- Log into the game world<br>
+- Viewing the World in 3D<br>
+- Movement<br>
+- Chat with other players<br>
+- View other players movement<br>
+- Camera movement in 3D<br>
+- Basic object interaction<br>
+More information will become available, check out the screen shot
+section to get an impression of the game and its current stage
+of development
+</p>

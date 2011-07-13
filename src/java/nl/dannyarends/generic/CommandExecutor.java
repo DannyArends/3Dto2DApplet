@@ -16,9 +16,9 @@ public class CommandExecutor implements Runnable{
   private ArrayList<String> commands = new ArrayList<String>();
   private String res = "";
   private String err = "";
-  int failed_commands=0;
+  public int failed_commands=0;
   int succes_commands=0;
-  public Boolean verbose = true;
+  public Boolean verbose = false;
   
   public CommandExecutor(){
   }
@@ -31,7 +31,7 @@ public class CommandExecutor implements Runnable{
     setCommands(cmd);
   }
 
-  //Internal Reader class to attach to the inputstreams rom the process
+  //Internal Reader class attached to the streams from the process
   class StreamGobbler extends Thread{
     InputStream is;
     String type;
@@ -90,6 +90,7 @@ public class CommandExecutor implements Runnable{
 	    	if(verbose) System.err.println("Command: "+ command + " exit=" + p.exitValue());
 		    failed_commands++;
 		  }else{
+		  outputGobbler.join();
 			if(verbose) System.out.println("Command: "+ command +" succesfull");
 			succes_commands++;
 		  }
@@ -102,7 +103,7 @@ public class CommandExecutor implements Runnable{
 		e.printStackTrace();
 	  }
     }
-    System.out.println("INFO CommandExecutor: Finished after executing " + succes_commands + " commands");
+    if(verbose) System.out.println("INFO CommandExecutor: Finished after executing " + succes_commands + " commands");
     if(failed_commands > 0){
     	System.err.println("WARNING CommandExecutor: failed " + failed_commands + " commands");
     }
@@ -126,5 +127,11 @@ public class CommandExecutor implements Runnable{
 
   public ArrayList<String> getCommands() {
     return commands;
+  }
+
+  public void clearCommands() {
+    commands.clear();  
+    failed_commands=0;
+    succes_commands=0;
   }
 }

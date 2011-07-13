@@ -2,12 +2,14 @@ package nl.dannyarends.rendering;
 
 import nl.dannyarends.generic.ColorUtils;
 import nl.dannyarends.generic.MathUtils;
+import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
-import nl.dannyarends.rendering.objects.Camera;
+import nl.dannyarends.rendering.objects.Intersection;
 import nl.dannyarends.rendering.objects.Material;
-import nl.dannyarends.rendering.objects.Vector3D;
-import nl.dannyarends.rendering.objects.renderables.Object3D;
-import nl.dannyarends.rendering.objects.renderables.light.Light;
+import nl.dannyarends.rendering.objects.Vector;
+import nl.dannyarends.rendering.objects.lighting.Light;
+import nl.dannyarends.rendering.scene.Object3D;
+
 
 /**
  * \brief Basic implementation of a ray tracer<br>
@@ -16,16 +18,21 @@ import nl.dannyarends.rendering.objects.renderables.light.Light;
  * bugs: none found<br>
  */
 public class RayTracer {
-	public final static double EPSILON = 0.00000001F;
-	public final int MAX_REFLECTION_RECURSION_DEPTH = 8;
+  RenderWindow window;
+  Engine engine;
+  Scene scene;
+  
+  
+	public double EPSILON = 0.00000001F;
+	public int MAX_REFLECTION_RECURSION_DEPTH = 8;
 	static double[] eye= new double[3];
 	public static double[] rightDirection = new double[3];	
 	static double[] viewplaneUp= new double[3];
 	double[] upDirection= new double[]{0,1,0};
 	public static double[] direction= new double[3];
-	static double screenDist= 3;
-	static double pixelWidth = 2.0 / Scene.getWidth();
-	static double pixelHeight = (Scene.getWidth() / Scene.getHeight()) * pixelWidth;
+	double screenDist= 3;
+	double pixelWidth;
+	double pixelHeight;
 	static int superSampleWidth=4;
 	long l1=0;	
 	long l0=0;	
@@ -34,9 +41,15 @@ public class RayTracer {
 	int num_pixels;
 	int interpolation = 1;
 	
-	RayTracer(){
+	RayTracer(RenderWindow w, Engine e, Scene s){
+	  window=w;
+	  engine=e;
+	  scene=s;
+	  
+	  pixelWidth = 2.0 / scene.getWidth();
+	  pixelHeight = (scene.getWidth() / scene.getHeight()) * pixelWidth;
 		l0 = System.nanoTime();
-		raster = new boolean[Scene.getWidth()][Scene.getHeight()];
+		raster = new boolean[scene.getWidth()][scene.getHeight()];
 	}
 	
 	
@@ -46,15 +59,15 @@ public class RayTracer {
 	 * @param c Camera
 	 * @return
 	 */	
-	public void update(Camera c){
+	public void update(Object3D c){
 		c.update(c);
-		raster = new boolean[Scene.getWidth()][Scene.getHeight()];
-		pixelWidth = 2.0 / Scene.getWidth();
-		pixelHeight = (Scene.getWidth() / Scene.getHeight()) * pixelWidth;
-		eye = c.location;
-		direction[0] = -c.rotation[6];
-		direction[1] = -c.rotation[3];
-		direction[2] = c.rotation[4];
+		raster = new boolean[scene.getWidth()][scene.getHeight()];
+		pixelWidth = 2.0 / scene.getWidth();
+		pixelHeight = (scene.getWidth() / scene.getHeight()) * pixelWidth;
+		eye = c.getLocation();
+		direction[0] = -c.getRotation()[6];
+		direction[1] = -c.getRotation()[3];
+		direction[2] = c.getRotation()[4];
 		MathUtils.normalize(direction);
 		// Compute a right direction and a view plane up direction (perpendicular to the look-at vector)
 		rightDirection = MathUtils.crossProduct(upDirection, direction);
@@ -77,8 +90,8 @@ public class RayTracer {
 		int x,y,w,h;
 		int pixels = 0;
 		int bpixels = 0;
-		w = Scene.getWidth();
-		h = Scene.getHeight();
+		w = scene.getWidth();
+		h = scene.getHeight();
 		while((System.nanoTime()-l1)/1000000 < 170){
 			y = (int) (Math.random() * h);
 			x = (int) (Math.random() * w);
@@ -92,7 +105,7 @@ public class RayTracer {
 				for (int k = 0; k < superSampleWidth; k++) {															
 					for (int l = 0; l < superSampleWidth; l++) {					
 						sampleColor = null;
-						Vector3D ray = constructRayThroughPixel(x, y, k, l);
+						Vector ray = constructRayThroughPixel(x, y, k, l);
 						Intersection intersection = findIntersection(ray, null);
 						if (intersection.getPrimitive() != null) {
 							hits++;
@@ -107,8 +120,8 @@ public class RayTracer {
 				}else{
 					MathUtils.multiplyVectorByScalar(color, 1F / hits);
 				}
-				Engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(color));
-				Engine.getBackBufferGraphics().fillRect(x, y, 1, 1);
+				engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(color));
+				engine.getBackBufferGraphics().fillRect(x, y, 1, 1);
 				pixels++;
 			}else{
 				bpixels++;
@@ -121,9 +134,9 @@ public class RayTracer {
 
 	void doLineairInterpolation(){
 		int py = 0;
-		for(int y=0;py+interpolation<Scene.getHeight();y+=interpolation/3){
+		for(int y=0;py+interpolation<scene.getHeight();y+=interpolation/3){
 			int px=0;
-			for(int x=0;px+interpolation<Scene.getWidth();x+=interpolation/3){
+			for(int x=0;px+interpolation<scene.getWidth();x+=interpolation/3){
 				//Utils.console("("+ x + "," + y +")=" + px +" "+ (px + 10) + " " + py +" "+ (py + 10));
 				if(!(px == x && py == y)){
 				raygrid[x][y]= interpretcolors(
@@ -137,11 +150,11 @@ public class RayTracer {
 						x-px + y-py);
 				}
 				try{
-				Engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(raygrid[x][y]));
+				engine.getBackBufferGraphics().setColor(ColorUtils.floatArrayToColor(raygrid[x][y]));
 				}catch(Exception e){
 					Utils.console(""+x+ " "+y +  " " +raygrid[x][y][0]+  " " +raygrid[x][y][1] +  " "+raygrid[x][y][2]);
 				}
-				Engine.getBackBufferGraphics().fillRect(x, y, 3, 3);
+				engine.getBackBufferGraphics().fillRect(x, y, 3, 3);
 				px = (int)(Math.floor(x/interpolation) * interpolation);
 			}
 			py = (int)(Math.floor(y/interpolation) * interpolation);
@@ -163,12 +176,12 @@ public class RayTracer {
 	 * @param sampleYOffset sampling offset in y direction of the ray
 	 * @return
 	 */	
-	public static Vector3D constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																
-		Vector3D ray = new Vector3D(eye, direction, screenDist);
+	public Vector constructRayThroughPixel(int x, int y, double sampleXOffset, double sampleYOffset){										 																
+		Vector ray = new Vector(eye, direction, screenDist);
 		double[] endPoint = ray.getEndPoint();		
 		
-		double upOffset = -1 * (y - (Scene.getHeight() / 2) - (sampleYOffset / superSampleWidth)) * pixelHeight;
-		double rightOffset = (x - (Scene.getWidth() / 2) + (sampleXOffset / superSampleWidth)) * pixelWidth;
+		double upOffset = -1 * (y - (scene.getHeight() / 2) - (sampleYOffset / superSampleWidth)) * pixelHeight;
+		double rightOffset = (x - (scene.getWidth() / 2) + (sampleXOffset / superSampleWidth)) * pixelWidth;
 		
 		MathUtils.addVectorAndMultiply(endPoint, rightDirection, rightOffset);
 		MathUtils.addVectorAndMultiply(endPoint, viewplaneUp, upOffset);
@@ -185,20 +198,18 @@ public class RayTracer {
 	 * @param ignorePrimitive ignore this primitive
 	 * @return
 	 */	
-	public static Intersection findIntersection(Vector3D ray, Object3D ignorePrimitive){
+	public Intersection findIntersection(Vector ray, Object3D ignorePrimitive){
 		// Start off with infinite distance and no intersecting primitive
 		double minDistance = Double.POSITIVE_INFINITY;
 		Object3D minPrimitive = null;
 		
-		for(Object3D primitive : Scene.getObjects()){
+		for(Object3D primitive : scene.getObjects()){
 			if(primitive !=null){
 				double t = primitive.intersect(ray);
 				// If we found a closer intersecting primitive, keep a reference to and it
 				if (t < minDistance && t > EPSILON && primitive != ignorePrimitive){
-					if(primitive.getTransparant() == 0 | primitive.getTransparant() < Math.random()){
-						minPrimitive = primitive;
-						minDistance = t;
-					}
+					minPrimitive = primitive;
+					minDistance = t;
 				}
 			}
 		}
@@ -213,14 +224,14 @@ public class RayTracer {
 	 * @param recursionDepth Depth of recursion of this ray (used in reflection) 
 	 * @return double[] color in RGB float [0..1]
 	 */	
-	public double[] getColor(Vector3D ray, Intersection intersection, int recursionDepth){
+	public double[] getColor(Vector ray, Intersection intersection, int recursionDepth){
 		// Avoid infinite loops and help performance by limiting the recursion depth
 		if (recursionDepth > MAX_REFLECTION_RECURSION_DEPTH){
 			return new double[]{0.0,0.0,1.0};
 		}
 		Object3D primitive = intersection.getPrimitive();
 		if (primitive == null){
-			return Scene.getBackgroundColor();
+			return ColorUtils.ColorToDouble(scene.bgcolor);
 		}
 		double[] pointOfIntersection = ray.getEndPoint();
 		
@@ -243,15 +254,15 @@ public class RayTracer {
 		double[] normal = primitive.getNormalAt(pointOfIntersection);
 		
 		// Shoot rays towards each light source and see if it's visible
-		for (Light light: Scene.getLights()) {
+		for (Light light: scene.getLights()) {
 			double[] vectorToLight = light.getVectorToLight(pointOfIntersection);			
 			
-			Vector3D rayToLight = new Vector3D(pointOfIntersection, vectorToLight, 1);
+			Vector rayToLight = new Vector(pointOfIntersection, vectorToLight, 1);
 			rayToLight.normalize();
 			
 			// Light is visible if there's no intersection with an object at least epsilon away			
 			double distanceToBlockingPrimitive = findIntersection(rayToLight, null).getDistance();
-			double distanceToLight = MathUtils.norm(MathUtils.calcPointsDiff(pointOfIntersection, light.getLocation()));
+			double distanceToLight = MathUtils.norm(MathUtils.calcPointsDiff(pointOfIntersection, light.l));
 			//Utils.console("Distance to light:" + distanceToLight + "loc x: " + pointOfIntersection[0] +",y: " + pointOfIntersection[1] + ",z: " + pointOfIntersection[2]);
 			boolean lightVisible = distanceToBlockingPrimitive <= EPSILON || distanceToBlockingPrimitive >= distanceToLight;
 			if (lightVisible) {
@@ -282,7 +293,7 @@ public class RayTracer {
 		}								
 		
 		// Ambient		
-		double[] sceneAmbient = Scene.getAmbientLight(); 
+		double[] sceneAmbient = scene.getAmbientLight(); 
 		double[] surfaceAmbient = surface.getAmbient();
 		
 		color[0] += sceneAmbient[0] * surfaceAmbient[0]; 		
@@ -298,7 +309,7 @@ public class RayTracer {
 		
 		// Reflection Ray
 		double[] reflectionDirection = MathUtils.reflectVector(MathUtils.oppositeVector(ray.getDirection()), normal);
-		Vector3D reflectionRay = new Vector3D(pointOfIntersection, reflectionDirection, 1);
+		Vector reflectionRay = new Vector(pointOfIntersection, reflectionDirection, 1);
 		reflectionRay.normalize();
 		
 		Intersection reflectionIntersection = findIntersection(reflectionRay, null);		

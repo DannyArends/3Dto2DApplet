@@ -1,0 +1,31 @@
+<h1>External links</h1>
+The following links for people looking for information about bioinformatics<br><br>
+
+<h3>Programming languages</h3>
+<a href="http://www.perl.com">Perl programming language</a><br>
+<a href="http://www.cs.cf.ac.uk/Dave/C/CE.html">C programming language</a><br>
+<a href="http://www.r-project.org/">The R project</a><br>
+<a href="http://java.sun.com">Java programming language</a><br><br>
+
+<h3>General Starting points</h3>
+<a href="http://www.ncbi.nlm.nih.gov/">National Center for Biotechnology Information</a> - Literature, Sequences, Tools<br>
+<a href="http://www.ncbi.nlm.nih.gov/Entrez/">Entrez cross-database search</a> - Cross database search (Google for life-sciences)<br><br>
+
+<h3>DNA/RNA analysis</h3>
+<a href="http://www.ncbi.nlm.nih.gov/Tools/">Tools available at NCBI</a> - Various tools like: Genome (Sequence analysis), Protein (Sequence & Structure analysis).<br>
+<a href="http://www.ensembl.org/index.html">Ensemble database</a> - The Ensembl project produces genome databases for vertebrates and other eukaryotic species.<br><br>
+
+<h3>PROTEIN analysis</h3>
+<a href="www.pdb.org/">PDB</a> - The PDB archive: information about proteins, nucleic acids<br>
+<a href="http://www.expasy.org/">ExPASy molecular biology server</a> - The ExPASy server (Swiss Institute of Bioinformatics)<br><br>
+
+<h3>METABOLITE analysis</h3>
+<a href="http://www.chemspider.com/">ChemSpider</a> - Providing access to millions of chemical structures<br>
+<a href="http://www.hmdb.ca/">HMDB</a> - The Human Metabolome Database (HMDB)<br><br>
+
+<h3>PATHWAY</h3>
+<a href="http://www.genome.jp/kegg/">KEGG: Kyoto Encyclopedia of Genes and Genomes</a> - Pathway & other information <br><br>
+
+<h3>Other useful links</h3>
+<a href="http://www.wikipedia.org">Wikipedia</a> - Online (user) encyclopedia<br>
+<a href="http://www.sourceforge.com">Sourceforge</a> - Opensource repository<br>

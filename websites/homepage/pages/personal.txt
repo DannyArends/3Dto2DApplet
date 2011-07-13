@@ -1,0 +1,7 @@
+<h1>Personal</h1>
+<ul>
+  <li><a href="/Index.cgi?p=Hobbies">Hobbies</a></li>
+  <li><a href="/Index.cgi?p=Oscar">Oscar</a></li>
+  <li><a href="/Index.cgi?p=Drawings">Drawings</a></li>
+  <li><a href="/Index.cgi?p=GameDesign">Game Design</a></li>
+</ul>

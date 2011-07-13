@@ -29,6 +29,7 @@ public abstract class Servlet extends javax.servlet.http.HttpServlet{
 	private String website_root_path = "websites";
 	private boolean logEnabled;
 	private int priority = 0;
+	private boolean verbose = false;
 	
 	public Servlet(){
 		setCharSet("UTF8");
@@ -184,7 +185,7 @@ public abstract class Servlet extends javax.servlet.http.HttpServlet{
 			if (out != null) {
 				out.flush();
 				out.close();
-				Utils.console("Served file: " + req.getPathTranslated() + " " +  Long.toString(clen) + " bytes to " + req.getLocalName() + ":" + req.getMethod());
+				Utils.console("Served file: " + req.getPathTranslated() + " " +  Long.toString(clen) + " bytes to " + req.getRemoteAddr() + ":" + req.getMethod());
 			}
 		}
 	}
@@ -203,5 +204,13 @@ public abstract class Servlet extends javax.servlet.http.HttpServlet{
 
 	public String getLocal_path() {
 		return website_root_path;
+	}
+
+	public void setVerbose(boolean verbose) {
+		this.verbose = verbose;
+	}
+
+	public boolean isVerbose() {
+		return verbose;
 	}
 }

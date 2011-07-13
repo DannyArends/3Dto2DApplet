@@ -1,0 +1,22 @@
+<h1>Contact</h1>
+<p>
+	Faculty of Mathematics and Natural Sciences<br>
+	Bioinformatics (GBIC) - Groningen Bioinformatics Centre<br> 
+	Gron Inst for Biomolecular Sciences & Biotechnology<br>
+	<br>
+	Nijenborgh 7<br>
+	9747 AG Groningen<br>
+	The Netherlands<br>
+	<br>
+	+31 50 363 8082<br>
+	<a href=\"mailto:danny.arends\@gmail.com\">danny.arends\@gmail.com</a>
+</p>
+<div id="social">
+<ul>
+<li class="social hyves"><a href="http://justdanny.hyves.nl/" target="_blank"><span class="noview">Hyves</span></a></li>
+<li class="social twitter"><a href="http://twitter.com/#!/DannyArends" target="_blank"><span class="noview">Twitter</span></a></li>
+<li class="social facebook"><a href="http://www.facebook.com/Arends.Danny" target="_blank"><span class="noview">Facebook</span></a></li>
+<li class="social linkedin"><a href="http://nl.linkedin.com/in/dannyarends" target="_blank"><span class="noview">LinkedIn</span></a></li>
+<li class="social github"><a href="https://github.com/DannyArends" target="_blank"><span class="noview">GitHub</span></a></li>
+</ul>
+</div>

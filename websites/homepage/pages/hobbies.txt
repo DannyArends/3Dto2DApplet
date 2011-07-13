@@ -1,0 +1,20 @@
+<h1>Hobbies</h1>
+<p>
+- Cross country running<br>
+- Ink Drawing<br>
+- Movies and Music<br>
+- (Online) computer games<br>
+- Programming
+</p>
+<h3>Game design and programming</h3>
+<p>
+<a href="/pdf/GameDesign.pdf">Presentation of game idea</a>: Course Dynamic Presentation - 2010<br>
+<a href="/Index.cgi?p=Applet">Java Applet world</a>: a virtual 3D world to navigate
+</p>
+<h3>Favourite Books</h3>
+<p>
+Lord Of The Rings<br>
+Ontdekking van de Hemel<br>
+The Hobbit<br>
+Joe Speedboat
+</p>

@@ -1,13 +1,13 @@
 package nl.dannyarends.gameserver.protocol;
 
-import nl.dannyarends.eventHandling.BasicClient;
+import nl.dannyarends.eventHandling.NetworkHandler;
 import nl.dannyarends.gameserver.protocol.CommandList.fromServer;
 import nl.dannyarends.gameserver.protocol.CommandList.toServer;
 
 public class ClientCommands {
-  static BasicClient server;
+  static NetworkHandler server;
   
-  public ClientCommands(BasicClient s){
+  public ClientCommands(NetworkHandler s){
     server=s;
     new CommandList();
   }

@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="libs/freemarker.jar"/>
 	<classpathentry kind="lib" path="libs/hsqldb.jar"/>
 	<classpathentry kind="lib" path="libs/servlet-2-3.jar"/>
+	<classpathentry kind="lib" path="libs/pircbot.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

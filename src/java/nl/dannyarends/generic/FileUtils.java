@@ -64,7 +64,12 @@ public class FileUtils {
 		File file = new File(path);
 		Utils.console("Starting unjar of: "+ file.getAbsolutePath() + File.separator + "*.jar");
 		if( file.exists() ) {
-			File[] files = file.listFiles();
+		  File[] files;
+		  if(file.isFile()){
+		     files = new File[]{file};
+		  }else{
+		     files = file.listFiles();
+		  }
 			for(int i=0; i<files.length; i++) {
 				if(!files[i].isDirectory() && files[i].getName().endsWith("jar")) {
 					Utils.console("unJar file: "+ files[i].getName() + " (" + (i+1) + "/" + files.length +")");

@@ -1,9 +1,0 @@
-<h3>Tutorials and cheat sheets</h3>
-- <a href="/pdf/Rintro.pdf">Introduction into R</a> Danny Arends (2011)
-- <a href="http://www.rqtl.org/tutorials/MQM-tour.pdf">MQM for R/qtl tutorial</a> Danny Arends, Pjotr Prins and Karl W. Broman (2010)
-- <a href="/pdf/Rcheats.pdf">R cheat sheet</a> Danny Arends (2009-2010)
-<h3>Acknowledged in</h3>
-- <a href="http://www.biomedcentral.com/1471-2105/10/188">DesignGG: an R-package and web tool for the optimal design of genetical genomics experiments</a>: Yang Li, Morris A Swertz, Gonzalo Vera, Jingyuan Fu, Rainer Breitling and Ritsert C Jansen - BMC Bioinformatics, 10:188 (2009)
-- <a href="http://gbb.eldoc.ub.rug.nl/FILES/root/2008/TrendsGenetLi/2008TrendsGenetLi.pdf">Generalizing genetical genomics: getting added value from environmental perturbation</a>: Yang Li, Rainer Breitling and Ritsert C. Jansen - Trends in Genetics, 24:518-524 (2008)
-
-

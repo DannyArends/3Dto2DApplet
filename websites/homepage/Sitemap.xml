@@ -1,160 +1,302 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
-  <loc>http://dannyarends.nl/</loc>
-  <priority>0.7</priority>
-  <changefreq>daily</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/myblog.cgi</loc>
-  <priority>0.7</priority>
-  <changefreq>daily</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/Index.cgi?p=Publications</loc>
-  <priority>0.6</priority>
-  <changefreq>weekly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/Index.cgi?p=Presentations</loc>
-  <priority>0.6</priority>
-  <changefreq>weekly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/Index.cgi?p=Drawings</loc>
-  <priority>0.6</priority>
-  <changefreq>weekly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?p=publications</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/Index.cgi?p=Contact</loc>
-  <priority>0.5</priority>
-  <changefreq>monthly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?p=presentations</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/Index.cgi?p=Applet</loc>
-  <priority>0.5</priority>
-  <changefreq>monthly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?p=drawings</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/Index.cgi?p=Various</loc>
-  <priority>0.6</priority>
-  <changefreq>weekly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?p=hobbies</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/Index.cgi?p=Links</loc>
-  <priority>0.6</priority>
-  <changefreq>weekly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?p=contact</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/myblog.cgi?do=archive</loc>
-  <priority>0.5</priority>
-  <changefreq>monthly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?p=applet</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/myblog.cgi?do=RSS</loc>
-  <priority>0.7</priority>
-  <changefreq>daily</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?p=various</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/myblog.cgi?do=listComments</loc>
-  <priority>0.6</priority>
-  <changefreq>monthly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?p=links</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/MastersthesisII.pdf</loc>
-  <lastmod>2011-01-05T09:04:00+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?do=archive</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/MastersthesisI.pdf</loc>
-  <lastmod>2010-11-20T16:41:00+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?do=rss</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/BachelorThesis.pdf</loc>
-  <lastmod>2010-11-20T16:41:00+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=blog</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/Rintro.pdf</loc>
-  <changefreq>monthly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=metanetwork</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/Rcheats.pdf</loc>
-  <changefreq>monthly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=molgenis</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/28SeptCBSGGeneticalGenomics.pdf</loc>
-  <lastmod>2011-03-13T12:39:40+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=random</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/Aug2010DynamischPresenteren.pdf</loc>
-  <lastmod>2011-03-13T12:39:43+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=webserver</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/Jan2010Networks.pdf</loc>
-  <lastmod>2011-03-13T12:40:10+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=website</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/Rxqtl.pdf</loc>
-  <lastmod>2011-03-13T12:40:34+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?viewcat=weekend</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/Dec2009GBICMQM.pdf</loc>
-  <lastmod>2011-03-13T12:39:58+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?do=listcomments</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/2008-03%20MasterPresentatie.pdf</loc>
-  <lastmod>2011-03-13T12:39:06+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/index.cgi?page=2</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/2007-06%20BachelorPresentatie.pdf</loc>
-  <lastmod>2011-03-13T12:38:49+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/pdf/mastersthesisii.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/2008-06%20Presentatie%20Nanotubes%20Molecular%20Dynamics.pdf</loc>
-  <lastmod>2011-03-13T12:39:35+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/pdf/mastersthesisi.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/2007-10%20UMCG%20Presentatie.pdf</loc>
-  <lastmod>2011-03-13T12:39:03+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/pdf/bachelorthesis.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/2007-05%20Bioinformatica%20II.pdf</loc>
-  <lastmod>2011-03-13T12:38:38+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/pdf/rintro.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/posterMQMsept2010.pdf</loc>
-  <lastmod>2011-03-13T12:40:31+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/pdf/rcheats.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/pdf/posterISMB2010.pdf</loc>
-  <lastmod>2011-03-13T12:40:28+00:00</lastmod>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/pdf/28septcbsggeneticalgenomics.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/documents/80YearVoyage.doc</loc>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/pdf/aug2010dynamischpresenteren.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 <url>
-  <loc>http://dannyarends.nl/myblog.cgi?do=showSmilies</loc>
-  <changefreq>yearly</changefreq>
-</url>
+    <loc>http://www.dannyarends.nl/pdf/jan2010networks.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/rxqtl.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/dec2009gbicmqm.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/2008-03%20MasterPresentatie.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/2007-06%20BachelorPresentatie.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/2008-06%20Presentatie%20Nanotubes%20Molecular%20Dynamics.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/2007-10%20UMCG%20Presentatie.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/2007-05%20Bioinformatica%20II.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/postermqmsept2010.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/posterismb2010.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/gamedesign.pdf</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/documents/80yearvoyage.doc</loc>
+    <lastmod>2011-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+
+    <priority>0.8</priority>
+</url>  
 </urlset>
