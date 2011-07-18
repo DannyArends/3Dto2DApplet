@@ -1,14 +1,7 @@
 <h1>Personal</h1>
 <ul>
-<<<<<<< HEAD
-  <li><a href="/Index.cgi?p=Hobbies">Hobbies</a></li>
-  <li><a href="/Index.cgi?p=Oscar">Oscar</a></li>
-  <li><a href="/Index.cgi?p=Drawings">Drawings</a></li>
-  <li><a href="/Index.cgi?p=GameDesign">Game Design</a></li>
-=======
   <li><a href="/index.cgi?p=hobbies">Hobbies</a></li>
   <li><a href="/index.cgi?p=oscar">Oscar</a></li>
   <li><a href="/index.cgi?p=drawings">Drawings</a></li>
   <li><a href="/index.cgi?p=gamedesign">Game Design</a></li>
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 </ul>

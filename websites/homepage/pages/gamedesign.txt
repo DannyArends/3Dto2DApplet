@@ -11,7 +11,7 @@ The idea was to create an MMORPG with a life-science background, first it starte
 a training exercise in programming. But along the way the project grew and grew and 
 soon i ended up with a basic client and server model supporting ~200 users online. Later 
 on it occurred to me that it would perhaps be possible to have client-code open-source 
-to see how many people are interested in developing it further.
+to see if people are interested in developing it further. Thats why i put the code on Github and made a small <a href="/pdf/GameDesign.pdf" title="Powerpoint presentation about: Idea for a game">presentation</a> to show the idea behind the game.
 </p>
 <h3>Implementation</h3>
 <p>

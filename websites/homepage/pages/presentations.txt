@@ -5,7 +5,8 @@ that I produced during the course of my bachelors, masters and PHD period. I lov
 lectures and think education is one of the most important things in science, so feel free 
 to contact me if your curious.
 </p>
-- <a href="/pdf/2011QTLintroduction" title="Powerpoint presentation about: Introduction QTL mapping for first year students">Introduction into QTL mapping</a> - Bioinformatics I (University of Groningen, June 1, 2011)<br>
+- <a href="/pdf/pheno2geno.pdf" title="Powerpoint presentation about: Creating genetic maps from gene expression data">(Re)Construction of genetic maps from gene expression data</a> - GBIC (University of Groningen, July 15, 2011)<br>
+- <a href="/pdf/2011QTLintroduction.pdf" title="Powerpoint presentation about: Introduction QTL mapping for first year students">Introduction into QTL mapping</a> - Bioinformatics I (University of Groningen, June 1, 2011)<br>
 - <a href="/pdf/28SeptCBSGGeneticalGenomics.pdf" title="Powerpoint presentation about: Multiple QTL mapping in the context of high-performance computing">MQM and HPC for R/qtl</a> - CSBG meeting (Wageningen University, Sept 28, 2010)<br>
 - <a href="/pdf/Aug2010DynamischPresenteren.pdf" title="Powerpoint presentation about: QTL mapping">Introduction into QTL analysis</a> - Dynamic Presentation (University of Groningen, Aug, 2010)<br>
 - <a href="/pdf/Jan2010Networks.pdf" title="Powerpoint presentation about: Introduction into genetic networks">(Gene) Networks</a> - Work meeting (University Medical Center Groningen, Feb, 2010)<br>

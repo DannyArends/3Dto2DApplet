@@ -5,11 +5,7 @@
 #	The idea of this blog, is a very simple yet
 #	powerful blog. Enjoy
 #	
-<<<<<<< HEAD
 #	Coded by Federico Ramírez (fedekun)
-=======
-#	Coded by Federico Ramï¿½rez (fedekun)
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 #	fedekiller@gmail.com
 #  Adapted by Danny Arends (RotationZ)
 # Danny.Arends@gmail.com
@@ -81,11 +77,7 @@ our $config_useHtmlOnEntries =1;									# Allow HTML on entries when making a n
 our $config_useWYSIWYG = 1;											# You must allow HTML on entries for this to work // Note, WYSIWYG wont allow smilies
 our $config_onlyNumbersOnCAPTCHA = 0;								# Use only numbers on CAPTCHA
 our $config_CAPTCHALenght = 8;										# Just to make different codes
-<<<<<<< HEAD
-our $config_baseurl='http://www.dannyarends.nl/Index.cgi'; #for rss
-=======
 our $config_baseurl='http://www.dannyarends.nl/index.cgi'; #for rss
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 
 # Basic Functions
 sub r{
@@ -279,11 +271,7 @@ sub DisplayEntries{
 			
 			if($do == 1)
 			{
-<<<<<<< HEAD
-				print '<li><a href="/Index.cgi?p=Blog&viewDetailed='.$fileName.'">'.$title.'</a><li>';
-=======
 				print '<li><a href="/index.cgi?p=blog&viewDetailed='.$fileName.'">'.$title.'</a><li>';
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			}
 			
 			$i++;
@@ -317,11 +305,7 @@ sub DisplaySinglePost{
 		my $fileName = $entry[4];
 		my $title = $entry[0];
 		my $category = $entry[3];
-<<<<<<< HEAD
-		print '<h1><a href="/Index.cgi?p=Blog&viewDetailed='.$entry[4].'">'.$entry[0].'</a></h1>'.$entry[1].'<br><center><i>Posted on '.$entry[2].' - Category: <a href="/Index.cgi?p=Blog&viewCat='.$entry[3].'">'.$entry[3].'</a><br><a href="/Index.cgi?p=Blog&edit='.$entry[4].'">Edit</a> - <a href="/Index.cgi?p=Blog&delete='.$entry[4].'">Delete</a></i></center><br>';
-=======
 		print '<h1><a href="/index.cgi?p=blog&viewDetailed='.$entry[4].'">'.$entry[0].'</a></h1>'.$entry[1].'<br><center><i>Posted on '.$entry[2].' - Category: <a href="/index.cgi?p=Blog&viewCat='.$entry[3].'">'.$entry[3].'</a><br><a href="/index.cgi?p=blog&edit='.$entry[4].'">Edit</a> - <a href="/index.cgi?p=blog&delete='.$entry[4].'">Delete</a></i></center><br>';
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		
 		# Now Display Comments
 		unless(-d $config_commentsDatabaseFolder)		# Does the comments folder exists? We will save comments there...
@@ -367,11 +351,7 @@ sub DisplaySinglePost{
 				{
 					print bbcode($content);
 				}
-<<<<<<< HEAD
-				print '<br><a href="/Index.cgi?p=Blog&deleteComment='.$fileName.'.'.$i.'">Delete</a><br><br>';
-=======
 				print '<br><a href="/index.cgi?p=blog&deleteComment='.$fileName.'.'.$i.'">Delete</a><br><br>';
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 				$i++;	# This is used for deletting comments, to i know what comment number is it :]
 			}
 		}
@@ -379,11 +359,7 @@ sub DisplaySinglePost{
 		if($config_allowComments == 1)
 		{
 			print '<br><br><h3>Add Comment</h3>
-<<<<<<< HEAD
-			<form name="submitform" method="post" action="Index.cgi">
-=======
 			<form name="submitform" method="post" action="index.cgi">
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			<table>
 			<tr>
 			<td>Title</td>
@@ -495,11 +471,7 @@ sub DisplaySingleCategorie{
 			
 			if($do == 1)
 			{
-<<<<<<< HEAD
-				print '<h2><a href="/Index.cgi?p=Blog&viewDetailed='.$finalEntries[4].'">'.$finalEntries[0].'</a></h2>'.$finalEntries[1].'<br><center><i>Posted on '.$finalEntries[2].' - Category: <a href="/Index.cgi?p=Blog&viewCat='.$finalEntries[3].'">'.$finalEntries[3].'</a><br><a href="/Index.cgi?p=Blog&viewDetailed='.$finalEntries[4].'">Comments</a> - <a href="?edit='.$finalEntries[4].'">Edit</a> - <a href="/Index.cgi?p=Blog&delete='.$finalEntries[4].'">Delete</a></i></center><br>';
-=======
 				print '<h2><a href="/index.cgi?p=blog&viewDetailed='.$finalEntries[4].'">'.$finalEntries[0].'</a></h2>'.$finalEntries[1].'<br><center><i>Posted on '.$finalEntries[2].' - Category: <a href="/index.cgi?p=blog&viewCat='.$finalEntries[3].'">'.$finalEntries[3].'</a><br><a href="/index.cgi?p=blog&viewDetailed='.$finalEntries[4].'">Comments</a> - <a href="?edit='.$finalEntries[4].'">Edit</a> - <a href="/index.cgi?p=blog&delete='.$finalEntries[4].'">Delete</a></i></center><br>';
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			}
 		}
 		$i++;
@@ -516,40 +488,18 @@ sub DisplaySingleCategorie{
 	
 	my $startPage = $page == 1 ? 1 : ($page-1);
 	my $displayed = 0;
-	for(my $i = $startPage; $i <= (($page-1)+$config_maxPagesDisplayed); $i++)
-	{
-		if($i <= $totalPages)
-		{
-			if($page != $i)
-			{
-				if($i == (($page-1)+$config_maxPagesDisplayed) && (($page-1)+$config_maxPagesDisplayed) < $totalPages)
-				{
-<<<<<<< HEAD
-					print '<a href="/Index.cgi?p=Blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ...';
-				}
-				elsif($startPage > 1 && $displayed == 0)
-				{
-					print '... <a href="/Index.cgi?p=Blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ';
-=======
+	for(my $i = $startPage; $i <= (($page-1)+$config_maxPagesDisplayed); $i++){
+		if($i <= $totalPages){
+			if($page != $i){
+				if($i == (($page-1)+$config_maxPagesDisplayed) && (($page-1)+$config_maxPagesDisplayed) < $totalPages){
 					print '<a href="/index.cgi?p=blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ...';
-				}
-				elsif($startPage > 1 && $displayed == 0)
-				{
+				}elsif($startPage > 1 && $displayed == 0){
 					print '... <a href="/index.cgi?p=blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ';
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 					$displayed = 1;
-				}
-				else
-				{
-<<<<<<< HEAD
-					print '<a href="/Index.cgi?p=Blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ';
-=======
+				}else{
 					print '<a href="/index.cgi?p=blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ';
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 				}
-			}
-			else
-			{
+			}else{
 				print '['.$i.'] ';
 			}
 		}
@@ -563,19 +513,14 @@ sub DisplayCategories{
 	my @categories = sort(getCategories());
 	print '<ul>';
 	foreach(@categories){
-<<<<<<< HEAD
-		print '<li><a href="Index.cgi?p=Blog&viewCat='.$_.'">'.$_.'</a></li>';
-=======
 		print '<li><a href="index.cgi?p=blog&viewCat='.$_.'">'.$_.'</a></li>';
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 	}
 	print '</ul>';
 	print 'No categories yet.' if scalar(@categories) == 0;
 }
 
 sub ProcessDo{
-	if(r('do') eq 'newEntry')
-	{
+	if(r('do') eq 'newEntry'){
 		# Add Secure (This page will appear before the add one)
 		
 		print '<h1>Adding Entry...</h1>
@@ -599,11 +544,7 @@ sub ProcessDo{
 		{
 			my @categories = getCategories();
 			print '<h1>Making new entry...</h1>	
-<<<<<<< HEAD
-			<form name="submitform" method="post" action="Index.cgi">
-=======
 			<form name="submitform" method="post" action="index.cgi">
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			<table>
 			<tr>
 			<td>Title</td>
@@ -619,9 +560,7 @@ sub ProcessDo{
 				<input type="button" style="width:50px;" onClick="surroundText(\'[url]\', \'[/url]\', document.forms.submitform.content); return false;" value="url" />
 				<input type="button" style="width:50px;" onClick="surroundText(\'[img]\', \'[/img]\', document.forms.submitform.content); return false;" value="img" /></td>
 				</tr>';
-			}
-			else
-			{
+			}else{
 				print '<script src="http://js.nicedit.com/nicEdit.js" type="text/javascript"></script><script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>' if($config_useWYSIWYG == 1);
 			}
 			print '<tr><td>Content<br>(You can use BBCODE)<br><a href="?do=showSmilies" target="_blank">Show Smilies</a></td>
@@ -629,14 +568,10 @@ sub ProcessDo{
 			print ' style="height: 400px; width: 400px;" ' if( ($config_useWYSIWYG == 1) && ($config_useHtmlOnEntries == 1) );
 			print ' id="content"></textarea></td></tr><tr><td>Category<br>(Available: ';
 			my $i = 1;
-			foreach(@categories)
-			{
-				if($i < scalar(@categories))	# Here we display a comma between categories so is easier to undesrtand
-				{
+			foreach(@categories){
+				if($i < scalar(@categories)){
 					print $_.', ';
-				}
-				else
-				{
+				}else{
 					print $_;
 				}
 				$i++;
@@ -659,14 +594,10 @@ sub ProcessDo{
 			</tr>
 			</table>
 			</form>';
-		}
-		else
-		{
+		}else{
 			print 'Wrong Password';
 		}
-	}
-	elsif(r('process') eq 'newEntry')
-	{
+	}elsif(r('process') eq 'newEntry'){
 		# Blog Add New Entry Page
 		
 		my $pass = r('pass');
@@ -705,8 +636,7 @@ sub ProcessDo{
 			my $category = r('category');
 			my $isPage = r('isPage');
 			
-			if($title eq '' || $content eq '' || $category eq '')
-			{
+			if($title eq '' || $content eq '' || $category eq ''){
 				die("All fields are neccesary!");
 			}
 			
@@ -715,28 +645,20 @@ sub ProcessDo{
 			print 'Your post '.$title.' has been saved. <a href="?page=1">Go to Index</a>';
 			close FILE;
 			
-			if($isPage == 1)
-			{
+			if($isPage == 1){
 				open(FILE, ">>$config_postsDatabaseFolder/pages.$config_dbFilesExtension.page");
 				print FILE $i.'-';
 				close FILE;
 			}
-		}
-		else
-		{
+		}else{
 			print 'Wrong password!';
 		}
-	}elsif(r('edit') ne '')
-	{
+	}elsif(r('edit') ne ''){
 		# Edit Secure (This page will appear before the edit one)
 			
 		my $fileName = r('edit');
 		print '<h1>Editing Entry...</h1>
-<<<<<<< HEAD
-		<form name="form1" method="post" action="Index.cgi">
-=======
 		<form name="form1" method="post" action="index.cgi">
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		<table>
 		<td>Pass</td>
 		<td><input name="pass" type="password" id="pass">
@@ -749,11 +671,8 @@ sub ProcessDo{
 		</tr>
 		</table>
 		</form>';
-	}
-	elsif(r('process') eq 'editSecured')
-	{
+	}elsif(r('process') eq 'editSecured'){
 		# Edit Entry Page
-		
 		my $pass = r('pass');
 		
 		if($pass eq $config_adminPass)
@@ -772,18 +691,13 @@ sub ProcessDo{
 			my $content = $entry[1];
 			my $category = $entry[3];
 			print '<h1>Editing Entry...</h1>
-<<<<<<< HEAD
-			<form name="submitform" method="post" action="Index.cgi">
-=======
 			<form name="submitform" method="post" action="index.cgi">
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			<table>
 			<tr>
 			<td>Title</td>
 			<td><input name=title type=text id=title value="'.$title.'"></td>
 			</tr>';
-			if($config_useHtmlOnEntries == 0)
-			{
+			if($config_useHtmlOnEntries == 0){
 				print '<tr>
 				<td>&nbsp;</td>
 				<td><input type="button" style="width:50px;font-weight:bold;" onClick="surroundText(\'[b]\', \'[/b]\', document.forms.submitform.content); return false;" value="b" />
@@ -792,33 +706,24 @@ sub ProcessDo{
 				<input type="button" style="width:50px;" onClick="surroundText(\'[url]\', \'[/url]\', document.forms.submitform.content); return false;" value="url" />
 				<input type="button" style="width:50px;" onClick="surroundText(\'[img]\', \'[/img]\', document.forms.submitform.content); return false;" value="img" /></td>
 				</tr>';
-			}
-			else
-			{
+			}else{
 				print '<script src="http://js.nicedit.com/nicEdit.js" type="text/javascript"></script><script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>' if($config_useWYSIWYG == 1);
 			}		
 			print '<tr><td>Content<br><a href="?do=showSmilies" target="_blank">Show Smilies</a></td><td><textarea name=content cols='.$config_textAreaCols.'"';
 			print ' style="height: 400px; width: 400px;" ' if( ($config_useWYSIWYG == 1) && ($config_useHtmlOnEntries == 1) );
 			print ' rows="'.$config_textAreaRows.'" id="content">';
-			if($config_useHtmlOnEntries == 0)
-			{
+			if($config_useHtmlOnEntries == 0){
 				print bbdecode($content);
-			}
-			else
-			{
+			}else{
 				print $content;
 			}
 			print '</textarea></td></tr><tr><td>Category<br>(Available: ';
 			my @categories = getCategories();
 			my $i = 1;
-			foreach(@categories)
-			{
-				if($i < scalar(@categories))	# Here we display a comma between categories so is easier to undesrtand
-				{
+			foreach(@categories){
+				if($i < scalar(@categories)){
 					print $_.', ';
-				}
-				else
-				{
+				}else{
 					print $_;
 				}
 				$i++;
@@ -838,14 +743,10 @@ sub ProcessDo{
 			</tr>
 			</table>
 			</form>';
-		}
-		else
-		{
+		}else{
 			print 'Wrong Pass.';
 		}
-	}
-	elsif(r('process') eq 'editEntry')
-	{
+	}elsif(r('process') eq 'editEntry'){
 		# Edit process
 		
 		my $pass = r('pass');
@@ -853,12 +754,9 @@ sub ProcessDo{
 		{
 			my $title = r('title');
 			my $content = '';
-			if($config_useHtmlOnEntries == 0)
-			{
+			if($config_useHtmlOnEntries == 0){
 				$content = bbcode(r('content'));
-			}
-			else
-			{
+			}else{
 				$content = basic_r('content');
 			}
 			my $category = r('category');
@@ -866,8 +764,7 @@ sub ProcessDo{
 			
 			open(FILE, "+>$config_postsDatabaseFolder/$fileName.$config_dbFilesExtension");
 			
-			if($title eq '' or $content eq '' or $category eq '')
-			{
+			if($title eq '' or $content eq '' or $category eq ''){
 				die("All fields are neccesary!");
 			}
 			
@@ -875,23 +772,15 @@ sub ProcessDo{
 			print FILE $title.'"'.$content.'"'.$date.'"'.$category.'"'.$fileName;	# 0: Title, 1: Content, 2: Date, 3: Category, 4: FileName
 			print 'Your post '.$title.' has been edited. <a href="?viewDetailed='.$fileName.'">Go Back</a>';
 			close FILE;
-		}
-		else
-		{
+		}else{
 			print 'Wrong password!';
 		}
-	}
-	elsif(r('delete') ne '')
-	{
+	}elsif(r('delete') ne ''){
 		# Delete Entry Page
 		
 		my $fileName = r('delete');
 		print '<h1>Deletting Entry...</h1>
-<<<<<<< HEAD
-		<form name="form1" method="post" action="Index.cgi">
-=======
 		<form name="form1" method="post" action="index.cgi">
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		<table>
 		<td>Pass</td>
 		<td><input name="pass" type="password" id="pass">
@@ -904,34 +793,26 @@ sub ProcessDo{
 		</tr>
 		</table>
 		</form>';
-	}
-	elsif(r('process') eq 'deleteEntry')
-	{
+	}elsif(r('process') eq 'deleteEntry'){
 		# Delete Entry Process
 		
 		my $pass = r('pass');
 	
-		if($pass eq $config_adminPass)
-		{
+		if($pass eq $config_adminPass){
 			my $fileName = r('fileName');
 			my @pages = getPages();
 			my $isPage = 0;
-			foreach(@pages)
-			{
-				if($_ == $fileName)
-				{
+			foreach(@pages){
+				if($_ == $fileName){
 					$isPage = 1;
 					last;
 				}
 			}
 			
 			my $newPages;
-			if($isPage == 1)
-			{
-				foreach(@pages)
-				{
-					if($_ != $fileName)
-					{
+			if($isPage == 1){
+				foreach(@pages){
+					if($_ != $fileName)	{
 						$newPages.=$_.'-';
 					}
 				}
@@ -943,21 +824,16 @@ sub ProcessDo{
 			
 			unlink("$config_postsDatabaseFolder/$fileName.$config_dbFilesExtension");		
 			print 'Entry deletted. <a href="?page=1">Go to Index</a>';
-		}
-		else
-		{
+		}else{
 			print 'Wrong password!';
 		}
-	}
-	elsif(r('do') eq 'search')
-	{
+	}elsif(r('do') eq 'search'){
 		# Search Function
 	
 		my $keyword = r('keyword');
 		my $do = 1;
 		
-		if(length($keyword) < $config_searchMinLength)
-		{
+		if(length($keyword) < $config_searchMinLength){
 			print 'The keyword must be at least '.$config_searchMinLength.' characters long!';
 			$do = 0;
 		}
@@ -966,24 +842,20 @@ sub ProcessDo{
 		if(($by != 0) && ($by != 1)){ $by = 0; }	# Just prevention from CURL or something...
 		my $sBy = $by == 0 ? 'Title' : 'Content';	# This is a shorter way of "my $sBy = ''; if($by == 0) { $sBy = 'Title'; } else { $sBy = 'Content'; }"
 		
-		if($do == 1)
-		{
+		if($do == 1){
 			print 'Searching for '.$keyword.' by '.$sBy.'...<br><br>';
 			my @entries = getFiles($config_postsDatabaseFolder);
 			my $matches = 0;
-			foreach(@entries)
-			{
+			foreach(@entries){
 				my @currEntry = split(/"/, $_);
-				if(($currEntry[$by] =~ m/$keyword/i))
-				{
+				if(($currEntry[$by] =~ m/$keyword/i)){
 					print '<a href="?viewDetailed='.$currEntry[4].'">'.$currEntry[0].'</a><br>';
 					$matches++;
 				}
 			}
 			print '<br><center>'.$matches.' Matches Found.</center>';
 		}
-	}elsif(r('sendComment') ne '')
-	{
+	}elsif(r('sendComment') ne ''){
 		# Send Comment Process
 		
 		my $fileName = r('sendComment');
@@ -995,19 +867,16 @@ sub ProcessDo{
 		my $do = 1;
 		my $triedAsAdmin = 0;
 		
-		if($title eq '' || $author eq '' || $content eq '' || $pass eq '')
-		{
+		if($title eq '' || $author eq '' || $content eq '' || $pass eq ''){
 			print 'All fields are neccessary. Go back and fill them all.';
 			$do = 0;
 		}
 		
-		if($config_commentsSecurityCode == 1)
-		{
+		if($config_commentsSecurityCode == 1){
 			my $code = r('code');
 			my $originalCode = r('originalCode');
 			
-			unless($code eq $originalCode)
-			{
+			unless($code eq $originalCode){
 				print 'Security Code does not match. Please, try again';
 				$do = 0;
 			}
@@ -1016,8 +885,7 @@ sub ProcessDo{
 		if($config_securityQuestionOnComments == 1)
 		{
 			my $question = r('question');
-			unless(lc($question) eq lc($config_commentsSecurityAnswer))
-			{
+			unless(lc($question) eq lc($config_commentsSecurityAnswer))	{
 				print 'Incorrect security answer. Please, try again.';
 				$do = 0;
 			}
@@ -1025,10 +893,8 @@ sub ProcessDo{
 		
 		my $hasPosted = 0;					# This is to see if the user has posted already, so we add him/her to the database :]
 		
-		foreach(@config_commentsForbiddenAuthors)
-		{
-			if($_ eq $author)
-			{
+		foreach(@config_commentsForbiddenAuthors){
+			if($_ eq $author){
 				unless($pass eq $config_adminPass)		# Prevent users from using nicks like "admin"
 				{
 					$do = 0;
@@ -1046,8 +912,7 @@ sub ProcessDo{
 		# Start of author checking, for identity security
 		open(FILE, "<$config_commentsDatabaseFolder/users.$config_dbFilesExtension.dat");
 		my $data = '';
-		while(<FILE>)
-		{
+		while(<FILE>){
 			$data.=$_;
 		}
 		close(FILE);
@@ -1055,14 +920,11 @@ sub ProcessDo{
 		if($triedAsAdmin == 0)
 		{
 			my @users = split(/"/, $data);
-			foreach(@users)
-			{
+			foreach(@users){
 				my @data = split(/'/, $_);
-				if($author eq $data[0])
-				{
+				if($author eq $data[0]){
 					$hasPosted = 1;
-					if(crypt($pass, $config_randomString) ne $data[1])
-					{
+					if(crypt($pass, $config_randomString) ne $data[1]){
 						$do = 0;
 						print 'The username '.$author.' is already taken and that password is incorrect. Please choose other author or try again.';
 					}
@@ -1071,8 +933,7 @@ sub ProcessDo{
 			}
 		}
 		
-		if($hasPosted == 0)
-		{
+		if($hasPosted == 0){
 			open(FILE, ">>$config_commentsDatabaseFolder/users.$config_dbFilesExtension.dat");
 			print FILE $author."'".crypt($pass, $config_randomString).'"';
 			close FILE;
@@ -1123,18 +984,13 @@ sub ProcessDo{
 			}
 		}
 	}
-	elsif(r('deleteComment') ne '')
-	{
+	elsif(r('deleteComment') ne ''){
 		# Delete Comment
 		
 		my $data = r('deleteComment');
 		
 		print '<h1>Deletting Comment...</h1>
-<<<<<<< HEAD
-		<form name="form1" method="post" action="Index.cgi">
-=======
 		<form name="form1" method="post" action="index.cgi">
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		<table>
 		<td>Pass</td>
 		<td><input name="pass" type="password" id="pass">
@@ -1147,9 +1003,7 @@ sub ProcessDo{
 		</tr>
 		</table>
 		</form>';
-	}
-	elsif(r('process') eq 'deleteComment')
-	{
+	}elsif(r('process') eq 'deleteComment'){
 		# Delete Comment Process
 		
 		my $pass = r('pass');
@@ -1163,16 +1017,14 @@ sub ProcessDo{
 			
 			my $content = '';
 			open(FILE, "<$config_commentsDatabaseFolder/$fileName.$config_dbFilesExtension");
-			while(<FILE>)
-			{
+			while(<FILE>){
 				$content.=$_;
 			}
 			close FILE;
 			
 			my @comments = split(/'/, $content);
 			
-			if($config_commentsDescending == 1)
-			{
+			if($config_commentsDescending == 1)	{
 				@comments = reverse(@comments);
 			}
 			
@@ -1180,25 +1032,18 @@ sub ProcessDo{
 			
 			my $i = 0;
 			my @newComments =();
-			foreach(@comments)
-			{
-				if($i != $part)
-				{
+			foreach(@comments){
+				if($i != $part){
 					push(@newComments, $_);
-				}
-				else
-				{
+				}else{
 					$commentToDelete = $_;
 				}
 				$i++;
 			}
 			
-			if($i == 1)		# There was only 1 comment
-			{
+			if($i == 1){
 				unlink("$config_commentsDatabaseFolder/$fileName.$config_dbFilesExtension");
-			}
-			else
-			{		
+			}else{		
 				@newComments = reverse(@newComments);
 				
 				foreach(@newComments){
@@ -1213,18 +1058,15 @@ sub ProcessDo{
 			# Now delete comment from the latest comments file where all comments are saved
 			open(FILE, "<$config_commentsDatabaseFolder/latest.$config_dbFilesExtension");
 			$newContent = '';
-			while(<FILE>)
-			{
+			while(<FILE>){
 				$newContent.=$_;
 			}
 			close FILE;
 			
 			my @commentslist = split(/'/, $newContent);
 			my $finalCommentsToAdd;
-			foreach(@commentslist)
-			{
-				unless($_ eq $commentToDelete)
-				{
+			foreach(@commentslist){
+				unless($_ eq $commentToDelete){
 					$finalCommentsToAdd.=$_."'";
 				}
 			}
@@ -1235,9 +1077,7 @@ sub ProcessDo{
 			
 			# Finally print this
 			print 'Comment Deletted. <a href="?viewDetailed='.$fileName.'">Go Back</a>';
-		}
-		else
-		{
+		}else{
 			print 'Wrong password!';
 		}
 	}
@@ -1254,16 +1094,9 @@ sub DisplayBlogOverview{
 		Welcome to my blog, on here I post about life, the universe, and everything.<br><br>";
 		DisplayCategories();
 		print("<br><h3>Admin stuff</h3>");
-<<<<<<< HEAD
-		print "<a href=\"/Index.cgi?p=Blog&do=newEntry\">New Entry</a><br>
-		<a href=\"/Index.cgi?p=Blog&do=archive\">Archive</a><br>
-		<a href=\"/Index.cgi?p=Blog&do=RSS\">RSS Feed</a><br><br>";
-=======
 		print "<a href=\"/index.cgi?p=blog&do=newEntry\">New Entry</a><br>
 		<a href=\"/index.cgi?p=blog&do=archive\">Archive</a><br>
 		<a href=\"/index.cgi?p=blog&do=RSS\">RSS Feed</a><br><br>";
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
-		
 	}
 }
 
@@ -1276,26 +1109,18 @@ my @baseUrl = split(/\?/, 'http://'.$ENV{'HTTP_HOST'}.$ENV{'REQUEST_URI'});
 	print header('text/xml'),'<?xml version="1.0" encoding="ISO-8859-1"?>
 	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-<<<<<<< HEAD
-	<atom:link href="http://www.dannyarends.nl/Index.cgi?do=RSS" rel="self" type="application/rss+xml" />
-=======
 	<atom:link href="http://www.dannyarends.nl/index.cgi?do=RSS" rel="self" type="application/rss+xml" />
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 	<title>'.$config_blogTitle.'</title>
 	<description>'.$config_metaDescription.'</description>
 	<link>'.$config_baseurl.'</link>';
 	
-	if($config_entriesOnRSS == 0)
-	{
+	if($config_entriesOnRSS == 0){
 		$limit = scalar(@entries);
-	}
-	else
-	{
+	}else{
 		$limit = $config_entriesOnRSS;
 	}
 	
-	for(my $i = 0; $i < $limit; $i++)
-	{
+	for(my $i = 0; $i < $limit; $i++){
 		my @finalEntries = split(/"/, $entries[$i]);
 		my $content = $finalEntries[1];
 		$content =~ s/\</&lt;/gi;
@@ -1323,50 +1148,39 @@ sub DisplayArchive{
 	# Split the data in the post so i have them in this format "13 Dic 2008, 24:11|0001|Entry title" date|fileName|entryTitle
 	my @dates = map { my @d = split(/"/, $_); $d[2].'|'.$d[4].'|'.$d[0]; } @entries;
 	my @years;
-	foreach(@dates)
-	{
+	foreach(@dates){		
 		my @date = split(/\|/, $_);
 		my @y = split(/\s/, $date[0]);
 		$y[2] =~ s/,//;
-		if($y[2] =~ /^\d+$/)
-		{
+		if($y[2] =~ /^\d+$/){
 			push(@years, $y[2]);
 		}
 	}
 	@years = reverse(sort(array_unique(@years)));
-	for my $actualYear(@years)
-	{
+	for my $actualYear(@years){
 		print '<b>Year '.$actualYear.'</b><br>';
 		# Now i make my hash with the empty months, why define them? because this is the order they will be executed
 		my %months = ('Jan'=>'', 'Feb'=>'', 'Mar'=>'', 'Apr'=>'', 'May'=>'','Jun'=>'','Jul'=>'','Aug'=>'','Sep'=>'','Oct'=>'','Nov'=>'','Dic'=>'');
 		# Array with all entries from that year
 		my @entries = grep { /$actualYear/; } @dates;
 		# Now assign the post number to the hash
-		foreach(@entries)
-		{ 
+		foreach(@entries){ 
 			my @d = split(/\s/, $_);
 			my @e = split(/\|/, $_);
 			$months{$d[1]} .= $e[0].'|'.$e[1].'|'.$e[2].'&-;';
 		}
 		# Now i have my months hash with a string to be splitted into all posts from that month
-		while(my($k, $v) = each(%months))
-		{
-			unless($k =~ /^\d/)
-			{
+		while(my($k, $v) = each(%months)){
+			unless($k =~ /^\d/){
 				print '<b>'.$k.':</b><br><table>' unless $v eq '';
 				# Here are all entries from this month, sort them in ascending order, oldest first
 				my @entries = sort{$a <=> $b}reverse((split(/&-;/, $months{$k})));	# Why reverse if then im sorting, well so days are in ascending order
-				foreach(@entries)
-				{
+				foreach(@entries){
 					my @data = split(/\|/, $_);
 					my @d = map {my @e = split(/\s/, $_); $e[0]} split(/,/, $data[0]);
 					print '<tr>
 					<td>Day '.$d[0].':</td>
-<<<<<<< HEAD
-					<td><a href="/Index.cgi?p=Blog&viewDetailed='.$data[1].'">'.$data[2].'</a></td>
-=======
 					<td><a href="/index.cgi?p=blog&viewDetailed='.$data[1].'">'.$data[2].'</a></td>
->>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 					</tr>';
 				}
 				print '</table>' unless $v eq '';
