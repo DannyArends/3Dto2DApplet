@@ -5,7 +5,11 @@
 #	The idea of this blog, is a very simple yet
 #	powerful blog. Enjoy
 #	
+<<<<<<< HEAD
 #	Coded by Federico Ramírez (fedekun)
+=======
+#	Coded by Federico Ramï¿½rez (fedekun)
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 #	fedekiller@gmail.com
 #  Adapted by Danny Arends (RotationZ)
 # Danny.Arends@gmail.com
@@ -77,7 +81,11 @@ our $config_useHtmlOnEntries =1;									# Allow HTML on entries when making a n
 our $config_useWYSIWYG = 1;											# You must allow HTML on entries for this to work // Note, WYSIWYG wont allow smilies
 our $config_onlyNumbersOnCAPTCHA = 0;								# Use only numbers on CAPTCHA
 our $config_CAPTCHALenght = 8;										# Just to make different codes
+<<<<<<< HEAD
 our $config_baseurl='http://www.dannyarends.nl/Index.cgi'; #for rss
+=======
+our $config_baseurl='http://www.dannyarends.nl/index.cgi'; #for rss
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 
 # Basic Functions
 sub r{
@@ -271,7 +279,11 @@ sub DisplayEntries{
 			
 			if($do == 1)
 			{
+<<<<<<< HEAD
 				print '<li><a href="/Index.cgi?p=Blog&viewDetailed='.$fileName.'">'.$title.'</a><li>';
+=======
+				print '<li><a href="/index.cgi?p=blog&viewDetailed='.$fileName.'">'.$title.'</a><li>';
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			}
 			
 			$i++;
@@ -305,7 +317,11 @@ sub DisplaySinglePost{
 		my $fileName = $entry[4];
 		my $title = $entry[0];
 		my $category = $entry[3];
+<<<<<<< HEAD
 		print '<h1><a href="/Index.cgi?p=Blog&viewDetailed='.$entry[4].'">'.$entry[0].'</a></h1>'.$entry[1].'<br><center><i>Posted on '.$entry[2].' - Category: <a href="/Index.cgi?p=Blog&viewCat='.$entry[3].'">'.$entry[3].'</a><br><a href="/Index.cgi?p=Blog&edit='.$entry[4].'">Edit</a> - <a href="/Index.cgi?p=Blog&delete='.$entry[4].'">Delete</a></i></center><br>';
+=======
+		print '<h1><a href="/index.cgi?p=blog&viewDetailed='.$entry[4].'">'.$entry[0].'</a></h1>'.$entry[1].'<br><center><i>Posted on '.$entry[2].' - Category: <a href="/index.cgi?p=Blog&viewCat='.$entry[3].'">'.$entry[3].'</a><br><a href="/index.cgi?p=blog&edit='.$entry[4].'">Edit</a> - <a href="/index.cgi?p=blog&delete='.$entry[4].'">Delete</a></i></center><br>';
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		
 		# Now Display Comments
 		unless(-d $config_commentsDatabaseFolder)		# Does the comments folder exists? We will save comments there...
@@ -351,7 +367,11 @@ sub DisplaySinglePost{
 				{
 					print bbcode($content);
 				}
+<<<<<<< HEAD
 				print '<br><a href="/Index.cgi?p=Blog&deleteComment='.$fileName.'.'.$i.'">Delete</a><br><br>';
+=======
+				print '<br><a href="/index.cgi?p=blog&deleteComment='.$fileName.'.'.$i.'">Delete</a><br><br>';
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 				$i++;	# This is used for deletting comments, to i know what comment number is it :]
 			}
 		}
@@ -359,7 +379,11 @@ sub DisplaySinglePost{
 		if($config_allowComments == 1)
 		{
 			print '<br><br><h3>Add Comment</h3>
+<<<<<<< HEAD
 			<form name="submitform" method="post" action="Index.cgi">
+=======
+			<form name="submitform" method="post" action="index.cgi">
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			<table>
 			<tr>
 			<td>Title</td>
@@ -471,7 +495,11 @@ sub DisplaySingleCategorie{
 			
 			if($do == 1)
 			{
+<<<<<<< HEAD
 				print '<h2><a href="/Index.cgi?p=Blog&viewDetailed='.$finalEntries[4].'">'.$finalEntries[0].'</a></h2>'.$finalEntries[1].'<br><center><i>Posted on '.$finalEntries[2].' - Category: <a href="/Index.cgi?p=Blog&viewCat='.$finalEntries[3].'">'.$finalEntries[3].'</a><br><a href="/Index.cgi?p=Blog&viewDetailed='.$finalEntries[4].'">Comments</a> - <a href="?edit='.$finalEntries[4].'">Edit</a> - <a href="/Index.cgi?p=Blog&delete='.$finalEntries[4].'">Delete</a></i></center><br>';
+=======
+				print '<h2><a href="/index.cgi?p=blog&viewDetailed='.$finalEntries[4].'">'.$finalEntries[0].'</a></h2>'.$finalEntries[1].'<br><center><i>Posted on '.$finalEntries[2].' - Category: <a href="/index.cgi?p=blog&viewCat='.$finalEntries[3].'">'.$finalEntries[3].'</a><br><a href="/index.cgi?p=blog&viewDetailed='.$finalEntries[4].'">Comments</a> - <a href="?edit='.$finalEntries[4].'">Edit</a> - <a href="/index.cgi?p=blog&delete='.$finalEntries[4].'">Delete</a></i></center><br>';
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			}
 		}
 		$i++;
@@ -496,16 +524,28 @@ sub DisplaySingleCategorie{
 			{
 				if($i == (($page-1)+$config_maxPagesDisplayed) && (($page-1)+$config_maxPagesDisplayed) < $totalPages)
 				{
+<<<<<<< HEAD
 					print '<a href="/Index.cgi?p=Blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ...';
 				}
 				elsif($startPage > 1 && $displayed == 0)
 				{
 					print '... <a href="/Index.cgi?p=Blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ';
+=======
+					print '<a href="/index.cgi?p=blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ...';
+				}
+				elsif($startPage > 1 && $displayed == 0)
+				{
+					print '... <a href="/index.cgi?p=blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ';
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 					$displayed = 1;
 				}
 				else
 				{
+<<<<<<< HEAD
 					print '<a href="/Index.cgi?p=Blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ';
+=======
+					print '<a href="/index.cgi?p=blog&viewCat='.$cat.'&sp='.$i.'">['.$i.']</a> ';
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 				}
 			}
 			else
@@ -523,7 +563,11 @@ sub DisplayCategories{
 	my @categories = sort(getCategories());
 	print '<ul>';
 	foreach(@categories){
+<<<<<<< HEAD
 		print '<li><a href="Index.cgi?p=Blog&viewCat='.$_.'">'.$_.'</a></li>';
+=======
+		print '<li><a href="index.cgi?p=blog&viewCat='.$_.'">'.$_.'</a></li>';
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 	}
 	print '</ul>';
 	print 'No categories yet.' if scalar(@categories) == 0;
@@ -555,7 +599,11 @@ sub ProcessDo{
 		{
 			my @categories = getCategories();
 			print '<h1>Making new entry...</h1>	
+<<<<<<< HEAD
 			<form name="submitform" method="post" action="Index.cgi">
+=======
+			<form name="submitform" method="post" action="index.cgi">
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			<table>
 			<tr>
 			<td>Title</td>
@@ -684,7 +732,11 @@ sub ProcessDo{
 			
 		my $fileName = r('edit');
 		print '<h1>Editing Entry...</h1>
+<<<<<<< HEAD
 		<form name="form1" method="post" action="Index.cgi">
+=======
+		<form name="form1" method="post" action="index.cgi">
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		<table>
 		<td>Pass</td>
 		<td><input name="pass" type="password" id="pass">
@@ -720,7 +772,11 @@ sub ProcessDo{
 			my $content = $entry[1];
 			my $category = $entry[3];
 			print '<h1>Editing Entry...</h1>
+<<<<<<< HEAD
 			<form name="submitform" method="post" action="Index.cgi">
+=======
+			<form name="submitform" method="post" action="index.cgi">
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 			<table>
 			<tr>
 			<td>Title</td>
@@ -831,7 +887,11 @@ sub ProcessDo{
 		
 		my $fileName = r('delete');
 		print '<h1>Deletting Entry...</h1>
+<<<<<<< HEAD
 		<form name="form1" method="post" action="Index.cgi">
+=======
+		<form name="form1" method="post" action="index.cgi">
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		<table>
 		<td>Pass</td>
 		<td><input name="pass" type="password" id="pass">
@@ -1070,7 +1130,11 @@ sub ProcessDo{
 		my $data = r('deleteComment');
 		
 		print '<h1>Deletting Comment...</h1>
+<<<<<<< HEAD
 		<form name="form1" method="post" action="Index.cgi">
+=======
+		<form name="form1" method="post" action="index.cgi">
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		<table>
 		<td>Pass</td>
 		<td><input name="pass" type="password" id="pass">
@@ -1190,9 +1254,15 @@ sub DisplayBlogOverview{
 		Welcome to my blog, on here I post about life, the universe, and everything.<br><br>";
 		DisplayCategories();
 		print("<br><h3>Admin stuff</h3>");
+<<<<<<< HEAD
 		print "<a href=\"/Index.cgi?p=Blog&do=newEntry\">New Entry</a><br>
 		<a href=\"/Index.cgi?p=Blog&do=archive\">Archive</a><br>
 		<a href=\"/Index.cgi?p=Blog&do=RSS\">RSS Feed</a><br><br>";
+=======
+		print "<a href=\"/index.cgi?p=blog&do=newEntry\">New Entry</a><br>
+		<a href=\"/index.cgi?p=blog&do=archive\">Archive</a><br>
+		<a href=\"/index.cgi?p=blog&do=RSS\">RSS Feed</a><br><br>";
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 		
 	}
 }
@@ -1206,7 +1276,11 @@ my @baseUrl = split(/\?/, 'http://'.$ENV{'HTTP_HOST'}.$ENV{'REQUEST_URI'});
 	print header('text/xml'),'<?xml version="1.0" encoding="ISO-8859-1"?>
 	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
+<<<<<<< HEAD
 	<atom:link href="http://www.dannyarends.nl/Index.cgi?do=RSS" rel="self" type="application/rss+xml" />
+=======
+	<atom:link href="http://www.dannyarends.nl/index.cgi?do=RSS" rel="self" type="application/rss+xml" />
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 	<title>'.$config_blogTitle.'</title>
 	<description>'.$config_metaDescription.'</description>
 	<link>'.$config_baseurl.'</link>';
@@ -1288,7 +1362,11 @@ sub DisplayArchive{
 					my @d = map {my @e = split(/\s/, $_); $e[0]} split(/,/, $data[0]);
 					print '<tr>
 					<td>Day '.$d[0].':</td>
+<<<<<<< HEAD
 					<td><a href="/Index.cgi?p=Blog&viewDetailed='.$data[1].'">'.$data[2].'</a></td>
+=======
+					<td><a href="/index.cgi?p=blog&viewDetailed='.$data[1].'">'.$data[2].'</a></td>
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 					</tr>';
 				}
 				print '</table>' unless $v eq '';

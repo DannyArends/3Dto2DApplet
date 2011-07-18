@@ -48,11 +48,19 @@ print "
 				<a href=\"/Index.cgi?p=Index\" class=\"logo\"><span class=\"noview\">Danny Arends</span></a>
 				<div id=\"menu\">
 					<ul>
+<<<<<<< HEAD
 						<li class=\"home\"><a href=\"/Index.cgi\"><span class=\"noview\">home</span></a></li>
 						<li class=\"blog\"><a href=\"/Index.cgi?p=Blog\"><span class=\"noview\">blog</span></a></li>
 						<li class=\"research\"><a href=\"/Index.cgi?p=Research\"><span class=\"noview\">research</span></a></li>
 						<li class=\"personal\"><a href=\"/Index.cgi?p=Personal\"><span class=\"noview\">personal</span></a></li>
 						<li class=\"contact\"><a href=\"/Index.cgi?p=Contact\"><span class=\"noview\">contact</span></a></li>
+=======
+						<li class=\"home\"><a href=\"/index.cgi\"><span class=\"noview\">home</span></a></li>
+						<li class=\"blog\"><a href=\"/index.cgi?p=blog\"><span class=\"noview\">blog</span></a></li>
+						<li class=\"research\"><a href=\"/index.cgi?p=research\"><span class=\"noview\">research</span></a></li>
+						<li class=\"personal\"><a href=\"/index.cgi?p=personal\"><span class=\"noview\">personal</span></a></li>
+						<li class=\"contact\"><a href=\"/index.cgi?p=contact\"><span class=\"noview\">contact</span></a></li>
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 					</ul>
 				</div>
 			</div>
@@ -116,6 +124,7 @@ print "					<div id=\"social\">
 						<h3>dannyarends.nl / Contents</h3>
 						<ul class=\"hoofd\">
 							<li>";
+<<<<<<< HEAD
 								print '<a href="/Index.cgi?p=blog">Blog</a>';
 print " 					
 							<ul class=\"sub\">
@@ -137,6 +146,29 @@ print "
                   					<li><a href=\"/Index.cgi?p=Oscar\">Oscar</a></li>
                   					<li><a href=\"/Index.cgi?p=Drawings\">Drawings</a></li>
                   					<li><a href=\"/Index.cgi?p=GameDesign\">Game Design</a></li>
+=======
+								print '<a href="/index.cgi?p=blog">Blog</a>';
+print " 					
+							<ul class=\"sub\">
+									<li><a href=\"/index.cgi?p=blog\">My blog</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href=\"/index.cgi?p=research\">Research</a>
+								<ul class=\"sub\">
+									<li><a href=\"/index.cgi?p=publications\">Publications</a></li>
+									<li><a href=\"/index.cgi?p=presentations\">Presentations</a></li>
+									<li><a href=\"/index.cgi?p=links\">Links</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href=\"/Index.cgi?p=personal\">Personal</a>
+								<ul class=\"sub\">
+                  					<li><a href=\"/index.cgi?p=hobbies\">Hobbies</a></li>
+                  					<li><a href=\"/index.cgi?p=oscar\">Oscar</a></li>
+                  					<li><a href=\"/index.cgi?p=drawings\">Drawings</a></li>
+                  					<li><a href=\"/index.cgi?p=gamedesign\">Game Design</a></li>
+>>>>>>> 4756bc56aa3378376781c77f670247cb71343fa9
 								</ul>
 							</li>
 							<li>

@@ -23,6 +23,6 @@ the activity of all genes. This data is then analyzed by GBIC our lab. This is b
 infrastructure needed to analyze these big amounts of data is available.
 </p>
 <ul>
-  <li><a href="/Index.cgi?p=Publications">Publications</a></li>
-  <li><a href="/Index.cgi?p=Presentations">Presentations</a></li>
+  <li><a href="/index.cgi?p=publications">Publications</a></li>
+  <li><a href="/index.cgi?p=presentations">Presentations</a></li>
 </ul>
