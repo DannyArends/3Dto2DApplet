@@ -12,13 +12,12 @@ import java.util.ArrayList;
  * bugs: none found<br>
  */
 public class CommandExecutor implements Runnable{
-  private static final long serialVersionUID = -2921281960160790513L;
   private ArrayList<String> commands = new ArrayList<String>();
   private String res = "";
   private String err = "";
   public int failed_commands=0;
   int succes_commands=0;
-  public Boolean verbose = true;
+  public Boolean verbose = false;
   
   public CommandExecutor(){
   }
