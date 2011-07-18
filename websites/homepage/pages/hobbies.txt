@@ -9,7 +9,7 @@
 <h3>Game design and programming</h3>
 <p>
 <a href="/pdf/GameDesign.pdf">Presentation of game idea</a>: Course Dynamic Presentation - 2010<br>
-<a href="/Index.cgi?p=Applet">Java Applet world</a>: a virtual 3D world to navigate
+<a href="/Index.cgi?p=applet">Java Applet world</a>: a virtual 3D world to navigate
 </p>
 <h3>Favourite Books</h3>
 <p>

@@ -1,4 +1,12 @@
 <h1>Oscar my cat</h1>
+<p>
+Oscar is the cat that I caught when he was trying to hide behind a garbage container.
+He had been there with his Mom and 2 sisters for  around 10 weeks or so, when we caught sight 
+of the white panda cat. After a short hide n seek together with Jordy Tolk I caught him 
+and one of his sisters. His mom and the remaining little cat were picked up by the animal 
+health care, but Oscar went home with me, and has been mooching food and drinks off me 
+since May 2008...
+</p> 
 <div class='slideshow' height=400><img src="/images/oscar1.jpg" alt="Oscar Arends" /><img src="/images/oscar.jpg" alt="Oscar Arends" /><img src="/images/oscar2.jpg" alt="Oscar Arends" /></div>
 
 

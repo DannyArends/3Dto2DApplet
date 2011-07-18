@@ -26,7 +26,7 @@ our $email = "Danny.Arends\@gmail.com";
 # Print a http header
 receivePost();
 if($form{"p"} eq ""){
-	$form{"p"} = "Index"; 
+	$form{"p"} = "index"; 
 }
 if($form{"do"} ne "" || $form{"viewDetailed"} ne "" || $form{"viewCat"} ne "" || $form{"process"} || $form{"sendComment"}){
 	$form{"p"} = "blog"; 
@@ -96,8 +96,7 @@ if($form{"p"} eq "Blog"){
 	}
 
 }
-
-if($form{"p"} eq "index"){
+if(($form{"p"} eq "index")){
 print "					<div class=\"bio\">
 							<h3>Short bio</h3>
 							<p>
@@ -108,20 +107,20 @@ print "					<div class=\"bio\">
 							</p>
 						</div>";
 }
-					
+if($form{"p"} ne "applet"){					
 print "					<div class=\"contact\">
 							<h3>Contact</h3>
 							<p>
 							Faculty of Mathematics and Natural Sciences<br>
 							Bioinformatics (GBIC) - Groningen Bioinformatics Centre<br> 
-							Gron Inst for Biomolecular Sciences & Biotechnology<br>
+							Groninger Institute for Biomolecular Sciences & Biotechnology<br>
 							<br>
 							Nijenborgh 7<br>
 							9747 AG Groningen<br>
 							The Netherlands<br>
 							<br>
-							+31 50 363 8082<br>
-							<a href=\"mailto:danny.arends\@gmail.com\">danny.arends\@gmail.com</a>
+							Tel: +31 50 363 8082<br>
+							Email: <a href=\"mailto:danny.arends\@gmail.com\">Danny.Arends\@Gmail.com</a>
 							</p>
 						</div>";
 
@@ -135,8 +134,9 @@ print "					<div id=\"social\">
 								<li class=\"social github\"><a href=\"https://github.com/DannyArends\" target=\"_blank\"><span class=\"noview\">GitHub</span></a></li>
 							</ul>
 						</div>
-					</div>
-					<br class=\"clear\">
+					";
+}
+print "				</div><br class=\"clear\">
 				</div>
 				<div class=\"bottom maxwidth\"></div>
 			</div>

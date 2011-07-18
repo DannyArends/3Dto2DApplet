@@ -1,7 +1,10 @@
 <h1>Personal</h1>
+<p>Some pages dedicated to who I am and what interests me. There is not a lot on here yet, 
+but I'll be adding to this in the future, so do come back some other time.</p>
 <ul>
   <li><a href="/index.cgi?p=hobbies">Hobbies</a></li>
   <li><a href="/index.cgi?p=oscar">Oscar</a></li>
   <li><a href="/index.cgi?p=drawings">Drawings</a></li>
   <li><a href="/index.cgi?p=gamedesign">Game Design</a></li>
+  <li><a href="/index.cgi?p=applet">Java applet world</a></li>
 </ul>
