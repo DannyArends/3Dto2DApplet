@@ -29,7 +29,7 @@ public abstract class Servlet extends javax.servlet.http.HttpServlet{
 	private String website_root_path = "websites";
 	private boolean logEnabled;
 	private int priority = 0;
-	private boolean verbose = false;
+	private boolean verbose = true;
 	
 	public Servlet(){
 		setCharSet("UTF8");

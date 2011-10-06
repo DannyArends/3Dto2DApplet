@@ -14,6 +14,7 @@ import nl.dannyarends.options.WebOptions;
 import nl.dannyarends.www.http.WWWServer;
 import nl.dannyarends.www.http.Webserver;
 import nl.dannyarends.www.http.servlets.CGIServlet;
+import nl.dannyarends.www.http.servlets.FileServlet;
 import nl.dannyarends.www.http.servlets.MovedServlet;
 
 /**
@@ -47,6 +48,10 @@ public class WebServer {
 		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true),"www.dannyarends.nl");
 		webserver.addServlet("/", new CGIServlet("homepage",false),"www.dannyarends.nl");
 		webserver.addServlet("/", new MovedServlet(),"dannyarends.nl");
+		webserver.addServlet("/", new FileServlet("xqtl"),"www.xqtl.nl");		
+		webserver.addServlet("/", new FileServlet("xqtl"),"www.xqtl.org");		
+		webserver.addServlet("/", new MovedServlet(),"xqtl.nl");
+		webserver.addServlet("/", new MovedServlet(),"xqtl.org");
 		new Thread(webserver).start();
 	}
 	

@@ -4235,7 +4235,7 @@ public class Webserver implements ServletContext, Serializable {
 	 * TODO: provide lazy session restoring, it should allow to load classes from wars 1st step it read serialization data and store under session attribute 2nd
 	 * when the session requested, it tries to deserialize all session attributes considered that all classes available
 	 */
-	public static class HTTPSession extends Hashtable<String,Object> {
+	public static class HTTPSession extends Hashtable<String,Object> implements javax.servlet.http.HttpSession {
 		private static final long serialVersionUID = 1L;
 
 		private long createTime;
@@ -4567,6 +4567,12 @@ public class Webserver implements ServletContext, Serializable {
 				if (restoreError != null)
 					servletContext.log("Can't restore :" + aname + ", " + restoreError);
 			} while (true);
+		}
+
+		@Override
+		public HttpSessionContext getSessionContext() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	}
 

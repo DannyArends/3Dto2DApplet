@@ -3,7 +3,7 @@
         ANT file to build a standalone Applet jar
     </description>
   <!-- set global properties for this build -->
-  <property name="src" 				location="../src/java/nl/applet"    />
+  <property name="src" 				location="../src/java/nl/dannyarends"    />
   <property name="build" 			location="../build"     />
   <property name="dist"  			location="../websites/homepage/dist"      />
   <property name="libraries" 		location="../libs"      />
@@ -23,6 +23,9 @@
   </target>
 
   <target name="compile" depends="init" description="compile the Standalone source " >
+  	<unjar src="${libraries}/servlet-2-3.jar" dest="${build}"/>
+  	<unjar src="${libraries}/pircbot.jar" dest="${build}"/>
+  	<unjar src="${libraries}/freemarker.jar" dest="${build}"/>
   	<javac srcdir="${src}" destdir="${build}" classpath="${build}/" />
   </target>
 

@@ -61,7 +61,6 @@ public class WebServer8080 {
 		WWWServer webserver = new WWWServer(properties);
 		webserver.addServlet("/bot", new BotServlet());
 		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true));
-		webserver.addServlet("/", new CGIServlet("homepage",false));
 		webserver.setAttribute("bot", botentry);
 		new Thread(webserver).start();
 		new Thread(botentry).start();

@@ -123,8 +123,8 @@ public class CGIServlet extends Servlet {
 		File file = new File(filename);
 		if(!file.exists()){
 			if(isVerbose()) System.out.println("No Such File: "+filename);
-			arguments = "error=Page%20not%20found;page=" + filename + ";";
-			file = new File(path + File.separator + "cgi-bin"+ File.separator + mainpage);
+			arguments = "error=Page%20not%20found;p=" + filename + ";";
+			file = new File(path + File.separator + mainpage);
 			extension = mainpage.substring(mainpage.indexOf(".", 2)+1);
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
