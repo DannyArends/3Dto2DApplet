@@ -12,6 +12,9 @@ doxygen/generated
 *.map
 *.pdf
 *.doc
+*.zip
+*.tar.gz
+*.rar
 *.exe
 database/
 generated/

@@ -9,28 +9,6 @@
     <loc>http://www.dannyarends.nl</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
-    <priority>0.8</priority>
-</url>  
-<url>
-    <loc>http://www.dannyarends.nl/index.cgi</loc>
-    <lastmod>2011-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-
-    <priority>0.8</priority>
-</url>  
-<url>
-    <loc>http://www.dannyarends.nl/</loc>
-    <lastmod>2011-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-
-    <priority>0.8</priority>
-</url>  
-<url>
-    <loc>http://www.dannyarends.nl/index.cgi</loc>
-    <lastmod>2011-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
@@ -44,98 +22,96 @@
     <loc>http://www.dannyarends.nl/index.cgi?p=presentations</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?p=drawings</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?p=hobbies</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?p=contact</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?p=applet</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?p=various</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
-</url>  
+</url>
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?p=links</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.dannyarends.nl/index.cgi?p=oscar</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.dannyarends.nl/index.cgi?p=oldgames</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.dannyarends.nl/index.cgi?p=gamedesign</loc>
+  <priority>0.80</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?do=archive</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?do=rss</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?viewcat=blog</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?viewcat=metanetwork</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?viewcat=molgenis</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?viewcat=random</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?viewcat=webserver</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
@@ -149,154 +125,212 @@
     <loc>http://www.dannyarends.nl/index.cgi?viewcat=weekend</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/index.cgi?do=listcomments</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/index.cgi?page=2</loc>
+	<loc>http://www.dannyarends.nl/index.cgi?p=oldgames</loc>
+	<priority>0.80</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/pdf/MasterthesisII.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/pdf/mastersthesisii.pdf</loc>
+    <loc>http://www.dannyarends.nl/pdf/MasterthesisI.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
-    <priority>0.8</priority>
-</url>  
-<url>
-    <loc>http://www.dannyarends.nl/pdf/mastersthesisi.pdf</loc>
-    <lastmod>2011-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/bachelorthesis.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
-    <loc>http://www.dannyarends.nl/pdf/rintro.pdf</loc>
-    <lastmod>2011-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-
-    <priority>0.8</priority>
-</url>  
+  <loc>http://www.dannyarends.nl/pdf/Rintro.pdf</loc>
+  <lastmod>2011-07-26T08:48:05+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
 <url>
-    <loc>http://www.dannyarends.nl/pdf/rcheats.pdf</loc>
-    <lastmod>2011-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-
-    <priority>0.8</priority>
-</url>  
+  <loc>http://www.dannyarends.nl/pdf/Rcheats.pdf</loc>
+  <lastmod>2011-07-26T08:51:13+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.dannyarends.nl/pdf/2011QTLintroduction.pdf</loc>
+  <lastmod>2011-07-22T11:06:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.dannyarends.nl/pdf/Aug2010DynamischPresenteren.pdf</loc>
+  <lastmod>2010-11-20T20:20:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.dannyarends.nl/pdf/Jan2010Networks.pdf</loc>
+  <lastmod>2010-11-20T20:20:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.dannyarends.nl/pdf/Rxqtl.pdf</loc>
+  <lastmod>2010-11-20T20:21:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.dannyarends.nl/pdf/Dec2009GBICMQM.pdf</loc>
+  <lastmod>2010-11-20T20:21:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
 <url>
     <loc>http://www.dannyarends.nl/pdf/28septcbsggeneticalgenomics.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/aug2010dynamischpresenteren.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/jan2010networks.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/rxqtl.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/dec2009gbicmqm.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/2008-03%20MasterPresentatie.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/2007-06%20BachelorPresentatie.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/2008-06%20Presentatie%20Nanotubes%20Molecular%20Dynamics.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/2007-10%20UMCG%20Presentatie.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/2007-05%20Bioinformatica%20II.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/postermqmsept2010.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/posterismb2010.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/pdf/gamedesign.pdf</loc>
     <lastmod>2011-05-07</lastmod>
     <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
 <url>
     <loc>http://www.dannyarends.nl/documents/80yearvoyage.doc</loc>
     <lastmod>2011-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-
     <priority>0.8</priority>
 </url>  
+<url>
+    <loc>http://www.dannyarends.nl/games/A-Train.zip</loc>
+    <priority>0.7</priority>
+</url>  
+<url>
+    <loc>http://www.dannyarends.nl/games/Fragile%20Allegiance.zip</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/HomeWorld.rar</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/Hooligans.rar</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/Little%20Big%20Adventure.zip</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/LordsOfTheRealm2.zip</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/Outpost2.rar</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/Sam%20and%20Max.rar</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/Simcity2000%20SE.rar</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/Supremacy.zip</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/The%20Incredible%20Machine3.zip</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/The%20Settlers.zip</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/The%20Settlers2%20GE.zip</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/When%202%20worlds%20war.zip</loc>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>http://www.dannyarends.nl/games/Z%20Steel%20Soldiers.rar</loc>
+    <priority>0.7</priority>
+</url>
 </urlset>

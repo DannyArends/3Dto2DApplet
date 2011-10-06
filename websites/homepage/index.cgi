@@ -27,6 +27,8 @@ our $email = "Danny.Arends\@gmail.com";
 receivePost();
 if($form{"p"} eq ""){
 	$form{"p"} = "index"; 
+}else{
+$form{"p"} = lc($form{"p"});
 }
 if($form{"do"} ne "" || $form{"viewDetailed"} ne "" || $form{"viewCat"} ne "" || $form{"process"} || $form{"sendComment"}){
 	$form{"p"} = "blog"; 
@@ -53,22 +55,27 @@ print "
 				<div class=\"mid\">
 					<div class=\"left\">
 ";
-if($form{"p"} ne "blog"){
-	print(showFile("pages",$form{"p"}.".txt")."\n");
-}elsif($form{"viewDetailed"} ne ""){
-	DisplaySinglePost();
-}elsif ($form{"do"} eq "archive"){
-	DisplayArchive()
+if($form{"error"} ne ""){
+	# Print an error
+	printError();
 }else{
-	DisplayBlogOverview();
+  if($form{"p"} ne "blog"){
+	  print(showFile("pages",$form{"p"}.".txt")."\n");
+  }elsif($form{"viewDetailed"} ne ""){
+	  DisplaySinglePost();
+  }elsif ($form{"do"} eq "archive"){
+	  DisplayArchive()
+  }else{
+	  DisplayBlogOverview();
+  }
 }
 print "</div>
 					<div class=\"right\">";
 						
-if($form{"p"} eq "Blog"){
+if($form{"p"} eq "blog"){
 	print "<div class=\"submenu\">";
 	print("<h3>Latest entries / Content</h3>");
-	DisplayEntries();
+	DisplayEntries(5);
 	print "	</div>";
 }else{
 	if($form{"p"} eq "research" || $form{"p"} eq "presentations" || $form{"p"} eq "publications" || $form{"p"} eq "links"){
@@ -82,12 +89,13 @@ if($form{"p"} eq "Blog"){
 						";
 		print "	</div>";
 	}
-	if($form{"p"} eq "personal"){
+	if($form{"p"} eq "personal" || $form{"p"} eq "hobbies" || $form{"p"} eq "oscar" || $form{"p"} eq "drawings" || $form{"p"} eq "oldgames" || $form{"p"} eq "gameDesign"){
 		print "<div class=\"submenu\">";
 		print "<h3>Personal / Content</h3>
 							<ul>
                   				<li><a href=\"/index.cgi?p=hobbies\">Hobbies</a></li>
                   				<li><a href=\"/index.cgi?p=oscar\">Oscar</a></li>
+                  				<li><a href=\"/index.cgi?p=oldgames\">AbandonWare games</a></li>
                   				<li><a href=\"/index.cgi?p=drawings\">Drawings</a></li>
                   				<li><a href=\"/index.cgi?p=gameDesign\">Game Design</a></li>
 							</ul>
@@ -148,7 +156,7 @@ print "				</div><br class=\"clear\">
 						<ul class=\"hoofd\">
 							<li>";
 								print '<a href="/index.cgi?p=blog">Blog</a>';
-								DisplayEntries();
+								DisplayEntries(5);
 print " 					</li>
 							<li>
 								<a href=\"/index.cgi?p=research\">Research</a>
@@ -163,6 +171,7 @@ print " 					</li>
 								<ul class=\"sub\">
                   					<li><a href=\"/index.cgi?p=hobbies\">Hobbies</a></li>
                   					<li><a href=\"/index.cgi?p=oscar\">Oscar</a></li>
+                  					<li><a href=\"/index.cgi?p=oldgames\">AbandonWare games</a></li>
                   					<li><a href=\"/index.cgi?p=drawings\">Drawings</a></li>
                   					<li><a href=\"/index.cgi?p=gamedesign\">Game Design</a></li>
 								</ul>
@@ -183,7 +192,7 @@ print " 					</li>
 				</div>
 				<div class=\"bottom maxwidth\"></div>
 			</div>
-			<div id=\"disclaimer\" class=\"centre\">Copyright Danny Arends 2011 - All Rights Reserved</div>
+			<div id=\"disclaimer\" class=\"centre\">Design <a href='http://www.AnnaMargarethaDesign.nl' target='_blank'>AnnaMargarethaDesign.nl</a> | Copyright Danny Arends 2011 - All Rights Reserved</div>
 		</div>
 	</body>
 </html>

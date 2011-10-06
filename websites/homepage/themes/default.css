@@ -137,6 +137,10 @@ div#footer {
 	letter-spacing: -1px;
 }
 
+#disclaimer a {
+	color: white;
+}
+
 .code {
 	border: 1px solid silver;
 	background-color: #F1F1F1;

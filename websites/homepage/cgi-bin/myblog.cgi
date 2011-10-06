@@ -247,13 +247,13 @@ sub getComments
 }
 
 sub DisplayEntries{
-
+    $config_menuEntriesLimit = shift;
 	my @entriesOnMenu = getFiles($config_postsDatabaseFolder);
 	my $i = 0;
 	print '<ul class="sub">';
 	foreach(@entriesOnMenu)
 	{
-		if($i <= $config_menuEntriesLimit)
+		if($i < $config_menuEntriesLimit)
 		{
 			my @entry = split(/"/, $_);
 			my $title = $entry[0];
@@ -1091,8 +1091,12 @@ sub DisplayBlogOverview{
 		ProcessDo();
 	}else{
 		print "<h1>My Blog</h1>
-		Welcome to my blog, on here I post about life, the universe, and everything.<br><br>";
+		Welcome to my blog, on here I post about life, the universe, and everything.<br><br>
+	    <table width=100%><tr valign='top'><td width=50%><h3>Latest Posts</h3>";
+	    DisplayEntries(10);
+		print "</td><td width=50%>";
 		DisplayCategories();
+		print "</td></tr></table>";
 		print("<br><h3>Admin stuff</h3>");
 		print "<a href=\"/index.cgi?p=blog&do=newEntry\">New Entry</a><br>
 		<a href=\"/index.cgi?p=blog&do=archive\">Archive</a><br>

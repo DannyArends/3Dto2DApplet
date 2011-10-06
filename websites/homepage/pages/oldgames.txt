@@ -1,0 +1,71 @@
+<h1>AbandonWare Games</h1>
+I've always been a big fan of computer games, and then especially the 
+classical strategy, RPG and puzzle games. I notices that most of the games 
+that I used to play as a kid are now available as AbandonWare.
+On this page a selection of games which I used to play long ago, 
+The games that you can download here, are provided by 
+<a href="http://www.gameswin.org" target="_blank">gameswin.org</a> and 
+<a href="http://www.abandonia.com/" target='_blank'>abandonia.com</a>. 
+I'm just mirroring the files for an 'no add download'.<br> 
+I hope you'll enjoy these old games, as much as I did ;)<br><br>
+<ul>
+<li><a href="games/Asterix%20-%20Ceasar's%20challenge.rar" title="Download: Asterix - Ceasar's challenge [30.0MB]">Asterix - Ceasar's challenge</a> - Infogrames (1995) <small>[30.0MB]</small></li>
+<li><a href="games/Asterix%20&%20Obelix.rar" title="Download: Asterix & Obelix [3.9MB]">Asterix & Obelix</a> -  Infogrames (1999) <small>[3.9MB]</small></li>
+<li><a href="games/A-Train.zip" title="Download: A-Train [1.5MB]">A-Train</a> - Artdink (1985) <small>[1.5MB]</small></li>
+<li><a href="games/Battle%20Chess.rar" title="Download: Battle Chess [0.7MB]">Battle Chess</a> - Interplay Entertainment (1990) <small>[0.7MB]</small></li>
+<li><a href="games/Bioforge.rar" title="Download: Bioforge [42.6MB]">Bioforge</a> - Origin Systems (1995) <small>[42.6MB]</small></li>
+<li><a href="games/Civilization%203.rar" title="Download: Civilization 3 [135.0MB]">Civilization 3</a> - Firaxis Games (2001) <small>[135.0MB]</small></li>
+<li><a href="games/Doom%20CE.rar" title="Download: Doom Collectors Edition [25.2MB]">Doom - Collectors Edition</a> - ID Software (1993) <small>[25.3MB]</small></li>
+<li><a href="games/Empire%20Earth.zip" title="Download: Empire Earth [129.9MB]">Empire Earth</a> - Stainless Steel Studios (2001) <small>[129.9MB]</small></li>
+<li><a href="games/Fragile%20Allegiance.zip" title="Download: Fragile Allegiance [78.8MB]">Fragile Allegiance</a> - Gremlin Interactive (1996) <small>[78.8MB]</small></li>
+<li><a href="games/Heroes.rar" title="Download: Heroes of Might and Magic [8.8MB]">Heroes of Might and Magic</a> - New World Computing (1995) <small>[8.8MB]</small></li>
+<li><a href="games/Heroes2gold.rar" title="Download: Heroes of Might and Magic 2 Gold Edition [27.0MB]">Heroes of Might and Magic 2 Gold Edition</a> - New World Computing (1996) <small>[27.0MB]</small></li>
+<li><a href="games/Homeworld.rar" title="Download: HomeWorld [278.1MB]">HomeWorld</a> - Relic Entertainment (1999) <small>[278.1MB]</small></li>
+<li><a href="games/Hooligans.rar" title="Download: Hooligans [90.6MB]">Hooligans</a> - Darxabre Games (2002) <small>[90.6MB]</small></li>
+<li><a href="games/Imperialism%202.rar" title="Download: Imperialism [35.2MB]">Imperialism 2</a> - Frog City Software (1999) <small>[35.2MB]</small></li>
+<li><a href="games/Kyrandia%202%20-%20Hand%20of%20fate.rar" title="Download: Kyrandia 2 - Hand of fate [10.6MB]">Kyrandia 2 - Hand of fate</a> - Westwood Studios (1992) <small>[10.6MB]</small></li>
+<li><a href="games/Legend%20of%20Kyrandia.rar" title="Download: Legend of Kyrandia [29.5MB]">Legend of Kyrandia</a> - Westwood Studios (1991) <small>[29.5MB]</small></li>
+<li><a href="games/Little%20Big%20Adventure.zip" title="Download: Little Big Adventure [9.8MB]">Little Big Adventure</a> - Adeline Software (1994) <small>[9.8MB]</small></li>
+<li><a href="games/Lords%20of%20the%20realm%202.rar" title="Download: Lords of the Realm 2 [50.0MB]">Lords of the Realm 2</a> - Sierra Entertainment (1996) <small>[50.0MB]</small></li>
+<li><a href="games/Lost%20Vikings.rar" title="Download: Lost Vikings [1.2MB]">Lost Vikings</a> - Interplay / Sierra (1993) <small>[1.2MB]</small></li>
+<li><a href="games/Mad%20Trax.rar" title="Download: Mad Trax [29.1MB]">Mad Trax</a> -  Project Two Interactive (1998) <small>[29.1MB]</small></li>
+<li><a href="games/Mechwarriord%202d%20-d%20Mercenaries.rar" title="Download: Mechwarrior 2 - Mercenaries [51.0MB]">Mechwarrior 2 - Mercenaries</a> - Activision (1996) <small>[51.0MB]</small></li>
+<li><a href="games/Outpost%202.rar" title="Download: Outpost 2 [13.6MB]">Outpost 2</a> - Sierra On-Line (1997) <small>[13.6MB]</small></li>
+<li><a href="games/Paperboy.rar" title="Download: Paperboy [0.1MB]">Paperboy</a> - Mindscape (1986) <small>[0.1MB]</small></li>
+<li><a href="games/Pizza%20Tycoon.rar" title="Download: Pizza Tycoon [2.3MB]">Pizza Tycoon</a> - MicroProse Software, Inc. (1994) <small>[2.3MB]</small></li>
+<li><a href="games/Quake.rar" title="Download: Quake [39.4MB]">Quake</a> - ID Software (1996) <small>[39.4MB]</small></li>
+<li><a href="games/Sam%20and%20Max.rar" title="Download: Sam and Max - Hit the Road [79.9MB]">Sam & Max - Hit the road</a> - LucasArts (1993) <small>[79.9MB]</small></li>
+<li><a href="games/Simcity2000%20SE.rar" title="Download: SimCity 2000 - Special Edition [6.8MB]">SimCity 2000 - Special Edition</a> - Maxis Software Inc. (1993) <small>[6.8MB]</small></li>
+<li><a href="games/Supremacy.zip" title="Download: Supremacy [1.2MB]">Supremacy</a> - Supremacy Games (1984) <small>[1.2MB]</small></li>
+<li><a href="games/The%20Incredible%20machine%203.zip" title="Download: The Incredible Machine 3 [4.2MB]">The incredible machine 3</a> - Sierra On-Line (1995) <small>[4.2MB]</small></li>
+<li><a href="games/The%20Settlers.zip" title="Download: The Settlers [1.7MB]">The Settlers</a> - Blue Byte (1993) <small>[1.7MB]</small></li>
+<li><a href="games/The%20Settlers%202%20GE.zip" title="Download: The Settlers 2 - Gold Edition [13.6MB]">The Settlers 2 - Gold edition</a> - Blue Byte (1994) <small>[13.6MB]</small></li>
+<li><a href="games/Warcraft.rar" title="Download: Warcraft - Orcs & Humans [4.8MB]">Warcraft - Orcs & Humans</a> -  Blizzard Entertainment (1994) <small>[4.8MB]</small></li>
+<li><a href="games/Warcraft%20II.rar" title="Download: Warcraft II - Tides of Darkness [92.3MB]">Warcraft II - Tides of Darkness</a> -  Blizzard Entertainment (1995) <small>[92.3MB]</small></li>
+<li><a href="games/Warcraft%20III.rar" title="Download: Warcraft III - Reign of Chaos [192.6MB]">Warcraft III - Reign of Chaos</a> -  Blizzard Entertainment (2002) <small>[192.6MB]</small></li>
+<li><a href="games/When%202%20worlds%20war.zip" title="Download: When 2 worlds war [1.9MB]">When two worlds war</a> - Impressions Games (1993) <small>[1.9MB]</small></li>
+<li><a href="games/Z%20Steel%20Soldiers.rar" title="Download: Z Steel Soldiers [99.7MB]">Z Steel Soldiers</a> -  Bitmap Brothers (2001) <small>[99.7MB]</small></li>
+</ul>
+<br>
+The files are either compressed as a zip or rar file, <a href="http://www.rarlab.com/download.htm" target="_blank">RarLab</a> provides winrar 
+to unpack these archives. Also some games require <a href="http://www.dosbox.com/" target="_blank">DosBox</a> to run correctly and <a href="http://www.disc-tools.com/download/daemon" target="_blank">DeamonTools</a> if there is an CD image (also called ISO) involved.
+A walk through on how to install e.g. Warcraft II: 
+<br><br>
+<ol>
+<li>0. Download DosBox and DeamonTools and install them onto your computer. After installation you need to 
+restart your computer.</li>
+<li>1. Download <a href="games/Warcraft%20II.rar" title="Download: Warcraft II - Tides of Darkness [92.3MB]">Warcraft II</a> and unpack the rar onto your HDD (e.g. d:)</li>
+<li>2. Right click the Deamon icon (Virtual devices -> Select CD drive -> Mount image -> Select Warcraft2.iso)</li>
+<li>3. Start Dosbox and mount the HDD and CD drives:<br><code>
+mount d: d:/<br>
+mount f: f:/ -t cdrom</code>
+<li>4. Now goto your CD-drive (I use F as drive letter here)<br><code>
+f: <br>
+INSTALL.EXE or SETUP.EXE</code></li>
+<li>5. Follow the installation instructions and install the game</li>
+<li>6. Goto the directory where you installed the game:<br><code>
+d: <br>
+cd war2<br>
+WAR2.EXE</code><br> to start the game
+</li>
+</ol>

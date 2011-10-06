@@ -225,6 +225,16 @@ li.social a:hover {background-position:bottom left;}
 	font-weight:bold;
 }
 
+#disclaimer a {
+	color: white;
+	text-decoration:none;
+}
+
+#disclaimer a:hover{
+	color: white;
+	text-decoration:underline;
+}
+
 /* =Teh Wordpress
 -------------------------------------------------------------- */
 ol, ul {list-style: none;}
