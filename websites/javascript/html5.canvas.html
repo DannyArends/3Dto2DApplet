@@ -5,21 +5,25 @@
     
     <script type="text/javascript" src="js/include.js"></script>
     <script type="text/javascript" src="js/engine.js"></script>
+  
   </head>
   <body onload="engine.init();">
-<div id="left">
-  <input type="file" id="files" name="files[]" multiple />
-  <button onclick="abortRead();">Cancel read</button>
-  <div id="progress_bar"><div class="percent">0%</div></div>
-  <output id="list"></output><br>
-  <canvas id="debugCanvas" width="250" height="500">
-    Your browser doesn't support the canvas tag
-  </canvas>
-</div>
-<div id="right">
-  <canvas id="renderingCanvas" width="700" height="500">
-    Your browser doesn't support the canvas tag
-  </canvas>
-</div>
-<table id="filecontent"></table>
+    <div id="left">
+      
+      <input type="file" id="fileupload" name="fileupload[]" multiple />
+      <button onclick="fileloader.abortRead();">Cancel read</button>
+      <canvas id="debugCanvas" width="250" height="200">
+        Your browser doesn't support the canvas tag
+      </canvas>
+      <div id="progress_bar">
+        <div class="percent">0%</div>
+      </div>
+      <output id="list"></output>
+  </div>
+  <div id="right">
+    <canvas id="renderingCanvas" width="700" height="500">
+      Your browser doesn't support the canvas tag
+    </canvas>
+  </div>
+  </body>
 </html>

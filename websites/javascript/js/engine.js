@@ -18,7 +18,8 @@ var engine = {
   frame:1,
 
   init: function(){
-    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+	fileloader.init();
+    document.getElementById('fileupload').addEventListener('change', fileloader.loadFiles, false);
     debug.init();
   
     canvas = document.getElementById('renderingCanvas'); 
@@ -36,6 +37,10 @@ var engine = {
 	ctx.save();
 	ctx.fillStyle = "rgb(0,0,0)";
     ctx.fillRect(0,0,canvas.width,canvas.height);
+	ctx.font = "14px Calibri";  
+	ctx.fillStyle = "White";
+    ctx.fillText("Datasets:" + engine.renderables.length, canvas.width-100, 12);
+    ctx.fillText("FL:Datasets:" + fileloader.allfiles.length, canvas.width-100, 24);
     ctx.translate(camera.xtrans, camera.ytrans);
     if(engine.renderables.length == 0){
       if(isEven(engine.frame)){

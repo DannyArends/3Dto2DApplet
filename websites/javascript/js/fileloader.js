@@ -1,10 +1,54 @@
 // Handle file upload from user
 include('js/types/matrix.js');
 
+var fileloader = {
+  speed: 100,
+  allfiles:[],
+  reader:null,
+  progress:null,
+  
+  init: function(){
+	  progress = document.querySelector('.percent');
+  },
+  
+  loadFiles: function(evt) {
+	  var output = [];
+	  var files = evt.target.files;
+	  for(var i = 0, f; f = files[i]; i++){
+		  output.push('<li><strong>', f.name, '</strong> (', f.type || 'N/A', ') - ', f.size, ' bytes</li>');
+		  reader = new FileReader();
+		  reader.onerror = errorHandler;
+		  reader.onprogress = updateProgress;
+		  reader.onabort = function(e){ 
+			if(reader.readyState != 2){
+			  debug.writeln("File reading cancelled");
+			  progress.style.background = "#aa1100";
+			  progress.style.color = "White";
+			  reader=null;
+			  return false;
+		    }
+	      };
+		  reader.onloadstart = function(e){
+		    document.getElementById('progress_bar').className = 'loading';
+		    progress.style.background = "#00aa11";
+		    progress.style.color = "Black";
+		  };
+		  reader.onload = createCallback(f,progress);
+		  reader.readAsText(f);
+		  fileloader.allfiles.push(f);
+	  }
+	  document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  },
+  
+  abortRead : function (){
+    if(reader !=null) reader.abort();
+  }
+}
+
 function updateProgress(evt) {
   if(evt.lengthComputable){
     var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
-    if (percentLoaded < 100) {
+    if(percentLoaded < 100){
       progress.style.width = percentLoaded + '%';
       progress.textContent = percentLoaded + '%';
     }
@@ -34,30 +78,6 @@ function createCallback(id, progress){
     if((r = new ptt(id).parseFromString(e.target.result))   != null){engine.addrenderable(r);return;}
     if((r = new matrix(id).parseFromString(e.target.result))!= null){engine.addrenderable(r);return;}
     if((r = new fasta(id).parseFromString(e.target.result)) != null){engine.addrenderable(r);return;}
+	//Should be here: fileloader.allfiles.push(f);
   };
-}
-
-function handleFileSelect(evt) {
-  var files = evt.target.files;
-  var output = [];
-  var reader = new FileReader();
-  var progress = document.querySelector('.percent');
-
-  
-  for(var i = 0, f; f = files[i]; i++){
-    output.push('<li><strong>', f.name, '</strong> (', f.type || 'N/A', ') - ', f.size, ' bytes</li>');
-    reader.onerror = errorHandler;
-    reader.onprogress = updateProgress;
-    reader.onabort = function(e){ alert('File read cancelled'); };
-    reader.onloadstart = function(e){
-      document.getElementById('progress_bar').className = 'loading';
-    };
-    reader.onload = createCallback(f,progress);
-    reader.readAsText(f);
-  }
-  document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-}
-
-function abortRead(){
-  reader.abort();
 }
