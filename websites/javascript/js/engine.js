@@ -1,6 +1,7 @@
 //Basic .js engine, for canvas rendering
 include('js/types/matrix.js');
 include('js/types/fasta.js');
+include('js/types/ptt.js');
 include('js/types/camera.js');
 include('js/functions/engine.js');
 include('js/functions/numbers.js');
@@ -13,7 +14,7 @@ var engine = {
   speed: 100,
   canvas:null,
   ctx:null,
-  mmatrix:null,
+  renderables:[],
   frame:1,
 
   init: function(){
@@ -36,7 +37,7 @@ var engine = {
 	ctx.fillStyle = "rgb(0,0,0)";
     ctx.fillRect(0,0,canvas.width,canvas.height);
     ctx.translate(camera.xtrans, camera.ytrans);
-    if(!engine.mmatrix){
+    if(engine.renderables.length == 0){
       if(isEven(engine.frame)){
         ctx.fillStyle = "rgb(200,0,0)";
         ctx.fillRect (10, 10, 55, 50);
@@ -45,13 +46,15 @@ var engine = {
         ctx.fillRect (30, 30, 55, 50);
       }
     }else{
-    	engine.mmatrix.render(ctx);
+    	for(var i =0;i<engine.renderables.length;i++){
+    	  engine.renderables[i].render(ctx);
+    	}
     }
     ctx.restore();
     engine.frame++;
   },
   
-  addmatrix: function(m){
-	  engine.mmatrix = m;
+  addrenderable: function(r){
+	  engine.renderables.push(r);
   }
 }

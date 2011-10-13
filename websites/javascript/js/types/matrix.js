@@ -16,8 +16,14 @@ function matrix(id){
     for(var i = 1, line; line = lines[i]; i++) {
       if(line.length > 0){
         var elements = line.split(this.sep);
+        if(elements.length != this.colnames.length){ 
+        	debug.writeln("Columns don't match up at line " + i);
+        	return null
+        }
         this.rownames.push(elements[0]);
         this.data.push(elements.slice(1,(elements.length-1)));
+      }else{
+    	  return null;
       }
     }
     return this;

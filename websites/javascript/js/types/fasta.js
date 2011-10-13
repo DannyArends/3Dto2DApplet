@@ -29,31 +29,39 @@ function fasta(id){
   }
   
   this.render = function(ctx){
-		ctx.font = "14px Times New Roman";
+		ctx.font = "12px Times New Roman";
 		var rendered =0;
 		var skipped =0;
 		for(var r = 0; r < this.sequence_descr.length; r++) {
-	      if(inHeight(r*12)){
+	      if(inHeight(r*14)){
 	      
 		  ctx.fillStyle = "White";
 		  ctx.fillText(this.sequence_descr[r].slice(0,20), 0, (r+1)*12);
 		  var line = this.sequences[r];
 		  for(var i = 0; i < line.length; i++) {
-		    if(onScreen(150+i*12, r*12)){
-		      if(line.charAt(i)=="A"){
-		    	  ctx.fillStyle = "rgb(255,0,0)";
-		      }
-		      if(line.charAt(i)=="T"){
-		    	  ctx.fillStyle = "rgb(255,255,0)";
-		      }
-		      if(line.charAt(i)=="C"){
-		    	  ctx.fillStyle = "rgb(0,0,255)";
-		      }
-		      if(line.charAt(i)=="G"){
-		    	  ctx.fillStyle = "rgb(0,255,255)";
-		      }
-		      debug.writeln("->"+line.charAt(i));
-	    	  ctx.fillRect(150+i*12, r*12, 11, 11); 
+		    if(onScreen(150+i*12, r*13)){
+              switch(line.charAt(i).toLowerCase()){
+		    	case 'a':
+		    		ctx.fillStyle = "rgb(175,0,0)";
+		    	  break;
+		    	case 'c':
+		    		ctx.fillStyle = "rgb(175,175,0)";
+		    	  break;
+		    	case 't':
+		    		ctx.fillStyle = "rgb(0,0,175)";
+		    	  break;
+		    	case 'g':
+		    		ctx.fillStyle = "rgb(0,175,175)";
+		    	  break;
+		    	case ' ':
+		    		ctx.fillStyle = "rgb(0,0,0)";
+		    	  break;		    	  
+		    	default:
+		    		ctx.fillStyle = "rgb(50,50,50)";
+		    	}
+		      ctx.fillRect((150+i*12)-2, (r*14)+4, 11, 14);
+			  ctx.fillStyle = "rgb(255,255,255)";
+			  ctx.fillText(line.charAt(i), 150+i*12, (r+1)*14)
 	    	  rendered++;
 		    }else{
 			  skipped++;
@@ -61,6 +69,6 @@ function fasta(id){
 	      }
 	      }
 	    }
-		debug.writeln(rendered + " / " + skipped);
+		//debug.writeln(rendered + " / " + skipped);
 	  }
 }

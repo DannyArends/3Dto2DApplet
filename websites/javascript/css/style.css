@@ -1,0 +1,79 @@
+/* =Reset teh browser
+-------------------------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	background: transparent;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	text-align:left;
+}
+input, a, img {
+	outline:0;
+}
+/* =Studio Impact FTW!
+-------------------------------------------------------------- */
+html, body {
+	padding:0;
+	margin:0;
+	background:#FFFFFF;
+	font-size:14px;
+	text-align:left;
+	font-family:Calibri, Helvetica, sans-serif;
+	color:#0e3753;
+	line-height:22px;
+	height:100%;
+}
+
+#progress_bar {
+    margin: 10px 0;
+    padding: 3px;
+    border: 1px solid #000;
+    font-size: 14px;
+    clear: both;
+    opacity: 0;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear;
+}
+
+#left{
+  padding:10px;
+  width:250px;
+  float:left;	
+}
+
+#right{
+   padding:10px;
+   float:left;	
+}
+
+#progress_bar.loading {
+	opacity: 1.0;
+}
+
+#progress_bar .percent {
+    background-color: #00aa11;
+    height: auto;
+    width: 0;
+}
+
+/* = IE6 WARS
+-------------------------------------------------------------- */
+#ie6_banner{background:#535353;width:100%;position:relative;padding:15px 0;margin:0;border-bottom:1px solid #111;z-index:999;}
+#ie6_wrap{width:1000px;margin:0 auto;}
+#ie6_wrap h1{font-size:18px;text-transform:none;color:#fffffe;;background:none;margin:0 0 10px;padding:0;font-weight:bold;}
+#ie6_wrap p{text-align:left;font-size:12px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:normal;color:#fffffe;;background:none;line-height:16px;margin:0;}
+#ie6_wrap p a{color:#fffffe;;background:none;text-decoration:underline;font-size:12px;}
+#ie6_wrap p a:hover{color:#fffffe;;background:none;text-decoration:none;}
+#ie6_links{float:right;width:272px;}
+#ie6_links a{float:left;background:#5a5a5a;width:85px;height:27px;padding:12px 0 0 50px;margin:0 1px 1px 0;color:#fffffe;;}
+#ie6_links a:hover{text-decoration:underline;}
+#ie6_links img{position:absolute;margin:-5px 0 0 -35px;border:none;}
