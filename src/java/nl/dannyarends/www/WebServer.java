@@ -16,6 +16,7 @@ import nl.dannyarends.www.http.Webserver;
 import nl.dannyarends.www.http.servlets.CGIServlet;
 import nl.dannyarends.www.http.servlets.FileServlet;
 import nl.dannyarends.www.http.servlets.MovedServlet;
+import nl.dannyarends.www.http.servlets.RplotServlet;
 
 /**
  * \brief Main webserver method<br>
@@ -46,6 +47,7 @@ public class WebServer {
 		properties.put(Webserver.ARG_PORT, 80);
 		WWWServer webserver = new WWWServer(properties);
 		webserver.addServlet("/cgi-bin", new CGIServlet("homepage",true),"www.dannyarends.nl");
+		webserver.addServlet("/Rplots", new RplotServlet(),"www.dannyarends.nl");
 		webserver.addServlet("/", new CGIServlet("homepage",false),"www.dannyarends.nl");
 		webserver.addServlet("/", new MovedServlet(),"dannyarends.nl");
 		webserver.addServlet("/", new FileServlet("xqtl"),"www.xqtl.nl");		
