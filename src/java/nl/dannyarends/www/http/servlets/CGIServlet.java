@@ -4,11 +4,14 @@ package nl.dannyarends.www.http.servlets;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.hsqldb.jdbc.JDBCDataSource;
 
 import nl.dannyarends.generic.CommandExecutor;
 import nl.dannyarends.generic.Utils;
@@ -43,6 +46,9 @@ public class CGIServlet extends Servlet {
 	
 	public CGIServlet(){
 		super();
+		HostsNotAllowed.add("web102.webhotelli.fi");
+		HostsNotAllowed.add("static.141.57.4.46.clients.your-server.de");
+		HostsNotAllowed.add("77.92.144.4");
 	}
 	
 	public CGIServlet(String path, boolean inCGI){
@@ -90,8 +96,44 @@ public class CGIServlet extends Servlet {
 		return param;
 	}
 	
+	ArrayList<String> HostsNotAllowed = new ArrayList<String>();
+	
+	boolean checkOrigin(HttpServletRequest req, HttpServletResponse res){
+		String origin = req.getRemoteHost();
+		if(req.getParameter("p") == null) return true;
+		if(req.getParameter("p").contains("\"")){
+			if(!HostsNotAllowed.contains(origin))HostsNotAllowed.add(origin);
+			return false;
+		}
+		if(req.getParameter("p").contains("unBlockMe")){
+			ArrayList<String> newNotAllowed= new ArrayList<String>();
+			for(String host:HostsNotAllowed){
+				if(!host.equals(origin)){
+					newNotAllowed.add(host);
+				}
+			}
+			HostsNotAllowed = newNotAllowed;
+		}
+		for(String host:HostsNotAllowed){
+		  if(origin.equals(host)) return false;
+		}
+		return true;
+	}
+	
+	
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		if(!checkOrigin(req,res)){
+			Utils.log("Origin check failed: " + req.getRemoteHost() + ", no page", System.err);
+			OutputStream o = res.getOutputStream();
+			o.write("<h1>Hacking me, Hacking you. Something we shouldn't do</h1>IP/Domains Blocked:<ul>".getBytes());
+			for(String host:HostsNotAllowed){
+				o.write(("<li>" + host + "</li>").getBytes());
+			}
+			o.write("</ul>You can write a msg to Danny.Arends@gmail.com to get unblocked".getBytes());
+			o.close();
+			return;
+		}
 		CommandExecutor myCommandExe = new CommandExecutor();
 		Thread myInterpreter;
 		String arguments = "";

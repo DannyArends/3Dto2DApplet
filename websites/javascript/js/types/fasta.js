@@ -33,13 +33,13 @@ function fasta(id){
 		var rendered =0;
 		var skipped =0;
 		for(var r = 0; r < this.sequence_descr.length; r++) {
-	      if(inHeight(r*14)){
+	      if(inHeight(r*12)){
 	      
 		  ctx.fillStyle = "White";
 		  ctx.fillText(this.sequence_descr[r].slice(0,20), 0, (r+1)*12);
 		  var line = this.sequences[r];
 		  for(var i = 0; i < line.length; i++) {
-		    if(onScreen(150+i*12, r*13)){
+		    if(onScreen(150+i*12, r*12)){
               switch(line.charAt(i).toLowerCase()){
 		    	case 'a':
 		    		ctx.fillStyle = "rgb(175,0,0)";
@@ -59,9 +59,9 @@ function fasta(id){
 		    	default:
 		    		ctx.fillStyle = "rgb(50,50,50)";
 		    	}
-		      ctx.fillRect((150+i*12)-2, (r*14)+4, 11, 14);
+		      ctx.fillRect((150+i*12)-2, (r*12)+4, 11, 12);
 			  ctx.fillStyle = "rgb(255,255,255)";
-			  ctx.fillText(line.charAt(i), 150+i*12, (r+1)*14)
+			  ctx.fillText(line.charAt(i), 150+i*12, (r+1)*12)
 	    	  rendered++;
 		    }else{
 			  skipped++;
