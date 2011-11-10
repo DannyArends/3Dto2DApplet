@@ -36,13 +36,14 @@ sub printHTTPHeader{
       <meta http-equiv='Content-Type' content='text/html;charset=utf-8' >
       <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"etc/favicon.ico\">
 			<link rel=\"alternate\" type=\"application/xml\" title=\"Sitemap\" href=\"/Sitemap.xml\">
-			<link rel=\"alternate\" type=\"application/rss+xml\" title=\"Blog RSS feed\" href=\"/myblog.cgi?do=RSS\">
+			<link rel=\"alternate\" type=\"application/rss+xml\" title=\"Blog RSS feed\" href=\"/index.cgi?do=RSS\">
 			<title>".ucfirst($form{"p"})." | $title </title>\n
 	<meta name='Keywords' content='Bioinformatics, QTL, Computational, Line Drawings, Groningen University, Biology, Publications, R, R package, PHD Student, C, Rqtl, Genetical Genomics, QTL' > 
 	<meta name='Description' content='".$form{"p"}." | DannyArends.nl' > 
 	<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" >
 	<meta name=\"alexaVerifyID\" content=\"lT8ju1qrjgO2ak7jEZvOEQWcqpo\" >
   <meta name=\"y_key\" content=\"9fbec0326696c2ee\" >
+  <meta name=\"msvalidate.01\" content=\"3DE0921F4D8CE3B76768867C1CA8DD2A\" />
 	<meta name='Author' content='Danny Arends' >
 	<meta name='Robots' content='$spidercommand' >
 	
