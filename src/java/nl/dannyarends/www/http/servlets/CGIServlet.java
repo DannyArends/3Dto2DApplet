@@ -11,8 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hsqldb.jdbc.JDBCDataSource;
-
 import nl.dannyarends.generic.CommandExecutor;
 import nl.dannyarends.generic.Utils;
 import nl.dannyarends.options.WebOptions;
@@ -46,9 +44,6 @@ public class CGIServlet extends Servlet {
 	
 	public CGIServlet(){
 		super();
-		HostsNotAllowed.add("web102.webhotelli.fi");
-		HostsNotAllowed.add("static.141.57.4.46.clients.your-server.de");
-		HostsNotAllowed.add("77.92.144.4");
 	}
 	
 	public CGIServlet(String path, boolean inCGI){
@@ -100,22 +95,23 @@ public class CGIServlet extends Servlet {
 	
 	boolean checkOrigin(HttpServletRequest req, HttpServletResponse res){
 		String origin = req.getRemoteHost();
-		if(req.getParameter("p") == null) return true;
-		if(req.getParameter("p").contains("\"")){
-			if(!HostsNotAllowed.contains(origin))HostsNotAllowed.add(origin);
-			return false;
-		}
-		if(req.getParameter("p").contains("unBlockMe")){
-			ArrayList<String> newNotAllowed= new ArrayList<String>();
-			for(String host:HostsNotAllowed){
-				if(!host.equals(origin)){
-					newNotAllowed.add(host);
-				}
+		if(req.getParameter("p") != null){
+			if(req.getParameter("p").contains("\"")){
+				if(!HostsNotAllowed.contains(origin))HostsNotAllowed.add(origin);
+				return false;
 			}
-			HostsNotAllowed = newNotAllowed;
+			if(req.getParameter("p").contains("unBlockMe")){
+				ArrayList<String> newNotAllowed= new ArrayList<String>();
+				for(String host:HostsNotAllowed){
+					if(!host.equals(origin)){
+						newNotAllowed.add(host);
+					}
+				}
+				HostsNotAllowed = newNotAllowed;
+			}
 		}
 		for(String host:HostsNotAllowed){
-		  if(origin.equals(host)) return false;
+		  if(origin.contains(host)) return false;
 		}
 		return true;
 	}
@@ -123,6 +119,7 @@ public class CGIServlet extends Servlet {
 	
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("REQUEST:" + req.getQueryString());
 		if(!checkOrigin(req,res)){
 			Utils.log("Origin check failed: " + req.getRemoteHost() + ", no page", System.err);
 			OutputStream o = res.getOutputStream();
@@ -147,6 +144,7 @@ public class CGIServlet extends Servlet {
 			path = getLocal_path() + File.separator + path;
 		}
 		if(req.getPathTranslated()==null){
+			System.out.println("redirecting to index");
 			filename = "./index.cgi";
 		}else{
 			filename = req.getPathTranslated() != "." ? req.getPathTranslated().replace('/', File.separatorChar) : "./index.cgi";
@@ -206,6 +204,7 @@ public class CGIServlet extends Servlet {
 				}else{
 					if(contenttype){
 						o.write((s += "\n").getBytes());
+						//System.out.println(s);
 						o.flush();
 						length += (s.getBytes().length + 1);
 					}

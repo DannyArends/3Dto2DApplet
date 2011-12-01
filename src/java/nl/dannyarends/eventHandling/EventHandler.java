@@ -24,7 +24,7 @@ public class EventHandler implements KeyListener, MouseListener,MouseMotionListe
   private HudObject sliderinputlistener = null;
   
   public EventHandler(RenderWindow w,Engine e){
-    window = w;
+    setWindow(w);
     engine = e;
    
     client = new NetworkHandler("localhost",2000);
@@ -125,4 +125,12 @@ public class EventHandler implements KeyListener, MouseListener,MouseMotionListe
   public HudObject getKeyinputlistener() {
     return keyinputlistener;
   }
+
+public RenderWindow getWindow() {
+	return window;
+}
+
+public void setWindow(RenderWindow window) {
+	this.window = window;
+}
 }

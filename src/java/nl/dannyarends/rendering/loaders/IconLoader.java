@@ -1,9 +1,6 @@
 package nl.dannyarends.rendering.loaders;
 
-import java.util.ArrayList;
-
 import nl.dannyarends.generic.RenderWindow;
-import nl.dannyarends.generic.Utils;
 import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.Scene;
 

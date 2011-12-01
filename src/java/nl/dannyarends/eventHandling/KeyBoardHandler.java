@@ -13,13 +13,13 @@ public class KeyBoardHandler {
 
   public void keyPressed(KeyEvent e) {
     int c = e.getKeyCode();
-    //Utils.console("key: " + c + "pressed");
+    Utils.console("key: " + c + "pressed");
     e.consume();
   }
 
   public void keyReleased(KeyEvent e) {
     int c = e.getKeyCode();
-    //Utils.console("key: " + c + "released");
+    Utils.console("key: " + c + "released");
     e.consume();
   }
   

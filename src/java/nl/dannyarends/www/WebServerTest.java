@@ -13,10 +13,8 @@ import nl.dannyarends.options.OptionsParser;
 import nl.dannyarends.options.WebOptions;
 import nl.dannyarends.www.http.WWWServer;
 import nl.dannyarends.www.http.Webserver;
-import nl.dannyarends.www.http.servlets.CGIServlet;
 import nl.dannyarends.www.http.servlets.FileServlet;
 import nl.dannyarends.www.http.servlets.MovedServlet;
-import nl.dannyarends.www.http.servlets.RplotServlet;
 
 /**
  * \brief Main webserver method<br>

@@ -23,13 +23,11 @@
 package nl.dannyarends.rendering;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import nl.dannyarends.generic.RenderWindow;
 import nl.dannyarends.generic.Utils;
-import nl.dannyarends.rendering.hud.HudWindow;
 import nl.dannyarends.rendering.interfaces.Renderable;
 import nl.dannyarends.rendering.objects.lighting.Light;
 import nl.dannyarends.rendering.scene.Object3D;

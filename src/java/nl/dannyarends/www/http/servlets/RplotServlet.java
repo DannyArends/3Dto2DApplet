@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nl.dannyarends.generic.CommandExecutor;
-import nl.dannyarends.options.DatabaseOptions;
-import nl.dannyarends.options.WebOptions;
 
 
 /**

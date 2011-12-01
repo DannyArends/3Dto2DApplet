@@ -1,8 +1,6 @@
 package nl.dannyarends.rendering.hud;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import nl.dannyarends.rendering.Hud;

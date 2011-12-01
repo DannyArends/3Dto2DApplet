@@ -1,12 +1,10 @@
 package nl.dannyarends.rendering.scene;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 
 import nl.dannyarends.generic.MathUtils;
-import nl.dannyarends.rendering.Engine;
 import nl.dannyarends.rendering.Scene;
 import nl.dannyarends.rendering.interfaces.Renderable;
 import nl.dannyarends.rendering.objects.Edge;
