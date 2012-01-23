@@ -98,6 +98,7 @@ if($form{"p"} eq "blog"){
                   				<li><a href=\"/index.cgi?p=oldgames\" title=\"Download old games I used to play\">AbandonWare games</a></li>
                   				<li><a href=\"/index.cgi?p=drawings\" title=\"Pen and ink drawings by by Danny Arends\">Drawings</a></li>
                   				<li><a href=\"/index.cgi?p=gamedesign\">Game Design</a></li>
+                  				<li><a href=\"/index.cgi?p=HDDspeed\">HDD speed testing tool</a></li>
 							</ul>
 						";
 		print "	</div>";

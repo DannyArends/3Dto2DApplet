@@ -10,6 +10,8 @@
 
 use strict;
 
+require "cgi-bin/myblog.cgi";
+
 #Global Variables across all includes
 our %form;
 our @paramnames;
@@ -36,11 +38,34 @@ sub printHTTPHeader{
       <meta http-equiv='Content-Type' content='text/html;charset=utf-8' >
       <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"etc/favicon.ico\">
 			<link rel=\"alternate\" type=\"application/xml\" title=\"Sitemap\" href=\"/Sitemap.xml\">
-			<link rel=\"alternate\" type=\"application/rss+xml\" title=\"Blog RSS feed\" href=\"/index.cgi?do=RSS\">
-			<title>".ucfirst($form{"p"})." | $title </title>\n
-	<meta name='Keywords' content='Bioinformatics, QTL, Computational, Line Drawings, Groningen University, Biology, Publications, R, R package, PHD Student, C, Rqtl, Genetical Genomics, QTL' > 
-	<meta name='Description' content='".$form{"p"}." | DannyArends.nl' > 
-	<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" >
+			<link rel=\"alternate\" type=\"application/rss+xml\" title=\"Blog RSS feed\" href=\"/index.cgi?do=RSS\">");
+  if($form{"viewDetailed"}){
+    print("<title>".ucfirst(getPostName($form{"viewDetailed"}))." | $title </title>\n");
+  }else{  
+	  print("<title>".ucfirst($form{"p"})." | $title </title>\n");
+  }
+	print("<meta name='Keywords' content='Bioinformatics, QTL, Computational, Line Drawings, Groningen University, Biology, Publications, R, R package, PHD Student, C, Rqtl, Genetical Genomics, QTL' >");
+	if($form{"viewDetailed"}){
+    my $ss = getPostContent($form{"viewDetailed"});
+    $ss =~ s/<(?:[^>'"]*|(['"]).*?\1)*>//gs;
+    $ss =~ s/"//gs;
+    my @words = split(/ /,$ss);
+    my $i = 0;
+    print("<meta name='Description' content='");
+    foreach my $word(@words) {
+      if($i <= 19){
+        print($word." ");
+      }
+      if($i==19){
+        print("...");
+      }
+      $i++;
+    }
+    print(" | DannyArends.nl' >");
+  }else{
+    print("<meta name='Description' content='".$form{"p"}." | DannyArends.nl' >");
+  }
+	print("<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" >
 	<meta name=\"alexaVerifyID\" content=\"lT8ju1qrjgO2ak7jEZvOEQWcqpo\" >
   <meta name=\"y_key\" content=\"9fbec0326696c2ee\" >
   <meta name=\"msvalidate.01\" content=\"3DE0921F4D8CE3B76768867C1CA8DD2A\" />
