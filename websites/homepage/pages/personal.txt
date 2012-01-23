@@ -7,5 +7,5 @@ but I'll be adding to this in the future, so do come back some other time.</p>
   <li><a href="/index.cgi?p=oldgames">AbandonWare games</a></li>
   <li><a href="/index.cgi?p=drawings">Drawings</a></li>
   <li><a href="/index.cgi?p=gamedesign">Game Design</a></li>
-  <li><a href="/index.cgi?p=applet">Java applet world</a></li>
+  <li><a href="/index.cgi?p=HDDspeed">HDD speed testing tool</a></li>
 </ul>
