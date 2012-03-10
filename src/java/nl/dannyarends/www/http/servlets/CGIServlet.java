@@ -44,6 +44,13 @@ public class CGIServlet extends Servlet {
 	
 	public CGIServlet(){
 		super();
+		this.HostsNotAllowed.add("static.giga-dns.com");
+		this.HostsNotAllowed.add("96.44.142.250");
+		this.HostsNotAllowed.add("68.169.86.222");
+		this.HostsNotAllowed.add("68.169.86.220");
+		this.HostsNotAllowed.add("96.44.143.234");
+		this.HostsNotAllowed.add("216.45.48.210");
+		this.HostsNotAllowed.add("178.150.142.210");
 	}
 	
 	public CGIServlet(String path, boolean inCGI){
@@ -119,7 +126,6 @@ public class CGIServlet extends Servlet {
 	
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println("REQUEST:" + req.getQueryString());
 		if(!checkOrigin(req,res)){
 			Utils.log("Origin check failed: " + req.getRemoteHost() + ", no page", System.err);
 			OutputStream o = res.getOutputStream();
@@ -216,7 +222,7 @@ public class CGIServlet extends Servlet {
 		if(!contenttype){
 			Utils.log("Unexpected output when serving file: " + file + ", no page", System.err);
 		}else{
-			Utils.console("Handled: " + req.getRequestURI() + (req.getParameter("p")!=null?" "+req.getParameter("p")+" ":" ") +  length + " bytes to " + req.getRemoteHost());
+			Utils.console("Handled: " + req.getRequestURI() + (req.getParameter("p")!=null?" "+req.getParameter("p")+" ":" ") + " " + req.getQueryString() + " " +  length + " bytes to " + req.getRemoteHost());
 		}
 	}
 

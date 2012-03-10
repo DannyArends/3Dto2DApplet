@@ -86,7 +86,7 @@ public class FileServlet extends Servlet {
 	// / Constructor.
 	public FileServlet(String path) {
 		this();
-		setLocal_path(getLocal_path() + "/" + path);
+		setLocal_path(getLocal_path() + "/" + path.toLowerCase());
 	}
 
 	// / Returns a string containing information about the author, version, and
