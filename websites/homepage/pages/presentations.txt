@@ -5,6 +5,10 @@ that I produced during the course of my bachelors, masters and PHD period. I lov
 lectures and think education is one of the most important things in science, so feel free 
 to contact me if your curious.
 </p>
+- <a href="https://gist.github.com/1876977" title="R/qtl Tutorial">Tutorial</a> - LFN (Wageningen University, Feb 20, 2012)<br>
+- <a href="/pdf/WageningenRqtl.pdf" title="Powerpoint presentation about: Mapping QTL using R/qtl">Basic QTL introduction with tutorial</a> - LFN (Wageningen University, Feb 20, 2012)<br>
+- The Challenge of Big Data Genetical Genomics, NCSA, invited by Victor Jongeneel and Chris Fields (NCSA, Urbana (IL), May 20, 2011)<br>
+- R/qtl for Big Data, MIT Department of Biology, invited by Jeroen PJ Saeij (MIT, Boston (MA), May 11, 2011)<br>
 - <a href="/pdf/pheno2geno.pdf" title="Powerpoint presentation about: Creating genetic maps from gene expression data">(Re)Construction of genetic maps from gene expression data</a> - GBIC (University of Groningen, July 15, 2011)<br>
 - <a href="/pdf/2011QTLintroduction.pdf" title="Powerpoint presentation about: Introduction QTL mapping for first year students">Introduction into QTL mapping</a> - Bioinformatics I (University of Groningen, June 1, 2011)<br>
 - <a href="/pdf/28SeptCBSGGeneticalGenomics.pdf" title="Powerpoint presentation about: Multiple QTL mapping in the context of high-performance computing">MQM and HPC for R/qtl</a> - CSBG meeting (Wageningen University, Sept 28, 2010)<br>

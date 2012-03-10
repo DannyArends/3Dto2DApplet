@@ -1,0 +1,23 @@
+<h1>Education</h1>
+<p>
+As part of my work I train people in the art of programming and data analysis.
+Here an overview of the course I taught and the people who participated.
+</p>
+
+<h2>Master Students</h2>
+2011 - Konrad Zych (6 months)- Jagiellonian University, Krakow, Poland - Working 
+on a research project to develop software for genetic map construction supported 
+by an Erasmus scholarship.<br>
+
+2011 - Kotaro Nishiyama (4 months)- Osaka University, Osaka, Japan - Working on a 
+research project involving 'Big Data' analysis of gene expressions.
+<br><br>
+<h2>Bachelor Courses</h2>
+2012 - Computational molecular biology research - 5 Participants<br>
+2011 - Computational molecular biology research - 2 Participants<br>
+2010, 2011 - Guest lectures bioinformatics 1 - 30-40 Participants<br>
+2010, 2011 - Practical supervisor bioinformatics 1 - 30-40 Participants<br>
+<br>
+<h2>General training</h2>
+2012 - <a href="/pdf/WageningenRqtl.pdf" title="Powerpoint presentation about: Mapping 
+QTL using R/qtl">R and R/qtl</a> - Lecture and tutorial at LFN meeting Wageningen University<br>

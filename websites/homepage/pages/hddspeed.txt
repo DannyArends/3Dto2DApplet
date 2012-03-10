@@ -48,7 +48,8 @@ of the executable are:<br><br>
     WD2 - Western Digital (WD5000AADS) on Custom setup<br>
     WDM - Western Digital Mobile (WD1600BEVT) on MSI Wind100<br>
     USB - Standard USB disk (2GB) on MSI Wind100<br>
-    SS1 - Samsung Spinpoint F1 on Custom setup<br><br>
+    SS1 - Samsung Spinpoint F1 on Custom setup<br>
+    SS2 - Samsung SSD PM810 2.5" 7<br><br>
 
 <pre>
 
@@ -64,6 +65,8 @@ of the executable are:<br><br>
     | USB | ext2  | Debian |  917 mB/s | 1103 kB/s  |  908 mB/s |
     | USB | ext4  | Debian | 1163 mB/s | 1196 kB/s  | 1151 mB/s |
     | SS1 | NTFS  | Win7   |  793 mB/s | 2424 kB/s  |  785 mB/s |
+    | SS2 | NTFS  | Win7   | 1814 mB/s | 5708 kB/s  | 1796 mB/s |
+    
 </pre>
 <br>
 <h2>Send in your results</h2>

@@ -1,9 +1,4 @@
 <h1>Research</h1>
-<ul>
-  <li><a href="/index.cgi?p=publications">My Publications</a></li>
-  <li><a href="/index.cgi?p=presentations">My Presentations</a></li>
-</ul>
-<br>
 <p>
 Have you ever wondered why some people have blue eyes and others green?
 Why some of us get flu every year and other almost never?</p>
@@ -27,4 +22,8 @@ Arabidopsis (Model) plants. The data coming from these plants is huge Hard drive
 the activity of all genes. This data is then analyzed by GBIC our lab. This is because in Groningen the 
 infrastructure needed to analyze these big amounts of data is available.
 </p>
-
+<ul>
+  <li><a href="/index.cgi?p=publications">My Publications</a></li>
+  <li><a href="/index.cgi?p=presentations">My Presentations</a></li>
+  <li><a href="/index.cgi?p=education">Education</a></li>
+</ul>

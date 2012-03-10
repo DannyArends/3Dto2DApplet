@@ -42,7 +42,7 @@ I hope you'll enjoy these old games, as much as I did ;)<br><br>
 <li><a href="http://www.dannyarends.nl/games/The%20Settlers%202%20GE.zip" title="Download: The Settlers 2 - Gold Edition [13.6MB]">The Settlers 2 - Gold edition</a> - Blue Byte (1994) <small>[13.6MB]</small></li>
 <li><a href="http://www.dannyarends.nl/games/Warcraft.rar" title="Download: Warcraft - Orcs & Humans [4.8MB]">Warcraft - Orcs & Humans</a> -  Blizzard Entertainment (1994) <small>[4.8MB]</small></li>
 <li><a href="http://www.dannyarends.nl/games/Warcraft%20II.rar" title="Download: Warcraft II - Tides of Darkness [92.3MB]">Warcraft II - Tides of Darkness</a> -  Blizzard Entertainment (1995) <small>[92.3MB]</small></li>
-<li><a href="http://www.dannyarends.nl/games/Warcraft%20III.rar" title="Download: Warcraft III - Reign of Chaos [192.6MB]">Warcraft III - Reign of Chaos</a> -  Blizzard Entertainment (2002) <small>[192.6MB]</small></li>
+<!-- <li><a href="http://www.dannyarends.nl/games/Warcraft%20III.rar" title="Download: Warcraft III - Reign of Chaos [192.6MB]">Warcraft III - Reign of Chaos</a> -  Blizzard Entertainment (2002) <small>[192.6MB]</small></li> -->
 <li><a href="http://www.dannyarends.nl/games/When%202%20worlds%20war.zip" title="Download: When 2 worlds war [1.9MB]">When two worlds war</a> - Impressions Games (1993) <small>[1.9MB]</small></li>
 <li><a href="http://www.dannyarends.nl/games/Z%20Steel%20Soldiers.rar" title="Download: Z Steel Soldiers [99.7MB]">Z Steel Soldiers</a> -  Bitmap Brothers (2001) <small>[99.7MB]</small></li>
 </ul>

@@ -1,5 +1,24 @@
 <h1>Danny Arends</h1>
-<p>I'm Danny Arends and I'm a PHD student bioinformatics at the Groningen Bioinformatics Centre which is a part of the University of Groningen.</p>
-<p>For my work I create software for use in biology research, the focus of my PHD thesis is on computational methods in quantitative trait analysis (QTL). People interested can read more about that in the publications section or on my blog. </p>
-<p>This web site however is setup to be more broad than just  focus on what I do for work. So I also show my passion for software visualization, I have setup a few screen shots of my C++ rendering engine and I have an Applet on here showing a three dimensional world, which people can navigate through. Currently It's only one map but I might update it in the future.</p>
-<p>So if you want to know more about me, I welcome you to visit the other sections, read my blog and learn about my research and my personal life.</p>
+<p>
+  I'm Danny Arends and I'm a PHD student at the Groningen Bioinformatics Centre which is 
+  part of the University of Groningen. Also I'm working part-time for the hospital in 
+  Groningen at the Genomics Coordination Centre. The focus of my research is development of 
+  novel algorithms in computational biology</p>
+<p>
+  For my work I develop new methodologies and create software for use in biology research,
+  the focus of my PHD thesis is on computational methods in quantitative trait analysis (QTL). 
+  People interested can read more about that in the <a href='index.cgi?p=publications'>publications</a> section or on my <a href='index.cgi?p=blog'>blog</a>.
+</p>
+<p>
+  This web site however is setup to be more broad than just focus on what I do for work. So 
+  I also show my passion for software visualization, I have setup a few screen shots of my C++ 
+  rendering engine, more can be found at my Github code storage. Also you can 
+  <a href='index.cgi?p=oldgames'>download the old games</a> I used to enjoy playing when I was 
+  younger, or look at my <a href='index.cgi?p=oscar' title='Oscar my cat'>my cat</a>.
+</p>
+<p>
+  So if you want to know more about me, feel free you to visit the other parts of my homepage, 
+  read my <a href='index.cgi?p=blog' title='My Blog'>blog</a> and learn about my 
+  <a href='index.cgi?p=research'>research</a> and my <a href='index.cgi?p=personal'>personal</a> 
+  life.
+</p>
