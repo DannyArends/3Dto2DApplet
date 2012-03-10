@@ -53,10 +53,10 @@ sub printHTTPHeader{
     my $i = 0;
     print("<meta name='Description' content='");
     foreach my $word(@words) {
-      if($i <= 19){
+      if($i <= 30){
         print($word." ");
       }
-      if($i==19){
+      if($i==30){
         print("...");
       }
       $i++;

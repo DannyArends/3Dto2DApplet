@@ -78,12 +78,13 @@ if($form{"p"} eq "blog"){
 	DisplayEntries(5);
 	print "	</div>";
 }else{
-	if($form{"p"} eq "research" || $form{"p"} eq "presentations" || $form{"p"} eq "publications" || $form{"p"} eq "links"){
+	if($form{"p"} eq "research" || $form{"p"} eq "presentations" || $form{"p"} eq "publications" || $form{"p"} eq "links" || $form{"p"} eq "education"){
 		print "<div class=\"submenu\">";
 		print "<h3>Research / Content</h3>
 							<ul>
 								<li><a href=\"/index.cgi?p=publications\" title=\"Publications by Danny Arends\">Publications</a></li>
 								<li><a href=\"/index.cgi?p=presentations\" title=\"Presentations and posters by Danny Arends\">Presentations</a></li>
+                <li><a href=\"/index.cgi?p=education\" title=\"Education and courses given by Danny Arends\">Education</a></li>
 								<li><a href=\"/index.cgi?p=links\" title=\"Links to Bioinformatics related pages\">Links</a></li>
 							</ul>
 						";
@@ -110,7 +111,7 @@ print "					<div class=\"bio\">
 							<h3>Short bio</h3>
 							<p>
 							<strong>Spoken languages:</strong> Dutch, English, German, French<br>
-							<strong>Location:</strong> Groningen, The Netherlands<br>
+							<strong>Location:</strong> <a href='http://en.wikipedia.org/wiki/Groningen' target='_blank'>Groningen</a>, The Netherlands<br>
 							<strong>Programming languages:</strong>
 							<a href='http://www.r-project.org/' target='_blank'>R</a>, 
 							<a href='http://www.cplusplus.com/' target='_blank'>C++</a>, 
@@ -121,9 +122,14 @@ print "					<div class=\"bio\">
 							<a href='http://www.perl.org/' target='_blank'>Perl</a>, 
 							<a href='http://wikipedia.org/wiki/JavaScript' target='_blank'>Javascript</a>, and some more<br>
 							<strong>Likes:</strong> 
-							<a href='index.cgi?p=oscar'  title=\"Oscar my cat\">My Cat</a>, 
-							<a href='index.cgi?p=research'>Biology</a>, Genetics, Computers, 
-							<a href='index.cgi?p=drawings' title=\"Pen and ink drawings by Danny Arends\">Drawing</a>, Film and Movies, Discussions<br>
+							<a href='index.cgi?p=oscar' title=\"Oscar my cat\">My Cat</a>, 
+							<a href='index.cgi?p=research'>Biology</a>, 
+              <a href='index.cgi?p=publications'>Genetics</a>, 
+              <a href='index.cgi?p=oldgames'>Computer games</a>, 
+              Computers, 
+							<a href='index.cgi?p=drawings' title=\"Pen and ink drawings by Danny Arends\">Drawing</a>, 
+              Film and Movies, 
+              <a href='index.cgi?p=blog'>Discussions</a><br>
 							</p>
 						</div>";
 }
@@ -175,6 +181,7 @@ print " 					</li>
 								<ul class=\"sub\">
 								<li><a href=\"/index.cgi?p=publications\" title=\"Publications by Danny Arends\">Publications</a></li>
 								<li><a href=\"/index.cgi?p=presentations\" title=\"Presentations and posters by Danny Arends\">Presentations</a></li>
+                <li><a href=\"/index.cgi?p=education\" title=\"Education and courses given by Danny Arends\">Education</a></li>
 								<li><a href=\"/index.cgi?p=links\" title=\"Links to Bioinformatics related pages\">Links</a></li>
 								</ul>
 							</li>
