@@ -41,15 +41,15 @@ print "
 				<a href=\"/index.cgi?p=index\" class=\"logo\"><span class=\"noview\">Danny Arends</span></a>
 				<div id=\"menu\">
 					<ul>
-						<li class=\"home\"><a href=\"/index.cgi\" title=\"Welcome page of my home page\"><span class=\"noview\">home</span></a></li>
-						<li class=\"blog\"><a href=\"/index.cgi?p=blog\" title=\"Blog by Danny Arends\"><span class=\"noview\">blog</span></a></li>
-						<li class=\"research\" title=\"Research and publications by Danny Arends\"><a href=\"/index.cgi?p=research\"><span class=\"noview\">research</span></a></li>
-						<li class=\"personal\" title=\"Personal interests of Danny Arends\"><a href=\"/index.cgi?p=personal\"><span class=\"noview\">personal</span></a></li>
-						<li class=\"contact\" title=\"Contact information for Danny Arends\"><a href=\"/index.cgi?p=contact\"><span class=\"noview\">contact</span></a></li>
+						<li class=\"home\"><a href=\"/index.cgi\" title=\"Welcome page of my home page\"><span class=\"noview\">Home</span></a></li>
+						<li class=\"blog\"><a href=\"/index.cgi?p=blog\" title=\"Blog by Danny Arends\"><span class=\"noview\">Blog</span></a></li>
+						<li class=\"research\" title=\"Research and publications by Danny Arends\"><a href=\"/index.cgi?p=research\"><span class=\"noview\">Research</span></a></li>
+						<li class=\"personal\" title=\"Personal interests of Danny Arends\"><a href=\"/index.cgi?p=personal\"><span class=\"noview\">Personal</span></a></li>
+						<li class=\"contact\" title=\"Contact information for Danny Arends\"><a href=\"/index.cgi?p=contact\"><span class=\"noview\">Contact</span></a></li>
 					</ul>
 				</div>
 			</div>
-			<div class=\"printlogo\"><img src=\"etc/img/logo.png\" alt=\"Site logo - Dannyarends.nl\" width=\"200\" height=\"32\"></div>
+			<div class=\"printlogo\"><img src=\"etc/img/logo.png\" alt=\"Site logo - Dannyarends.nl\" title=\"Site logo - Dannyarends.nl\" width=\"200\" height=\"32\"></div>
 			<div id=\"content\" class=\"maxwidth\">
 				<div class=\"top maxwidth\"></div>
 				<div class=\"mid\">
@@ -123,13 +123,13 @@ print "					<div class=\"bio\">
 							<a href='http://wikipedia.org/wiki/JavaScript' target='_blank'>Javascript</a>, and some more<br>
 							<strong>Likes:</strong> 
 							<a href='index.cgi?p=oscar' title=\"Oscar my cat\">My Cat</a>, 
-							<a href='index.cgi?p=research'>Biology</a>, 
-              <a href='index.cgi?p=publications'>Genetics</a>, 
-              <a href='index.cgi?p=oldgames'>Computer games</a>, 
+							<a href='index.cgi?p=research' title=\"Research\">Biology</a>, 
+              <a href='index.cgi?p=publications' title=\"My publications\">Genetics</a>, 
+              <a href='index.cgi?p=oldgames' title=\"Abandonware games I used to play\">Computer games</a>, 
               Computers, 
 							<a href='index.cgi?p=drawings' title=\"Pen and ink drawings by Danny Arends\">Drawing</a>, 
               Film and Movies, 
-              <a href='index.cgi?p=blog'>Discussions</a><br>
+              <a href='index.cgi?p=blog' title=\"Visit my blog\">Discussions</a><br>
 							</p>
 						</div>";
 }
@@ -138,8 +138,8 @@ print "					<div class=\"contact\">
 							<h3>Contact</h3>
 							<p>
 							Faculty of Mathematics and Natural Sciences<br>
-							Bioinformatics (GBIC) - Groningen Bioinformatics Centre<br> 
-							Groninger Institute for Biomolecular Sciences & Biotechnology<br>
+							Bioinformatics (GBIC) - Institute for Biomolecular Sciences & Biotechnology
+              - University of Groningen<br>
 							<br>
 							Nijenborgh 7<br>
 							9747 AG Groningen<br>
@@ -191,7 +191,7 @@ print " 					</li>
 								<li><a href=\"/index.cgi?p=hobbies\" title=\"Hobbies of Danny Arends\">Hobbies</a></li>
                   				<li><a href=\"/index.cgi?p=oscar\" title=\"Oscar my cat\">Oscar</a></li>
                   				<li><a href=\"/index.cgi?p=oldgames\" title=\"Download old games I used to play\">AbandonWare games</a></li>
-                  				<li><a href=\"/index.cgi?p=drawings\" title=\"Pen and ink drawings by by Danny Arends\">Drawings</a></li>
+                  				<li><a href=\"/index.cgi?p=drawings\" title=\"Pen and ink drawings by Danny Arends\">Drawings</a></li>
                   				<li><a href=\"/index.cgi?p=gamedesign\">Game Design</a></li>
 								</ul>
 							</li>
@@ -211,7 +211,7 @@ print " 					</li>
 				</div>
 				<div class=\"bottom maxwidth\"></div>
 			</div>
-			<div id=\"disclaimer\" class=\"centre\">Design <a href='http://www.AnnaMargarethaDesign.nl' target='_blank'>AnnaMargarethaDesign.nl</a> | Copyright Danny Arends 2011 - All Rights Reserved</div>
+			<div id=\"disclaimer\" class=\"centre\">Design <a href='http://www.AnnaMargarethaDesign.nl' target='_blank'>AnnaMargarethaDesign.nl</a> | Copyright Danny Arends 2011 - <a href=\"/index.cgi?p=privacy\" title=\"Privacy Policy\">Privacy Policy</a> - All Rights Reserved</div>
 		</div>
 	</body>
 </html>

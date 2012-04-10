@@ -29,7 +29,8 @@
 - <a href="http://www.biomedcentral.com/1471-2105/10/188" target="_blank">DesignGG: an R-package and web tool for the optimal design of genetical genomics experiments</a>: Yang Li, Morris A Swertz, Gonzalo Vera, Jingyuan Fu, Rainer Breitling and Ritsert C Jansen - BMC Bioinformatics, 10:188 (2009)<br>
 - <a href="http://gbb.eldoc.ub.rug.nl/FILES/root/2008/TrendsGenetLi/2008TrendsGenetLi.pdf" target="_blank">Generalizing genetical genomics: getting added value from environmental perturbation</a>: Yang Li, Rainer Breitling and Ritsert C. Jansen - Trends in Genetics, 24:518-524 (2008)
 </p>
-
+<p>
+To view these files you'll need a PDF viewer like <a href="http://get.adobe.com/nl/reader/" target="_blank" title="Get Adobe Reader">Adobe Reader</a>
 
 
 

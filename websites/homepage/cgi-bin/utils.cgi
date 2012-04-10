@@ -44,14 +44,14 @@ sub printHTTPHeader{
   }else{  
 	  print("<title>".ucfirst($form{"p"})." | $title </title>\n");
   }
-	print("<meta name='Keywords' content='Bioinformatics, QTL, Computational, Line Drawings, Groningen University, Biology, Publications, R, R package, PHD Student, C, Rqtl, Genetical Genomics, QTL' >");
+	print("<meta name='keywords' content='Bioinformatics, QTL, Computational, Line Drawings, Groningen University, Biology, Publications, R, R package, PHD Student, C, Rqtl, Genetical Genomics, QTL' >");
 	if($form{"viewDetailed"}){
     my $ss = getPostContent($form{"viewDetailed"});
     $ss =~ s/<(?:[^>'"]*|(['"]).*?\1)*>//gs;
     $ss =~ s/"//gs;
     my @words = split(/ /,$ss);
     my $i = 0;
-    print("<meta name='Description' content='");
+    print("<meta name='description' content='");
     foreach my $word(@words) {
       if($i <= 30){
         print($word." ");
@@ -63,14 +63,14 @@ sub printHTTPHeader{
     }
     print(" | DannyArends.nl' >");
   }else{
-    print("<meta name='Description' content='".$form{"p"}." | DannyArends.nl' >");
+    print("<meta name='description' content='".$form{"p"}." | DannyArends.nl' >");
   }
 	print("<meta name=\"google-site-verification\" content=\"vWrAcVNC0zm0pKDS2um8eSIQTUTyhtZXxcDd35a7A0c\" >
-	<meta name=\"alexaVerifyID\" content=\"lT8ju1qrjgO2ak7jEZvOEQWcqpo\" >
-  <meta name=\"y_key\" content=\"9fbec0326696c2ee\" >
-  <meta name=\"msvalidate.01\" content=\"3DE0921F4D8CE3B76768867C1CA8DD2A\" />
-	<meta name='Author' content='Danny Arends' >
-	<meta name='Robots' content='$spidercommand' >
+	<meta name=\"alexaVerifyID\" content=\"lT8ju1qrjgO2ak7jEZvOEQWcqpo\">
+  <meta name=\"y_key\" content=\"9fbec0326696c2ee\">
+  <meta name=\"msvalidate.01\" content=\"3DE0921F4D8CE3B76768867C1CA8DD2A\">
+	<meta name='author' content='Danny Arends'>
+	<meta name='robots' content='$spidercommand'>
 	
   <script type='text/javascript'></script>
   <style type=\"text/css\" media=\"screen\"> \@import \"http://www.dannyarends.nl/etc/css/style.css\";</style>

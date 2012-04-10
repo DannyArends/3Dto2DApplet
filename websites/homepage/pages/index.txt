@@ -1,13 +1,14 @@
 <h1>Danny Arends</h1>
 <p>
-  I'm Danny Arends and I'm a PHD student at the Groningen Bioinformatics Centre which is 
-  part of the University of Groningen. Also I'm working part-time for the hospital in 
-  Groningen at the Genomics Coordination Centre. The focus of my research is development of 
-  novel algorithms in computational biology</p>
+  I'm Danny Arends and I'm a PHD student at GBIC which is part of the University of 
+  Groningen. Also I'm working part-time for the hospital at the Genomics Coordination 
+  Centre. Welcome to the index of my home page, where I show my work and keep a blog 
+  about my personal life.
+</p>
 <p>
-  For my work I develop new methodologies and create software for use in biology research,
-  the focus of my PHD thesis is on computational methods in quantitative trait analysis (QTL). 
-  People interested can read more about that in the <a href='index.cgi?p=publications'>publications</a> section or on my <a href='index.cgi?p=blog'>blog</a>.
+  For work I develop new methodology and create software for use in biology research.
+  The focus of my PHD thesis is on computational methods in quantitative trait (QTL) 
+  analysis. People interested can read more about that in the <a href='index.cgi?p=publications'>publications</a> section or on my <a href='index.cgi?p=blog'>blog</a>.
 </p>
 <p>
   This web site however is setup to be more broad than just focus on what I do for work. So 
