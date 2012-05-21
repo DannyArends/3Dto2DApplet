@@ -1,7 +1,7 @@
-3Dto2D Applet Testing
-=================
-
-Basic unsigned Java - Applet for 2D and 3D rendering, with Perl common gateway interface pages to connect it to a web server
+3Dto2DApplet
+------------
+Basic unsigned Java - Applet for 2D and 3D rendering, with Perl common 
+gateway interface pages to connect it to a web server
 
 FEATURES:
 Heads up display with windowing system
